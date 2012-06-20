@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+	<category label="General">
+		<setting id="place_holder" type="folder" label="30030" default=""/>
+	</category>
+	<category label="Web Sites">
+		<setting id="animecrazy_on" type="bool" label="animecrazy.net" default="true"/>
+		<setting id="animeflavor_on" type="bool" label="animeflavor.com" default="false"/>
+		<setting id="animefushigi_on" type="bool" label="animefushigi.com" default="false"/>
+		<setting id="animetip_on" type="bool" label="animetip.com" default="false"/>
+		<setting id="myanimelinks_on" type="bool" label="myanimelinks.com" default="false"/>
+	</category>
+	<category label="aniDB">
+	 <setting label="Public Wishlist:" type="lsep" />
+		<setting label="UID" type="text"   id="uid" default=""/>
+		<setting label="Public Password" type="text"   id="publicpass" option="hidden"  enable="!eq(-1,)" default=""/>
+	</category>
+</settings>
