@@ -1,5 +1,6 @@
 import urllib,urllib2,re,sys,httplib
-import xbmcplugin,xbmcgui,xbmcaddon,urlresolver
+import gzip, io
+import xbmc,xbmcplugin,xbmcgui,xbmcaddon,urlresolver
 import cookielib,os,string,cookielib,StringIO
 import os,time,base64,logging
 from datetime import datetime
@@ -55,7 +56,8 @@ base_txt = 'animestream: '
 def HOME():
 	# XBMC: Default screen
 	print base_txt + 'Create Home Screen'
-	#addDir('aniDB Wishlist','',12,'')
+	
+	addDir('aniDB Wishlist','',12,'')
 	addDir('Most Popular','',1,'')
 	addDir('Most Recent','',8,'')
 	addDir('A-Z List','',6,'')
@@ -77,29 +79,142 @@ def CARTOON():
 	addDir('Cartoons','',9,'')
 	addDir('Search','',7,'')
 
-def ANIDB_WISHLIST():
+def ANIDB_WISHLIST(url=''):
 	# MODE 12 = ANIDB_WISHLIST
 
-	url = 'http://anidb.net/perl-bin/animedb.pl?show=mywishlist&uid=%(uid)s&pass=%(pubpass)s' % {"uid": dc.getSetting('uid'), "pubpass": dc.getSetting('publicpass')}
+	print base_txt + 'Create Wishlist Screen'
 	
-	print base_txt + url
-	link = cache.cacheFunction(grabUrlSource,url)
-	# link = grabUrlSource(url)
-	# watchWishlist = cache.cacheFunction(anidbQuick.Wishlist,link)
-	watchWishlist = anidbQuick.Wishlist(link)
+	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
+	# xbmcplugin.setContent(int(sys.argv[1]), 'movies')
+	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
+	
+	if url == '':
+		url = 'http://anidb.net/perl-bin/animedb.pl?show=mywishlist&uid=%(un)s&pass=%(pass)s' % {"un": dc.getSetting('uid'), "pass": dc.getSetting('pubpass')}
+	
+	# watchWishlist = get_aniDB_list(url)
+	watchWishlist = cache.cacheFunction(get_aniDB_list,url)
+	dirLength = len(watchWishlist)
+	print base_txt + '# of items: ' + str(dirLength)
 	
 	name = ''
 	url = ''
 	mode = 2
 	iconimage = ''
-	for name,stat_seen,stat_eps,aid in watchWishlist:
-		print base_txt + name + ' - Seen ' + stat_seen + ' of ' + stat_eps + ' ~ aid = ' + aid
+	for aid, name, eps in watchWishlist:
+		
+		# linkAID = get_ani_detail(aid)
+		linkAID = cache.cacheFunction(get_ani_detail,aid)
+		
+		ani_detail = anidbQuick.AID_Resolution(linkAID)
+		# ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
+		
+		
+		iconimage = ani_detail[1]
+		description = ani_detail[2]
+		year = int(ani_detail[3][0])
+		
+		epwatch = eps[0]
+		eptot = eps[1]
+		
+		print base_txt + name + ' [' + epwatch + ' of ' + eptot + '] (aid=' + aid + ') -- ' + iconimage
+		
+		# if (len(ani_detail)>6):
+			# print ani_detail[6]
+			
+		searchText = name + ' [' + epwatch + ' of ' + eptot + ']' 
+		if searchText == '-- NEXT PAGE --':
+			mode = 1
+			url = iconimage
+			iconimage = ''
+		
+		if eptot == 'TBC':
+			eptot = ani_detail[4]
+			
+		
+		addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=str(aid),descr=description,yr=year,genre='Anime',totep=eptot, watchep=epwatch)
+		aid = None
+		
+
+def ANIDB_SIMILAR(aid_org):
+	# MODE 121 = ANIDB_SIMILAR
+
+	print base_txt + 'Create Similar Title(s) Screen'
+	
+	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
+	# xbmcplugin.setContent(int(sys.argv[1]), 'movies')
+	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
+	
+	# linkAID = get_ani_detail(aid_org)
+	linkAID = cache.cacheFunction(get_ani_detail,aid_org)
+	
+	ani_detail_org = anidbQuick.AID_Resolution(linkAID)
+	# ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
+	
+	dirLength = len(ani_detail_org)
+	print base_txt + '# of items: ' + str(dirLength)
+	
+	name = ''
+	url = ''
+	mode = 2
+	iconimage = ''
+	for aid, name in ani_detail_org[6]:
+		
+		# linkAID = get_ani_detail(aid)
+		linkAID = cache.cacheFunction(get_ani_detail,aid)
+		
+		# ani_detail = anidbQuick.AID_Resolution(linkAID)
+		ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
+		
+		
+		iconimage = ani_detail[1]
+		description = ani_detail[2]
+		year = int(ani_detail[3][0])
+		
+		print base_txt + name + ' (aid=' + aid + ') -- ' + iconimage
+		
+		# if (len(ani_detail)>6):
+			# print ani_detail[6]
+			
 		searchText = name
 		if searchText == '-- NEXT PAGE --':
 			mode = 1
 			url = iconimage
 			iconimage = ''
-		addDir(searchText,url,mode,iconimage)
+			
+		eptot = ani_detail[4]
+			
+		
+		addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre='Anime',totep=eptot)
+		aid = None
+		
+def get_ani_detail(aid):
+
+	time.sleep(2.25)
+	urlPg = 'http://api.anidb.net:9001/httpapi?request=anime&client=xbmcscrap&clientver=1&protover=1&aid=%(aid)s' % {"aid": aid}
+	linkAID = grabUrlSource(urlPg)
+	
+	return linkAID
+		
+def get_aniDB_list(url):	
+
+	multiPg = []	
+	for pg in xrange(0,10):
+		time.sleep(5)
+		urlPg = url + '&page=' + str(pg)
+		# print base_txt + urlPg
+		linkPg = grabUrlSource(urlPg)
+		if 'No results.' in linkPg:
+			print base_txt + 'No more pages to parse'
+			break
+		else:
+			multiPg.append(linkPg)
+		
+		link = ''.join(multiPg)
+		
+	watchWishlist = anidbQuick.Wishlist(link)	
+	watchWishlist.sort(key=lambda name: name[1]) 
+	
+	return watchWishlist
 		
 		
 def getEpisode_Listing_Pages(groupUrl):
@@ -132,6 +247,9 @@ def getEpisode_Listing_Pages(groupUrl):
 	epListAll = f2(epListAll)
 	epListAll.append(['','END','',''])
 	
+	dirLength = len(epListAll)
+	print base_txt + '# of items: ' + str(dirLength)
+	
 	epNumTest = ''
 	name = ''
 	url = ''
@@ -144,7 +262,7 @@ def getEpisode_Listing_Pages(groupUrl):
 			if not epNumTest == epNum:
 				if not epNumTest == '':
 					print base_txt + nameTest + ' ' + groupUrl
-					addDir(nameTest,groupUrl,mode,iconimageTest)
+					addDir(nameTest,groupUrl,mode,iconimageTest,numItems=dirLength)
 				groupUrl = ''
 				iconimageTest = ''
 				nameTest = name
@@ -287,10 +405,17 @@ def MOST_POPULAR(url=''):
 	# Hardcoded to use animecrazy.net
 	# MODE 1 = MOST_POPULAR
 	
+	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
+	xbmcplugin.setContent(int(sys.argv[1]), 'movies')
+	
 	if url == '':
 		url = 'http://www.animecrazy.net/most-popular/'
 	# mostPop = animecrazy.Video_List_And_Pagination(url)
 	mostPop = cache.cacheFunction(animecrazy.Video_List_And_Pagination, url)
+	
+	dirLength = len(mostPop)
+	print base_txt + '# of items: ' + str(dirLength)
+	
 	name = ''
 	url = ''
 	mode = 2
@@ -302,12 +427,15 @@ def MOST_POPULAR(url=''):
 			mode = 1
 			url = iconimage
 			iconimage = ''
-		addDir(searchText,url,mode,iconimage)
+		addDir(searchText,url,mode,iconimage,numItems=dirLength)
 
 
 def CARTOON_LIST(url=''):
 	# Hardcoded to use animeflavor.com
 	# MODE 9 = CARTOON_LIST
+	
+	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
+	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
 	
 	if url == '':
 		url = 'http://www.animeflavor.com/index.php?q=cartoons'
@@ -320,6 +448,10 @@ def CARTOON_LIST(url=''):
 	
 	mostPop.sort(key=lambda name: name[1]) 
 	mostPop = f2(mostPop)
+	
+	dirLength = len(mostPop)
+	print base_txt + '# of items: ' + str(dirLength)
+	
 	for iconimage, name in mostPop:
 		print base_txt + iconimage + ' ' + name
 		searchText = name
@@ -327,11 +459,14 @@ def CARTOON_LIST(url=''):
 			mode = 1
 			url = iconimage
 			iconimage = ''
-		addDir(searchText,url,mode,iconimage)
+		addDir(searchText,url,mode,iconimage,numItems=dirLength)
 
 def MOST_RECENT(url=''):
 	# Hardcoded to use animecrazy.net
 	# MODE 8 = MOST_RECENT
+	
+	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
+	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
 	
 	if url == '':
 		url = 'http://www.animecrazy.net/most-recent/'
@@ -342,6 +477,9 @@ def MOST_RECENT(url=''):
 	url = ''
 	mode = 2
 	iconimage = ''
+	
+	dirLength = len(mostRecent)
+	print base_txt + '# of items: ' + str(dirLength)
 	for iconimage, name in mostRecent:
 		print base_txt + iconimage + ' ' + name
 		searchText = name
@@ -349,7 +487,7 @@ def MOST_RECENT(url=''):
 			mode = 8
 			url = iconimage
 			iconimage = ''
-		addDir(searchText,url,mode,iconimage)
+		addDir(searchText,url,mode,iconimage,numItems=dirLength)
 	
 	
 def A_Z_LIST():
@@ -359,8 +497,10 @@ def A_Z_LIST():
 	url = 'http://www.animecrazy.net/alpha-'
 	abc = [chr(i) for i in xrange(ord('A'), ord('Z')+1)]
 	
+	dirLength = len(abc)
+	print base_txt + '# of items: ' + str(dirLength)
 	for alphaB in abc:
-		addDir(alphaB,url+alphaB.lower()+'/',61,'')
+		addDir(alphaB,url+alphaB.lower()+'/',61,'',numItems=dirLength)
         
 
 def A_Z_LIST_VIDEOS(url):
@@ -372,6 +512,9 @@ def A_Z_LIST_VIDEOS(url):
 	url = ''
 	mode = 2
 	iconimage = ''
+	
+	dirLength = len(azList)
+	print base_txt + '# of items: ' + str(dirLength)
 	for iconimage, name in azList:
 		print base_txt + iconimage + ' ' + name
 		searchText = name
@@ -379,7 +522,7 @@ def A_Z_LIST_VIDEOS(url):
 			mode = 61
 			url = iconimage
 			iconimage = ''
-		addDir(searchText,url,mode,iconimage)
+		addDir(searchText,url,mode,iconimage,numItems=dirLength)
 		
 def TYPED_SEARCH():
         keyb = xbmc.Keyboard('', 'Enter search text')
@@ -392,10 +535,12 @@ def TYPED_SEARCH():
         SEARCH(searchText)
 		
 		
-def SEARCH(searchTextOrg):
+def SEARCH(searchText,aid='0'):
 	# Searches the various websites for the searched content
-	
-	searchText = searchTextOrg.replace('(TV)','').replace('(OVA)','').replace('(Movie)','').strip()
+	subLoc = searchText.find('[')
+	if subLoc > 0:
+		searchText = searchText[:subLoc]
+	searchText = searchText.replace('(TV)','').replace('(OVA)','').replace('(Movie)','').strip()
 	print base_txt + 'Searching for ... ' + searchText
 	
 	searchRes = cache.cacheFunction(allSearch,searchText)
@@ -405,13 +550,16 @@ def SEARCH(searchTextOrg):
 	url = ''
 	mode = 3
 	iconimage = ''
+	
+	dirLength = len(searchRes)
+	print base_txt + '# of items: ' + str(dirLength)
 	for url, name in searchRes:
 		name = name.title().replace(' - ',' ').replace(':','')
 		try:
 			if not nameTest == name:
 				if not nameTest == '':
 					print base_txt + nameTest + ' ' + groupUrl
-					addDir(nameTest,groupUrl,mode,iconimage)
+					addDir(nameTest,groupUrl,mode,iconimage,numItems=dirLength)
 				groupUrl = ''
 				nameTest = name
 			
@@ -419,8 +567,22 @@ def SEARCH(searchTextOrg):
 				groupUrl = groupUrl +' '+ url
 				
 		except:
-			print base_txt + 'Directory not created in SEARCH() for ' + url + ' ' + name		
+			print base_txt + 'Directory not created in SEARCH() for ' + url + ' ' + name	
+
+	subLoc = searchText.rfind(':')
+	if subLoc == -1:
+		subLoc = searchText.rfind(' ')
+		if (subLoc > 0 and subLoc < len(searchText)):
+			searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
+			addDir(searchText,'',2,'')	
+	elif (subLoc > 0 and subLoc < len(searchText)):
+		searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
+		addDir(searchText,'',2,'')
+	
+	if (int(aid)>0):
+		addDir('-- SIMILAR TITLES --','',121,'',aid=aid)
 		
+	
 		
 def allSearch(searchText):
 	# Searches the various websites for the searched content
@@ -501,12 +663,21 @@ def allSearch(searchText):
 	return searchRes
 
 	
-def addDir(name,url,mode,iconimage,numItems=1):
+def addDir(name,url,mode,iconimage,numItems=1,aid=0,descr='',yr='1900',genre='',totep='0',watchep='0'):
 	# XBMC: create directory
-	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
+	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&aid="+str(aid)
 	ok=True
+	unwatchep = '0'
+	
+	if (len(totep)>0 and len(watchep)>0):
+		unwatchep = str(int(totep)-int(watchep))
+		
 	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-	liz.setInfo( type="Video", infoLabels={ "Title": name } )
+	liz.setInfo( type="Video", infoLabels={ "Title":name, "Plot":descr, "Year":yr, "Genre":genre} )
+	liz.setProperty('Fanart_Image',iconimage)
+	liz.setProperty('TotalEpisodes',totep)
+	liz.setProperty('WatchedEpisodes',watchep)
+	liz.setProperty('UnWatchedEpisodes',unwatchep)
 	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True, totalItems=numItems)
 	return ok
 		
@@ -536,10 +707,19 @@ def f2(seq):
    
    
 def grabUrlSource(url):
+	link = cache.cacheFunction(grabUrlSource_Src,url)
+	return link
+   
+def grabUrlSource_Src(url):
+	print base_txt + 'grabUrlSource - ' + url
 	req = urllib2.Request(url)
 	req.add_header('User-Agent', mozilla_user_agent)
-	response = urllib2.urlopen(req)
+	response = urllib2.urlopen(req)	
 	link=response.read()
+	if link[:2]=='\x1f\x8b':
+		bi = io.BytesIO(link)
+		gf = gzip.GzipFile(fileobj=bi, mode="rb")
+		link = gf.read()
 	response.close()
 	link = ''.join(link.splitlines()).replace('\t','')
 	
@@ -568,6 +748,7 @@ params=get_params()
 url=None
 name=None
 mode=None
+aid=None
 
 try:
         url=urllib.unquote_plus(params["url"])
@@ -579,6 +760,10 @@ except:
         pass
 try:
         mode=int(params["mode"])
+except:
+        pass
+try:
+        aid=int(params["aid"])
 except:
         pass
 
@@ -597,7 +782,7 @@ elif mode==1:
         MOST_POPULAR(url) 
         
 elif mode==2:
-        SEARCH(name) 
+        SEARCH(name,aid) 
         
 elif mode==3:
         getEpisode_Listing_Pages(url)
@@ -626,6 +811,9 @@ elif mode==9:
         CARTOON_LIST()
 
 elif mode==12:
-        ANIDB_WISHLIST()
+        ANIDB_WISHLIST(url)
+
+elif mode==121:
+        ANIDB_SIMILAR(aid)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
