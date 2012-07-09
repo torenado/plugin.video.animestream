@@ -53,6 +53,18 @@ addonPath=os.getcwd()
 mozilla_user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
 base_txt = 'animestream: '
 
+THUMBNAIL_VIEW_IDS = {'skin.confluence': 504,
+                      'skin.aeon.nox': 551,
+                      'skin.confluence-vertical': 500,
+                      'skin.jx720': 52,
+                      'skin.pm3-hd': 53,
+                      'skin.rapier': 50,
+                      'skin.simplicity': 500,
+                      'skin.slik': 53,
+                      'skin.touched': 500,
+                      'skin.transparency': 53,
+                      'skin.xeebo': 55}
+
 def HOME():
 	# XBMC: Default screen
 	print base_txt + 'Create Home Screen'
@@ -150,7 +162,7 @@ def ANIDB_SIMILAR(aid_org):
 	ani_detail_org = anidbQuick.AID_Resolution(linkAID)
 	# ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
 	
-	dirLength = len(ani_detail_org)
+	dirLength = len(ani_detail_org[6])
 	print base_txt + '# of items: ' + str(dirLength)
 	
 	name = ''
@@ -168,8 +180,9 @@ def ANIDB_SIMILAR(aid_org):
 		
 		iconimage = ani_detail[1]
 		description = ani_detail[2]
-		year = int(ani_detail[3][0])
-		
+		if len(ani_detail[3])>1:
+			year = int(ani_detail[3][0])
+			
 		print base_txt + name + ' (aid=' + aid + ') -- ' + iconimage
 		
 		# if (len(ani_detail)>6):
@@ -186,6 +199,12 @@ def ANIDB_SIMILAR(aid_org):
 		
 		addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre='Anime',totep=eptot)
 		aid = None
+		
+	skin = xbmc.getSkinDir()
+	thumbnail_view = THUMBNAIL_VIEW_IDS.get(skin)
+	if thumbnail_view:
+		cmd = 'Container.SetViewMode(%s)' % thumbnail_view
+		xbmc.executebuiltin(cmd)
 		
 def get_ani_detail(aid):
 
@@ -246,6 +265,8 @@ def getEpisode_Listing_Pages(groupUrl):
 	epListAll.sort(key=lambda name: name[3], reverse=True) 
 	epListAll = f2(epListAll)
 	epListAll.append(['','END','',''])
+	
+	# print epListAll
 	
 	dirLength = len(epListAll)
 	print base_txt + '# of items: ' + str(dirLength)
@@ -540,21 +561,50 @@ def SEARCH(searchText,aid='0'):
 	subLoc = searchText.find('[')
 	if subLoc > 0:
 		searchText = searchText[:subLoc]
-	searchText = searchText.replace('(TV)','').replace('(OVA)','').replace('(Movie)','').strip()
+	subLoc = searchText.find('(')
+	if subLoc > 0:
+		searchText = searchText[:subLoc]
+		
+	searchText = searchText.replace('(TV)','').replace('(OVA)','').replace('(Movie)','').title().strip()
 	print base_txt + 'Searching for ... ' + searchText
 	
-	searchRes = cache.cacheFunction(allSearch,searchText)
-	searchRes.append(['','END'])
+	# linkAID = get_ani_detail(aid_org)
+	linkAID = cache.cacheFunction(get_ani_detail,aid)
+	
+	ani_detail_org = anidbQuick.AID_Resolution(linkAID)
+	# ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
+	
+	searchRes = allSearch(searchText)
+	# searchRes = cache.cacheFunction(allSearch,searchText)
+	
+	if (not aid == '0' and len(ani_detail_org[7])>0):
+		print base_txt + 'Searching ' + str(len(ani_detail_org[7])) + ' alternate names'
+		for aid, name in ani_detail_org[7]:
+			subLoc = name.find('(')
+			if subLoc > 0:
+				name = name[:subLoc]
+			name = name.title()
+			print base_txt + 'Searching for ... ' + name
+			searchRes = searchRes + cache.cacheFunction(allSearch,name)
+		
+	searchRes.append(['','zzzzzzEND'])
+	searchRes.sort(key=lambda name: name[1]) 
+	searchRes = f2(searchRes)
 	
 	nameTest = ''
 	url = ''
 	mode = 3
 	iconimage = ''
 	
+	# print searchRes
+	# searchRes = filter(None, searchRes)
+	# print searchRes
+	
+	
 	dirLength = len(searchRes)
 	print base_txt + '# of items: ' + str(dirLength)
 	for url, name in searchRes:
-		name = name.title().replace(' - ',' ').replace(':','')
+		name = name.title().replace(' - ',' ').replace(':','').strip()
 		try:
 			if not nameTest == name:
 				if not nameTest == '':
@@ -610,13 +660,14 @@ def allSearch(searchText):
 	
 	searchRes = []
 	for url in searchSiteList:
+		xbmc.executebuiltin('XBMC.Notification(Retrieving Info!,'+ url +',5000)')
 		link = ''
 		if ('animecrazy.net' in url):
 			try:
 				aniUrls = ['http://www.animecrazy.net/anime-index/']
 				for aniUrl in aniUrls:
 					print base_txt + aniUrl
-					link = cache.cacheFunction(grabUrlSource,aniUrl)
+					link = grabUrlSource(aniUrl)
 					searchRes = searchRes + animecrazy.Video_List_Searched(searchText, link)
 			except:
 				print base_txt + url + ' failed to load allSearch()'
@@ -625,7 +676,7 @@ def allSearch(searchText):
 				aniUrls = ['http://www.animeflavor.com/index.php?q=node/anime_list','http://www.animeflavor.com/index.php?q=anime_movies','http://www.animeflavor.com/index.php?q=cartoons']
 				for aniUrl in aniUrls:
 					print base_txt + aniUrl
-					link = cache.cacheFunction(grabUrlSource,aniUrl)
+					link = grabUrlSource(aniUrl)
 					searchRes = searchRes + animeflavor.Video_List_Searched(searchText, link)
 			except:
 				print base_txt + 'animeflavor.com failed to load allSearch()'
@@ -634,7 +685,7 @@ def allSearch(searchText):
 				aniUrls = ['http://www.animefushigi.com/full-anime-list/','http://www.animefushigi.com/anime/movies/']
 				for aniUrl in aniUrls:
 					print base_txt + aniUrl
-					link = cache.cacheFunction(grabUrlSource,aniUrl)
+					link = grabUrlSource(aniUrl)
 					searchRes = searchRes + animefushigi.Video_List_Searched(searchText, link)
 			except:
 				print base_txt + 'animefushigi.com failed to load allSearch()'
@@ -643,7 +694,7 @@ def allSearch(searchText):
 				aniUrls = ['http://www.animetip.com/watch-anime','http://www.animetip.com/anime-movies']
 				for aniUrl in aniUrls:
 					print base_txt + aniUrl
-					link = cache.cacheFunction(grabUrlSource,aniUrl)
+					link = grabUrlSource(aniUrl)
 					searchRes = searchRes + animetip.Video_List_Searched(searchText, link)
 			except:
 				print base_txt + 'animetip.com failed to load allSearch()'
@@ -652,7 +703,7 @@ def allSearch(searchText):
 				aniUrls = ['http://www.myanimelinks.com/full-anime-list/']
 				for aniUrl in aniUrls:
 					print base_txt + aniUrl
-					link = cache.cacheFunction(grabUrlSource,aniUrl)
+					link = grabUrlSource(aniUrl)
 					searchRes = searchRes + myanimelinks.Video_List_Searched(searchText, link)
 			except:
 				print base_txt + 'myanimelinks.com failed to load allSearch()'
@@ -660,8 +711,102 @@ def allSearch(searchText):
 	searchRes.sort(key=lambda name: name[1]) 
 	searchRes = f2(searchRes)
 	
+	searchRes.append(['','zzzzzzEND'])
+	return searchRes
+		
+	
+		
+def allAnimeList():
+	# Searches the various websites for the searched content
+	
+	searchSiteList = []
+	if (dc.getSetting('animecrazy_on') == 'true'):
+		searchSiteList.append('animecrazy.net')
+	
+	if (dc.getSetting('animeflavor_on') == 'true'):
+		searchSiteList.append('animeflavor.com')
+	
+	if (dc.getSetting('animefushigi_on') == 'true'):
+		searchSiteList.append('animefushigi.com')
+	
+	if (dc.getSetting('animetip_on') == 'true'):
+		searchSiteList.append('animetip.com')
+	
+	if (dc.getSetting('myanimelinks_on') == 'true'):
+		searchSiteList.append('myanimelinks.com')
+		
+	if(len(searchSiteList) < 1):
+		searchSiteList = ['animecrazy.net']
+		print base_txt +  'No sites choosen in the settings.  Using animecrazy.net'
+		
+	
+	searchRes = []
+	for url in searchSiteList:
+		xbmc.executebuiltin('XBMC.Notification(Retrieving Info!,'+ url +',5000)')
+		link = ''
+		if ('animecrazy.net' in url):
+			try:
+				aniUrls = ['http://www.animecrazy.net/anime-index/']
+				for aniUrl in aniUrls:
+					print base_txt + aniUrl
+					link = grabUrlSource(aniUrl)
+					searchRes = searchRes + animecrazy.Total_Video_List(link)
+			except:
+				print base_txt + url + ' failed to load allAnimeList()'
+		elif ('animeflavor.com' in url):
+			try:
+				aniUrls = ['http://www.animeflavor.com/index.php?q=node/anime_list','http://www.animeflavor.com/index.php?q=anime_movies','http://www.animeflavor.com/index.php?q=cartoons']
+				for aniUrl in aniUrls:
+					print base_txt + aniUrl
+					link = grabUrlSource(aniUrl)
+					searchRes = searchRes + animeflavor.Total_Video_List(link)
+			except:
+				print base_txt + 'animeflavor.com failed to load allAnimeList()'
+		elif ('animefushigi.com' in url):
+			try:
+				aniUrls = ['http://www.animefushigi.com/full-anime-list/','http://www.animefushigi.com/anime/movies/']
+				for aniUrl in aniUrls:
+					print base_txt + aniUrl
+					link = grabUrlSource(aniUrl)
+					searchRes = searchRes + animefushigi.Total_Video_List(link)
+			except:
+				print base_txt + 'animefushigi.com failed to load allAnimeList()'
+		elif ('animetip.com' in url):
+			try:
+				aniUrls = ['http://www.animetip.com/watch-anime','http://www.animetip.com/anime-movies']
+				for aniUrl in aniUrls:
+					print base_txt + aniUrl
+					link = grabUrlSource(aniUrl)
+					searchRes = searchRes + animetip.Total_Video_List(link)
+			except:
+				print base_txt + 'animetip.com failed to load allAnimeList()'
+		elif ('myanimelinks.com' in url):
+			try:
+				aniUrls = ['http://www.myanimelinks.com/full-anime-list/']
+				for aniUrl in aniUrls:
+					print base_txt + aniUrl
+					link = grabUrlSource(aniUrl)
+					searchRes = searchRes + myanimelinks.Total_Video_List(link)
+			except:
+				print base_txt + 'myanimelinks.com failed to load allAnimeList()'
+		
+	searchRes.sort(key=lambda name: name[1]) 
+	searchRes = f2(searchRes)
+			
 	return searchRes
 
+	
+def allSearchList(searchText):
+	
+	searchRes = cache.cacheFunction(allAnimeList)
+	
+	searchResults = []
+	for possLink in searchRes:
+		
+		if searchText in possLink[1]:
+			searchResults.append(possLink)
+			
+	return searchResults
 	
 def addDir(name,url,mode,iconimage,numItems=1,aid=0,descr='',yr='1900',genre='',totep='0',watchep='0'):
 	# XBMC: create directory
@@ -683,7 +828,7 @@ def addDir(name,url,mode,iconimage,numItems=1,aid=0,descr='',yr='1900',genre='',
 		
 def addLink(name,url,iconimage):
 	# XBMC: Create playable links
-	ok=True
+	ok=True	
 	liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
 	liz.setInfo( type="Video", infoLabels={ "Title": name } )
 	# adding context menus
@@ -711,19 +856,23 @@ def grabUrlSource(url):
 	return link
    
 def grabUrlSource_Src(url):
-	print base_txt + 'grabUrlSource - ' + url
-	req = urllib2.Request(url)
-	req.add_header('User-Agent', mozilla_user_agent)
-	response = urllib2.urlopen(req)	
-	link=response.read()
-	if link[:2]=='\x1f\x8b':
-		bi = io.BytesIO(link)
-		gf = gzip.GzipFile(fileobj=bi, mode="rb")
-		link = gf.read()
-	response.close()
-	link = ''.join(link.splitlines()).replace('\t','')
-	
-	return link
+	try:
+		print base_txt + 'grabUrlSource - ' + url
+		req = urllib2.Request(url)
+		req.add_header('User-Agent', mozilla_user_agent)
+		response = urllib2.urlopen(req)	
+		link=response.read()
+		if link[:2]=='\x1f\x8b':
+			bi = io.BytesIO(link)
+			gf = gzip.GzipFile(fileobj=bi, mode="rb")
+			link = gf.read()
+		response.close()
+		link = ''.join(link.splitlines()).replace('\t','')
+		
+		return link
+	except urllib2.URLError, e:
+		base_txt + '- got http error %d fetching %s' % (e.code, url)
+		return False
 		
 		
 def get_params():

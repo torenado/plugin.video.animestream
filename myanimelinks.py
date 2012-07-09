@@ -3,6 +3,7 @@ import urllib,urllib2,re,sys,httplib
 import cookielib,os,string,cookielib,StringIO
 import os,time,base64,logging
 from datetime import datetime
+from utils import grabUrlSource
 try:
     import json
 except ImportError:
@@ -16,36 +17,17 @@ except ImportError:
 	
 #animestream
 # modded from --> <addon id="plugin.video.animecrazy" name="Anime Crazy" version="1.0.9" provider-name="AJ">
-#dc=xbmcaddon.Addon(id='plugin.video.animestream')
-addonPath=os.getcwd()
-#artPath=addonPath+'/resources/art'
-mozilla_user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
 
 BASE_URL = 'http://myanimelinks.com'
 
 base_url_name = BASE_URL.split('//')[1]
 base_txt = base_url_name + ': '
 
-	
-mozilla_user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
-def grabUrlSource(url):
-	req = urllib2.Request(url)
-	req.add_header('User-Agent', mozilla_user_agent)
-	response = urllib2.urlopen(req)
-	link=response.read()
-	response.close()
-	link = ''.join(link.splitlines()).replace('\t','')
-	
-	return link
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page
-	req = urllib2.Request(url)
-	req.add_header('User-Agent', mozilla_user_agent)
-	response = urllib2.urlopen(req)
-	link=response.read()
-	response.close()
-	link = ''.join(link.splitlines()).replace('\t','')
+	
+	link = grabUrlSource(url)
 	
 	match=re.compile("class='pages'>Page 1 of (.+?)</span>").findall(link)
 	epList = []
@@ -63,12 +45,8 @@ def Episode_Listing_Pages(url):
 	
 def Episode_Listing(url):
 	# Extracts the URL and Page name of the various content pages
-	req = urllib2.Request(url)
-	req.add_header('User-Agent', mozilla_user_agent)
-	response = urllib2.urlopen(req)
-	link=response.read()
-	response.close()
-	link = ''.join(link.splitlines()).replace('\t','')	
+	
+	link = grabUrlSource(url)	
 	
 	match=re.compile('<h5><CENTER><a href="(.+?)">(.+?)</a>(.+?)background-image:url\((.+?)&amp;').findall(link)
 	epList = []
@@ -76,15 +54,22 @@ def Episode_Listing(url):
 	epNum = 0
 	if(len(match) >= 1):
 		for episodePageLink, episodePageName, garbage, episodeMediaThumb in match:
-			epNumPart = episodePageName.strip().split()
-			for  epNum in reversed(epNumPart):
-				if epNum.isdigit():
-					epNum = int(epNum)
-					break
-			else:
-				epNum = 0
+			if epNum == 0:
+				epNumPart = episodePageName.strip().split()
+				for  epNum in reversed(epNumPart):
+					if epNum.isdigit():
+						epNum = int(epNum)
+						break
+					
+			if epNum == 0:					
+				epNumPart = episodePageName.strip().split('#')
+				for  epNum in reversed(epNumPart):
+					if epNum.isdigit():
+						epNum = int(epNum)
+						break
 
 			epList.append([episodePageLink, episodePageName.title(), episodeMediaThumb.replace("'",""), epNum])
+			epNum = 0
 	else:
 		print base_txt +  'Nothing was parsed from Episode_Listing: ' + url
 		
@@ -94,12 +79,8 @@ def Episode_Listing(url):
 def Episode_Page(url):
 	# Identifies the number of mirrors for the content
 	print base_txt +  url
-	req = urllib2.Request(url)
-	req.add_header('User-Agent', mozilla_user_agent)
-	response = urllib2.urlopen(req)
-	link=response.read()
-	response.close()
-	link = ''.join(link.splitlines()).replace('\t','')
+	
+	link = grabUrlSource(url)
 	
 	episodeMediaMirrors = url
 	epMedia = Episode_Media_Link(episodeMediaMirrors)
@@ -109,12 +90,8 @@ def Episode_Page(url):
 	
 def Episode_Media_Link(url, mirror=1):
 	# Extracts the URL for the content media file
-	req = urllib2.Request(url)
-	req.add_header('User-Agent', mozilla_user_agent)
-	response = urllib2.urlopen(req)
-	link=response.read()
-	response.close()
-	link = ''.join(link.splitlines()).replace('\t','')
+	
+	link = grabUrlSource(url)
 	
 	match=re.compile('<br /><(iframe|embed) src="(.+?)"').findall(link)
 	epMedia = []
@@ -135,12 +112,9 @@ def Episode_Media_Link(url, mirror=1):
 	
 def Media_Link_Finder(url):
 	# Extracts the URL for the content media file
-	req = urllib2.Request(url)
-	req.add_header('User-Agent', mozilla_user_agent)
-	response = urllib2.urlopen(req)
-	link=response.read()
-	response.close()
-	link = ''.join(link.splitlines()).replace('\t','').replace(' ','')
+	
+	link = grabUrlSource(url)
+	link = link.replace(' ','')
 
 	match = re.compile('(iframe|embed)src="(.+?)"').findall(link)
 	match1 = re.compile('(iframe|embed)src=\'(.+?)\'').findall(link)
@@ -171,8 +145,30 @@ def Video_List_Searched(searchText, link):
 			videoInfo = re.compile('href="(.+?)"').findall(linkFound)
 			videoLink = videoInfo[-1]
 			videoNameSplit = videoLink.split('/')
-			videoName = videoNameSplit[-2].replace('-',' ').title()
+			videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
 			if (not 'http://ads.' in videoLink and not 'episode' in videoLink):
 				searchRes.append([videoLink, videoName])
+	# else:
+		# print base_txt +  'Nothing was parsed from Video_List_Searched' 
 				
+	return searchRes
+
+		
+def Total_Video_List(link):
+	# Generate list of shows/movies
+	
+	searchRes = []
+	match=re.compile('<a(.+?)>(.+?)</a>').findall(link)
+	if(len(match) >= 1):
+		for linkFound in match:
+			videoInfo = re.compile('href="(.+?)"').findall(linkFound[0])
+			if(len(videoInfo) >= 1):
+				videoLink = videoInfo[-1]
+				videoNameSplit = videoLink.split('/')
+				videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
+				if (not 'http://ads.' in videoLink and not 'episode' in videoLink):
+					searchRes.append([videoLink, videoName])
+	else:
+		print base_txt +  'Nothing was parsed from Total_Video_List' 
+		
 	return searchRes

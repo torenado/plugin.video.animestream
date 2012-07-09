@@ -3,6 +3,7 @@ import urllib,urllib2,re,sys,httplib
 import cookielib,os,string,cookielib,StringIO
 import os,time,base64,logging
 from datetime import datetime
+from utils import grabUrlSource
 try:
     import json
 except ImportError:
@@ -16,26 +17,11 @@ except ImportError:
 	
 #animestream
 # modded from --> <addon id="plugin.video.animecrazy" name="Anime Crazy" version="1.0.9" provider-name="AJ">
-#dc=xbmcaddon.Addon(id='plugin.video.animestream')
-addonPath=os.getcwd()
-#artPath=addonPath+'/resources/art'
 
 BASE_URL = 'http://www.animecrazy.net'
 
 base_url_name = BASE_URL.split('www.')[1]
 base_txt = base_url_name + ': '
-
-	
-mozilla_user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
-def grabUrlSource(url):
-	req = urllib2.Request(url)
-	req.add_header('User-Agent', mozilla_user_agent)
-	response = urllib2.urlopen(req)
-	link=response.read()
-	response.close()
-	link = ''.join(link.splitlines()).replace('\t','')
-	
-	return link
 	
 	
 def Episode_Listing_Pages(url):
@@ -183,12 +169,7 @@ def Video_List_And_Pagination(url):
 			mostPop.append([nextPage, videoName])
 		else:
 			print base_txt +  mod_url
-			req = urllib2.Request(mod_url)
-			req.add_header('User-Agent', mozilla_user_agent)
-			response = urllib2.urlopen(req)
-			link=response.read()
-			response.close()
-			link = ''.join(link.splitlines()).replace('\t','')
+			link = grabUrlSource(url)
 			match=re.compile('<img src="http://i.animecrazy.net/(.+?)"(.+?)<h1><a href="(.+?)">(.+?)</a></h1>').findall(link)
 			#xbmc.executebuiltin("XBMC.Notification(Please Wait!,Retrieving video info and image,5000)")
 			for videoImg, garbage, videoLink, videoName in match:
@@ -252,8 +233,30 @@ def Video_List_Searched(searchText, link):
 			videoInfo = re.compile('href="(.+?)"').findall(linkFound)
 			videoLink = videoInfo[-1]
 			videoNameSplit = videoLink.split('/')
-			videoName = videoNameSplit[-2].replace('-',' ').title()
+			videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
 			if (not 'http://ads.' in videoLink and not 'episode' in videoLink):
 				searchRes.append([BASE_URL + videoLink, videoName.replace('Anime','').strip()])
+	# else:
+		# print base_txt +  'Nothing was parsed from Video_List_Searched' 
 				
+	return searchRes
+
+		
+def Total_Video_List(link):
+	# Generate list of shows/movies
+	
+	searchRes = []
+	match=re.compile('<a(.+?)>(.+?)</a>').findall(link)
+	if(len(match) >= 1):
+		for linkFound in match:
+			videoInfo = re.compile('href="(.+?)"').findall(linkFound[0])
+			if(len(videoInfo) >= 1):
+				videoLink = videoInfo[-1]
+				videoNameSplit = videoLink.split('/')
+				videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
+				if (not 'http://ads.' in videoLink):
+					searchRes.append([BASE_URL + videoLink, videoName.replace('Anime','').strip()])
+	else:
+		print base_txt +  'Nothing was parsed from Total_Video_List' 
+		
 	return searchRes

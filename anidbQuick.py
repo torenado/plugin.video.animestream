@@ -103,15 +103,31 @@ def AID_Resolution(linkAID):
 		adult='Yes'
 	else:
 		adult='No'		
+	
+		
+	synAniList = []
+	match=re.compile('<titles>(.+?)</titles>').findall(linkAID)
+	if(len(match)>=1):
+		simAni=re.compile('<title xml:lang="en"(.+?)>(.+?)<').findall(match[0])
+		for garbage, name in simAni:
+			simAid = aid
+			synAniList.append([simAid,name])	
+	
 		
 	simAniList = []
+	match=re.compile('<relatedanime>(.+?)</relatedanime>').findall(linkAID)
+	if(len(match)>=1):
+		simAni=re.compile('<anime id="(.+?)"(.+?)>(.+?)<').findall(match[0])
+		for simAid, garbage, name in simAni:
+			simAniList.append([simAid,name])	
+	
 	match=re.compile('<similaranime>(.+?)</similaranime>').findall(linkAID)
 	if(len(match)>=1):
 		simAni=re.compile('<anime id="(.+?)"(.+?)>(.+?)<').findall(match[0])
 		for simAid, garbage, name in simAni:
 			simAniList.append([simAid,name])
 		
-	return [aid, iconimage, description, startdate, episodecount, adult, simAniList]
+	return [aid, iconimage, description, startdate, episodecount, adult, simAniList, synAniList]
 	
 	
 def WishlistAPI(link):
