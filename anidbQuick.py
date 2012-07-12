@@ -67,7 +67,7 @@ def Wishlist(link):
 def AID_Resolution(linkAID):
 	# print base_txt +  'Grabbing anidb aid details'
 	
-	aid=''
+	aid=0
 	match=re.compile('<anime id="(.+?)"').findall(linkAID)
 	if(len(match)>=1):
 		aid=match[0]
@@ -88,7 +88,7 @@ def AID_Resolution(linkAID):
 	
 	# print base_txt +  description
 	
-	episodecount=''
+	episodecount=0
 	match=re.compile('<episodecount>(.+?)</episodecount>').findall(linkAID)
 	if(len(match)>=1):
 		episodecount=match[0]

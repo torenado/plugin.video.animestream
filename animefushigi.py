@@ -26,6 +26,7 @@ base_txt = base_url_name + ': '
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page
+	print base_txt + url
 	link = grabUrlSource(url)
 	
 	match=re.compile("class='pages'>Page 1 of (.+?)</span>").findall(link)
@@ -81,7 +82,8 @@ def Episode_Listing(url):
 			epNum = 0
 		episodePageName = pageTitle
 		episodePageLink = url
-		epList.append([episodePageLink, episodePageName.title(),'', epNum])
+		episodePageName = episodePageName.title().replace(' - ',' ').replace(':','').replace('-',' ').strip()
+		epList.append([episodePageLink, episodePageName,'', epNum])
 	
 	if(len(epList) < 1):
 		print base_txt +  'Nothing was parsed from Episode_Listing: ' + url

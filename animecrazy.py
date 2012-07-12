@@ -72,7 +72,8 @@ def Episode_Listing(url):
 					break
 			else:
 				epNum = 0
-			epList.append([BASE_URL + episodePageLink , episodePageName.title(), '', epNum])
+			episodePageName = episodePageName.title().replace(' - ',' ').replace(':','').replace('-',' ').strip()
+			epList.append([BASE_URL + episodePageLink , episodePageName, '', epNum])
 	
 	if(len(epList) < 1):
 		print base_txt +  'Nothing was parsed from Episode_Listing: ' + url
@@ -253,9 +254,10 @@ def Total_Video_List(link):
 			if(len(videoInfo) >= 1):
 				videoLink = videoInfo[-1]
 				videoNameSplit = videoLink.split('/')
-				videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
-				if (not 'http://ads.' in videoLink):
-					searchRes.append([BASE_URL + videoLink, videoName.replace('Anime','').strip()])
+				if(len(videoNameSplit) > 1):
+					videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
+					if (not 'http://ads.' in videoLink):
+						searchRes.append([BASE_URL + videoLink, videoName.replace('Anime','').strip()])
 	else:
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
 		

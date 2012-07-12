@@ -26,6 +26,7 @@ base_txt = base_url_name + ': '
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page
+	print base_txt + url
 	
 	episodeListPage = url
 	epList = Episode_Listing(episodeListPage)
@@ -66,7 +67,8 @@ def Episode_Listing(url):
 					break
 			else:
 				epNum = 0
-			epList.append([BASE_URL + episodePageLink, episodePageName.title(), episodeMediaThumb.replace("'",""), epNum])
+			episodePageName = episodePageName.title().replace(' - ',' ').replace(':','').replace('-',' ').strip()
+			epList.append([BASE_URL + episodePageLink, episodePageName, episodeMediaThumb.replace("'",""), epNum])
 	else:
 		print base_txt +  'Nothing was parsed from Episode_Listing: ' + url
 		
@@ -76,8 +78,7 @@ def Episode_Listing(url):
 def Episode_Page(url):
 	# Identifies the number of mirrors for the content
 	print base_txt +  url
-	link = grabUrlSource(url)	
-	
+	link = grabUrlSource(url)
 	
 	altBlock=re.compile('<div class="relativity_child">(.+?)</div>').findall(link)
 	if(len(altBlock) >= 1):
@@ -203,14 +204,13 @@ def Total_Video_List(link):
 	searchRes = []
 	match=re.compile('<a(.+?)>(.+?)</a>').findall(link)
 	if(len(match) >= 1):
-		for linkFound in match:
-			videoInfo = re.compile('href="(.+?)"').findall(linkFound[0])
-			if(len(videoInfo) >= 1):
-				videoLink = videoInfo[-1]
-				videoNameSplit = videoLink.split('/')
-				videoName = searchText + videoName.replace('</a>','').title().strip()
-				if (not 'http://ads.' in videoLink):
-					searchRes.append([BASE_URL+videoLink, videoName])
+		for linkFound, videoName in match:
+			if (not 'title="Go' in linkFound):
+				videoInfo = re.compile('href="(.+?)"').findall(linkFound)
+				if(len(videoInfo) >= 1):
+					videoLink = videoInfo[-1]
+					if (not 'http://ads.' in videoLink):
+						searchRes.append([BASE_URL+videoLink, videoName.title()])
 	else:
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
 		

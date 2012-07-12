@@ -13,7 +13,7 @@ def grabUrlSource(url):
 	# grab url source data
 	mozilla_user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
 	try:
-		print 'grabUrlSource: - ' + url
+		print 'grabUrlSource: ' + url
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', mozilla_user_agent)
 		response = urllib2.urlopen(req)
@@ -28,7 +28,7 @@ def grabUrlSource(url):
 		return link
 	except urllib2.URLError, e:
 		print 'grabUrlSource: got http error %d fetching %s' % (e.code, url)
-		return False
+		return 'No Dice'
 
 
 		

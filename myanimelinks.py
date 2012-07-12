@@ -26,6 +26,7 @@ base_txt = base_url_name + ': '
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page
+	print base_txt + url
 	
 	link = grabUrlSource(url)
 	
@@ -50,26 +51,27 @@ def Episode_Listing(url):
 	
 	match=re.compile('<h5><CENTER><a href="(.+?)">(.+?)</a>(.+?)background-image:url\((.+?)&amp;').findall(link)
 	epList = []
-	
-	epNum = 0
+
 	if(len(match) >= 1):
 		for episodePageLink, episodePageName, garbage, episodeMediaThumb in match:
-			if epNum == 0:
-				epNumPart = episodePageName.strip().split()
-				for  epNum in reversed(epNumPart):
-					if epNum.isdigit():
-						epNum = int(epNum)
-						break
-					
+			episodePageName.replace('# ','#')
+			epNum = 0					
 			if epNum == 0:					
 				epNumPart = episodePageName.strip().split('#')
-				for  epNum in reversed(epNumPart):
-					if epNum.isdigit():
-						epNum = int(epNum)
+				for  epNumTest in reversed(epNumPart):
+					if epNumTest.isdigit():
+						epNum = int(epNumTest)
+						break	
+						
+			if epNum == 0:
+				epNumPart = episodePageName.strip().split()
+				for  epNumTest in reversed(epNumPart):
+					if epNumTest.isdigit():
+						epNum = int(epNumTest)
 						break
-
-			epList.append([episodePageLink, episodePageName.title(), episodeMediaThumb.replace("'",""), epNum])
-			epNum = 0
+						
+			episodePageName = episodePageName.title().replace(' - ',' ').replace(':','').replace('-',' ').strip()
+			epList.append([episodePageLink, episodePageName, episodeMediaThumb.replace("'",""), epNum])
 	else:
 		print base_txt +  'Nothing was parsed from Episode_Listing: ' + url
 		
