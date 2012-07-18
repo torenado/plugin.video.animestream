@@ -3,7 +3,7 @@ import urllib,urllib2,re,sys,httplib
 import cookielib,os,string,cookielib,StringIO
 import os,time,base64,logging
 from datetime import datetime
-from utils import grabUrlSource
+from utils import *
 try:
     import json
 except ImportError:
@@ -90,24 +90,26 @@ def Episode_Page(url):
 	epMedia = []
 	episodeMediaMirrors = url
 	# first video
-	epMedia = epMedia + Episode_Media_Link(episodeMediaMirrors)
+	mirror = 1
+	epMedia = epMedia + Episode_Media_Link(episodeMediaMirrors,mirror)
 	
 	#alternate video(s)
 	match=re.compile('<a href="(.+?)">').findall(altBlock)
 	if(len(match) >= 1):
 		for episodeMediaMirrors in match:
+			mirror = mirror + 1
 			episodeMediaMirrors = BASE_URL + episodeMediaMirrors
-			epMedia = epMedia + Episode_Media_Link(episodeMediaMirrors)
+			epMedia = epMedia + Episode_Media_Link(episodeMediaMirrors, mirror)
 
 	return epMedia
 	
 	
-def Episode_Media_Link(url, mirror=1):
+def Episode_Media_Link(url, mirror=1,part=1):
 	# Extracts the URL for the content media file
 	link = grabUrlSource(url).lower().replace(' ','')
 	
 	epMedia = []
-	part = 1
+	
 
 	match=re.compile('<(iframe|embed)src="(.+?)"').findall(link)
 	if(len(match) >= 1):
@@ -151,6 +153,7 @@ def Video_List_And_Pagination(url):
 	
 	match=re.compile('<a href="(.+?)">(.+?)<').findall(seriesBlock)
 	for videoImg, videoName in match:
+		videoName = urllib.unquote(videoName)
 		mostPop.append([BASE_URL + videoImg, videoName])
 	
 	return mostPop
@@ -209,6 +212,7 @@ def Total_Video_List(link):
 				videoInfo = re.compile('href="(.+?)"').findall(linkFound)
 				if(len(videoInfo) >= 1):
 					videoLink = videoInfo[-1]
+					videoName = urllib.unquote(videoName)
 					if (not 'http://ads.' in videoLink):
 						searchRes.append([BASE_URL+videoLink, videoName.title()])
 	else:

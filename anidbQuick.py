@@ -108,7 +108,8 @@ def AID_Resolution(linkAID):
 	synAniList = []
 	match=re.compile('<titles>(.+?)</titles>').findall(linkAID)
 	if(len(match)>=1):
-		simAni=re.compile('<title xml:lang="en"(.+?)>(.+?)<').findall(match[0])
+		simAni=re.compile('<title xml:lang="x-jat"(.+?)>(.+?)<').findall(match[0])
+		simAni=simAni + re.compile('<title xml:lang="en"(.+?)>(.+?)<').findall(match[0])
 		for garbage, name in simAni:
 			simAid = aid
 			synAniList.append([simAid,name])	
@@ -160,6 +161,7 @@ def aid2Name(link,anidbWishlist):
 			aniLocation=re.compile(searchText+'(.+?)</anime>').findall(link)[0]
 			aniLocation=re.compile('type="main" (.+?)/title>').findall(aniLocation)[0]
 			name=re.compile('>(.+?)<').findall(aniLocation)[0]
+			name = urllib.unquote(name)
 			print name
 			watchWishlist.append([aniLine[0],name])
 	

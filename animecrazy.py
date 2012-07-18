@@ -3,7 +3,7 @@ import urllib,urllib2,re,sys,httplib
 import cookielib,os,string,cookielib,StringIO
 import os,time,base64,logging
 from datetime import datetime
-from utils import grabUrlSource
+from utils import *
 try:
     import json
 except ImportError:
@@ -11,9 +11,9 @@ except ImportError:
     
 #testing in shell
 #TEST 1
-# python -c "execfile('animetip.py'); Episode_Listing_Pages('http://www.animetip.com/watch-anime/f/fairy-tail')"
+# python -c "execfile('animecrazy.py'); Episode_Listing_Pages('http://www.animecrazy.net/fairy-tail-episode-list/')"
 #TEST2
-# python -c "execfile('animetip.py'); Episode_Media_Link('http://www.animetip.com/watch-anime/f/fairy-tail/fairy-tail-episode-90.html')"
+# python -c "execfile('animecrazy.py'); Episode_Page('http://www.animecrazy.net/fairy-tail-episode-90/')"
 	
 #animestream
 # modded from --> <addon id="plugin.video.animecrazy" name="Anime Crazy" version="1.0.9" provider-name="AJ">
@@ -88,38 +88,42 @@ def Episode_Page(url):
 	
 	match1=re.compile("Small Div alternate streaming(.+?)End of alternate streaming").findall(link)
 	epMedia = []
-	ii = 0
-	match=re.compile('return encLink\(\'(.+?)\'\)').findall(match1[0])
-	if(len(match) >= 1):
-		for episodeMediaMirrors in match:
-			ii = ii + 1
-			#print base_txt +  'MIRROR ' + str(ii)
-			episodeMediaMirrors = BASE_URL + episodeMediaMirrors
-			epMedia = epMedia + Episode_Media_Link(episodeMediaMirrors)
+	mirror = 0
+	match2=re.compile('<div class="row">(.+?)</div>').findall(match1[0])
+	if(len(match2) >= 1):
+		for mirrorRow in match2:
+			match=re.compile('return encLink\(\'(.+?)\'\)').findall(mirrorRow)
+			mirror = mirror + 1
+			part = 0
+			if(len(match) >= 1):
+				for episodeMediaMirrors in match:
+					part = part + 1
+					#print base_txt +  'MIRROR ' + str(mirror) +  'PART ' + str(part)
+					episodeMediaMirrors = BASE_URL + episodeMediaMirrors
+					epMedia = epMedia + Episode_Media_Link(episodeMediaMirrors, mirror, part)
 	else:
 		print base_txt +  'No MIRRORS were parsed from Episode_Page: ' + url
 	
 	return epMedia
 	
-def Episode_Media_Link(url, mirror=1):
+def Episode_Media_Link(url, mirror=1, part=1):
 	# Extracts the URL for the content media file
 
 	link = grabUrlSource(url)
-	
 	streamingPlayer = re.compile('document.write\(unescape\(\'(.+?)\'\)\);').findall(link)
 	frame = urllib.unquote_plus(streamingPlayer[0]).replace('\'','"').replace(' =','=').replace('= ','=')
 	epMedia = []
 	
-	part = 1
-	if link.find('class="part focused"'):
-		part = 1
-	else:
-		match=re.compile('class="currentPart"(.+?)>(.+?)</a>').findall(link)
-		print base_txt +  'Multi-part content' 
-		if(len(match) >= 1):
-			for garbage, part in match:
-				print base_txt +  'Multi-part content: Found - Part '  + part
-				part = int(part)
+	# part = 1
+	# if link.find('class="part focused"'):
+		# part = 1
+	# else:
+		# match=re.compile('class="currentPart"(.+?)>(.+?)</a>').findall(link)
+		# print base_txt +  'Multi-part content' 
+		# if(len(match) >= 1):
+			# for garbage, part in match:
+				# print base_txt +  'Multi-part content: Found - Part '  + part
+				# part = int(part)
 	
 	match=re.compile('src="(.+?)"').findall(frame)
 	if(len(match) >= 1):
@@ -249,16 +253,21 @@ def Total_Video_List(link):
 	searchRes = []
 	match=re.compile('<a(.+?)>(.+?)</a>').findall(link)
 	if(len(match) >= 1):
-		for linkFound in match:
-			videoInfo = re.compile('href="(.+?)"').findall(linkFound[0])
+		for linkFound, videoName in match:
+			videoInfo = re.compile('href="(.+?)"').findall(linkFound)
 			if(len(videoInfo) >= 1):
 				videoLink = videoInfo[-1]
 				videoNameSplit = videoLink.split('/')
 				if(len(videoNameSplit) > 1):
-					videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
-					if (not 'http://ads.' in videoLink):
+					videoName = videoName.replace('-',' ').replace('_',' ').title().strip()
+					if (not 'http://ads.' in videoLink and not 'episode' in videoLink):
+						searchRes.append([BASE_URL + videoLink, videoName.split('(')[0].strip()])
+						
+						videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
 						searchRes.append([BASE_URL + videoLink, videoName.replace('Anime','').strip()])
 	else:
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
-		
+	
+	# searchRes.sort(key=lambda name: name[1]) 
+	searchRes = f2(searchRes)
 	return searchRes

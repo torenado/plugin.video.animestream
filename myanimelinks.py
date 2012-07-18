@@ -3,7 +3,7 @@ import urllib,urllib2,re,sys,httplib
 import cookielib,os,string,cookielib,StringIO
 import os,time,base64,logging
 from datetime import datetime
-from utils import grabUrlSource
+from utils import *
 try:
     import json
 except ImportError:
@@ -49,7 +49,8 @@ def Episode_Listing(url):
 	
 	link = grabUrlSource(url)	
 	
-	match=re.compile('<h5><CENTER><a href="(.+?)">(.+?)</a>(.+?)background-image:url\((.+?)&amp;').findall(link)
+	match=re.compile('<h5><CENTER><a href="(.+?)">(.+?)</a>(.+?)background-image:url\((.+?)&').findall(link)
+	# match=re.compile('<h5><CENTER><a href="(.+?)">(.+?)</a>(.+?)background-image:url\((.+?)&amp;').findall(link)
 	epList = []
 
 	if(len(match) >= 1):
@@ -85,26 +86,25 @@ def Episode_Page(url):
 	link = grabUrlSource(url)
 	
 	episodeMediaMirrors = url
-	epMedia = Episode_Media_Link(episodeMediaMirrors)
+	epMedia = Episode_Media_Link(episodeMediaMirrors,0)
 		
 	return epMedia
 	
 	
-def Episode_Media_Link(url, mirror=1):
+def Episode_Media_Link(url, mirror=1, part=1):
 	# Extracts the URL for the content media file
 	
 	link = grabUrlSource(url)
 	
 	match=re.compile('<br /><(iframe|embed) src="(.+?)"').findall(link)
 	epMedia = []
-	part = 1
 
 	if(len(match) >= 1):
 		for garbage, episodeMediaLink in match:
 			if (not 'http://ads.' in episodeMediaLink):
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
-					
+				mirror = mirror + 1
 				epMedia.append([base_url_name,episodeMediaLink, mirror, part])
 	
 	if(len(epMedia) < 1):
@@ -162,15 +162,20 @@ def Total_Video_List(link):
 	searchRes = []
 	match=re.compile('<a(.+?)>(.+?)</a>').findall(link)
 	if(len(match) >= 1):
-		for linkFound in match:
-			videoInfo = re.compile('href="(.+?)"').findall(linkFound[0])
+		for linkFound, videoName in match:
+			videoInfo = re.compile('href="(.+?)"').findall(linkFound)
 			if(len(videoInfo) >= 1):
 				videoLink = videoInfo[-1]
 				videoNameSplit = videoLink.split('/')
-				videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
+				videoName = videoName.replace('-',' ').replace('_',' ').title().strip()
 				if (not 'http://ads.' in videoLink and not 'episode' in videoLink):
+					searchRes.append([videoLink, videoName])
+					
+					videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
 					searchRes.append([videoLink, videoName])
 	else:
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
-		
+	
+	# searchRes.sort(key=lambda name: name[1]) 
+	searchRes = f2(searchRes)
 	return searchRes

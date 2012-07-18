@@ -3,7 +3,7 @@ import urllib,urllib2,re,sys,httplib
 import cookielib,os,string,cookielib,StringIO
 import os,time,base64,logging
 from datetime import datetime
-from utils import grabUrlSource
+from utils import *
 try:
     import json
 except ImportError:
@@ -11,9 +11,9 @@ except ImportError:
     
 #testing in shell
 #TEST 1
-# python -c "execfile('default.py'); Episode_Listing_Pages('http://www.anime44.com/category/fairy-tail')"
+# python -c "execfile('anime44.py'); Episode_Listing_Pages('http://www.anime44.com/category/fairy-tail')"
 #TEST2
-# python -c "execfile('default.py'); Episode_Media_Link('http://www.anime44.com/fairy-tail-90-fairy-tail-90')"
+# python -c "execfile('anime44.py'); Episode_Media_Link('http://www.anime44.com/fairy-tail-90-fairy-tail-90')"
 	
 #animestream
 # modded from --> <addon id="plugin.video.animecrazy" name="Anime Crazy" version="1.0.9" provider-name="AJ">
@@ -31,34 +31,33 @@ def Episode_Listing_Pages(url):
 	link = grabUrlSource(url)
 	
 	match=re.compile('/page/(.+?)"').findall(link)
-	intNumPage = []
+	intNumPage = [0]
 	if(len(match) >= 1):
 		for numPage in match:
 			intNumPage.append(int(numPage))
 	
-	numPage = max(intNumPage)
+	numPage = max(intNumPage) + 1
 	
-	
-		
 	epList = []
 	episodeListPage = url
 	if(len(match) >= 1):
-		for ii in range(1,numPage)):
+		for ii in range(1,numPage):
 			episodeListPage = url + '/page/' + str(ii)
 			Episode_Listing(episodeListPage)
 			epList = epList + Episode_Listing(episodeListPage)
 	else:
 		epList = epList + Episode_Listing(episodeListPage)
-		
+	
 	return epList
 	
 	
 def Episode_Listing(url):
 	# Extracts the URL and Page name of the various content pages
 	
-	link = grabUrlSource(url)	
-	
-	match=re.compile('<div class="postlist"> <a href="(.+?)"(.+?)title="(.+?)">').findall(link)
+	link = grabUrlSource(url)
+	link = link.replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('> <','><')
+
+	match=re.compile('<div class="postlist"><a href="(.+?)"(.+?)title="(.+?)">').findall(link)
 	epList = []
 
 	if(len(match) >= 1):
@@ -79,7 +78,7 @@ def Episode_Listing(url):
 						epNum = int(epNumTest)
 						break
 						
-			episodePageName = episodePageName.title().replace(' - ',' ').replace(':','').replace('-',' ').strip()
+			episodePageName = episodePageName.title().replace(' Episode','').replace(' - ',' ').replace(':','').replace('-',' ').strip()
 			epList.append([episodePageLink, episodePageName, '', epNum])
 	else:
 		print base_txt +  'Nothing was parsed from Episode_Listing: ' + url
@@ -157,6 +156,7 @@ def Video_List_Searched(searchText, link):
 			videoLink = videoInfo[-1]
 			videoNameSplit = videoLink.split('/')
 			videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
+			videoName = urllib.unquote(videoName)
 			if (not 'http://ads.' in videoLink and not 'episode' in videoLink):
 				searchRes.append([videoLink, videoName])
 	# else:
@@ -171,15 +171,20 @@ def Total_Video_List(link):
 	searchRes = []
 	match=re.compile('<a(.+?)>(.+?)</a>').findall(link)
 	if(len(match) >= 1):
-		for linkFound in match:
-			videoInfo = re.compile('href="(.+?)"').findall(linkFound[0])
+		for linkFound, videoName in match:
+			videoInfo = re.compile('href="(.+?)"').findall(linkFound)
 			if(len(videoInfo) >= 1):
 				videoLink = videoInfo[-1]
 				videoNameSplit = videoLink.split('/')
-				videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
+				videoName = videoName.replace('-',' ').replace('_',' ').title().strip()
 				if (not 'http://ads.' in videoLink and not 'episode' in videoLink):
+					searchRes.append([videoLink, videoName])
+					
+					videoName = videoNameSplit[-1].replace('-',' ').replace('_',' ').title().strip()
 					searchRes.append([videoLink, videoName])
 	else:
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
-		
+	
+	# searchRes.sort(key=lambda name: name[1]) 
+	searchRes = f2(searchRes)
 	return searchRes

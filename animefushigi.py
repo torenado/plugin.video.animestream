@@ -3,7 +3,7 @@ import urllib,urllib2,re,sys,httplib
 import cookielib,os,string,cookielib,StringIO
 import os,time,base64,logging
 from datetime import datetime
-from utils import grabUrlSource
+from utils import *
 try:
     import json
 except ImportError:
@@ -112,7 +112,7 @@ def Episode_Page(url):
 	return epMedia
 	
 	
-def Episode_Media_Link(url, mirror=1):
+def Episode_Media_Link(url, mirror=1, part=1):
 	# Extracts the URL for the content media file
 	link = grabUrlSource(url).replace(' ','')
 	
@@ -142,7 +142,9 @@ def Episode_Media_Link(url, mirror=1):
 	
 	if(len(epMedia) < 1):
 		print base_txt +  'Nothing was parsed from Episode_Media_Link: ' + url
-		
+	
+	
+	epMedia = f2(epMedia)
 	return epMedia
 	
 def Media_Link_Finder(url):
@@ -186,22 +188,27 @@ def Video_List_Searched(searchText,link):
 	
 	return searchRes
 
-		
+	
 def Total_Video_List(link):
 	# Generate list of shows/movies
 	
 	searchRes = []
 	match=re.compile('<a(.+?)>(.+?)</a>').findall(link)
 	if(len(match) >= 1):
-		for linkFound in match:
-			videoInfo = re.compile('href="(.+?)"').findall(linkFound[0])
+		for linkFound, videoName in match:
+			videoInfo = re.compile('href="(.+?)"').findall(linkFound)
 			if(len(videoInfo) >= 1):
 				videoLink = videoInfo[-1]
 				videoNameSplit = videoLink.split('/')
-				videoName = videoNameSplit[-1].replace('-',' ').replace('_',' ').title().strip()
+				videoName = videoName.replace('-',' ').replace('_',' ').title().strip()
 				if (not 'http://ads.' in videoLink):
+					searchRes.append([videoLink, videoName])
+					
+					videoName = videoNameSplit[-1].replace('-',' ').replace('_',' ').title().strip()
 					searchRes.append([videoLink, videoName])
 	else:
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
-		
+	
+	# searchRes.sort(key=lambda name: name[1]) 
+	searchRes = f2(searchRes)
 	return searchRes

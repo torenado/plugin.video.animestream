@@ -3,7 +3,7 @@ import urllib,urllib2,re,sys,httplib
 import cookielib,os,string,cookielib,StringIO
 import os,time,base64,logging
 from datetime import datetime
-from utils import grabUrlSource
+from utils import *
 try:
     import json
 except ImportError:
@@ -63,7 +63,7 @@ def Episode_Listing(url):
 def Episode_Page(url):
 	# Identifies the number of mirrors for the content
 	print base_txt +  url
-	link = grabUrlSource(url)	
+	# link = grabUrlSource(url)	
 	
 	episodeMediaMirrors = url
 	epMedia = Episode_Media_Link(episodeMediaMirrors)
@@ -71,25 +71,44 @@ def Episode_Page(url):
 	return epMedia
 	
 	
-def Episode_Media_Link(url, mirror=1):
+def Episode_Media_Link(url, mirror=1, part=1):
 	# Extracts the URL for the content media file
-	link = grabUrlSource(url)	
+	link = grabUrlSource(url).replace('<strong>','').replace('</strong>','').replace('</span>','').replace('\'','"')
 	
-	match=re.compile('<center><(.+?)src="(.+?)"').findall(link)
+	match=re.compile('<span class="postTabs_titles"><b>(.+?)</b><center><(.+?)src="(.+?)"').findall(link)
 	epMedia = []
-	part = 1
 	
 	if(len(match) >= 1):
-		for garbage, episodeMediaLink in match:
+		for mirrorPart, garbage, episodeMediaLink in match:
 			if (not 'http://ads.' in episodeMediaLink):
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
+				
+				
+				mP_split = mirrorPart.split()
+				if len(mP_split)>1:
+					mirrorTxt = mP_split[0]
+					partTxt = mP_split[1]
+					
+					if partTxt[0]=='p' and part > partTxt[1:]:
+						mirror = mirror + 1
+						
+					if partTxt[0]=='p' and partTxt[1:].isdigit():
+						part = int(partTxt[1:])
+								
+					
+				else:				
+					mirror = mirror + 1
+					part = 1
+						
+				mirrorTxt = ''
+				partTxt = ''
 					
 				epMedia.append([base_url_name,episodeMediaLink, mirror, part])
 	
 	if(len(epMedia) < 1):
 		print base_txt +  'Nothing was parsed from Episode_Media_Link: ' + url
-		
+
 	return epMedia
 	
 def Media_Link_Finder(url):
@@ -136,21 +155,45 @@ def Video_List_Searched(searchText,link):
 	return searchRes
 
 		
+# def Total_Video_List(link):
+	# Generate list of shows/movies
+	
+	# searchRes = []
+	# match=re.compile('<a(.+?)>(.+?)</a>').findall(link)
+	# if(len(match) >= 1):
+		# for linkFound in match:
+			# videoInfo = re.compile('href="(.+?)"').findall(linkFound[0])
+			# if(len(videoInfo) >= 1):
+				# videoLink = videoInfo[-1]
+				# videoNameSplit = videoLink.split('/')
+				# videoName = videoNameSplit[-1].replace('-',' ').replace('_',' ').replace('.html','').title().strip()
+				# videoName = urllib.unquote(videoName)
+				# if (not 'http://ads.' in videoLink):
+					# searchRes.append([videoLink, videoName])
+	# else:
+		# print base_txt +  'Nothing was parsed from Total_Video_List' 
+		
+	# return searchRes
 def Total_Video_List(link):
 	# Generate list of shows/movies
 	
 	searchRes = []
 	match=re.compile('<a(.+?)>(.+?)</a>').findall(link)
 	if(len(match) >= 1):
-		for linkFound in match:
-			videoInfo = re.compile('href="(.+?)"').findall(linkFound[0])
+		for linkFound, videoName in match:
+			videoInfo = re.compile('href="(.+?)"').findall(linkFound)
 			if(len(videoInfo) >= 1):
 				videoLink = videoInfo[-1]
 				videoNameSplit = videoLink.split('/')
-				videoName = videoNameSplit[-1].replace('-',' ').replace('_',' ').replace('.html','').title().strip()
+				videoName = videoName.replace('-',' ').replace('_',' ').replace('.html','').replace('(Movie)','Movie').title().strip()
 				if (not 'http://ads.' in videoLink):
+					searchRes.append([videoLink, videoName])
+					
+					videoName = videoNameSplit[-1].replace('-',' ').replace('_',' ').replace('.html','').title().strip()
 					searchRes.append([videoLink, videoName])
 	else:
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
-		
+	
+	# searchRes.sort(key=lambda name: name[1]) 
+	searchRes = f2(searchRes)
 	return searchRes

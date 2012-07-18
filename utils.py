@@ -2,11 +2,12 @@ import urllib,urllib2,re,sys,httplib
 import cookielib,os,string,cookielib,StringIO
 import os,time,base64,logging
 import gzip, io
+import htmlentitydefs
 from datetime import datetime
 try:
-    import json
+	import json
 except ImportError:
-    import simplejson as json
+	import simplejson as json
 
 
 def grabUrlSource(url):
@@ -23,8 +24,13 @@ def grabUrlSource(url):
 			gf = gzip.GzipFile(fileobj=bi, mode="rb")
 			link = gf.read()
 		response.close()
-		link = ''.join(link.splitlines()).replace('\t','')
-		
+		link = ''.join(link.splitlines()).replace('\t','')		
+		link = urllib.unquote(link)
+		try:
+			link = unescape(link)
+		except:
+			pass
+			
 		return link
 	except urllib2.URLError, e:
 		print 'grabUrlSource: got http error %d fetching %s' % (e.code, url)
@@ -33,9 +39,35 @@ def grabUrlSource(url):
 
 		
 def f2(seq): 
-   # order preserving uniqify --> http://www.peterbe.com/plog/uniqifiers-benchmark
-   checked = []
-   for e in seq:
-       if e not in checked:
-           checked.append(e)
-   return checked	
+	# order preserving uniqify --> http://www.peterbe.com/plog/uniqifiers-benchmark
+	checked = []
+	for e in seq:
+		if e not in checked:
+			checked.append(e)
+	return checked	
+	
+def unescape(text):
+	## http://effbot.org/zone/re-sub.htm#unescape-html
+	# Removes HTML or XML character references and entities from a text string.
+	#
+	# @param text The HTML (or XML) source text.
+	# @return The plain text, as a Unicode string, if necessary.
+	def fixup(m):
+		text = m.group(0)
+		if text[:2] == "&#":
+			# character reference
+			try:
+				if text[:3] == "&#x":
+					return unichr(int(text[3:-1], 16))
+				else:
+					return unichr(int(text[2:-1]))
+			except ValueError:
+				pass
+		else:
+			# named entity
+			try:
+				text = unichr(htmlentitydefs.name2codepoint[text[1:-1]])
+			except KeyError:
+				pass
+		return text # leave as is
+	return re.sub("&#?\w+;", fixup, text)

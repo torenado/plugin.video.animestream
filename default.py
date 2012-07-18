@@ -12,6 +12,7 @@ except ImportError:
 sys.path.append("./sites")
 
 import anidbQuick
+import anime44
 import animecrazy
 import animeflavor
 import animefushigi
@@ -210,10 +211,11 @@ def ANIDB_SIMILAR(aid_org):
 		xbmc.executebuiltin(cmd)
 		
 def get_ani_detail(aid):
-
-	time.sleep(2.25)
-	urlPg = 'http://api.anidb.net:9001/httpapi?request=anime&client=xbmcscrap&clientver=1&protover=1&aid=%(aid)s' % {"aid": aid}
-	linkAID = grabUrlSource(urlPg)
+	linkAID = ' '
+	if int(aid)>0 :
+		time.sleep(2.25)
+		urlPg = 'http://api.anidb.net:9001/httpapi?request=anime&client=xbmcscrap&clientver=1&protover=1&aid=%(aid)s' % {"aid": aid}
+		linkAID = grabUrlSource(urlPg)
 	
 	return linkAID
 		
@@ -224,8 +226,8 @@ def get_ani_aid(searchText):
 	
 	aid = 0
 	
-	aidList = get_ani_aid_list(linkAID)
-	# aidList = cache.cacheFunction(get_ani_aid_list,linkAID)
+	# aidList = get_ani_aid_list(linkAID)
+	aidList = cache.cacheFunction(get_ani_aid_list,linkAID)
 	
 	for aidFound, name, tvdbid in  aidList:
 		if name.title() == searchText:
@@ -236,22 +238,25 @@ def get_ani_aid(searchText):
 
 def get_ani_aid_list(linkAID):
 
-	linkAID = linkAID.replace('> <','><').replace('>  <','><').replace('>   <','><').replace('>    <','><')
+	# linkAID = linkAID.replace('> <','><').replace('>  <','><').replace('>   <','><').replace('>    <','><').replace('>     <','><')
+	linkAID = linkAID.replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('> <','><')
 	match=re.compile('<anime (.+?)</anime>').findall(linkAID)
 	aniInfo = []
 	aid = ''
 	name = ''
 	tvdbid = ''
-	
 	for aniInfoRaw in match:
 		aniRow=re.compile('anidbid="(.+?)" tvdbid="(.+?)"(.+?)><name>(.+?)</name>').findall(aniInfoRaw)
-		aid = aniRow[0]
-		tvdbid = aniRow[1]
-		name = aniRow[3]
-		
+		aid = aniRow[0][0]
+		tvdbid = aniRow[0][1]
+		name = aniRow[0][3]
+		name = urllib.unquote(name).replace('-',' ').replace('_',' ').title().strip()
 		aniInfo.append([aid, name, tvdbid])
+		aid = ''
+		name = ''
+		tvdbid = ''
 		
-	print match[0]
+	aniInfo.sort(key=lambda aid: aid[0]) 
 	return aniInfo
 	
 	
@@ -282,13 +287,18 @@ def getEpisode_Listing_Pages(groupUrl):
 	# MODE 3 = getEpisode_Listing_Pages
 	
 	try:
-		urls = groupUrl.split()
+		urls = groupUrl.split(' <--> ')
 	except:
 		urls = groupUrl
 		
 	epListAll = []
+	epList = []
+	
 	for url in urls:
-		if ('animecrazy.net' in url):
+		if ('anime44.com' in url):
+			# epList = anime44.Episode_Listing_Pages(url)
+			epList = cache.cacheFunction(anime44.Episode_Listing_Pages, url)
+		elif ('animecrazy.net' in url):
 			# epList = animecrazy.Episode_Listing_Pages(url)
 			epList = cache.cacheFunction(animecrazy.Episode_Listing_Pages, url)
 		elif ('animeflavor.com' in url):
@@ -331,25 +341,24 @@ def getEpisode_Listing_Pages(groupUrl):
 				epNumTest = epNum
 			
 			if epNumTest == epNum:
-				groupUrl = groupUrl +' '+ url
+				groupUrl = groupUrl +' <--> '+ url
 				if 'myanimelinks.com' in iconimage:
 					iconimageTest = iconimage
 				
 		except:
 			print base_txt + 'Directory not created in SEARCH() for ' + url + ' ' + epNum		
-		
-		
-def getEpisode_Page(groupUrl):
-	# Extracts the URL for the content media file
-	# MODE 4 = getEpisode_Page
+
+def get_epMediaAll_2(groupUrl):
+	
 	
 	try:
-		urls = groupUrl.split()
+		urls = groupUrl.split(' <--> ')
 	except:
 		urls = groupUrl
 	
 	urls = f2(urls)
 	epMediaAll = []
+	epMedia = []
 	for url in urls:
 		print base_txt + url
 		if ('animecrazy.net' in url):
@@ -367,13 +376,34 @@ def getEpisode_Page(groupUrl):
 		
 		epMediaAll = epMediaAll + epMedia
 		
+	epMediaAll_2=[]
+	siteNnameTest=''
+	mirrorTest=0 
+	partTest=0
+	for siteNname, url, mirror, part in reversed(epMediaAll):
+		if not(siteNnameTest==siteNname and mirrorTest==mirror):
+			totParts = part
+			siteNnameTest = siteNname 
+			mirrorTest = mirror
+		epMediaAll_2.append([siteNname, url, mirror, part, totParts])
+		
+	epMediaAll_2.sort(key=lambda a:(a[0],a[2],a[3]))
+	return epMediaAll_2
+		
+def getEpisode_PageMerged(groupUrl):
+	# Extracts the URL for the content media file
+	# MODE 4 = getEpisode_Page
+	
+	
+	# epMediaAll_2 = get_epMediaAll_2(groupUrl)
+	epMediaAll_2 = cache.cacheFunction(get_epMediaAll_2,groupUrl)
+	
 	url = ''
 	mode = 5
 	iconimage = ''
 	mediaValid = []
 	mediaInValid = []
-	mediaList = mediaValid + mediaInValid
-	for siteNname, url, mirror, part in epMediaAll:
+	for siteNname, url, mirror, part, totParts in epMediaAll_2:
 		name = ''
 		# media_url = urlresolver.HostedMediaFile(url).resolve()
 		try:
@@ -395,15 +425,105 @@ def getEpisode_Page(groupUrl):
 			hostName = urlresolver.HostedMediaFile(url).get_host()
 			if len(hostName)<1:
 				hostName = media_url.split('/')[2]
-			name = name + 'Mirror ' + str(mirror) + ' - Part ' + str(part) + ' (' + hostName + ') -- ' + siteNname
-			mediaValid.append([name,media_url,iconimage])
+			name = name + siteNname + ' -- Mirror ' + str(mirror) + ' - Part ' + str(part) + ' of ' + str(totParts) + ' (' + hostName + ')' 
+			mediaValid.append([name,media_url,iconimage,siteNname,mirror])
 		else:
 			print base_txt + url + ' <-- VIDEO MAY NOT WORK'
-			name = name + 'Mirror ' + str(mirror) + ' - Part ' + str(part) + ' (' + url.split('/')[2] + ') -- ' + siteNname +' -- X'		
-			mediaInValid.append([name,url,iconimage])
+			name = name + siteNname + ' -- Mirror ' + str(mirror) + ' - Part ' + str(part) + ' of ' + str(totParts) + ' (' + url.split('/')[2] + ') -- X'	
+			mediaInValid.append([name,url,iconimage,siteNname,mirror])
+	
+	
+	mediaValid.append(['','','','',''])
+	
+	mediaList = mediaValid + mediaInValid
+	
+	if len(mediaValid)>1:
+		nameTest = mediaValid[0][0]
+		siteNnameTest = mediaValid[0][3]
+		mirrorTest = mediaValid[0][4]
+		epPlaylist = '' 
+		for name, media_url, iconimage, siteNname, mirror in mediaValid:
+			if siteNnameTest==siteNname and mirrorTest==mirror:
+				if not epPlaylist=='':
+					epPlaylist = epPlaylist + ' <--> ' + media_url
+				else:
+					epPlaylist = media_url
+			else:
+				
+				subLoc = nameTest.find('(')
+				subLoc1 = nameTest.find(' -- ')
+				if subLoc > 0:
+					nameTest1 = nameTest[:subLoc1]
+					nameTest = nameTest[subLoc:]
+				nameTest = nameTest1 + ' -- Mirror ' + str(mirrorTest) + ' ' + nameTest + ' [' + str(len(epPlaylist.split(' <--> '))) +']'
+				print base_txt + nameTest
+				print base_txt + epPlaylist
+				addPlaylist(nameTest,epPlaylist,42,'')
+				nameTest = name
+				siteNnameTest = siteNname 
+				mirrorTest = mirror
+				epPlaylist = media_url
+	
+	
+	
+	if(len(mediaValid) > 0):
+		name = 'View List of -- INDIVIDUAL VIDEOS'
+		url = ''
+		mode = 43
+		iconimage = ''
+		addDir(name,groupUrl,mode,iconimage)
+		
+	if(len(mediaInValid) > 0):
+		name = 'View List of -- POSSIBLY BROKEN VIDEOS'
+		url = ''
+		mode = 41
+		iconimage = ''
+		addDir(name,groupUrl,mode,iconimage)
+		
+def getEpisode_Page(groupUrl):
+	# Extracts the URL for the content media file
+	# MODE 43 = getEpisode_Page
+	
+
+	# epMediaAll_2 = get_epMediaAll_2(groupUrl)
+	epMediaAll_2 = cache.cacheFunction(get_epMediaAll_2,groupUrl)
+	
+	url = ''
+	mode = 5
+	iconimage = ''
+	mediaValid = []
+	mediaInValid = []
+	for siteNname, url, mirror, part, totParts in epMediaAll_2:
+		name = ''
+		# media_url = urlresolver.HostedMediaFile(url).resolve()
+		try:
+			media_url = urlresolver.HostedMediaFile(url).resolve()
+			
+			if not('http' in media_url):
+				media_url = False
+		except:
+			media_url = False
+			
+		if (media_url == False and url.endswith('.flv')):
+			media_url = url
+		
+		print 'Mirror: ' + str(mirror) + ' Part: ' + str(part)
+		url = urllib.unquote(url)
+		if media_url:
+			media_url = urllib.unquote(media_url)
+			print base_txt + media_url
+			hostName = urlresolver.HostedMediaFile(url).get_host()
+			if len(hostName)<1:
+				hostName = media_url.split('/')[2]
+			name = name + siteNname + ' -- Mirror ' + str(mirror) + ' - Part ' + str(part) + ' of ' + str(totParts) + ' (' + hostName + ')' 
+			mediaValid.append([name,media_url,iconimage,siteNname,mirror])
+		else:
+			print base_txt + url + ' <-- VIDEO MAY NOT WORK'
+			name = name + siteNname + ' -- Mirror ' + str(mirror) + ' - Part ' + str(part) + ' of ' + str(totParts) + ' (' + url.split('/')[2] + ') -- X'		
+			mediaInValid.append([name,url,iconimage,siteNname,mirror])
 			
 	mediaList = mediaValid + mediaInValid
-	for name, media_url, iconimage in mediaValid:
+	for name, media_url, iconimage, siteNname, mirror in mediaValid:
 		addLink(name,media_url,iconimage)
 	
 	if(len(mediaInValid) >= 1):
@@ -417,36 +537,16 @@ def getEpisode_Page_Fail(groupUrl):
 	# Extracts the URL for the content media file
 	# MODE 4 = getEpisode_Page
 	
-	try:
-		urls = groupUrl.split()
-	except:
-		urls = groupUrl
+
+	# epMediaAll_2 = get_epMediaAll_2(groupUrl)
+	epMediaAll_2 = cache.cacheFunction(get_epMediaAll_2,groupUrl)
 	
-	urls = f2(urls)
-	epMediaAll = []
-	for url in urls:
-		print base_txt + url
-		if ('animecrazy.net' in url):
-			epMedia = cache.cacheFunction(animecrazy.Episode_Page, url)
-		elif ('animeflavor.com' in url):
-			epMedia = cache.cacheFunction(animeflavor.Episode_Page, url)
-		elif ('animefushigi.com' in url):
-			# epMedia = animefushigi.Episode_Page(url)
-			epMedia = cache.cacheFunction(animefushigi.Episode_Page, url)
-		elif ('animetip.com' in url):
-			epMedia = cache.cacheFunction(animetip.Episode_Page, url)
-		elif ('myanimelinks.com' in url):
-			epMedia = cache.cacheFunction(myanimelinks.Episode_Page, url)
-		
-		epMediaAll = epMediaAll + epMedia
-		
 	url = ''
 	mode = 5
 	iconimage = ''
 	mediaValid = []
 	mediaInValid = []
-	mediaList = mediaValid + mediaInValid
-	for siteNname, url, mirror, part in epMediaAll:
+	for siteNname, url, mirror, part, totParts in epMediaAll_2:
 		name = ''
 		# media_url = urlresolver.HostedMediaFile(url).resolve()
 		try:
@@ -465,11 +565,11 @@ def getEpisode_Page_Fail(groupUrl):
 			hostName = urlresolver.HostedMediaFile(url).get_host()
 			if len(hostName)<1:
 				hostName = media_url.split('/')[2]
-			name = name + 'Mirror ' + str(mirror) + ' - Part ' + str(part) + ' (' + hostName + ') -- ' + siteNname
-			mediaValid.append([name,media_url,iconimage])
+			name = name + siteNname + ' -- Mirror ' + str(mirror) + ' - Part ' + str(part) + ' of ' + str(totParts) + ' (' + hostName + ')' 
+			mediaValid.append([name,media_url,iconimage,siteNname,mirror])
 		else:
 			print base_txt + url + ' <-- VIDEO MAY NOT WORK'
-			name = name + 'Mirror ' + str(mirror) + ' - Part ' + str(part) + ' (' + url.split('/')[2] + ') -- ' + siteNname +' -- X'		
+			name = name + siteNname + ' -- Mirror ' + str(mirror) + ' - Part ' + str(part) + ' of ' + str(totParts) + ' (' + url.split('/')[2] + ') -- X'			
 			mediaInValid.append([name,url,iconimage])
 			
 	for name, media_url, iconimage in mediaInValid:
@@ -630,17 +730,51 @@ def SEARCH(searchText,aid='0'):
 	searchRes = allSearchList(searchText)
 	# searchRes = cache.cacheFunction(allSearchList,searchText)
 	
-	if (not aid == '0' and len(ani_detail_org[7])>0):
+	if (int(aid)>0 and len(ani_detail_org[7])>0):
 		print base_txt + 'Searching ' + str(len(ani_detail_org[7])) + ' alternate names'
-		for aid, name in ani_detail_org[7]:
+		for aidAlt, name in ani_detail_org[7]:
 			subLoc = name.find('(')
 			if subLoc > 0:
 				name = name[:subLoc]
-			name = name.title()
+			name = urllib.unquote(name).title()
 			print base_txt + 'Searching for ... ' + name
 			searchRes = searchRes + cache.cacheFunction(allSearchList,name)
+			if name.find(':') > 0:
+				print base_txt + 'Searching for ... ' + name.replace(':','')
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace(':',''))
+			if name.find('\'') > 0 or name.find('`') > 0:
+				print base_txt + 'Searching for ... ' + name.replace('\'','').replace('`','').replace(':','').title()
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('\'','').replace('`','').replace(':','').title())
+			if name.find('?') > 0 or name.find('!') > 0:
+				print base_txt + 'Searching for ... ' + name.replace('?','').replace('!','')
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('?','').replace('!',''))
+			if name.find('-') > 0:
+				print base_txt + 'Searching for ... ' + name.replace('-',' ')
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('-',' '))
+			if name.find('~') > 0:
+				print base_txt + 'Searching for ... ' + name.replace('~','')
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('~',''))
+			if name.startswith('The'):
+				print base_txt + 'Searching for ... ' + name.replace('The ','')
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('The ',''))
 		
 	searchRes.append(['','zzzzzzEND'])
+	
+	tempsearchRes = searchRes
+	searchRes = []
+	for url, name in tempsearchRes:
+		name = name.title().replace(' - ',' ').replace(':','').replace('2Nd','2').strip()
+		if 'Movies' in name:
+			name = name.replace(' Movies','').strip() + ' (Movies)'
+		elif 'The Movie' in name:
+			name = name.replace(' The Movie','').replace(' Movie','').strip() + ' (Movie)'
+		elif 'Movie' in name:
+			name = name.replace(' Movie','').replace(' Movie','').strip() + ' (Movie)'
+		name = name.replace('2Nd','2')
+		name = name.replace(' Season','')
+		name = name.replace('  ',' ')
+		searchRes.append([url,name])
+			
 	searchRes.sort(key=lambda name: name[1]) 
 	searchRes = f2(searchRes)
 	
@@ -657,35 +791,43 @@ def SEARCH(searchText,aid='0'):
 	dirLength = len(searchRes)
 	print base_txt + '# of items: ' + str(dirLength)
 	for url, name in searchRes:
-		name = name.title().replace(' - ',' ').replace(':','').strip()
+		# name = name.title().replace(' - ',' ').replace(':','').strip()
+		# if 'Movies' in name:
+			# name = name.replace(' Movies','').strip() + ' (Movies)'
+		# elif 'The Movie' in name:
+			# name = name.replace(' The Movie','').replace(' Movie','').strip() + ' (Movie)'
+		# elif 'Movie' in name:
+			# name = name.replace(' Movie','').replace(' Movie','').strip() + ' (Movie)'
+		
 		try:
 			if not nameTest == name:
 				if not nameTest == '':
-					print base_txt + nameTest + ' ' + groupUrl
-					aid = get_ani_aid(nameTest)
-		
-					# linkAID = get_ani_detail(aid)
-					linkAID = cache.cacheFunction(get_ani_detail,aid)
+					print base_txt + nameTest + ' <--> ' + groupUrl
+					aidSer = get_ani_aid(nameTest)
 					
-					ani_detail = anidbQuick.AID_Resolution(linkAID)
-					# ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
-					iconimage = ani_detail[1]
-					description = ani_detail[2]
-					if len(ani_detail[3])>1:
-						year = int(ani_detail[3][0])
+					# print base_txt + str(aidSer)
+					if int(aidSer)>0:
+						# linkAID = get_ani_detail(aidSer)
+						linkAID = cache.cacheFunction(get_ani_detail,aidSer)
+						
+						ani_detail = anidbQuick.AID_Resolution(linkAID)
+						# ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
+						iconimage = ani_detail[1]
+						description = ani_detail[2]
+						if len(ani_detail[3])>1:
+							year = int(ani_detail[3][0])
+						else:
+							year = 1900
+						eptot = ani_detail[4]
+						addDir(nameTest,groupUrl,mode,iconimage,numItems=dirLength,aid=aidSer,descr=description,yr=year,genre='Anime',totep=eptot)
+						iconimage = ''
 					else:
-						year = 1900
-					eptot = ani_detail[4]
-					descr = description
-					yr = year
-					genre='Anime'
-					totep = eptot
-					addDir(nameTest,groupUrl,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre='Anime',totep=eptot)
+						addDir(nameTest,groupUrl,mode,iconimage,numItems=dirLength)
 				groupUrl = ''
 				nameTest = name
 			
 			if nameTest == name:
-				groupUrl = groupUrl +' '+ url
+				groupUrl = groupUrl +' <--> '+ url
 				
 		except:
 			print base_txt + 'Directory not created in SEARCH() for ' + url + ' ' + name	
@@ -703,6 +845,12 @@ def SEARCH(searchText,aid='0'):
 				addDir(searchText,'',2,'')
 			elif searchText.rfind('-') > 0:
 				searchText =  searchText.replace('-',' ').strip() + ' [SEARCH]'
+				addDir(searchText,'',2,'')	
+			elif searchText.rfind('!') > 0:
+				searchText =  searchText.split('!')[0].strip() + ' [SEARCH]'
+				addDir(searchText,'',2,'')	
+			elif searchText.rfind('?') > 0:
+				searchText =  searchText.split('?')[0].strip() + ' [SEARCH]'
 				addDir(searchText,'',2,'')	
 	elif (subLoc > 0 and subLoc < len(searchText)):
 		searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
@@ -750,7 +898,7 @@ def allAnimeList():
 				for aniUrl in aniUrls:
 					print base_txt + aniUrl
 					link = grabUrlSource(aniUrl)
-					searchRes = searchRes + animecrazy.Total_Video_List(link)
+					searchRes = searchRes + anime44.Total_Video_List(link)
 			except:
 				print base_txt + url + ' failed to load allAnimeList()'
 		elif ('animecrazy.net' in url):
@@ -803,20 +951,61 @@ def allAnimeList():
 	searchRes = f2(searchRes)
 			
 	return searchRes
-
 	
 def allSearchList(searchText):
 	
 	# searchRes = allAnimeList()
 	searchRes = cache.cacheFunction(allAnimeList)
-	
+	# print searchRes
 	searchResults = []
 	for possLink in searchRes:
 		
 		if searchText in possLink[1]:
 			searchResults.append(possLink)
-			
+	
 	return searchResults
+	
+	
+def PLAYLIST_VIDEOLINKS(url,name):
+	ok=True
+	playList = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
+	playList.clear()
+	#time.sleep(2)
+	links = url.split(' <--> ')
+	pDialog = xbmcgui.DialogProgress()
+	ret = pDialog.create('Loading playlist...')
+	totalLinks = len(links)
+	loadedLinks = 0
+	remaining_display = 'Videos loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B] into XBMC player playlist.'
+	pDialog.update(0,'Please wait for the process to retrieve video link.',remaining_display)
+	
+	iconimage=''
+	
+	for videoLink in links:
+		name = name + ' (' + str(loadedLinks) + ')'
+		liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
+		liz.setInfo( type="Video", infoLabels={ "Title": name } )
+		print base_txt + name + ' - ' + videoLink
+		playList.add(url=videoLink, listitem=liz)
+		loadedLinks = loadedLinks + 1
+		percent = (loadedLinks * 100)/totalLinks
+		#print percent
+		remaining_display = 'Videos loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B] into XBMC player playlist.'
+		pDialog.update(percent,'Please wait for the process to retrieve video link.',remaining_display)
+		if (pDialog.iscanceled()):
+			return False
+		
+	xbmcPlayer = xbmc.Player()
+	xbmcPlayer.play(playList)
+		
+	if not xbmcPlayer.isPlayingVideo():
+		d = xbmcgui.Dialog()
+		d.ok('INVALID VIDEO PLAYLIST', 'The playlist videos are probably broken.','Check other links.')
+
+	if xbmcPlayer.onPlayBackStopped():
+		xbmcPlayer.stop()
+		
+	return ok
 	
 def addDir(name,url,mode,iconimage,numItems=1,aid=0,descr='',yr='1900',genre='',totep='0',watchep='0'):
 	# XBMC: create directory
@@ -853,14 +1042,27 @@ def addLink(name,url,iconimage):
 	# liz.addContextMenuItems(contextMenuItems, replaceItems=True)
 	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
 	return ok
+
+def addPlaylist(name,url,mode,iconimage):
+	# XBMC: create playlist link
+	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&aid="+str(aid)
+	ok=True
+	
+	name = urllib.unquote(name)
+	
+	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+	liz.setInfo( type="Video", infoLabels={ "Title":name} )
+	liz.setProperty('Fanart_Image',iconimage)
+	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
+	return ok
 		
 def f2(seq): 
-   # order preserving uniqify --> http://www.peterbe.com/plog/uniqifiers-benchmark
-   checked = []
-   for e in seq:
-       if e not in checked:
-           checked.append(e)
-   return checked	
+	# order preserving uniqify --> http://www.peterbe.com/plog/uniqifiers-benchmark
+	checked = []
+	for e in seq:
+		if e not in checked:
+			checked.append(e)
+	return checked	
    
    
 def grabUrlSource(url):
@@ -949,9 +1151,13 @@ elif mode==3:
         getEpisode_Listing_Pages(url)
         
 elif mode==4:
-        getEpisode_Page(url)
+		getEpisode_PageMerged(url)
 elif mode==41:
         getEpisode_Page_Fail(url)
+elif mode==42:
+        PLAYLIST_VIDEOLINKS(url,name)
+elif mode==43:
+        getEpisode_Page(url)
         
 elif mode==5:
         LOAD_AND_PLAY_VIDEO(url,name)
