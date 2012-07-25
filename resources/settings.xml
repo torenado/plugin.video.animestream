@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
-	<category label="General">
-		<setting id="place_holder" type="folder" label="30030" default=""/>
-	</category>
 	<category label="Web Sites">
 		<setting id="anime44_on" type="bool" label="anime44.com" default="true"/>
 		<setting id="animecrazy_on" type="bool" label="animecrazy.net" default="true"/>

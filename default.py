@@ -69,14 +69,6 @@ THUMBNAIL_VIEW_IDS = {'skin.confluence': 504,
 def HOME():
 	# XBMC: Default screen
 	print base_txt + 'Create Home Screen'
-	
-	un = dc.getSetting('uid')
-	pubpass = dc.getSetting('pubpass')
-	if (len(un)>0 and len(pubpass)>0) :
-		addDir('aniDB Wishlist','',12,'')
-	addDir('Most Popular','',1,'')
-	addDir('Most Recent','',8,'')
-	addDir('A-Z List','',6,'')
 	addDir('Anime','',10,'')
 	addDir('Cartoons','',11,'')
 	addDir('Search','',7,'')
@@ -84,6 +76,11 @@ def HOME():
 def ANIME():
 	# XBMC: Anime screen
 	print base_txt + 'Create Anime Screen'
+	
+	un = dc.getSetting('uid')
+	pubpass = dc.getSetting('pubpass')
+	if (len(un)>0 and len(pubpass)>0) :
+		addDir('aniDB Wishlist','',12,'')
 	addDir('Most Popular','',1,'')
 	addDir('Most Recent','',8,'')
 	addDir('A-Z List','',6,'')
@@ -121,18 +118,34 @@ def ANIDB_WISHLIST(url=''):
 		# linkAID = get_ani_detail(aid)
 		linkAID = cache.cacheFunction(get_ani_detail,aid)
 		
-		ani_detail = anidbQuick.AID_Resolution(linkAID)
-		# ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
+		# ani_detail = anidbQuick.AID_Resolution(linkAID)
+		ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
 		
+		tvdbSer = get_tvdb_id(aid)
+		fanart = ''
+		tvdbid = 0
+		if int(tvdbSer)>0:
+			# linkTVDB = get_tvdb_detail(tvdbSer)
+			linkTVDB = cache.cacheFunction(get_tvdb_detail,tvdbSer)
+			
+			# tvdb_detail = anidbQuick.TVDBID_Resolution(aid,linkTVDB)
+			tvdb_detail = cache.cacheFunction(anidbQuick.TVDBID_Resolution,aid,linkTVDB)
+			
+			tvdbid = tvdb_detail[1]
+			fanart = tvdb_detail[3]
 		
 		iconimage = ani_detail[1]
 		description = ani_detail[2]
 		year = int(ani_detail[3][0])
+		if len(ani_detail[9])>0:
+			genre = " / ".join(ani_detail[9])
+		else: 
+			genre ='Animation'
 		
 		epwatch = eps[0]
 		eptot = eps[1]
 		
-		print base_txt + name + ' [' + epwatch + ' of ' + eptot + '] (aid=' + aid + ') -- ' + iconimage
+		print base_txt + name + ' [' + epwatch + ' of ' + eptot + '] (aid=' + aid + ', tvdbid='+ str(tvdbid) +') -- ' + iconimage
 		
 		# if (len(ani_detail)>6):
 			# print ani_detail[6]
@@ -145,9 +158,16 @@ def ANIDB_WISHLIST(url=''):
 		
 		if eptot == 'TBC':
 			eptot = ani_detail[4]
-			
 		
-		addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=str(aid),descr=description,yr=year,genre='Anime',totep=eptot, watchep=epwatch)
+		if epwatch==eptot:
+			playcount = 1
+		else:
+			playcount = ''
+		
+		if fanart=='':
+			fanart=iconimage
+		
+		addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=str(aid),descr=description,yr=year,genre=genre,totep=eptot, watchep=epwatch, fanart=fanart, plycnt=playcount)
 		aid = None
 		
 
@@ -163,8 +183,8 @@ def ANIDB_SIMILAR(aid_org):
 	# linkAID = get_ani_detail(aid_org)
 	linkAID = cache.cacheFunction(get_ani_detail,aid_org)
 	
-	ani_detail_org = anidbQuick.AID_Resolution(linkAID)
-	# ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
+	# ani_detail_org = anidbQuick.AID_Resolution(linkAID)
+	ani_detail_org = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
 	
 	dirLength = len(ani_detail_org[6])
 	print base_txt + '# of items: ' + str(dirLength)
@@ -181,13 +201,27 @@ def ANIDB_SIMILAR(aid_org):
 		# ani_detail = anidbQuick.AID_Resolution(linkAID)
 		ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
 		
+		tvdbSer = get_tvdb_id(aid)
+		fanart = ''
+		tvdbid = 0
+		if int(tvdbSer)>0:
+			# linkTVDB = get_tvdb_detail(tvdbSer)
+			linkTVDB = cache.cacheFunction(get_tvdb_detail,tvdbSer)
+			
+			# tvdb_detail = anidbQuick.TVDBID_Resolution(aid,linkTVDB)
+			tvdb_detail = cache.cacheFunction(anidbQuick.TVDBID_Resolution,aid,linkTVDB)
+			
+			tvdbid = tvdb_detail[1]
+			fanart = tvdb_detail[3]
 		
 		iconimage = ani_detail[1]
 		description = ani_detail[2]
 		if len(ani_detail[3])>1:
 			year = int(ani_detail[3][0])
+		else:
+			year = 1901
 			
-		print base_txt + name + ' (aid=' + aid + ') -- ' + iconimage
+		print base_txt + name + ' (aid=' + aid + ', tvdbid='+ str(tvdbid) +') -- ' + iconimage
 		
 		# if (len(ani_detail)>6):
 			# print ani_detail[6]
@@ -199,9 +233,11 @@ def ANIDB_SIMILAR(aid_org):
 			iconimage = ''
 			
 		eptot = ani_detail[4]
-			
 		
-		addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre='Anime',totep=eptot)
+		if fanart=='':
+			fanart=iconimage
+		
+		addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre='Anime',totep=eptot,fanart=fanart)
 		aid = None
 		
 	skin = xbmc.getSkinDir()
@@ -209,12 +245,368 @@ def ANIDB_SIMILAR(aid_org):
 	if thumbnail_view:
 		cmd = 'Container.SetViewMode(%s)' % thumbnail_view
 		xbmc.executebuiltin(cmd)
+
+def MOST_POPULAR(url=''):
+	# Hardcoded to use animecrazy.net
+	# MODE 1 = MOST_POPULAR
+	
+	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
+	xbmcplugin.setContent(int(sys.argv[1]), 'movies')
+	
+	if url == '':
+		url = 'http://www.animecrazy.net/most-popular/'
+	# mostPop = animecrazy.Video_List_And_Pagination(url)
+	mostPop = cache.cacheFunction(animecrazy.Video_List_And_Pagination, url)
+	
+	dirLength = len(mostPop)
+	print base_txt + url
+	print base_txt + '# of items: ' + str(dirLength)
+	
+	name = ''
+	url = ''
+	mode = 2
+	iconimage = ''
+	for iconimage, name in mostPop:
+		searchText = cleanSearchText(name)
+		print base_txt + iconimage + ' ' + searchText
 		
+		aid = get_ani_aid(searchText)
+		
+		fanart = ''
+		tvdbid = 0
+		description = ''
+		year = 1902
+		if int(aid)>0:
+			# linkAID = get_ani_detail(aid)
+			linkAID = cache.cacheFunction(get_ani_detail,aid)
+			
+			# ani_detail = anidbQuick.AID_Resolution(linkAID)
+			ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
+			
+			tvdbSer = get_tvdb_id(aid)
+			if int(tvdbSer)>0:
+				# linkTVDB = get_tvdb_detail(tvdbSer)
+				linkTVDB = cache.cacheFunction(get_tvdb_detail,tvdbSer)
+				
+				# tvdb_detail = anidbQuick.TVDBID_Resolution(aid,linkTVDB)
+				tvdb_detail = cache.cacheFunction(anidbQuick.TVDBID_Resolution,aid,linkTVDB)
+				
+				tvdbid = tvdb_detail[1]
+				fanart = tvdb_detail[3]
+			
+			iconimage = ani_detail[1]
+			description = ani_detail[2]
+			year = int(ani_detail[3][0])
+		
+		if searchText == '-- NEXT PAGE --':
+			mode = 1
+			url = iconimage
+			iconimage = ''
+		addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre='Anime',fanart=fanart)
+
+
+def CARTOON_LIST(url=''):
+	# Hardcoded to use animeflavor.com
+	# MODE 9 = CARTOON_LIST
+	
+	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
+	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
+	
+	if url == '':
+		url = 'http://www.animeflavor.com/index.php?q=cartoons'
+	# mostPop = cache.cacheFunction(animeflavor.Video_List_And_Pagination, url)
+	mostPop = animeflavor.Video_List_And_Pagination(url)
+	name = ''
+	url = ''
+	mode = 2
+	iconimage = ''
+	
+	mostPop.sort(key=lambda name: name[1]) 
+	mostPop = f2(mostPop)
+	
+	dirLength = len(mostPop)
+	print base_txt + '# of items: ' + str(dirLength)
+	
+	for iconimage, name in mostPop:
+		print base_txt + iconimage + ' ' + name
+		searchText = name
+		if searchText == '-- NEXT PAGE --':
+			mode = 1
+			url = iconimage
+			iconimage = ''
+		addDir(searchText,url,mode,iconimage,numItems=dirLength)
+
+def MOST_RECENT(url=''):
+	# Hardcoded to use animecrazy.net
+	# MODE 8 = MOST_RECENT
+	
+	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
+	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
+	
+	if url == '':
+		url = 'http://www.animecrazy.net/most-recent/'
+	
+	# mostRecent = animecrazy.Video_List_And_Pagination(url)
+	mostRecent = cache.cacheFunction(animecrazy.Video_List_And_Pagination, url)
+	name = ''
+	url = ''
+	mode = 2
+	iconimage = ''
+	
+	dirLength = len(mostRecent)
+	print base_txt + '# of items: ' + str(dirLength)
+	for iconimage, name in mostRecent:
+		print base_txt + iconimage + ' ' + name
+		searchText = name
+		if searchText == '-- NEXT PAGE --':
+			mode = 8
+			url = iconimage
+			iconimage = ''
+		addDir(searchText,url,mode,iconimage,numItems=dirLength)
+	
+	
+def A_Z_LIST():
+	# Hardcoded to use animecrazy.net
+	# MODE 6 = A_Z_LIST
+	
+	url = 'http://www.animecrazy.net/alpha-'
+	abc = [chr(i) for i in xrange(ord('A'), ord('Z')+1)]
+	
+	dirLength = len(abc)
+	print base_txt + '# of items: ' + str(dirLength)
+	for alphaB in abc:
+		addDir(alphaB,url+alphaB.lower()+'/',61,'',numItems=dirLength)
+        
+
+def A_Z_LIST_VIDEOS(url):
+	# Hardcoded to use animecrazy.net
+	# MODE 61 = A_Z_LIST_VIDEOS
+	
+	azList = cache.cacheFunction(animecrazy.Video_List_And_Pagination, url)
+	name = ''
+	url = ''
+	mode = 2
+	iconimage = ''
+	
+	dirLength = len(azList)
+	print base_txt + '# of items: ' + str(dirLength)
+	for iconimage, name in azList:
+		print base_txt + iconimage + ' ' + name
+		searchText = name
+		if searchText == '-- NEXT PAGE --':
+			mode = 61
+			url = iconimage
+			iconimage = ''
+		addDir(searchText,url,mode,iconimage,numItems=dirLength)
+		
+def TYPED_SEARCH():
+        keyb = xbmc.Keyboard('', 'Enter search text')
+        keyb.doModal()
+        searchText = ''
+        if (keyb.isConfirmed()):
+                searchText = urllib.quote_plus(keyb.getText())
+		
+		searchText = searchText.title()
+        SEARCH(searchText)
+		
+def SEARCH(searchText,aid='0'):
+	# Searches the various websites for the searched content
+	searchText = cleanSearchText(searchText)
+	print base_txt + 'Searching for ... ' + searchText
+	
+	# linkAID = get_ani_detail(aid_org)
+	linkAID = cache.cacheFunction(get_ani_detail,aid)
+	
+	# ani_detail_org = anidbQuick.AID_Resolution(linkAID)
+	ani_detail_org = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
+	
+	searchRes = allSearchList(searchText)
+	# searchRes = cache.cacheFunction(allSearchList,searchText)
+	
+	if (int(aid)>0 and len(ani_detail_org[7])>0):
+		print base_txt + 'Searching ' + str(len(ani_detail_org[7])) + ' alternate names'
+		for aidAlt, name in ani_detail_org[7]:
+			subLoc = name.find('(')
+			if subLoc > 0:
+				name = name[:subLoc]
+			name = urllib.unquote(name).title()
+			print base_txt + 'Searching for ... ' + name
+			searchRes = searchRes + cache.cacheFunction(allSearchList,name)
+			if name.find(':') > 0:
+				print base_txt + 'Searching for ... ' + name.replace(':','')
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace(':',''))
+			if name.find('\'') > 0 or name.find('`') > 0:
+				print base_txt + 'Searching for ... ' + name.replace('\'','').replace('`','').replace(':','').title()
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('\'','').replace('`','').replace(':','').title())
+			if name.find('?') > 0 or name.find('!') > 0:
+				print base_txt + 'Searching for ... ' + name.replace('?','').replace('!','')
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('?','').replace('!',''))
+			if name.find('-') > 0:
+				print base_txt + 'Searching for ... ' + name.replace('-',' ')
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('-',' '))
+			if name.find('~') > 0:
+				print base_txt + 'Searching for ... ' + name.replace('~','')
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('~',''))
+			if name.startswith('The'):
+				print base_txt + 'Searching for ... ' + name.replace('The ','')
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('The ',''))
+			if name.find('.') > 0 or name.find(',') > 0:
+				print base_txt + 'Searching for ... ' + name.replace('.','').replace(',','')
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('.','').replace(',',''))
+				print base_txt + 'Searching for ... ' + name.replace(',','')
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace(',',''))
+				print base_txt + 'Searching for ... ' + name.replace('.','')
+				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('.',''))
+		
+	searchRes.append(['','zzzzzzEND'])
+	
+	tempsearchRes = searchRes
+	searchRes = []
+	for url, name in tempsearchRes:
+		name = name.title().replace(' - ',' ').replace(':','').replace('2Nd','2').strip()
+		if 'Movies' in name:
+			name = name.replace(' Movies','').strip() + ' (Movies)'
+		elif 'The Movie' in name:
+			name = name.replace(' The Movie','').replace(' Movie','').strip() + ' (Movie)'
+		elif 'Movie' in name:
+			name = name.replace(' Movie','').replace(' Movie','').strip() + ' (Movie)'
+		name = name.replace('2Nd Season','2')
+		name = name.replace('Second Season','2')
+		name = name.replace('Iii','3')
+		name = name.replace(' Season','')
+		name = name.replace('  ',' ')
+		searchRes.append([url,name])
+			
+	searchRes.sort(key=lambda name: name[1]) 
+	searchRes = f2(searchRes)
+	
+	nameTest = ''
+	url = ''
+	mode = 3
+	iconimage = ''
+	
+	# print searchRes
+	# searchRes = filter(None, searchRes)
+	# print searchRes
+	
+	
+	dirLength = len(searchRes)
+	print base_txt + '# of items: ' + str(dirLength)
+	for url, name in searchRes:
+		# name = name.title().replace(' - ',' ').replace(':','').strip()
+		# if 'Movies' in name:
+			# name = name.replace(' Movies','').strip() + ' (Movies)'
+		# elif 'The Movie' in name:
+			# name = name.replace(' The Movie','').replace(' Movie','').strip() + ' (Movie)'
+		# elif 'Movie' in name:
+			# name = name.replace(' Movie','').replace(' Movie','').strip() + ' (Movie)'
+		
+		try:
+			if not nameTest == name:
+				if not nameTest == '':
+					print base_txt + nameTest + ' <--> ' + groupUrl
+					aidSer = get_ani_aid(nameTest)
+					iconimage = ''
+					fanart = ''
+					# print base_txt + str(aidSer)
+					if int(aidSer)>0:
+						# linkAID = get_ani_detail(aidSer)
+						linkAID = cache.cacheFunction(get_ani_detail,aidSer)
+						
+						# ani_detail = anidbQuick.AID_Resolution(linkAID)
+						ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
+						
+						tvdbSer = get_tvdb_id(aidSer)
+						if int(tvdbSer)>0:
+							# linkTVDB = get_tvdb_detail(tvdbSer)
+							linkTVDB = cache.cacheFunction(get_tvdb_detail,tvdbSer)
+							
+							# tvdb_detail = anidbQuick.TVDBID_Resolution(aidSer,linkTVDB)
+							tvdb_detail = cache.cacheFunction(anidbQuick.TVDBID_Resolution,aidSer,linkTVDB)
+							
+							fanart = tvdb_detail[3]
+						
+						iconimage = ani_detail[1]
+						description = ani_detail[2]
+						if len(ani_detail[3])>1:
+							year = int(ani_detail[3][0])
+						else:
+							year = 1900
+						eptot = ani_detail[4]
+		
+						if fanart=='':
+							fanart=iconimage
+
+						addDir(nameTest,groupUrl,mode,iconimage,numItems=dirLength,aid=aidSer,descr=description,yr=year,genre='Anime',totep=eptot, fanart=fanart)
+					else:
+						addDir(nameTest,groupUrl,mode,iconimage,numItems=dirLength)
+				groupUrl = ''
+				nameTest = name
+			
+			if nameTest == name:
+				groupUrl = groupUrl +' <--> '+ url
+				
+		except:
+			print base_txt + 'Directory not created in SEARCH() for ' + url + ' ' + name	
+
+	subLoc = searchText.rfind(':')
+	if subLoc == -1:
+		subLoc = searchText.rfind('-')
+		if (subLoc > 0 and subLoc < len(searchText)):
+			searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
+			addDir(searchText,'',2,'')
+		else:
+			subLoc = searchText.rfind(' ')
+			if (subLoc > 0 and subLoc < len(searchText)):
+				searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
+				addDir(searchText,'',2,'')
+			elif searchText.rfind('-') > 0:
+				searchText =  searchText.replace('-',' ').strip() + ' [SEARCH]'
+				addDir(searchText,'',2,'')	
+			elif searchText.rfind('!') > 0:
+				searchText =  searchText.split('!')[0].strip() + ' [SEARCH]'
+				addDir(searchText,'',2,'')	
+			elif searchText.rfind('?') > 0:
+				searchText =  searchText.split('?')[0].strip() + ' [SEARCH]'
+				addDir(searchText,'',2,'')	
+	elif (subLoc > 0 and subLoc < len(searchText)):
+		searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
+		addDir(searchText,'',2,'')
+		
+	
+	if (int(aid)>0):
+		addDir('-- SIMILAR TITLES --','',121,'',aid=aid)
+
+
+def cleanSearchText(searchText):
+	# cleans up the text for easier searching
+	subLoc = searchText.find('[')
+	if subLoc > 0:
+		searchText = searchText[:subLoc]
+	subLoc = searchText.find('(')
+	if subLoc > 0:
+		searchText = searchText[:subLoc]
+		
+	searchText = searchText.replace('(TV)','').replace('(OVA)','').replace('(Movie)','').title().strip()
+	# searchText = searchText.replace(':','').replace('-',' ').replace('_',' ').strip()
+	
+	return searchText
+
+
 def get_ani_detail(aid):
 	linkAID = ' '
 	if int(aid)>0 :
-		time.sleep(2.25)
+		time.sleep(2.1)
 		urlPg = 'http://api.anidb.net:9001/httpapi?request=anime&client=xbmcscrap&clientver=1&protover=1&aid=%(aid)s' % {"aid": aid}
+		linkAID = grabUrlSource(urlPg)
+	
+	return linkAID
+		
+def get_tvdb_detail(tvdbid):
+	linkAID = ' '
+	if int(tvdbid)>0 :
+		time.sleep(2.1)
+		urlPg = 'http://www.thetvdb.com/api/1D62F2F90030C444/series/%(tvdbid)s/all/en.xml' % {"tvdbid": tvdbid}
 		linkAID = grabUrlSource(urlPg)
 	
 	return linkAID
@@ -234,6 +626,22 @@ def get_ani_aid(searchText):
 			return aidFound
 	
 	return aid
+		
+def get_tvdb_id(aid):
+
+	url = 'https://sites.google.com/site/anidblist/anime-list.xml?attredirects=0'
+	linkAID = grabUrlSource(url)
+	
+	tvdbid = 0
+	
+	# aidList = get_ani_aid_list(linkAID)
+	aidList = cache.cacheFunction(get_ani_aid_list,linkAID)
+	
+	for aidFound, name, tvdbidFound in  aidList:
+		if tvdbidFound.isdigit() and int(aidFound) == int(aid):
+			return tvdbidFound
+	
+	return tvdbid
 
 
 def get_ani_aid_list(linkAID):
@@ -282,10 +690,46 @@ def get_aniDB_list(url):
 	return watchWishlist
 		
 		
-def getEpisode_Listing_Pages(groupUrl):
+def getEpisode_Listing_Pages(groupUrl,aid='0'):
 	# Extracts the URL and Page name of the various content pages
 	# MODE 3 = getEpisode_Listing_Pages
 	
+	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
+	# xbmcplugin.setContent(int(sys.argv[1]), 'movies')
+	xbmcplugin.setContent(int(sys.argv[1]), 'episodes')
+	
+	iconimageSeries = ''
+	if int(aid)>0:
+		# linkAID = get_ani_detail(aid_org)
+		linkAID = cache.cacheFunction(get_ani_detail,aid)
+		
+		# ani_detail = anidbQuick.AID_Resolution(linkAID)
+		ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
+		iconimageSeries = ani_detail[1]
+		description = ani_detail[2]
+		if len(ani_detail[3])>1:
+			year = int(ani_detail[3][0])
+		else:
+			year = 1900
+		eptot = ani_detail[4]
+		epDetail = ani_detail[8]
+		
+		
+		tvdbSer = get_tvdb_id(aid)
+		fanart = ''
+		if int(tvdbSer)>0:
+			# linkTVDB = get_tvdb_detail(tvdbSer)
+			linkTVDB = cache.cacheFunction(get_tvdb_detail,tvdbSer)
+			
+			# tvdb_detail = anidbQuick.TVDBID_Resolution(aid,linkTVDB)
+			tvdb_detail = cache.cacheFunction(anidbQuick.TVDBID_Resolution,aid,linkTVDB)
+			
+			if len(tvdb_detail[3])>0:
+				iconimageSeries = tvdb_detail[3]
+			
+			epTvDetail = tvdb_detail[5]
+	
+
 	try:
 		urls = groupUrl.split(' <--> ')
 	except:
@@ -295,20 +739,20 @@ def getEpisode_Listing_Pages(groupUrl):
 	epList = []
 	
 	for url in urls:
-		if ('anime44.com' in url):
+		if (anime44.base_url_name in url):
 			# epList = anime44.Episode_Listing_Pages(url)
 			epList = cache.cacheFunction(anime44.Episode_Listing_Pages, url)
-		elif ('animecrazy.net' in url):
+		elif (animecrazy.base_url_name in url):
 			# epList = animecrazy.Episode_Listing_Pages(url)
 			epList = cache.cacheFunction(animecrazy.Episode_Listing_Pages, url)
-		elif ('animeflavor.com' in url):
+		elif (animeflavor.base_url_name in url):
 			epList = cache.cacheFunction(animeflavor.Episode_Listing_Pages, url)
-		elif ('animefushigi.com' in url):
+		elif (animefushigi.base_url_name in url):
 			# epList = animefushigi.Episode_Listing_Pages(url)
 			epList = cache.cacheFunction(animefushigi.Episode_Listing_Pages, url)
-		elif ('animetip.com' in url):
+		elif (animetip.base_url_name in url):
 			epList = cache.cacheFunction(animetip.Episode_Listing_Pages, url)
-		elif ('myanimelinks.com' in url):
+		elif (myanimelinks.base_url_name in url):
 			epList = cache.cacheFunction(myanimelinks.Episode_Listing_Pages, url)
 		
 		epListAll = epListAll + epList
@@ -329,24 +773,48 @@ def getEpisode_Listing_Pages(groupUrl):
 	iconimage = ''
 	for url, name, iconimage, epNum in epListAll:
 		name = name.title().replace('Episode','').replace('#','').replace(':','').replace('  ',' ').strip()
-		
 		try:
 			if not epNumTest == epNum:
 				if not epNumTest == '':
 					print base_txt + nameTest + ' ' + groupUrl
-					addDir(nameTest,groupUrl,mode,iconimageTest,numItems=dirLength)
+					addDir(nameTest,groupUrl,mode,iconimageTest,numItems=dirLength,descr=description,yr=yr,mo=mo,day=day,epNum=epNumTest,fanart=fanart)
 				groupUrl = ''
 				iconimageTest = ''
-				nameTest = name
+				description = ''
+				fanart = iconimageSeries
 				epNumTest = epNum
+				nameTest = name
+				yr = 1900
+				mo = 01
+				day = 02
+				for epNum1,epName,epAirdate in epDetail:
+					if epNum==epNum1:
+						nameTest = str(epNum1) + ' - ' + epName
+						yr = epAirdate[0]
+						mo = epAirdate[1]
+						day = epAirdate[2]
+						break
+						
+				for epNum2,epName2,epIconimage,description in epTvDetail:
+					if epNum==epNum2:
+						if len(epIconimage)>0:
+							iconimageTest = epIconimage
+						break
 			
 			if epNumTest == epNum:
 				groupUrl = groupUrl +' <--> '+ url
-				if 'myanimelinks.com' in iconimage:
+				if len(iconimageTest)<1 and len(iconimage)>5:
 					iconimageTest = iconimage
 				
 		except:
-			print base_txt + 'Directory not created in SEARCH() for ' + url + ' ' + epNum		
+			print base_txt + 'Directory not created in SEARCH() for ' + url + ' ' + str(epNum)
+
+
+	skin = xbmc.getSkinDir()
+	thumbnail_view = THUMBNAIL_VIEW_IDS.get(skin)
+	if thumbnail_view:
+		cmd = 'Container.SetViewMode(%s)' % thumbnail_view
+		xbmc.executebuiltin(cmd)			
 
 def get_epMediaAll_2(groupUrl):
 	
@@ -361,17 +829,19 @@ def get_epMediaAll_2(groupUrl):
 	epMedia = []
 	for url in urls:
 		print base_txt + url
-		if ('animecrazy.net' in url):
+		if (anime44.base_url_name in url):
+			epMedia = cache.cacheFunction(anime44.Episode_Page, url)
+		elif (animecrazy.base_url_name in url):
 			epMedia = cache.cacheFunction(animecrazy.Episode_Page, url)
-		elif ('animeflavor.com' in url):
+		elif (animeflavor.base_url_name in url):
 			# epMedia = animeflavor.Episode_Page(url)
 			epMedia = cache.cacheFunction(animeflavor.Episode_Page, url)
-		elif ('animefushigi.com' in url):
+		elif (animefushigi.base_url_name in url):
 			# epMedia = animefushigi.Episode_Page(url)
 			epMedia = cache.cacheFunction(animefushigi.Episode_Page, url)
-		elif ('animetip.com' in url):
+		elif (animetip.base_url_name in url):
 			epMedia = cache.cacheFunction(animetip.Episode_Page, url)
-		elif ('myanimelinks.com' in url):
+		elif (myanimelinks.base_url_name in url):
 			epMedia = cache.cacheFunction(myanimelinks.Episode_Page, url)
 		
 		epMediaAll = epMediaAll + epMedia
@@ -575,313 +1045,28 @@ def getEpisode_Page_Fail(groupUrl):
 	for name, media_url, iconimage in mediaInValid:
 		addLink(name,media_url,iconimage)
 
-def MOST_POPULAR(url=''):
-	# Hardcoded to use animecrazy.net
-	# MODE 1 = MOST_POPULAR
-	
-	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
-	xbmcplugin.setContent(int(sys.argv[1]), 'movies')
-	
-	if url == '':
-		url = 'http://www.animecrazy.net/most-popular/'
-	# mostPop = animecrazy.Video_List_And_Pagination(url)
-	mostPop = cache.cacheFunction(animecrazy.Video_List_And_Pagination, url)
-	
-	dirLength = len(mostPop)
-	print base_txt + '# of items: ' + str(dirLength)
-	
-	name = ''
-	url = ''
-	mode = 2
-	iconimage = ''
-	for iconimage, name in mostPop:
-		print base_txt + iconimage + ' ' + name
-		searchText = name
-		if searchText == '-- NEXT PAGE --':
-			mode = 1
-			url = iconimage
-			iconimage = ''
-		addDir(searchText,url,mode,iconimage,numItems=dirLength)
 
-
-def CARTOON_LIST(url=''):
-	# Hardcoded to use animeflavor.com
-	# MODE 9 = CARTOON_LIST
-	
-	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
-	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
-	
-	if url == '':
-		url = 'http://www.animeflavor.com/index.php?q=cartoons'
-	# mostPop = cache.cacheFunction(animeflavor.Video_List_And_Pagination, url)
-	mostPop = animeflavor.Video_List_And_Pagination(url)
-	name = ''
-	url = ''
-	mode = 2
-	iconimage = ''
-	
-	mostPop.sort(key=lambda name: name[1]) 
-	mostPop = f2(mostPop)
-	
-	dirLength = len(mostPop)
-	print base_txt + '# of items: ' + str(dirLength)
-	
-	for iconimage, name in mostPop:
-		print base_txt + iconimage + ' ' + name
-		searchText = name
-		if searchText == '-- NEXT PAGE --':
-			mode = 1
-			url = iconimage
-			iconimage = ''
-		addDir(searchText,url,mode,iconimage,numItems=dirLength)
-
-def MOST_RECENT(url=''):
-	# Hardcoded to use animecrazy.net
-	# MODE 8 = MOST_RECENT
-	
-	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
-	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
-	
-	if url == '':
-		url = 'http://www.animecrazy.net/most-recent/'
-	
-	# mostRecent = animecrazy.Video_List_And_Pagination(url)
-	mostRecent = cache.cacheFunction(animecrazy.Video_List_And_Pagination, url)
-	name = ''
-	url = ''
-	mode = 2
-	iconimage = ''
-	
-	dirLength = len(mostRecent)
-	print base_txt + '# of items: ' + str(dirLength)
-	for iconimage, name in mostRecent:
-		print base_txt + iconimage + ' ' + name
-		searchText = name
-		if searchText == '-- NEXT PAGE --':
-			mode = 8
-			url = iconimage
-			iconimage = ''
-		addDir(searchText,url,mode,iconimage,numItems=dirLength)
-	
-	
-def A_Z_LIST():
-	# Hardcoded to use animecrazy.net
-	# MODE 6 = A_Z_LIST
-	
-	url = 'http://www.animecrazy.net/alpha-'
-	abc = [chr(i) for i in xrange(ord('A'), ord('Z')+1)]
-	
-	dirLength = len(abc)
-	print base_txt + '# of items: ' + str(dirLength)
-	for alphaB in abc:
-		addDir(alphaB,url+alphaB.lower()+'/',61,'',numItems=dirLength)
-        
-
-def A_Z_LIST_VIDEOS(url):
-	# Hardcoded to use animecrazy.net
-	# MODE 61 = A_Z_LIST_VIDEOS
-	
-	azList = cache.cacheFunction(animecrazy.Video_List_And_Pagination, url)
-	name = ''
-	url = ''
-	mode = 2
-	iconimage = ''
-	
-	dirLength = len(azList)
-	print base_txt + '# of items: ' + str(dirLength)
-	for iconimage, name in azList:
-		print base_txt + iconimage + ' ' + name
-		searchText = name
-		if searchText == '-- NEXT PAGE --':
-			mode = 61
-			url = iconimage
-			iconimage = ''
-		addDir(searchText,url,mode,iconimage,numItems=dirLength)
-		
-def TYPED_SEARCH():
-        keyb = xbmc.Keyboard('', 'Enter search text')
-        keyb.doModal()
-        searchText = ''
-        if (keyb.isConfirmed()):
-                searchText = urllib.quote_plus(keyb.getText())
-		
-		searchText = searchText.title()
-        SEARCH(searchText)
-		
-		
-def SEARCH(searchText,aid='0'):
-	# Searches the various websites for the searched content
-	subLoc = searchText.find('[')
-	if subLoc > 0:
-		searchText = searchText[:subLoc]
-	subLoc = searchText.find('(')
-	if subLoc > 0:
-		searchText = searchText[:subLoc]
-		
-	searchText = searchText.replace('(TV)','').replace('(OVA)','').replace('(Movie)','').title().strip()
-	print base_txt + 'Searching for ... ' + searchText
-	
-	# linkAID = get_ani_detail(aid_org)
-	linkAID = cache.cacheFunction(get_ani_detail,aid)
-	
-	ani_detail_org = anidbQuick.AID_Resolution(linkAID)
-	# ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
-	
-	searchRes = allSearchList(searchText)
-	# searchRes = cache.cacheFunction(allSearchList,searchText)
-	
-	if (int(aid)>0 and len(ani_detail_org[7])>0):
-		print base_txt + 'Searching ' + str(len(ani_detail_org[7])) + ' alternate names'
-		for aidAlt, name in ani_detail_org[7]:
-			subLoc = name.find('(')
-			if subLoc > 0:
-				name = name[:subLoc]
-			name = urllib.unquote(name).title()
-			print base_txt + 'Searching for ... ' + name
-			searchRes = searchRes + cache.cacheFunction(allSearchList,name)
-			if name.find(':') > 0:
-				print base_txt + 'Searching for ... ' + name.replace(':','')
-				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace(':',''))
-			if name.find('\'') > 0 or name.find('`') > 0:
-				print base_txt + 'Searching for ... ' + name.replace('\'','').replace('`','').replace(':','').title()
-				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('\'','').replace('`','').replace(':','').title())
-			if name.find('?') > 0 or name.find('!') > 0:
-				print base_txt + 'Searching for ... ' + name.replace('?','').replace('!','')
-				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('?','').replace('!',''))
-			if name.find('-') > 0:
-				print base_txt + 'Searching for ... ' + name.replace('-',' ')
-				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('-',' '))
-			if name.find('~') > 0:
-				print base_txt + 'Searching for ... ' + name.replace('~','')
-				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('~',''))
-			if name.startswith('The'):
-				print base_txt + 'Searching for ... ' + name.replace('The ','')
-				searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('The ',''))
-		
-	searchRes.append(['','zzzzzzEND'])
-	
-	tempsearchRes = searchRes
-	searchRes = []
-	for url, name in tempsearchRes:
-		name = name.title().replace(' - ',' ').replace(':','').replace('2Nd','2').strip()
-		if 'Movies' in name:
-			name = name.replace(' Movies','').strip() + ' (Movies)'
-		elif 'The Movie' in name:
-			name = name.replace(' The Movie','').replace(' Movie','').strip() + ' (Movie)'
-		elif 'Movie' in name:
-			name = name.replace(' Movie','').replace(' Movie','').strip() + ' (Movie)'
-		name = name.replace('2Nd','2')
-		name = name.replace(' Season','')
-		name = name.replace('  ',' ')
-		searchRes.append([url,name])
-			
-	searchRes.sort(key=lambda name: name[1]) 
-	searchRes = f2(searchRes)
-	
-	nameTest = ''
-	url = ''
-	mode = 3
-	iconimage = ''
-	
-	# print searchRes
-	# searchRes = filter(None, searchRes)
-	# print searchRes
-	
-	
-	dirLength = len(searchRes)
-	print base_txt + '# of items: ' + str(dirLength)
-	for url, name in searchRes:
-		# name = name.title().replace(' - ',' ').replace(':','').strip()
-		# if 'Movies' in name:
-			# name = name.replace(' Movies','').strip() + ' (Movies)'
-		# elif 'The Movie' in name:
-			# name = name.replace(' The Movie','').replace(' Movie','').strip() + ' (Movie)'
-		# elif 'Movie' in name:
-			# name = name.replace(' Movie','').replace(' Movie','').strip() + ' (Movie)'
-		
-		try:
-			if not nameTest == name:
-				if not nameTest == '':
-					print base_txt + nameTest + ' <--> ' + groupUrl
-					aidSer = get_ani_aid(nameTest)
-					
-					# print base_txt + str(aidSer)
-					if int(aidSer)>0:
-						# linkAID = get_ani_detail(aidSer)
-						linkAID = cache.cacheFunction(get_ani_detail,aidSer)
-						
-						ani_detail = anidbQuick.AID_Resolution(linkAID)
-						# ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
-						iconimage = ani_detail[1]
-						description = ani_detail[2]
-						if len(ani_detail[3])>1:
-							year = int(ani_detail[3][0])
-						else:
-							year = 1900
-						eptot = ani_detail[4]
-						addDir(nameTest,groupUrl,mode,iconimage,numItems=dirLength,aid=aidSer,descr=description,yr=year,genre='Anime',totep=eptot)
-						iconimage = ''
-					else:
-						addDir(nameTest,groupUrl,mode,iconimage,numItems=dirLength)
-				groupUrl = ''
-				nameTest = name
-			
-			if nameTest == name:
-				groupUrl = groupUrl +' <--> '+ url
-				
-		except:
-			print base_txt + 'Directory not created in SEARCH() for ' + url + ' ' + name	
-
-	subLoc = searchText.rfind(':')
-	if subLoc == -1:
-		subLoc = searchText.rfind('-')
-		if (subLoc > 0 and subLoc < len(searchText)):
-			searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
-			addDir(searchText,'',2,'')
-		else:
-			subLoc = searchText.rfind(' ')
-			if (subLoc > 0 and subLoc < len(searchText)):
-				searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
-				addDir(searchText,'',2,'')
-			elif searchText.rfind('-') > 0:
-				searchText =  searchText.replace('-',' ').strip() + ' [SEARCH]'
-				addDir(searchText,'',2,'')	
-			elif searchText.rfind('!') > 0:
-				searchText =  searchText.split('!')[0].strip() + ' [SEARCH]'
-				addDir(searchText,'',2,'')	
-			elif searchText.rfind('?') > 0:
-				searchText =  searchText.split('?')[0].strip() + ' [SEARCH]'
-				addDir(searchText,'',2,'')	
-	elif (subLoc > 0 and subLoc < len(searchText)):
-		searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
-		addDir(searchText,'',2,'')
-		
-	
-	if (int(aid)>0):
-		addDir('-- SIMILAR TITLES --','',121,'',aid=aid)
-		
-	
 def allAnimeList():
 	# Searches the various websites for the searched content
 	
 	searchSiteList = []
 	if (dc.getSetting('anime44_on') == 'true'):
-		searchSiteList.append('anime44.com')
+		searchSiteList.append(anime44.base_url_name)
 		
 	if (dc.getSetting('animecrazy_on') == 'true'):
-		searchSiteList.append('animecrazy.net')
+		searchSiteList.append(animecrazy.base_url_name)
 	
 	if (dc.getSetting('animeflavor_on') == 'true'):
-		searchSiteList.append('animeflavor.com')
+		searchSiteList.append(animeflavor.base_url_name)
 	
 	if (dc.getSetting('animefushigi_on') == 'true'):
-		searchSiteList.append('animefushigi.com')
+		searchSiteList.append(animefushigi.base_url_name)
 	
 	if (dc.getSetting('animetip_on') == 'true'):
-		searchSiteList.append('animetip.com')
+		searchSiteList.append(animetip.base_url_name)
 	
 	if (dc.getSetting('myanimelinks_on') == 'true'):
-		searchSiteList.append('myanimelinks.com')
+		searchSiteList.append(myanimelinks.base_url_name)
 		
 	if(len(searchSiteList) < 1):
 		searchSiteList = ['animecrazy.net']
@@ -892,60 +1077,60 @@ def allAnimeList():
 	for url in searchSiteList:
 		xbmc.executebuiltin('XBMC.Notification(Retrieving Info!,'+ url +',5000)')
 		link = ''
-		if ('anime44.com' in url):
+		if (anime44.base_url_name in url):
 			try:
-				aniUrls = ['http://www.anime44.com/anime-list','http://www.anime44.com/category/anime-movies']
-				for aniUrl in aniUrls:
+				# aniUrls = ['http://www.anime44.com/anime-list','http://www.anime44.com/category/anime-movies']
+				for aniUrl in anime44.aniUrls:
 					print base_txt + aniUrl
 					link = grabUrlSource(aniUrl)
 					searchRes = searchRes + anime44.Total_Video_List(link)
 			except:
 				print base_txt + url + ' failed to load allAnimeList()'
-		elif ('animecrazy.net' in url):
+		elif (animecrazy.base_url_name in url):
 			try:
-				aniUrls = ['http://www.animecrazy.net/anime-index/']
-				for aniUrl in aniUrls:
+				# aniUrls = ['http://www.animecrazy.net/anime-index/']
+				for aniUrl in animecrazy.aniUrls:
 					print base_txt + aniUrl
 					link = grabUrlSource(aniUrl)
 					searchRes = searchRes + animecrazy.Total_Video_List(link)
 			except:
 				print base_txt + url + ' failed to load allAnimeList()'
-		elif ('animeflavor.com' in url):
+		elif (animeflavor.base_url_name in url):
 			try:
-				aniUrls = ['http://www.animeflavor.com/index.php?q=node/anime_list','http://www.animeflavor.com/index.php?q=anime_movies','http://www.animeflavor.com/index.php?q=cartoons']
-				for aniUrl in aniUrls:
+				# aniUrls = ['http://www.animeflavor.com/index.php?q=node/anime_list','http://www.animeflavor.com/index.php?q=anime_movies','http://www.animeflavor.com/index.php?q=cartoons']
+				for aniUrl in animeflavor.aniUrls:
 					print base_txt + aniUrl
 					link = grabUrlSource(aniUrl)
 					searchRes = searchRes + animeflavor.Total_Video_List(link)
 			except:
-				print base_txt + 'animeflavor.com failed to load allAnimeList()'
-		elif ('animefushigi.com' in url):
+				print base_txt + url + ' failed to load allAnimeList()'
+		elif (animefushigi.base_url_name in url):
 			try:
-				aniUrls = ['http://www.animefushigi.com/full-anime-list/','http://www.animefushigi.com/anime/movies/']
-				for aniUrl in aniUrls:
+				# aniUrls = ['http://www.animefushigi.com/full-anime-list/','http://www.animefushigi.com/anime/movies/']
+				for aniUrl in animefushigi.aniUrls:
 					print base_txt + aniUrl
 					link = grabUrlSource(aniUrl)
 					searchRes = searchRes + animefushigi.Total_Video_List(link)
 			except:
-				print base_txt + 'animefushigi.com failed to load allAnimeList()'
-		elif ('animetip.com' in url):
+				print base_txt + url + ' failed to load allAnimeList()'
+		elif (animetip.base_url_name in url):
 			try:
-				aniUrls = ['http://www.animetip.com/watch-anime','http://www.animetip.com/anime-movies']
-				for aniUrl in aniUrls:
+				# aniUrls = ['http://www.animetip.com/watch-anime','http://www.animetip.com/anime-movies']
+				for aniUrl in animetip.aniUrls:
 					print base_txt + aniUrl
 					link = grabUrlSource(aniUrl)
 					searchRes = searchRes + animetip.Total_Video_List(link)
 			except:
-				print base_txt + 'animetip.com failed to load allAnimeList()'
-		elif ('myanimelinks.com' in url):
+				print base_txt + url + ' failed to load allAnimeList()'
+		elif (myanimelinks.base_url_name in url):
 			try:
-				aniUrls = ['http://www.myanimelinks.com/full-anime-list/']
-				for aniUrl in aniUrls:
+				# aniUrls = ['http://www.myanimelinks.com/full-anime-list/']
+				for aniUrl in myanimelinks.aniUrls:
 					print base_txt + aniUrl
 					link = grabUrlSource(aniUrl)
 					searchRes = searchRes + myanimelinks.Total_Video_List(link)
 			except:
-				print base_txt + 'myanimelinks.com failed to load allAnimeList()'
+				print base_txt + url + ' failed to load allAnimeList()'
 		
 	searchRes.sort(key=lambda name: name[1]) 
 	searchRes = f2(searchRes)
@@ -960,8 +1145,9 @@ def allSearchList(searchText):
 	searchResults = []
 	for possLink in searchRes:
 		
-		if searchText in possLink[1]:
-			searchResults.append(possLink)
+		if not possLink[1].startswith('<'):
+			if searchText in possLink[1]:
+				searchResults.append(possLink)
 	
 	return searchResults
 	
@@ -1007,20 +1193,20 @@ def PLAYLIST_VIDEOLINKS(url,name):
 		
 	return ok
 	
-def addDir(name,url,mode,iconimage,numItems=1,aid=0,descr='',yr='1900',genre='',totep='0',watchep='0'):
+def addDir(name,url,mode,iconimage,numItems=1,aid=0,descr='',yr='1900',genre='',totep='0',watchep='0',epNum=0, mo='01', day='01', fanart='', plycnt=''):
 	# XBMC: create directory
 	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&aid="+str(aid)
 	ok=True
 	unwatchep = '0'
-	
+	airdate = str(yr)+'-'+str(mo).zfill(2)+'-'+str(day).zfill(2)
 	if (len(totep)>0 and len(watchep)>0):
 		unwatchep = str(int(totep)-int(watchep))
 	
 	name = urllib.unquote(name)
 	
 	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-	liz.setInfo( type="Video", infoLabels={ "Title":name, "Plot":descr, "Year":yr, "Genre":genre} )
-	liz.setProperty('Fanart_Image',iconimage)
+	liz.setInfo( type="Video", infoLabels={ "Title":name, "Plot":descr, "Year":yr, "Genre":genre,"Episode":epNum,"Aired":airdate,"Playcount":plycnt} )
+	liz.setProperty('Fanart_Image',fanart)
 	liz.setProperty('TotalEpisodes',totep)
 	liz.setProperty('WatchedEpisodes',watchep)
 	liz.setProperty('UnWatchedEpisodes',unwatchep)
@@ -1148,7 +1334,7 @@ elif mode==2:
         SEARCH(name,aid) 
         
 elif mode==3:
-        getEpisode_Listing_Pages(url)
+        getEpisode_Listing_Pages(url,aid)
         
 elif mode==4:
 		getEpisode_PageMerged(url)

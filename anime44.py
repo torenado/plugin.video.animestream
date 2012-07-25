@@ -23,6 +23,7 @@ BASE_URL = 'http://anime44.com'
 base_url_name = BASE_URL.split('//')[1]
 base_txt = base_url_name + ': '
 
+aniUrls = ['http://www.anime44.com/anime-list','http://www.anime44.com/category/anime-movies']
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.animestream"
 		 name="Anime Stream"
-		 version="0.2"
+		 version="0.3"
 		 provider-name="Torenado">
 	<requires>
 	<import addon="xbmc.python" version="2.0"/>
@@ -16,6 +16,7 @@
 	<summary>Anime Stream - Watch Streaming Anime from Across the Net</summary>
 	<description>Watch your favorite anime from across various streaming websites in one simple interface.	
 	Current sites:
+	- anime44.com
 	- animecrazy.net
 	- animefushigi.com
 	- animetip.com

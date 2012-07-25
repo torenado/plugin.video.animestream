@@ -4,6 +4,7 @@ import gzip, io
 import cookielib,os,string,cookielib,StringIO
 import os,time,base64,logging
 from datetime import datetime
+from utils import *
 try:
     import json
 except ImportError:
@@ -17,27 +18,11 @@ addonPath=os.getcwd()
 #artPath=addonPath+'/resources/art'
 # https://sites.google.com/site/anidblist/anime-list.xml?attredirects=0
 # http://www.thetvdb.com/api/1D62F2F90030C444/series/114801/all/en.zip <-- TheTVdb.com
-mozilla_user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
 
 BASE_URL = 'http://anidb.net'
 
 base_url_name = BASE_URL.split('//')[1]
-base_txt = base_url_name + ': '
-   
-def grabUrlSource(url):
-	req = urllib2.Request(url)
-	req.add_header('User-Agent', mozilla_user_agent)
-	response = urllib2.urlopen(req)	
-	link=response.read()
-	if link[:2]=='\x1f\x8b':
-		bi = io.BytesIO(link)
-		gf = gzip.GzipFile(fileobj=bi, mode="rb")
-		link = gf.read()
-	response.close()
-	link = ''.join(link.splitlines()).replace('\t','')
-	
-	return link
-	
+base_txt = base_url_name + ': '	
 	
 def Wishlist(link):
 	# Grabs and parses the wishlist from anidb.  User must set username and password in settings
@@ -127,8 +112,100 @@ def AID_Resolution(linkAID):
 		simAni=re.compile('<anime id="(.+?)"(.+?)>(.+?)<').findall(match[0])
 		for simAid, garbage, name in simAni:
 			simAniList.append([simAid,name])
+			
+	
+	epList = []
+	match=re.compile('<episode (.+?)</episode>').findall(linkAID)
+	print base_txt + str(len(match)) + ' episodes were parsed'
+	if(len(match)>=1):
+		# simAni=re.compile('<episode>(.+?)</episode>').findall(match)
+		for aniEp in match:
+			epNum=''
+			epName=''
+			epAirdate=['','','']
+			if 'epno' in aniEp:
+				epNum1=re.compile('<epno (.+?)>(.+?)<').findall(aniEp)[0][-1]
+				if epNum1.isdigit():
+					epNum = int(epNum1)
+				else:
+					epNum = epNum1
+			if '<title xml:lang="en">' in aniEp:
+				epName=re.compile('<title xml:lang="en">(.+?)</title>').findall(aniEp)[0]
+			if 'airdate' in aniEp:
+				airdateM=re.compile('<airdate>(.+?)-(.+?)-(.+?)</airdate>').findall(aniEp)
+				if(len(airdateM)>=1):
+					epAirdate=airdateM[0]
+			if not len(epName)>0 and '<title xml:lang="x-jat">' in aniEp:
+				epName=re.compile('<title xml:lang="x-jat">(.+?)</title>').findall(aniEp)
+			epList.append([epNum,epName,epAirdate])
+			epNum = ''
+			epName = ''
+	
+	category = []
+	match=re.compile('<categories>(.+?)</categories>').findall(linkAID)
+	if(len(match)>=1):
+		category = re.compile('<name>(.+?)</name>').findall(match[0])
+		# print category
 		
-	return [aid, iconimage, description, startdate, episodecount, adult, simAniList, synAniList]
+	epList.sort(key=lambda name: name[0], reverse=True)
+	return [aid, iconimage, description, startdate, episodecount, adult, simAniList, synAniList, epList, category]
+
+def TVDBID_Resolution(aid,linkTVDB):
+	# print base_txt +  'Grabbing TheTVDB id details'
+	linkTVDB = linkTVDB.replace('></','> </')
+	tvdbid=0
+	banner=''
+	fanart=''
+	poster=''
+	match=re.compile('<Series>(.+?)</Series>').findall(linkTVDB)
+	if(len(match)>=1):
+		tvdbid=re.compile('<id>(.+?)</id>').findall(match[0])[0]
+		if '<banner>' in match[0]:
+			banner='http://www.thetvdb.com/banners/'+re.compile('<banner>(.+?)</banner>').findall(match[0])[0]
+		if '<fanart>' in match[0]:
+			fanart='http://www.thetvdb.com/banners/'+re.compile('<fanart>(.+?)</fanart>').findall(match[0])[0]
+		if '<poster>' in match[0]:
+			poster='http://www.thetvdb.com/banners/'+re.compile('<poster>(.+?)</poster>').findall(match[0])[0]
+		
+	epList = []
+	match=re.compile('<Episode>(.+?)</Episode>').findall(linkTVDB)
+	print base_txt + str(len(match)) + ' episodes were parsed'
+	if(len(match)>=1):
+		# simAni=re.compile('<episode>(.+?)</episode>').findall(match)
+		for TVDBEp in match:
+			epName=''
+			description=''
+			iconimage=''
+			epNum1=''
+			if '<EpisodeName>' in TVDBEp:
+				epName=re.compile('<EpisodeName>(.+?)</EpisodeName>').findall(TVDBEp)[0]
+			if '<Overview>' in TVDBEp:
+				description=re.compile('<Overview>(.+?)</Overview>').findall(TVDBEp)[0]
+			if '<filename>' in TVDBEp:
+				iconimage='http://www.thetvdb.com/banners/'+re.compile('<filename>(.+?)</filename>').findall(TVDBEp)[0]
+				
+			if '<absolute_number>' in TVDBEp:
+				epNum1=re.compile('<absolute_number>(.+?)</absolute_number>').findall(TVDBEp)[0].replace(' ','')
+			
+			if len(epNum1)<1 and '<Combined_episodenumber>' in TVDBEp:
+				epNum1=re.compile('<Combined_episodenumber>(.+?)</Combined_episodenumber>').findall(TVDBEp)[0].replace(' ','')
+			
+			if len(epNum1)<1 and '<EpisodeNumber>' in TVDBEp:
+				epNum1=re.compile('<EpisodeNumber>(.+?)</EpisodeNumber>').findall(TVDBEp)[0].replace(' ','')
+			
+			if epNum1=='':
+				epNum1 = 0
+			
+			if epNum1.isdigit():
+				epNum = int(epNum1)
+			else:
+				epNum = epNum1
+			epList.append([epNum,epName,iconimage,description])
+	
+	
+	epList.sort(key=lambda name: name[0], reverse=True)
+
+	return [aid, tvdbid, banner, fanart, poster, epList]
 	
 	
 def WishlistAPI(link):

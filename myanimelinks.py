@@ -23,6 +23,7 @@ BASE_URL = 'http://myanimelinks.com'
 base_url_name = BASE_URL.split('//')[1]
 base_txt = base_url_name + ': '
 
+aniUrls = ['http://www.myanimelinks.com/full-anime-list/']
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page

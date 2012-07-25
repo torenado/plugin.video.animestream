@@ -23,6 +23,7 @@ BASE_URL = 'http://www.animecrazy.net'
 base_url_name = BASE_URL.split('www.')[1]
 base_txt = base_url_name + ': '
 	
+aniUrls = ['http://www.animecrazy.net/anime-index/']
 	
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page
@@ -174,7 +175,7 @@ def Video_List_And_Pagination(url):
 			mostPop.append([nextPage, videoName])
 		else:
 			print base_txt +  mod_url
-			link = grabUrlSource(url)
+			link = grabUrlSource(mod_url)
 			match=re.compile('<img src="http://i.animecrazy.net/(.+?)"(.+?)<h1><a href="(.+?)">(.+?)</a></h1>').findall(link)
 			#xbmc.executebuiltin("XBMC.Notification(Please Wait!,Retrieving video info and image,5000)")
 			for videoImg, garbage, videoLink, videoName in match:
