@@ -3,6 +3,7 @@ import cookielib,os,string,cookielib,StringIO
 import os,time,base64,logging
 import gzip, io
 import htmlentitydefs
+import unicodedata
 from datetime import datetime
 try:
 	import json
@@ -70,5 +71,34 @@ def unescape(text):
 				text = unichr(htmlentitydefs.name2codepoint[text[1:-1]])
 			except KeyError:
 				pass
-		return text # leave as is
+		return unescape_m(text) # leave as is
+	
+	def unescape_m(url):
+		htmlCodes = [
+			['&', '&amp;'],
+			['<', '&lt;'],
+			['>', '&gt;'],
+			['"', '&quot;'],
+			[' ', '&nbsp;']
+		]
+		for code in htmlCodes:
+			url = url.replace(code[1], code[0])
+		return url
+	
 	return re.sub("&#?\w+;", fixup, text)
+
+def U2A(text):
+	# convert Unicode into ASCII
+	try:
+		return unicodedata.normalize('NFKD', text).encode('ascii','ignore')
+	except:
+		pass
+	
+def U2A_List(iterable):
+	iterated_object=[]
+	for elem in iterable:
+		if hasattr(elem,"__iter__"):
+			iterated_object.append(U2A_List(elem))
+		else:
+			iterated_object.append(U2A(elem))
+	return iterated_object

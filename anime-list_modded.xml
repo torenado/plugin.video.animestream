@@ -24,4 +24,232 @@
     <name>Eureka Seven - Pocketful of Rainbows</name>
     <name>Psalms of Planets: Eureka Seven - Pocket Full of Rainbows</name>
   </anime>
+  <anime anidbid="2369" tvdbid="74796" defaulttvdbseason="1">
+    <name>Bleach</name>
+  </anime>
+  <anime anidbid="9015" tvdbid="259649" defaulttvdbseason="1">
+    <name>Aesthetica of a Rogue Hero</name>
+    <name>Hagure Yuusha no Estetica</name>
+  </anime>
+  <anime anidbid="8879" tvdbid="259642" defaulttvdbseason="1">
+    <name>So, I Can't Play H!</name>
+    <name>Dakara Boku wa, H ga Dekinai.</name>
+    <name>Dakara Boku wa, H ga Dekinai</name>
+  </anime>
+  <anime anidbid="8149" tvdbid="239951" defaulttvdbseason="1">
+    <name>C</name>
+    <name>[C] The Money of Soul and Possibility Control</name>
+    <name>C - The Money of Soul and Possibility Control</name>
+    <name>C The Money of Soul and Possibility Control</name>
+    <name>C: The Money of Soul and Possibility</name>
+  </anime>
+  <anime anidbid="9147" tvdbid="79360" defaulttvdbseason="0">
+    <name>Eureka Seven Ao: Jungfrau no Hana-tachi</name>
+    <name>Eureka Seven Ao: The Flowers of Jungfrau</name>
+  </anime>
+  <anime anidbid="8564" tvdbid="255133" defaulttvdbseason="1">
+    <name>Inu x Boku Secret Service</name>
+    <name>Inu x Boku SS</name>
+    <name>Inuboku Secret Service</name>
+  </anime>
+  <anime anidbid="6716" tvdbid="71361" defaulttvdbseason="8">
+    <name>Inuyasha Kanketsuhen</name>
+    <name>Inuyasha: The Final Act</name>
+  </anime>
+  <anime anidbid="4880" tvdbid="79824" defaulttvdbseason="1">
+    <name>Naruto Shippuuden</name>
+    <name>Naruto Shippuden</name>
+    <name>Naruto Shipuuden</name>
+    <name>Naruto Shipuden</name>
+    <name>Naruto: Hurricane Chronicles</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-5;2-0;</mapping>
+      <mapping anidbseason="1" tvdbseason="1">;1-1;2-2;3-3;4-4;5-5;6-6;7-7;8-8;9-9;10-10;11-11;12-12;13-13;14-14;15-15;16-16;17-17;18-18;19-19;20-20;21-21;22-22;23-23;24-24;25-25;26-26;27-27;28-28;29-29;30-30;31-31;32-32;</mapping>
+      <mapping anidbseason="1" tvdbseason="2">;33-1;34-2;35-2;36-4;37-5;38-6;39-7;40-8;41-9;42-10;43-11;44-12;45-13;46-14;47-15;48-16;49-17;50-18;51-19;52-20;53-21;</mapping>
+      <mapping anidbseason="1" tvdbseason="3">;54-1;55-2;56-3;57-4;58-5;59-6;60-7;61-8;62-9;63-10;64-11;65-12;66-13;67-14;68-15;69-16;70-17;71-18;</mapping>
+      <mapping anidbseason="1" tvdbseason="4">;72-1;73-2;74-3;75-4;76-5;77-6;78-7;79-8;80-9;81-10;82-11;83-12;84-13;85-14;86-15;87-16;88-17;</mapping>
+      <mapping anidbseason="1" tvdbseason="5">;89-1;90-2;91-3;92-4;93-5;94-6;95-7;96-8;97-9;98-10;99-11;100-12;101-13;102-14;103-15;104-16;105-17;106-18;107-19;108-20;109-21;110-22;111-23;112-24;</mapping>
+      <mapping anidbseason="1" tvdbseason="6">;113-1;114-2;115-3;116-4;117-5;118-6;119-7;120-8;121-9;122-10;123-11;124-12;125-13;126-14;127-15;128-16;129-17;130-18;131-19;132-20;133-21;134-22;135-23;136-24;137-25;138-26;139-27;140-28;141-29;142-30;143-31;</mapping>
+      <mapping anidbseason="1" tvdbseason="7">;144-1;145-2;146-3;147-4;148-5;149-6;150-7;151-8;</mapping>
+      <mapping anidbseason="1" tvdbseason="8">;152-1;153-2;154-3;155-4;156-5;157-6;158-7;159-8;160-9;161-10;162-11;163-12;164-13;165-14;166-15;167-16;168-17;169-18;170-19;171-20;172-21;173-22;174-23;175-24;</mapping>
+      <mapping anidbseason="1" tvdbseason="9">;176-1;177-2;178-3;179-4;180-5;181-6;182-7;183-8;184-9;185-10;186-11;187-12;188-13;189-14;190-15;191-16;192-17;193-18;194-19;195-20;196-21;</mapping>
+      <mapping anidbseason="1" tvdbseason="10">;197-1;198-2;199-3;200-4;201-5;202-6;203-7;204-8;205-9;206-10;207-11;208-12;209-13;210-14;211-15;212-16;213-17;214-18;215-19;216-20;217-21;218-22;</mapping>
+      <mapping anidbseason="1" tvdbseason="11">;219-1;220-2;221-3;222-4;223-5;224-6;225-7;226-8;227-9;228-10;229-11;230-12;231-13;232-14;233-15;234-16;235-17;236-18;237-19;238-20;239-21;240-22;241-23;242-24;</mapping>
+      <mapping anidbseason="1" tvdbseason="12">;243-1;244-2;245-3;246-4;247-5;248-6;249-7;250-8;251-9;252-10;253-11;254-12;255-13;256-14;257-15;258-16;259-17;260-18;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="8593" tvdbid="79719" defaulttvdbseason="4">
+    <name>Zero no Tsukaima F</name>
+    <name>Familiar of Zero F</name>
+  </anime>
+  <anime anidbid="56" tvdbid="73532" defaulttvdbseason="1">
+    <name>Tennis no Ouji-sama</name>
+    <name>The Prince of Tennis</name>
+    <name>Prince of Tennis</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-1;2-2;3-0;</mapping>
+      <mapping anidbseason="1" tvdbseason="1">;1-1;2-2;3-3;4-4;5-5;6-6;7-7;8-8;9-9;10-10;11-11;12-12;13-13;14-14;15-15;16-16;17-17;18-18;19-19;20-20;21-21;22-22;23-23;24-24;25-25;26-26;</mapping>
+      <mapping anidbseason="1" tvdbseason="2">;27-1;28-2;29-3;30-4;31-5;32-6;33-7;34-8;35-9;36-10;37-11;38-12;39-13;10-14;41-15;42-16;43-17;44-18;45-19;46-20;47-21;48-22;49-23;50-24;51-25;52-26;53-27;</mapping>
+      <mapping anidbseason="1" tvdbseason="3">;54-1;55-2;56-3;57-4;58-5;59-6;60-7;61-8;62-9;63-10;64-11;65-12;66-13;67-14;68-15;69-16;70-17;71-18;72-19;73-20;74-21;75-22;</mapping>
+      <mapping anidbseason="1" tvdbseason="4">;76-1;77-2;78-3;79-4;80-5;81-6;82-7;83-8;84-9;85-10;86-11;87-12;88-13;89-14;90-15;91-16;92-17;93-18;94-19;95-20;96-21;97-22;98-23;99-24;100-25;101-26;</mapping>
+      <mapping anidbseason="1" tvdbseason="5">;102-1;103-2;104-3;105-4;106-5;107-6;108-7;109-8;110-9;111-10;112-11;113-12;114-13;115-14;116-15;117-16;118-17;119-18;120-19;121-20;122-21;123-22;124-23;125-24;126-25;127-26;128-27;</mapping>
+      <mapping anidbseason="1" tvdbseason="6">;129-1;130-2;131-3;132-4;133-5;134-6;135-7;136-8;137-9;138-10;139-11;140-12;141-13;142-14;143-15;144-16;145-17;146-18;147-19;148-20;149-21;150-22;151-23;152-24;153-25;154-26;155-27;156-28;157-29;158-30;159-31;160-32;161-33;162-34;163-35;164-36;165-37;</mapping>
+      <mapping anidbseason="1" tvdbseason="7">;166-1;167-2;168-3;169-4;170-5;171-6;172-7;173-8;174-9;175-10;176-11;177-12;178-13;</mapping>
+	</mapping-list>
+  </anime>
+  <anime anidbid="4244" tvdbid="73532" defaulttvdbseason="8">
+    <name>Tennis no Ouji-sama: Zenkoku Taikai Hen</name>
+    <name>Prince of Tennis - National Championship Chapter</name>
+    <name>The Prince of Tennis: The National Tournament</name>
+    <name>Prince of Tennis: The National Tournament</name>
+  </anime>
+  <anime anidbid="5750" tvdbid="73532" defaulttvdbseason="10">
+    <name>Tennis no Ouji-sama: Zenkoku Taikai Hen - Final</name>
+    <name>Prince of Tennis - National Championship Chapter - Final</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-0;</mapping>
+	</mapping-list>
+  </anime>
+  <anime anidbid="5134" tvdbid="73532" defaulttvdbseason="9">
+    <name>Tennis no Ouji-sama: Zenkoku Taikai Hen - Semifinal</name>
+    <name>Prince of Tennis - National Championship Chapter - Semifinal</name>
+  </anime>
+  <anime anidbid="6442" tvdbid="73532" defaulttvdbseason="11">
+    <name>Tennis no Ouji-sama OVA Another Story: Kako to Mirai no Message</name>
+    <name>Prince of Tennis Another Story - Messages from Past and Future</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="11">;1-5;2-6;</mapping>
+	</mapping-list>
+  </anime>
+  <anime anidbid="8601" tvdbid="254899" defaulttvdbseason="12">
+    <name>The New Prince of Tennis</name>
+    <name>New Prince of Tennis</name>
+    <name>The Prince of Tennis II</name>
+    <name>Prince of Tennis II</name>
+    <name>Shin Tennis no Ouji-sama</name>
+  </anime>
+  <anime anidbid="8373" tvdbid="73532" defaulttvdbseason="13">
+    <name>Tennis no Ouji-sama OVA Another Story II: Ano Toki no Bokura</name>
+    <name>Prince of Tennis: OVA Another Story II</name>
+  </anime>
+  <anime anidbid="8692" tvdbid="259640" defaulttvdbseason="1">
+    <name>Sword Art Online</name>
+  </anime>
+  <anime anidbid="4761" tvdbid="81111" defaulttvdbseason="1">
+    <name>Super Robot Wars: Original Generation - Divine Wars</name>
+    <name>Super Robot Wars: OG Divine Wars</name>
+  </anime>
+  <anime anidbid="3394" tvdbid="85415" defaulttvdbseason="1">
+    <name>Super Robot Taisen: Original Generation - The Animation</name>
+    <name>Super Robot Wars OG</name>
+  </anime>
+  <anime anidbid="4596" tvdbid="80000" defaulttvdbseason="1">
+    <name>Shijou Saikyou no Deshi Ken'ichi</name>
+    <name>Kenichi the Mightiest Disciple</name>
+    <name>History's Strongest Disciple Kenichi</name>
+  </anime>
+  <anime anidbid="8721" tvdbid="80000" defaulttvdbseason="0">
+    <name>Shijou Saikyou no Deshi Ken`ichi</name>
+  </anime>   
+  <anime anidbid="5145" tvdbid="78962" defaulttvdbseason="2">
+    <name>Shakugan no Shana II</name>
+    <name>Shakugan no Shana Second</name>
+  </anime> 
+  <anime anidbid="8483" tvdbid="78962" defaulttvdbseason="3">
+    <name>Shakugan no Shana Final</name>
+    <name>Shakugan no Shana III</name>
+    <name>Shakugan no Shana 3</name>
+    <name>Shakugan III</name>
+    <name>Shakugan 3</name>
+  </anime>  
+  <anime anidbid="826" tvdbid="72775" defaulttvdbseason="1">
+    <name>Saint Seiya</name>
+  </anime>
+  <anime anidbid="2579" tvdbid="82028" defaulttvdbseason="1">
+    <name>Ring ni Kakero 1</name>
+    <name>Ring ni Kakero</name>
+    <name>Put It All in the Ring</name>
+  </anime>
+  <anime anidbid="4415" tvdbid="82028" defaulttvdbseason="2">
+    <name>Ring ni Kakero 1: Nichibei Kessen Hen</name>
+    <name>Put it All in the Ring 1 - Episode 2: The Pacific War</name>
+    <name>Put it All in the Ring 1 ~Japan vs. USA Battle Story~</name>
+  </anime>
+  <anime anidbid="7274" tvdbid="82028" defaulttvdbseason="3">
+    <name>Ring ni Kakero 1: Shadow</name>
+  </anime>
+  <anime anidbid="8549" tvdbid="259636" defaulttvdbseason="3">
+    <name>Muv-Luv Alternative: Total Eclipse</name>
+    <name>Total Eclipse</name>
+  </anime>
+  <anime anidbid="7443" tvdbid="254663" defaulttvdbseason="1">
+    <name>Mouretsu Pirates</name>
+    <name>Bodacious Space Pirates</name>
+    <name>Moretsu Pirates</name>
+    <name>Mouretsu Space Pirates</name>
+  </anime>
+  <anime anidbid="90" tvdbid="70863" defaulttvdbseason="1">
+    <name>Rurouni Kenshin: Meiji Kenkaku Romantan</name>
+    <name>Rurouni Kenshin</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="1">;1-1;2-2;3-3;4-4;5-5;6-6;7-7;8-8;9-9;10-10;11-11;12-12;13-13;14-14;15-15;16-16;17-17;18-18;19-19;20-20;21-21;22-22;23-23;24-24;25-25;26-26;27-27;28-28;</mapping>
+      <mapping anidbseason="1" tvdbseason="2">;29-1;30-2;31-3;32-4;33-5;34-6;35-7;36-8;37-9;38-10;39-11;40-12;41-13;42-14;43-15;44-16;45-17;46-18;47-19;48-20;49-21;50-22;51-23;52-24;53-25;54-26;55-27;56-28;57-29;58-30;59-31;60-32;61-33;62-34;</mapping>
+      <mapping anidbseason="1" tvdbseason="3">;63-1;64-2;65-3;66-4;67-5;68-6;69-7;70-8;71-9;72-10;73-11;74-12;75-13;76-14;77-15;78-16;79-17;80-18;81-19;82-20;83-21;84-22;85-23;86-24;87-25;88-26;89-27;90-28;91-29;92-30;93-31;94-32;</mapping>
+      <mapping anidbseason="0" tvdbseason="3">;4-33;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="4521" tvdbid="79525" defaulttvdbseason="1">
+    <name>Code Geass Hangyaku no Lelouch</name>
+    <name>Code Geass</name>
+    <name>Code Geass: Lelouch of the Rebellion</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;2-1;4-2;5-4;6-5;7-6;8-7;9-8;10-9;11-10;12-11;</mapping>
+    </mapping-list>
+    <supplemental-info>
+      <studio>Sunrise</studio>
+    </supplemental-info>
+  </anime>
+  <anime anidbid="5373" tvdbid="79525" defaulttvdbseason="2">
+    <name>Code Geass Hangyaku no Lelouch R2</name>
+    <name>Code Geass R2</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-13;2-14;3-15;4-16;5-17;6-18;7-19;8-20;9-21;</mapping>
+    </mapping-list>
+    <supplemental-info>
+      <studio>Sunrise</studio>
+    </supplemental-info>
+  </anime>
+  <anime anidbid="979" tvdbid="75579" defaulttvdbseason="1">
+    <name>Hagane no Renkinjutsushi</name>
+    <name>Fullmetal Alchemist</name>
+    <supplemental-info>
+      <studio>Bones</studio>
+    </supplemental-info>
+  </anime>
+  <anime anidbid="6107" tvdbid="85249" defaulttvdbseason="1">
+    <name>Hagane no Renkinjutsushi (2009)</name>
+    <name>Fullmetal Alchemist: Brotherhood</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;2-1;3-2;4-3;5-4;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="4148" tvdbid="79713" defaulttvdbseason="1">
+    <name>Ouran Koukou Host Club</name>
+    <name>Ouran High School Host Club</name>
+  </anime>
+  <anime anidbid="266" tvdbid="72454" defaulttvdbseason="1">
+    <name>Meitantei Conan</name>
+    <name>Detective Conan</name>
+  </anime>
+  <anime anidbid="129" tvdbid="79685" defaulttvdbseason="1">
+    <name>Hajime no Ippo: The Fighting</name>
+    <name>Hajime no Ippo</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="1">;1-76;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="17" tvdbid="78914" defaulttvdbseason="1">
+    <name>Fullmetal Panic!</name>
+    <name>Full Metal Panic!</name>
+  </anime>
 </anime-list>
