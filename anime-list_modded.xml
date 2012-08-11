@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="anime.xsl"?>
+
+<anime-list>
+  <anime anidbid="2826" tvdbid="79360" defaulttvdbseason="1">
+    <name>Koukyoushihen: Eureka Seven</name>
+    <name>Eureka Seven</name>
+    <name>Psalms of Planets Eureka seveN</name>
+    <name>Eureka 7</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="1">;1-1;2-2;3-3;4-4;5-5;6-6;7-7;8-8;9-9;10-10;11-11;12-12;13-13;</mapping>
+      <mapping anidbseason="1" tvdbseason="2">;14-1;15-2;16-3;17-4;18-5;19-6;20-7;21-8;22-9;23-10;24-11;25-12;26-13;</mapping>
+      <mapping anidbseason="1" tvdbseason="3">;27-1;28-2;29-3;30-4;31-5;32-6;33-7;34-8;35-9;36-10;37-11;38-12;39-13;</mapping>
+      <mapping anidbseason="1" tvdbseason="4">;40-1;41-2;42-3;43-4;44-5;45-6;46-7;47-8;48-9;49-10;50-11;</mapping>
+    </mapping-list>
+    <supplemental-info>
+      <studio>Bones</studio>
+    </supplemental-info>
+  </anime>
+  <anime anidbid="5880" tvdbid="79360" defaulttvdbseason="0">
+    <name>Koukyoushihen: Eureka Seven - Pocket ga Niji de Ippai</name>
+    <name>Eureka Seven - Pocket ga Niji de Ippai</name>
+    <name>Eureka Seven - good night, sleep tight, young lovers-</name>
+    <name>Eureka Seven - Pocketful of Rainbows</name>
+    <name>Psalms of Planets: Eureka Seven - Pocket Full of Rainbows</name>
+  </anime>
+</anime-list>
