@@ -27,7 +27,7 @@ base_txt = base_url_name + ': '
 def Wishlist(link):
 	# Grabs and parses the wishlist from anidb.  User must set username and password in settings
 	# ***WARNING: both this addon and anidb sends this password in the clear (plain text)
-	print base_txt +  'Grabbing anidb wishlist info'
+	print base_txt +  'Parsing anidb wishlist info'
 	anidbWishlist = []
 	link = link.replace('http://static.anidb.net/pics/anidb_pri_low.gif','')
 	match=re.compile('<tr (.+?)</tr>').findall(link)
@@ -50,7 +50,7 @@ def Wishlist(link):
 	return anidbWishlist
 
 def AID_Resolution(linkAID):
-	# print base_txt +  'Grabbing anidb aid details'
+	# print base_txt +  'Parsing anidb aid details'
 	
 	aid=0
 	match=re.compile('<anime id="(.+?)"').findall(linkAID)
@@ -151,7 +151,7 @@ def AID_Resolution(linkAID):
 	return [aid, iconimage, description, startdate, episodecount, adult, simAniList, synAniList, epList, category]
 
 def TVDBID_Resolution(aid,linkTVDB):
-	# print base_txt +  'Grabbing TheTVDB id details'
+	# print base_txt +  'Parsing TheTVDB id details'
 	linkTVDB = linkTVDB.replace('></','> </')
 	tvdbid=0
 	banner=''
@@ -177,12 +177,16 @@ def TVDBID_Resolution(aid,linkTVDB):
 			description=''
 			iconimage=''
 			epNum1=''
+			seasonNum=''
 			if '<EpisodeName>' in TVDBEp:
 				epName=re.compile('<EpisodeName>(.+?)</EpisodeName>').findall(TVDBEp)[0]
 			if '<Overview>' in TVDBEp:
 				description=re.compile('<Overview>(.+?)</Overview>').findall(TVDBEp)[0]
 			if '<filename>' in TVDBEp:
 				iconimage='http://www.thetvdb.com/banners/'+re.compile('<filename>(.+?)</filename>').findall(TVDBEp)[0]
+				
+			if '<SeasonNumber>' in TVDBEp:
+				seasonNum=re.compile('<SeasonNumber>(.+?)</SeasonNumber>').findall(TVDBEp)[0].replace(' ','')
 				
 			if '<absolute_number>' in TVDBEp:
 				epNum1=re.compile('<absolute_number>(.+?)</absolute_number>').findall(TVDBEp)[0].replace(' ','')
@@ -200,7 +204,7 @@ def TVDBID_Resolution(aid,linkTVDB):
 				epNum = int(epNum1)
 			else:
 				epNum = epNum1
-			epList.append([epNum,epName,iconimage,description])
+			epList.append([epNum,epName,iconimage,description,seasonNum])
 	
 	
 	epList.sort(key=lambda name: name[0], reverse=True)
@@ -211,7 +215,7 @@ def TVDBID_Resolution(aid,linkTVDB):
 def WishlistAPI(link):
 	# Grabs and parses the wishlist from anidb api.  User must set username and password in settings
 	# ***WARNING: both this addon and anidb sends this password in the clear (plain text)
-	print base_txt +  'Grabbing anidb wishlist info'
+	print base_txt +  'Parsing anidb wishlist info'
 	anidbWishlist = []
 		
 	match=re.compile('<wishlistitem (.+?)</wishlistitem>').findall(link)
@@ -224,12 +228,36 @@ def WishlistAPI(link):
 	if(len(anidbWishlist) < 1):
 		print base_txt +  'Nothing was parsed from WishlistAPI: '
 	
-	return anidbWishlist
+	return anidbWishlist	
+	
+def MyListSummaryAPI(link):
+	# Grabs and parses the mylistsummary from anidb api.  User must set aniDB Login in settings
+	# ***WARNING: both this addon and anidb sends this password in the clear (plain text)
+	print base_txt +  'Parsing anidb mylistsummary info'
+	anidbMylistsummary = []
+		
+	match=re.compile('<mylistitem (.+?)</mylistitem>').findall(link)
+	if(len(match) >= 1):
+		for aniLine in match:
+			aid=re.compile('aid="(.+?)"').findall(aniLine)[0]			
+			eps_wat=re.compile('<seencount>(.+?)</seencount>').findall(aniLine)
+			
+			if len(eps_wat)>0:
+				eps_watched = eps_wat[0]
+			else:
+				eps_watched = 0
+				
+			anidbMylistsummary.append([aid,'',(eps_watched,'TBC')])
+	
+	if(len(anidbMylistsummary) < 1):
+		print base_txt +  'Nothing was parsed from MyListSummaryAPI: '
+	
+	return anidbMylistsummary
 	
 def aid2Name(link,anidbWishlist):
 	# Resolves anidb anime id numbers into titles
 	
-	print base_txt +  'Grabbing anidb public wishlist info'
+	print base_txt +  'Parsing anidb public wishlist info'
 	watchWishlist = []
 	
 	if(len(anidbWishlist) >= 1):

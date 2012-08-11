@@ -30,7 +30,8 @@ def grabUrlSource(url):
 			link = unescape(link)
 		except:
 			pass
-			
+		# link=link.replace(u'\xa0',u'')
+		
 		return link
 	except urllib2.URLError, e:
 		print 'grabUrlSource: got http error %d fetching %s' % (e.code, url)

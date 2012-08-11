@@ -62,6 +62,8 @@ def Episode_Listing(url):
 	match=re.compile('<a href="(.+?)">(.+?)</a>').findall(epBlock)
 	if(len(match) >= 1):
 		for episodePageLink, episodePageName in match:
+			subLoc = episodePageName.find(' Version')
+			episodePageName = episodePageName[:subLoc].strip()
 			epNumPart = episodePageName.strip().split()
 			for  epNum in reversed(epNumPart):
 				if epNum.isdigit():
@@ -69,7 +71,7 @@ def Episode_Listing(url):
 					break
 			else:
 				epNum = 0
-			episodePageName = episodePageName.title().replace(' - ',' ').replace(':','').replace('-',' ').strip()
+			episodePageName = episodePageName.title().replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
 			epList.append([BASE_URL + episodePageLink, episodePageName, episodeMediaThumb.replace("'",""), epNum])
 	else:
 		print base_txt +  'Nothing was parsed from Episode_Listing: ' + url

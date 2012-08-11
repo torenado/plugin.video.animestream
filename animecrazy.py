@@ -73,7 +73,7 @@ def Episode_Listing(url):
 					break
 			else:
 				epNum = 0
-			episodePageName = episodePageName.title().replace(' - ',' ').replace(':','').replace('-',' ').strip()
+			episodePageName = episodePageName.title().replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
 			epList.append([BASE_URL + episodePageLink , episodePageName, '', epNum])
 	
 	if(len(epList) < 1):

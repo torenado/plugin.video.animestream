@@ -53,7 +53,7 @@ def Episode_Listing(url):
 					break
 			else:
 				epNum = 0
-			episodePageName = episodePageName.title().replace(' - ',' ').replace(':','').replace('-',' ').strip()
+			episodePageName = episodePageName.title().replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
 			epList.append([episodePageLink , episodePageName, '', epNum])
 	else:
 		print base_txt +  'Nothing was parsed from Episode_Listing: ' + url

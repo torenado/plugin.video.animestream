@@ -9,7 +9,7 @@
 		<setting id="myanimelinks_on" type="bool" label="myanimelinks.com" default="false"/>
 	</category>
 	<category label="aniDB">
-	 <setting label="Wishlist:" type="lsep" />
+	 <setting label="aniDB Login:" type="lsep" />
 		<setting label="Username" type="text"   id="username" default=""/>
 		<setting label="Password" type="text"   id="pass" option="hidden"  enable="!eq(-1,)" default=""/>
 	 <setting label="Public Wishlist:" type="lsep" />

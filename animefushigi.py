@@ -74,7 +74,9 @@ def Episode_Listing(url):
 				epNum = 0
 			epList.append([episodePageLink, episodePageName.title(),'', epNum])
 	elif pageTitle:
-		epNumPart = episodePageName.strip().split()
+		subLoc = pageTitle.find('|')
+		pageTitle = pageTitle[subLoc:].replace('|','').strip()
+		epNumPart = pageTitle.split()
 		for  epNum in reversed(epNumPart):
 			if epNum.isdigit():
 				epNum = int(epNum)
@@ -83,7 +85,7 @@ def Episode_Listing(url):
 			epNum = 0
 		episodePageName = pageTitle
 		episodePageLink = url
-		episodePageName = episodePageName.title().replace(' - ',' ').replace(':','').replace('-',' ').strip()
+		episodePageName = episodePageName.title().replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
 		epList.append([episodePageLink, episodePageName,'', epNum])
 	
 	if(len(epList) < 1):
