@@ -157,6 +157,9 @@ def TVDBID_Resolution(aid,linkTVDB):
 	banner=''
 	fanart=''
 	poster=''
+	seriesdescr=''
+	startdate=''
+	genre = ''
 	match=re.compile('<Series>(.+?)</Series>').findall(linkTVDB)
 	if(len(match)>=1):
 		tvdbid=re.compile('<id>(.+?)</id>').findall(match[0])[0]
@@ -166,6 +169,12 @@ def TVDBID_Resolution(aid,linkTVDB):
 			fanart='http://www.thetvdb.com/banners/'+re.compile('<fanart>(.+?)</fanart>').findall(match[0])[0]
 		if '<poster>' in match[0]:
 			poster='http://www.thetvdb.com/banners/'+re.compile('<poster>(.+?)</poster>').findall(match[0])[0]
+		if '<Overview>' in match[0]:
+			seriesdescr=re.compile('<Overview>(.+?)</Overview>').findall(match[0])[0]
+		if '<Genre>' in match[0]:
+			genre=re.compile('<Genre>(.+?)</Genre>').findall(match[0])[0].split('|')
+		if '<FirstAired>' in match[0]:
+			startdate=re.compile('<FirstAired>(.+?)-(.+?)-(.+?)</FirstAired>').findall(match[0])[0]
 		
 	epList = []
 	match=re.compile('<Episode>(.+?)</Episode>').findall(linkTVDB)
@@ -209,7 +218,7 @@ def TVDBID_Resolution(aid,linkTVDB):
 	
 	epList.sort(key=lambda name: name[0], reverse=True)
 
-	return [aid, tvdbid, banner, fanart, poster, epList]
+	return [aid, tvdbid, banner, fanart, poster, epList, seriesdescr, startdate, genre]
 	
 	
 def WishlistAPI(link):

@@ -252,4 +252,49 @@
     <name>Fullmetal Panic!</name>
     <name>Full Metal Panic!</name>
   </anime>
+  <anime anidbid="8971" tvdbid="259652" defaulttvdbseason="1">
+    <name>Arcana Famiglia: La Storia Della Arcana Famiglia!</name>
+    <name>Arcana Famiglia</name>
+  </anime>
+  <anime anidbid="4909" tvdbid="80278" defaulttvdbseason="1">
+    <name>Kishin Taisen Gigantic Formula</name>
+    <name>Gigantic Formula</name>
+  </anime>
+  <anime anidbid="4931" tvdbid="80232" defaulttvdbseason="1">
+    <name>Kiss Dum Engage Planet</name>
+    <name>Kiss Dum R: Engage Planet</name>
+    <name>Kiss Dum</name>
+    <name>Kiss Dum: Engage Planet</name>
+  </anime>
+  <anime anidbid="1737" tvdbid="80131" defaulttvdbseason="1">
+    <name>Oban Star-Racers</name> 
+    <name>Molly Star-Racer</name> 
+  </anime>
+  <anime anidbid="t74852" tvdbid="74852" defaulttvdbseason="1">
+    <name>Avatar: The Last Airbender</name> 
+  </anime>
+  <anime anidbid="t74852" tvdbid="74852" defaulttvdbseason="1">
+    <name>Avatar The Last Airbender Book 1</name> 
+  </anime>
+  <anime anidbid="t74852" tvdbid="74852" defaulttvdbseason="2">
+    <name>Avatar The Last Airbender Book 2</name> 
+  </anime>
+  <anime anidbid="t74852" tvdbid="74852" defaulttvdbseason="3">
+    <name>Avatar The Last Airbender Book 3</name> 
+  </anime>
+  <anime anidbid="t251085" tvdbid="251085" defaulttvdbseason="1">
+    <name>Legend of Korra</name> 
+    <name>The Legend of Korra</name> 
+    <name>Avatar The Legend of Korra</name>
+    <name>Avatar Legend of Korra</name> 
+  </anime>
+  <anime anidbid="t78660" tvdbid="78660" defaulttvdbseason="1">
+    <name>Aeon Flux</name> 
+  </anime>
+  <anime anidbid="t76413" tvdbid="76413" defaulttvdbseason="1">
+    <name>Mighty Max</name> 
+  </anime>
+  <anime anidbid="t75417" tvdbid="75417" defaulttvdbseason="1">
+    <name>Batman Beyond</name> 
+  </anime>
 </anime-list>
