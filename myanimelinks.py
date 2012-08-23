@@ -97,11 +97,11 @@ def Episode_Media_Link(url, mirror=1, part=1):
 	
 	link = grabUrlSource(url)
 	
-	match=re.compile('<br /><(iframe|embed) src="(.+?)"').findall(link)
+	match=re.compile('<br /><(iframe|embed)(.+?)src="(.+?)" ').findall(link)
 	epMedia = []
 
 	if(len(match) >= 1):
-		for garbage, episodeMediaLink in match:
+		for garbage1, garbage2, episodeMediaLink in match:
 			if (not 'http://ads.' in episodeMediaLink):
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
@@ -170,7 +170,7 @@ def Total_Video_List(link):
 				videoNameSplit = videoLink.split('/')
 				videoName = videoName.replace('-',' ').replace('_',' ').title().strip()
 				if (not 'http://ads.' in videoLink and not 'episode' in videoLink):
-					searchRes.append([videoLink, videoName])
+					# searchRes.append([videoLink, videoName])
 					
 					videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
 					searchRes.append([videoLink, videoName])

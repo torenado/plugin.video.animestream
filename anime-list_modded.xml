@@ -136,11 +136,13 @@
     <name>Sword Art Online</name>
   </anime>
   <anime anidbid="4761" tvdbid="81111" defaulttvdbseason="1">
+    <name>Super Robot Taisen: Original Generation - Divine Wars</name>
     <name>Super Robot Wars: Original Generation - Divine Wars</name>
     <name>Super Robot Wars: OG Divine Wars</name>
   </anime>
   <anime anidbid="3394" tvdbid="85415" defaulttvdbseason="1">
     <name>Super Robot Taisen: Original Generation - The Animation</name>
+    <name>Super Robot Wars: Original Generation - The Animation</name>
     <name>Super Robot Wars OG</name>
   </anime>
   <anime anidbid="4596" tvdbid="80000" defaulttvdbseason="1">
@@ -272,6 +274,7 @@
   </anime>
   <anime anidbid="t74852" tvdbid="74852" defaulttvdbseason="1">
     <name>Avatar: The Last Airbender</name> 
+    <name>Avatar - The Last Airbender</name> 
   </anime>
   <anime anidbid="t74852" tvdbid="74852" defaulttvdbseason="1">
     <name>Avatar The Last Airbender Book 1</name> 
@@ -296,5 +299,67 @@
   </anime>
   <anime anidbid="t75417" tvdbid="75417" defaulttvdbseason="1">
     <name>Batman Beyond</name> 
+  </anime>
+  <anime anidbid="9045" tvdbid="146401" defaulttvdbseason="2">
+    <name>Inazuma Eleven GO: Chrono Stone</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="2">;1-48;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="1805" tvdbid="78856" defaulttvdbseason="1">
+    <name>Girls Bravo - First Season</name>
+    <name>Girls Bravo First Season</name>
+    <name>Girls Bravo: First Season</name>
+  </anime>
+  <anime anidbid="2679" tvdbid="78856" defaulttvdbseason="2">
+    <name>Girls Bravo - Second Season</name>
+    <name>Girls Bravo Second Season</name>
+    <name>Girls Bravo: Second Season</name>
+  </anime>
+  <anime anidbid="8528" tvdbid="87491" defaulttvdbseason="0">
+    <name>Queen's Blade</name>
+    <name>Queen`s Blade</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-19;2-21;</mapping>
+      <mapping anidbseason="0" tvdbseason="0">;1-20;2-22;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="6653" tvdbid="87491" defaulttvdbseason="2">
+    <name>Queen's Blade: Gyokuza o Tsugu Mono</name>
+    <name>Queen`s Blade: Gyokuza o Tsugu Mono</name>
+  </anime>
+  <anime anidbid="8737" tvdbid="87491" defaulttvdbseason="3">
+    <name>Queen's Blade: Rebellion</name>
+    <name>Queen`s Blade: Rebellion</name>
+  </anime>
+  <anime anidbid="6080" tvdbid="87491" defaulttvdbseason="1">
+    <name>Queen's Blade: Rurou no Senshi</name>
+    <name>Queen`s Blade: Rurou no Senshi</name>
+  </anime>
+  <anime anidbid="7442" tvdbid="87491" defaulttvdbseason="0">
+    <name>Queen's Blade: Utsukushiki Toushi-tachi</name>
+    <name>Queen`s Blade: Utsukushiki Toushi-tachi</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-13;2-14;3-15;4-16;5-17;6-18;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="6283" tvdbid="0" defaulttvdbseason="1">
+    <name>Street Fighter IV: Arata naru Kizuna</name>
+    <name>Street Fighter - Round One: Fight!</name>
+    <name>Street Fighter IV: The Ties That Bind</name>
+  </anime>
+  <anime anidbid="7321" tvdbid="0" defaulttvdbseason="1">
+    <name>Super Street Fighter IV</name>
+  </anime>
+  <anime anidbid="t192061" tvdbid="192061" defaulttvdbseason="1">
+    <name>Young Justice</name> 
+  </anime>
+  <anime anidbid="t250632" tvdbid="250632" defaulttvdbseason="1">
+    <name>Kung Fu Panda Legends Of Awesomeness</name> 
+    <name>Kung Fu Panda: Legends of Awesomeness</name> 
+  </anime>
+  <anime anidbid="6751" tvdbid="117851" defaulttvdbseason="1">
+    <name>11 Eyes</name>
+    <name>11Eyes</name>
   </anime>
 </anime-list>

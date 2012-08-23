@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.animestream"
 		 name="Anime Stream"
-		 version="0.3"
+		 version="0.4"
 		 provider-name="Torenado">
 	<requires>
 	<import addon="xbmc.python" version="2.0"/>
@@ -14,10 +14,13 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 	<summary>Anime Stream - Watch Streaming Anime from Across the Net</summary>
-	<description>Watch your favorite anime from across various streaming websites in one simple interface.	
+	<description>Watch your favorite anime from across various streaming websites in one simple interface. Pulls metadata from anidb.net and theTVdb.com.  If you setup your anidb.net login credentials, the addon will show your wishlist items (setup a Public Wishlist through anidb.net) and the series/episodes you have logged as watched.
 	Current sites:
+	- anilinkz.com
 	- anime44.com
 	- animecrazy.net
+	- animeflavor.com
+	- animefreak.tv
 	- animefushigi.com
 	- animetip.com
 	- myanimelinks.com</description>

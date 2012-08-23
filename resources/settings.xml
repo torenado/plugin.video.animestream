@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
 	<category label="Web Sites">
+		<setting id="anilinkz_on" type="bool" label="anilinkz.com" default="true"/>
 		<setting id="anime44_on" type="bool" label="anime44.com" default="true"/>
 		<setting id="animecrazy_on" type="bool" label="animecrazy.net" default="true"/>
 		<setting id="animeflavor_on" type="bool" label="animeflavor.com" default="false"/>
+		<setting id="animefreak_on" type="bool" label="animefreak.tv" default="false"/>
 		<setting id="animefushigi_on" type="bool" label="animefushigi.com" default="false"/>
 		<setting id="animetip_on" type="bool" label="animetip.com" default="false"/>
 		<setting id="myanimelinks_on" type="bool" label="myanimelinks.com" default="false"/>

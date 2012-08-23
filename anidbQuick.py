@@ -27,6 +27,7 @@ base_txt = base_url_name + ': '
 def Wishlist(link):
 	# Grabs and parses the wishlist from anidb.  User must set username and password in settings
 	# ***WARNING: both this addon and anidb sends this password in the clear (plain text)
+	base_txt = 'anidb.net: '
 	print base_txt +  'Parsing anidb wishlist info'
 	anidbWishlist = []
 	link = link.replace('http://static.anidb.net/pics/anidb_pri_low.gif','')
@@ -50,6 +51,7 @@ def Wishlist(link):
 	return anidbWishlist
 
 def AID_Resolution(linkAID):
+	base_txt = 'anidb.net: '	
 	# print base_txt +  'Parsing anidb aid details'
 	
 	aid=0
@@ -123,6 +125,9 @@ def AID_Resolution(linkAID):
 			epNum=''
 			epName=''
 			epAirdate=['','','']
+			epIconimage=''
+			description=''
+			seasonNum='1'
 			if 'epno' in aniEp:
 				epNum1=re.compile('<epno (.+?)>(.+?)<').findall(aniEp)[0][-1]
 				if epNum1.isdigit():
@@ -137,7 +142,7 @@ def AID_Resolution(linkAID):
 					epAirdate=airdateM[0]
 			if not len(epName)>0 and '<title xml:lang="x-jat">' in aniEp:
 				epName=re.compile('<title xml:lang="x-jat">(.+?)</title>').findall(aniEp)
-			epList.append([epNum,epName,epAirdate])
+			epList.append([epNum,epName,epIconimage,description,seasonNum,epAirdate])
 			epNum = ''
 			epName = ''
 	
@@ -151,7 +156,9 @@ def AID_Resolution(linkAID):
 	return [aid, iconimage, description, startdate, episodecount, adult, simAniList, synAniList, epList, category]
 
 def TVDBID_Resolution(aid,linkTVDB):
+	base_txt = 'thetvdb.com: '	
 	# print base_txt +  'Parsing TheTVDB id details'
+	
 	linkTVDB = linkTVDB.replace('></','> </')
 	tvdbid=0
 	banner=''
@@ -160,9 +167,13 @@ def TVDBID_Resolution(aid,linkTVDB):
 	seriesdescr=''
 	startdate=''
 	genre = ''
+	name = ''
 	match=re.compile('<Series>(.+?)</Series>').findall(linkTVDB)
 	if(len(match)>=1):
 		tvdbid=re.compile('<id>(.+?)</id>').findall(match[0])[0]
+		
+		if '<SeriesName>' in match[0]:
+			name=re.compile('<SeriesName>(.+?)</SeriesName>').findall(match[0])[0]
 		if '<banner>' in match[0]:
 			banner='http://www.thetvdb.com/banners/'+re.compile('<banner>(.+?)</banner>').findall(match[0])[0]
 		if '<fanart>' in match[0]:
@@ -174,8 +185,11 @@ def TVDBID_Resolution(aid,linkTVDB):
 		if '<Genre>' in match[0]:
 			genre=re.compile('<Genre>(.+?)</Genre>').findall(match[0])[0].split('|')
 		if '<FirstAired>' in match[0]:
-			startdate=re.compile('<FirstAired>(.+?)-(.+?)-(.+?)</FirstAired>').findall(match[0])[0]
-		
+			try:
+				startdate=re.compile('<FirstAired>(.+?)-(.+?)-(.+?)</FirstAired>').findall(match[0])[0]
+			except:
+				pass
+				
 	epList = []
 	match=re.compile('<Episode>(.+?)</Episode>').findall(linkTVDB)
 	print base_txt + str(len(match)) + ' episodes were parsed'
@@ -184,15 +198,16 @@ def TVDBID_Resolution(aid,linkTVDB):
 		for TVDBEp in match:
 			epName=''
 			description=''
-			iconimage=''
+			epIconimage=''
 			epNum1=''
-			seasonNum=''
+			seasonNum='1'
+			epAirdate=['','','']
 			if '<EpisodeName>' in TVDBEp:
 				epName=re.compile('<EpisodeName>(.+?)</EpisodeName>').findall(TVDBEp)[0]
 			if '<Overview>' in TVDBEp:
 				description=re.compile('<Overview>(.+?)</Overview>').findall(TVDBEp)[0]
 			if '<filename>' in TVDBEp:
-				iconimage='http://www.thetvdb.com/banners/'+re.compile('<filename>(.+?)</filename>').findall(TVDBEp)[0]
+				epIconimage='http://www.thetvdb.com/banners/'+re.compile('<filename>(.+?)</filename>').findall(TVDBEp)[0]
 				
 			if '<SeasonNumber>' in TVDBEp:
 				seasonNum=re.compile('<SeasonNumber>(.+?)</SeasonNumber>').findall(TVDBEp)[0].replace(' ','')
@@ -212,18 +227,68 @@ def TVDBID_Resolution(aid,linkTVDB):
 			if epNum1.isdigit():
 				epNum = int(epNum1)
 			else:
-				epNum = epNum1
-			epList.append([epNum,epName,iconimage,description,seasonNum])
+				epNum = epNum1				
+				
+			if '<FirstAired>' in TVDBEp:
+				try:
+					epAirdate=re.compile('<FirstAired>(.+?)-(.+?)-(.+?)</FirstAired>').findall(TVDBEp)[0].replace(' ','')
+				except:
+					pass
+					
+			epList.append([epNum,epName,epIconimage,description,seasonNum,epAirdate])
 	
 	
 	epList.sort(key=lambda name: name[0], reverse=True)
 
-	return [aid, tvdbid, banner, fanart, poster, epList, seriesdescr, startdate, genre]
+	return [aid, tvdbid, banner, fanart, poster, epList, seriesdescr, startdate, genre, name]
 	
+def TVDBID_Search(linkTVDB='',searchText=''):
+	base_txt = 'thetvdb.com: '	
+	
+	if len(searchText)>0:
+		tvdbUrl = 'http://www.thetvdb.com/api/GetSeries.php?seriesname='
+		seachTitle = '+'.join(searchText.split())
+
+		url = tvdbUrl + seachTitle
+		linkTVDB = grabUrlSource(url)
+	
+	serList = []
+	
+	match=re.compile('<Series>(.+?)</Series>').findall(linkTVDB)
+	if(len(match)>=1):
+		# simAni=re.compile('<episode>(.+?)</episode>').findall(match)
+		for TVDBEp in match:
+			name = ''
+			tvdbid = ''
+			stardate = ''
+			seriesdescr = ''
+			banner = ''
+			
+			if '<SeriesName>' in TVDBEp:
+				name=re.compile('<SeriesName>(.+?)</SeriesName>').findall(TVDBEp)[0]
+			if '<seriesid>' in TVDBEp:
+				tvdbid=re.compile('<seriesid>(.+?)</seriesid>').findall(TVDBEp)[0]
+			# if '<Overview>' in TVDBEp:
+				# seriesdescr=re.compile('<Overview>(.+?)</Overview>').findall(TVDBEp)[0]
+			if '<FirstAired>' in TVDBEp:
+				startdate=re.compile('<FirstAired>(.+?)-(.+?)-(.+?)</FirstAired>').findall(TVDBEp)[0]
+			if '<banner>' in TVDBEp:
+				banner='http://www.thetvdb.com/banners/'+re.compile('<banner>(.+?)</banner>').findall(TVDBEp)[0]
+			
+			serList.append([name, tvdbid, seriesdescr, stardate, banner ])
+	
+	if len(serList)>0:
+		print base_txt + 'theTVDB.com found mathces for: ' + searchText
+		print serList
+	else:
+		print base_txt + 'theTVDB.com search revealed no matches for: ' + searchText
+	
+	return serList
 	
 def WishlistAPI(link):
 	# Grabs and parses the wishlist from anidb api.  User must set username and password in settings
 	# ***WARNING: both this addon and anidb sends this password in the clear (plain text)
+	base_txt = 'anidb.net: '
 	print base_txt +  'Parsing anidb wishlist info'
 	anidbWishlist = []
 		
@@ -242,6 +307,7 @@ def WishlistAPI(link):
 def MyListSummaryAPI(link):
 	# Grabs and parses the mylistsummary from anidb api.  User must set aniDB Login in settings
 	# ***WARNING: both this addon and anidb sends this password in the clear (plain text)
+	base_txt = 'anidb.net: '
 	print base_txt +  'Parsing anidb mylistsummary info'
 	anidbMylistsummary = []
 		
@@ -265,6 +331,7 @@ def MyListSummaryAPI(link):
 	
 def aid2Name(link,anidbWishlist):
 	# Resolves anidb anime id numbers into titles
+	base_txt = 'anidb.net: '
 	
 	print base_txt +  'Parsing anidb public wishlist info'
 	watchWishlist = []
