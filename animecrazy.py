@@ -40,7 +40,6 @@ def Episode_Listing_Pages(url):
 	
 	return epList
 	
-	
 def Episode_Listing(url):
 	# Extracts the URL and Page name of the various content pages
 
@@ -172,14 +171,14 @@ def Video_List_And_Pagination(url):
 		if ii > numShowsEnd:
 			nextPage = mod_url
 			videoName = '-- NEXT PAGE --'
-			mostPop.append([nextPage, videoName])
+			mostPop.append([nextPage, videoName,''])
 		else:
 			print base_txt +  mod_url
 			link = grabUrlSource(mod_url)
 			match=re.compile('<img src="http://i.animecrazy.net/(.+?)"(.+?)<h1><a href="(.+?)">(.+?)</a></h1>').findall(link)
 			#xbmc.executebuiltin("XBMC.Notification(Please Wait!,Retrieving video info and image,5000)")
 			for videoImg, garbage, videoLink, videoName in match:
-				mostPop.append(['http://i.animecrazy.net/' + videoImg, videoName])
+				mostPop.append(['http://i.animecrazy.net/' + videoImg, videoName, 'http://i.animecrazy.net/' + videoLink])
 	
 	return mostPop
 	
@@ -225,8 +224,7 @@ def Video_List_Searched_Direct(searchText, link):
 			searchRes.append(['http://www.animecrazy.net/' + videoLink, videoName.strip()])
 	
 	return searchRes
-	
-		
+			
 def Video_List_Searched(searchText, link):
 	# Generate list of shows/movies based on the provide keyword(s)
 	# url = 'http://www.animecrazy.net/anime-index/'
@@ -246,8 +244,7 @@ def Video_List_Searched(searchText, link):
 		# print base_txt +  'Nothing was parsed from Video_List_Searched' 
 				
 	return searchRes
-
-		
+	
 def Total_Video_List(link):
 	# Generate list of shows/movies
 	

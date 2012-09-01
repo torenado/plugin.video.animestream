@@ -231,7 +231,9 @@ def TVDBID_Resolution(aid,linkTVDB):
 				
 			if '<FirstAired>' in TVDBEp:
 				try:
-					epAirdate=re.compile('<FirstAired>(.+?)-(.+?)-(.+?)</FirstAired>').findall(TVDBEp)[0].replace(' ','')
+					airdateM=re.compile('<FirstAired>(.+?)-(.+?)-(.+?)</FirstAired>').findall(TVDBEp)
+					if(len(airdateM)>=1):
+						epAirdate=airdateM[0]
 				except:
 					pass
 					
