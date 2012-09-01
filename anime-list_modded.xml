@@ -362,4 +362,261 @@
     <name>11 Eyes</name>
     <name>11Eyes</name>
   </anime>
+  <anime anidbid="411" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece (2000)</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-2;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="8762" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece 3D: Gekisou! Trap Coaster</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-22;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="8010" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece 3D: Mugiwara Chase</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-21;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="7538" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece Film: Strong World - Episode 0</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-20;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="1253" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Chinjuujima no Chopper Oukoku</name>
+    <name>One Piece 3 Choppers Kingdom On The Island Of Strange Animals</name>
+    <name>One Piece 3 Kingdom On The Island Of Strange Animals</name>
+    <name>One Piece Choppers Kingdom On The Island Of Strange Animals</name>
+    <name>One Piece Kingdom On The Island Of Strange Animals</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-7;</mapping>
+      <mapping anidbseason="1" tvdbseason="0">;1-6;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="1254" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Dead End no Bouken</name>
+    <name>One Piece 4 Dead End Adventure </name>
+    <name>One Piece 4 The Dead End Adventure</name>
+    <name>One Piece Dead End Adventure </name>
+    <name>One Piece The Dead End Adventure</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-8;2-8;3-8;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="4851" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Episode of Arabasta - Sabaku no Oujo to Kaizoku-tachi</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-16;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="5691" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Episode of Chopper Plus - Fuyu ni Saku, Kiseki no Sakura</name>
+    <name>One Piece: Episode of Chopper Plus - Fuyu ni Saku, Kiseki no Sakura</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-17;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="4097" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Karakurijou no Mecha Kyohei</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-15;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="893" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Nejimaki Jima no Bouken</name>
+    <name>One Piece 2 Clockwork Island Adventure</name>
+    <name>One Piece Clockwork Island Adventure</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-5;</mapping>
+      <mapping anidbseason="1" tvdbseason="0">;1-4;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="2036" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Norowareta Seiken</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-12;</mapping>
+      <mapping anidbseason="1" tvdbseason="0">;1-11;2-11;3-11;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="2644" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Omatsuri Danshaku to Himitsu no Shima</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-13;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="6199" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Romance Dawn Story</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-18;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="6537" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Strong World</name>
+    <name>One Piece 10: Strong World</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-19;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="2736" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Taose! Kaizoku Ganzack</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-1;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="136" tvdbid="120181" defaulttvdbseason="1">
+    <name>One: Kagayaku Kisetsu e</name>
+  </anime>
+  <anime anidbid="2046" tvdbid="107521" defaulttvdbseason="1">
+    <name>Hani Hani: Operation Sanctuary</name>
+    <name>Tsuki wa Higashi ni Hi wa Nishi ni: Operation Sanctuary</name>
+    <name>The Moon is East, The Sun is West: Operation Sanctuary</name>
+  </anime>
+  <anime anidbid="1240" tvdbid="79460" defaulttvdbseason="1">
+    <name>Kindaichi Shounen no Jikenbo</name>
+    <name>Young Kindaichi`s Casebook</name>
+    <name>Detective Kindaichi Jr.`s Cases</name>
+    <name>The Case Files of Young Kindaichi</name>
+  </anime>
+  <anime anidbid="7525" tvdbid="194961" defaulttvdbseason="1">
+    <name>Ore no Imouto ga Konna ni Kawaii Wake ga Nai</name>
+    <name>My Little Sister Can`t Be This Cute</name>
+    <name>Oreimo</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;16-1;17-2;18-3;19-4;</mapping>
+    </mapping-list>
+    <supplemental-info>
+      <studio>AIC Build</studio>
+    </supplemental-info>
+  </anime>
+  <anime anidbid="8254" tvdbid="246971" defaulttvdbseason="1">
+    <name>Sengoku Otome: Momoiro Paradox</name>
+    <name>Battle Girls - Time Paradox</name>
+  </anime>
+  <anime anidbid="t152831" tvdbid="152831" defaulttvdbseason="1">
+    <name>Adventure Time</name>
+  </anime>
+  <anime anidbid="t76168" tvdbid="76168" defaulttvdbseason="1">
+    <name>Batman The Animated Series</name>
+  </anime>
+  <anime anidbid="t158501" tvdbid="158501" defaulttvdbseason="0">
+    <name>Ben 10 / Generator Rex Crossover Heroes United</name>
+  </anime>
+  <anime anidbid="t79567" tvdbid="79567" defaulttvdbseason="1">
+    <name>Ben 10</name>
+  </anime>
+  <anime anidbid="t158501" tvdbid="158501" defaulttvdbseason="1">
+    <name>Ben 10: Ultimate Alien</name>
+  </anime>
+  <anime anidbid="t260995" tvdbid="260995" defaulttvdbseason="1">
+    <name>Ben 10: Omniverse</name>
+  </anime>
+  <anime anidbid="t81841" tvdbid="81841" defaulttvdbseason="1">
+    <name>Ben 10: Alien Force</name>
+  </anime>
+  <anime anidbid="t78682" tvdbid="78682" defaulttvdbseason="1">
+    <name>Blackstar</name>
+  </anime>
+  <anime anidbid="t82824" tvdbid="82824" defaulttvdbseason="1">
+    <name>Batman: The Brave and the Bold</name>
+    <name>The Brave & The Bold</name>
+  </anime>
+  <anime anidbid="t76168" tvdbid="76168" defaulttvdbseason="1">
+    <name>Batman The Animated Series</name>
+  </anime>
+  <anime anidbid="t73180" tvdbid="73180" defaulttvdbseason="1">
+    <name>The Batman</name>
+  </anime>
+  <anime anidbid="t258331" tvdbid="258331" defaulttvdbseason="1">
+    <name>Beware the Batman</name>
+    <name>Beware The Batman</name>
+  </anime>
+  <anime anidbid="t73642" tvdbid="73642" defaulttvdbseason="1">
+    <name>Big Guy and Rusty the Boy Robot</name>
+    <name>Big Guy & Rusty the Boy Robot</name>
+    <name>Big Guy and Rusty</name>
+    <name>Big Guy & Rusty</name>
+  </anime>
+  <anime anidbid="t77816" tvdbid="77816" defaulttvdbseason="1">
+    <name>Bionic Six</name>
+  </anime>
+  <anime anidbid="t250821" tvdbid="250821" defaulttvdbseason="1">
+    <name>Black Dynamite</name>
+  </anime>
+  <anime anidbid="t78682" tvdbid="78682" defaulttvdbseason="1">
+    <name>Blackstar</name>
+  </anime>
+  <anime anidbid="t79133" tvdbid="79133" defaulttvdbseason="1">
+    <name>Class of the Titans</name>
+  </anime>
+  <anime anidbid="t77193" tvdbid="77193" defaulttvdbseason="1">
+    <name>Cybersix</name>
+  </anime>
+  <anime anidbid="t77996" tvdbid="77996" defaulttvdbseason="1">
+    <name>Daria</name>
+  </anime>
+  <anime anidbid="t256237" tvdbid="256237" defaulttvdbseason="1">
+    <name>Detentionaire</name>
+  </anime>
+  <anime anidbid="t77992" tvdbid="77992" defaulttvdbseason="1">
+    <name>Dexter's Laboratory</name>
+  </anime>
+  <anime anidbid="t80719" tvdbid="80719" defaulttvdbseason="1">
+    <name>Doctor Snuggles</name>
+  </anime>
+  <anime anidbid="t261202" tvdbid="261202" defaulttvdbseason="1">
+    <name>Dragons: Riders of Berk</name>
+  </anime>
+  <anime anidbid="t72056" tvdbid="72056" defaulttvdbseason="1">
+    <name>Duckman</name>
+  </anime>
+  <anime anidbid="t76552" tvdbid="76552" defaulttvdbseason="1">
+    <name>Extreme Ghostbusters</name>
+  </anime>
+  <anime anidbid="t73871" tvdbid="73871" defaulttvdbseason="1">
+    <name>Futurama</name>
+  </anime>
+  <anime anidbid="t77814" tvdbid="77814" defaulttvdbseason="1">
+    <name>G.I. Joe Extreme</name>
+  </anime>
+  <anime anidbid="t72885" tvdbid="72885" defaulttvdbseason="1">
+    <name>Gargoyles</name>
+  </anime>
+  <anime anidbid="t158551" tvdbid="158551" defaulttvdbseason="1">
+    <name>Generator Rex</name>
+  </anime>
+  <anime anidbid="t76061" tvdbid="76061" defaulttvdbseason="1">
+    <name>Godzilla: The Series</name>
+  </anime>
+  <anime anidbid="t259972" tvdbid="259972" defaulttvdbseason="1">
+    <name>Gravity Falls</name>
+  </anime>
+  <anime anidbid="t251807" tvdbid="251807" defaulttvdbseason="1">
+    <name>Green Lantern: The Animated Series</name>
+  </anime>
+  <anime anidbid="t84391" tvdbid="84391" defaulttvdbseason="1">
+    <name>Huntik: Secrets & Seekers</name>
+    <name>Huntik: Secrets and Seekers</name>
+  </anime>
+  <anime anidbid="t83826" tvdbid="83826" defaulttvdbseason="1">
+    <name>Iron Man: Armored Adventures</name>
+  </anime>
+  <anime anidbid="t76201" tvdbid="76201" defaulttvdbseason="1">
+    <name>Johnny Bravo</name>
+  </anime>
+  <anime anidbid="t76320" tvdbid="76320" defaulttvdbseason="1">
+    <name>Justice League</name>
+  </anime>
+  <anime anidbid="t260422" tvdbid="260422" defaulttvdbseason="1">
+    <name>Kaijudo Rise Of The Duel Masters (2012)</name>
+  </anime>
+  <anime anidbid="t79394" tvdbid="79394" defaulttvdbseason="1">
+    <name>Legion of Super Heroes</name>
+  </anime>
+  <anime anidbid="t75815" tvdbid="75815" defaulttvdbseason="1">
+    <name>Loonatics Unleashed</name>
+  </anime>
 </anime-list>
