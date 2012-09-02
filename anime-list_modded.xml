@@ -275,6 +275,8 @@
   <anime anidbid="t74852" tvdbid="74852" defaulttvdbseason="1">
     <name>Avatar: The Last Airbender</name> 
     <name>Avatar - The Last Airbender</name> 
+    <name>Avatar The Last Airbender</name> 
+    <name>Avatar</name> 
   </anime>
   <anime anidbid="t74852" tvdbid="74852" defaulttvdbseason="1">
     <name>Avatar The Last Airbender Book 1</name> 
@@ -504,18 +506,23 @@
   </anime>
   <anime anidbid="t158501" tvdbid="158501" defaulttvdbseason="0">
     <name>Ben 10 / Generator Rex Crossover Heroes United</name>
+    <name>Ben-10 / Generator Rex Crossover Heroes United</name>
   </anime>
   <anime anidbid="t79567" tvdbid="79567" defaulttvdbseason="1">
     <name>Ben 10</name>
+    <name>Ben-10</name>
   </anime>
   <anime anidbid="t158501" tvdbid="158501" defaulttvdbseason="1">
     <name>Ben 10: Ultimate Alien</name>
+    <name>Ben-10: Ultimate Alien</name>
   </anime>
   <anime anidbid="t260995" tvdbid="260995" defaulttvdbseason="1">
     <name>Ben 10: Omniverse</name>
+    <name>Ben-10: Omniverse</name>
   </anime>
   <anime anidbid="t81841" tvdbid="81841" defaulttvdbseason="1">
     <name>Ben 10: Alien Force</name>
+    <name>Ben-10: Alien Force</name>
   </anime>
   <anime anidbid="t78682" tvdbid="78682" defaulttvdbseason="1">
     <name>Blackstar</name>
@@ -618,5 +625,136 @@
   </anime>
   <anime anidbid="t75815" tvdbid="75815" defaulttvdbseason="1">
     <name>Loonatics Unleashed</name>
+  </anime>
+  <anime anidbid="t82870" tvdbid="82870" defaulttvdbseason="1">
+    <name>Wolverine and the X-Men</name>
+  </anime>
+  <anime anidbid="t76297" tvdbid="76297" defaulttvdbseason="1">
+    <name>2 Stupid Dogs</name>
+  </anime>
+  <anime anidbid="t75444" tvdbid="75444" defaulttvdbseason="1">
+    <name>6teen</name>
+  </anime>
+  <anime anidbid="t73546" tvdbid="73546" defaulttvdbseason="1">
+    <name>A Pup Named Scooby-Doo</name>
+  </anime>
+  <anime anidbid="t80832" tvdbid="80832" defaulttvdbseason="1">
+    <name>Aaagh! It's the Mr. Hell Show!</name>
+  </anime>
+  <anime anidbid="t71492" tvdbid="71492" defaulttvdbseason="1">
+    <name>Aaahh!!! Real Monsters</name>
+  </anime>
+  <anime anidbid="t73630" tvdbid="73630" defaulttvdbseason="1">
+    <name>The Adventures of Sonic the Hedgehog</name>
+  </anime>
+  <anime anidbid="t73141" tvdbid="73141" defaulttvdbseason="1">
+    <name>American Dad!</name>
+  </anime>
+  <anime anidbid="t74344" tvdbid="74344" defaulttvdbseason="1">
+    <name>American Dragon: Jake Long</name>
+  </anime>
+  <anime anidbid="t76386" tvdbid="76386" defaulttvdbseason="1">
+    <name>The Angry Beavers</name>
+  </anime>
+  <anime anidbid="t72879" tvdbid="72879" defaulttvdbseason="1">
+    <name>Animaniacs</name>
+  </anime>
+  <anime anidbid="t81705" tvdbid="81705" defaulttvdbseason="1">
+    <name>As Told By Ginger</name>
+  </anime>
+  <anime anidbid="t251589" tvdbid="251589" defaulttvdbseason="1">
+    <name>Atomic Betty</name>
+  </anime>
+  <anime anidbid="t192171" tvdbid="192171" defaulttvdbseason="1">
+    <name>The Avengers: Earth's Mightiest Heroes</name>
+  </anime>
+  <anime anidbid="t71301" tvdbid="71301" defaulttvdbseason="1">
+    <name>Baby Looney Tunes</name>
+  </anime>
+  <anime anidbid="t75939" tvdbid="75939" defaulttvdbseason="1">
+    <name>Battle B-Daman</name>
+  </anime>
+  <anime anidbid="t71376" tvdbid="71376" defaulttvdbseason="1">
+    <name>BattleTech</name>
+  </anime>
+  <anime anidbid="t75863" tvdbid="75863" defaulttvdbseason="1">
+    <name>Beavis and Butt-Head</name>
+  </anime>
+  <anime anidbid="t76892" tvdbid="76892" defaulttvdbseason="1">
+    <name>Beetlejuice</name>
+  </anime>
+  <anime anidbid="t72502" tvdbid="72502" defaulttvdbseason="1">
+    <name>The Berenstain Bears</name>
+  </anime>
+  <anime anidbid="t249504" tvdbid="249504" defaulttvdbseason="1">
+    <name>Biker Mice from Mars (2006)</name>
+  </anime>
+  <anime anidbid="t137001" tvdbid="137001" defaulttvdbseason="1">
+    <name>Black Panther</name>
+  </anime>
+  <anime anidbid="t194031" tvdbid="194031" defaulttvdbseason="1">
+    <name>Bob's Burgers</name>
+  </anime>
+  <anime anidbid="t76879" tvdbid="76879" defaulttvdbseason="1">
+    <name>The Bots Master</name>
+  </anime>
+  <anime anidbid="t75858" tvdbid="75858" defaulttvdbseason="1">
+    <name>Braceface</name>
+  </anime>
+  <anime anidbid="t78688" tvdbid="78688" defaulttvdbseason="1">
+    <name>BraveStarr</name>
+  </anime>
+  <anime anidbid="t76788" tvdbid="76788" defaulttvdbseason="1">
+    <name>Bucky O'Hare and the Toad Wars</name>
+  </anime>
+  <anime anidbid="t78699" tvdbid="78699" defaulttvdbseason="1">
+    <name>Cadillacs and Dinosaurs</name>
+  </anime>
+  <anime anidbid="t76792" tvdbid="76792" defaulttvdbseason="1">
+    <name>Captain N: The Game Master</name>
+  </anime>
+  <anime anidbid="t74142" tvdbid="74142" defaulttvdbseason="1">
+    <name>Captain Planet and the Planeteers</name>
+    <name>Captain Planet</name>
+  </anime>
+  <anime anidbid="t77995" tvdbid="77995" defaulttvdbseason="1">
+    <name>CatDog</name>
+  </anime>
+  <anime anidbid="t74952" tvdbid="74952" defaulttvdbseason="1">
+    <name>Centurions</name>
+  </anime>
+  <anime anidbid="t78421" tvdbid="78421" defaulttvdbseason="1">
+    <name>ChalkZone</name>
+  </anime>
+  <anime anidbid="t82852" tvdbid="82852" defaulttvdbseason="1">
+    <name>Chaotic</name>
+  </anime>
+  <anime anidbid="t78560" tvdbid="78560" defaulttvdbseason="1">
+    <name>Clone High</name>
+  </anime>
+  <anime anidbid="t78005" tvdbid="78005" defaulttvdbseason="1">
+    <name>Clue Club</name>
+  </anime>
+  <anime anidbid="t74280" tvdbid="74280" defaulttvdbseason="1">
+    <name>Code Lyoko</name>
+  </anime>
+  <anime anidbid="t80287" tvdbid="80287" defaulttvdbseason="1">
+    <name>Code Monkeys</name>
+  </anime>
+  <anime anidbid="t71685" tvdbid="71685" defaulttvdbseason="1">
+      <name>Codename: Kids Next Door</name>
+  </anime>
+  <anime anidbid="t79716" tvdbid="79716" defaulttvdbseason="1">
+  <name>Conan the Adventurer</name>
+  </anime>
+  <anime anidbid="t77435" tvdbid="77435" defaulttvdbseason="1">
+    <name>Courage the Cowardly Dog</name>
+  </anime>
+  <anime anidbid="t76196" tvdbid="76196" defaulttvdbseason="1">
+    <name>Cow and Chicken</name>
+  </anime>
+  <anime anidbid="t219851" tvdbid="219851" defaulttvdbseason="1">
+    <name>Dan Vs.</name>
+    <name>Dan Vs</name>
   </anime>
 </anime-list>
