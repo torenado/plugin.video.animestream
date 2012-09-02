@@ -52,6 +52,8 @@ def Episode_Listing(url):
 	print base_txt +  url
 	if(len(match) >= 1):
 		for garbage, episodePageLink, episodePageName in match:
+			season = '1'
+			episodePageLink = BASE_URL + episodePageLink
 			epNumPart = episodePageName.strip().split()
 			for  epNum in reversed(epNumPart):
 				if epNum.isdigit():
@@ -59,12 +61,20 @@ def Episode_Listing(url):
 					break
 			else:
 				epNum = 0
-				
-			epList.append([BASE_URL + episodePageLink , episodePageName.title(), '', epNum])
+			
+			if 'season' in episodePageLink:
+				season=re.compile('season-(.+?)-').findall(episodePageLink)[0][1]
+			elif 'Season' in episodePageName.title():
+				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0][1]
+			
+			season = int(season)	
+			epList.append([episodePageLink , episodePageName.title(), '', epNum, season])
 			
 	match=re.compile('<div class="row"><a class="floatLeft"(.+?)href="(.+?)">(.+?)</a>').findall(link)
 	if(len(match) >= 1):
 		for garbage, episodePageLink, episodePageName in match:
+			season = '1'
+			episodePageLink = BASE_URL + episodePageLink
 			epNumPart = episodePageName.strip().split()
 			for  epNum in reversed(epNumPart):
 				if epNum.isdigit():
@@ -72,8 +82,15 @@ def Episode_Listing(url):
 					break
 			else:
 				epNum = 0
+			
+			if 'season' in episodePageLink:
+				season=re.compile('season-(.+?)-').findall(episodePageLink)[0][1]
+			elif 'Season' in episodePageName.title():
+				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0][1]
+			
+			season = int(season)	
 			episodePageName = episodePageName.title().replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
-			epList.append([BASE_URL + episodePageLink , episodePageName, '', epNum])
+			epList.append([episodePageLink , episodePageName, '', epNum, season])
 	
 	if(len(epList) < 1):
 		print base_txt +  'Nothing was parsed from Episode_Listing: ' + url

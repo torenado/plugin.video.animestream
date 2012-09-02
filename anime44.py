@@ -81,10 +81,14 @@ def Episode_Listing(url):
 						break
 			
 			if 'season' in episodePageLink:
-				season=re.compile('http://(.+?)-season-(.+?)-').findall(link)[0][1]
+				season=re.compile('season-(.+?)-').findall(episodePageLink)[0][1]
+			elif 'Season' in episodePageName.title():
+				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0][1]
+				
 			
+			season = int(season)
 			episodePageName = episodePageName.title().replace(' Episode','').replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
-			epList.append([episodePageLink, episodePageName, '', epNum])
+			epList.append([episodePageLink, episodePageName, '', epNum, season])
 	else:
 		print base_txt +  'Nothing was parsed from Episode_Listing: ' + url
 		

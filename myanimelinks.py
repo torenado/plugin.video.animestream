@@ -56,6 +56,7 @@ def Episode_Listing(url):
 
 	if(len(match) >= 1):
 		for episodePageLink, episodePageName, garbage, episodeMediaThumb in match:
+			season = '1'
 			episodePageName.replace('# ','#')
 			epNum = 0					
 			if epNum == 0:					
@@ -71,9 +72,15 @@ def Episode_Listing(url):
 					if epNumTest.isdigit():
 						epNum = int(epNumTest)
 						break
-						
+			
+			if 'season' in episodePageLink:
+				season=re.compile('season-(.+?)-').findall(episodePageLink)[0][1]
+			elif 'Season' in episodePageName.title():
+				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0][1]
+			
+			season = int(season)			
 			episodePageName = episodePageName.title().replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
-			epList.append([episodePageLink, episodePageName, episodeMediaThumb.replace("'",""), epNum])
+			epList.append([episodePageLink, episodePageName, episodeMediaThumb.replace("'",""), epNum, season])
 	else:
 		print base_txt +  'Nothing was parsed from Episode_Listing: ' + url
 		

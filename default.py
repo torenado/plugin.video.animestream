@@ -179,10 +179,12 @@ def CARTOON_LIST(url=''):
 	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
 	
 	if url == '':
-		url = 'http://www.animeflavor.com/index.php?q=cartoons'
+		# url = 'http://www.animeflavor.com/index.php?q=cartoons'
+		url = 'http://anilinkz.com/cartoons-list'
 	# mostPop = animeflavor.Video_List_And_Pagination(url)
 	# mostPop = cache.cacheFunction(animeflavor.Video_List_And_Pagination, url)
-	mostPop = cache7.cacheFunction(animeflavor.Video_List_And_Pagination, url)
+	# mostPop = cache7.cacheFunction(animeflavor.Video_List_And_Pagination, url)
+	mostPop = cache7.cacheFunction(anilinkz.Video_List_And_Pagination, url)
 	mostPop.sort(key=lambda name: name[1])
 	returnMode = 1
 	
@@ -708,12 +710,12 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 		epListAll = epListAll + epList
 		
 	epListAllClean = []
-	for episodePageLink, episodePageName, episodeMediaThumb, epNum in epListAll:		
+	for episodePageLink, episodePageName, episodeMediaThumb, epNum, epSeason in epListAll:		
 		episodePageName = episodePageName.title().replace(' Episode','').replace('#','').replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
-		epListAllClean.append([episodePageLink, episodePageName, '', epNum])
+		epListAllClean.append([episodePageLink, episodePageName, '', int(epNum), int(epSeason)])
 	
 	epListAll = epListAllClean
-	epListAll.sort(key=lambda name: name[3], reverse=True) 
+	epListAll.sort(key=lambda key=lambda a:(a[4],a[3]), reverse=True) 
 	epListAll = f2(epListAll)
 	epListAll.append(['','END','',''])
 	epListAll = utils.U2A_List(epListAll)
@@ -727,13 +729,14 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 		print base_txt + 'WATCHED ' + epsWish[0] + ' of ' + epsWish[1]
 	else:		
 		print base_txt 
-	
+		
+	epSeasonTest = ''
 	epNumTest = ''
 	name = ''
 	url = ''
 	mode = 4
 	iconimage = ''
-	for url, name, iconimage, epNum in epListAll:
+	for url, name, iconimage, epNum, epSeason in epListAll:
 		name = name.title().replace('Episode','').replace('#','').replace(':',' ').replace('  ',' ').strip()
 		# try:
 		if not epNumTest == epNum:
@@ -751,6 +754,7 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 			description = ''
 			seasonNum = ''
 			fanart = iconimageSeries
+			epSeasonTest = epSeason
 			epNumTest = epNum
 			nameTest = name
 			playcount = 0
@@ -766,19 +770,19 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 			if len(epTvDetail)>0:
 				for epNum1,epName,epIconimage,description,seasonNum,epAirdate in epTvDetail:
 					if str(epNum)==str(epNum1):
-						nameTest = str(epNum1) + ' - ' + epName
+						nameTest = str(epSeason) + 'x' + str(epNum) + ' - ' + epName
 						yr = epAirdate[0]
 						mo = epAirdate[1]
 						day = epAirdate[2]
 						iconimageTest = epIconimage
 						break
 		
-		if epNumTest == epNum:
+		if epNumTest == epNum and epSeasonTest==epSeason:
 			try:
 				groupUrl = groupUrl +' <--> '+ url
 			except:
 				groupUrl = groupUrl
-				print base_txt + 'URL not added in SEARCH() for ' + url + ' ' + str(epNum)
+				print base_txt + 'URL not added in SEARCH() for ' + url + ' ' + str(epSeason) + 'x' + str(epNum)
 				
 			if len(iconimageTest)<1 and len(iconimage)>5:
 				iconimageTest = iconimage
