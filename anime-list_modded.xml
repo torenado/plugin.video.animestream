@@ -21,7 +21,9 @@
     <name>Koukyoushihen: Eureka Seven - Pocket ga Niji de Ippai</name>
     <name>Eureka Seven - Pocket ga Niji de Ippai</name>
     <name>Eureka Seven - good night, sleep tight, young lovers-</name>
+    <name>Eureka Seven Pocket Full Of Rainbows</name>
     <name>Eureka Seven - Pocketful of Rainbows</name>
+    <name>Eureka 7 - Pocketful of Rainbows</name>
     <name>Psalms of Planets: Eureka Seven - Pocket Full of Rainbows</name>
   </anime>
   <anime anidbid="2369" tvdbid="74796" defaulttvdbseason="1">
@@ -53,6 +55,8 @@
     <name>Inuboku Secret Service</name>
   </anime>
   <anime anidbid="6716" tvdbid="71361" defaulttvdbseason="8">
+    <name>Inuyasha Kanketsu-Hen</name>
+    <name>Inuyasha Kanketsu Hen</name>
     <name>Inuyasha Kanketsuhen</name>
     <name>Inuyasha: The Final Act</name>
   </anime>
@@ -76,6 +80,49 @@
       <mapping anidbseason="1" tvdbseason="10">;197-1;198-2;199-3;200-4;201-5;202-6;203-7;204-8;205-9;206-10;207-11;208-12;209-13;210-14;211-15;212-16;213-17;214-18;215-19;216-20;217-21;218-22;</mapping>
       <mapping anidbseason="1" tvdbseason="11">;219-1;220-2;221-3;222-4;223-5;224-6;225-7;226-8;227-9;228-10;229-11;230-12;231-13;232-14;233-15;234-16;235-17;236-18;237-19;238-20;239-21;240-22;241-23;242-24;</mapping>
       <mapping anidbseason="1" tvdbseason="12">;243-1;244-2;245-3;246-4;247-5;248-6;249-7;250-8;251-9;252-10;253-11;254-12;255-13;256-14;257-15;258-16;259-17;260-18;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="5914" tvdbid="79824" defaulttvdbseason="0">
+    <name>Gekijouban Naruto Shippuuden: Kizuna</name>
+    <name>Naruto Shippuuden: Kizuna</name>
+    <name>Naruto Shippuuden: Bonds</name>
+    <name>Naruto Shippuden: Bonds</name>
+    <name>Naruto Shippuuden 2: Bonds</name>
+    <name>Naruto Shippuden 2: Bonds</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-2;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="6503" tvdbid="79824" defaulttvdbseason="0">
+    <name>Gekijouban Naruto Shippuuden: Hi no Ishi o Tsugu Mono</name>
+    <name>Naruto Shippuden: The Successor of the Fire`s Will</name>
+    <name>Naruto Shippuuden: Hi no Ishi o Tsugu Mono</name>
+    <name>Naruto Shippuuden: The Inheritors of the Will of Fire</name>
+    <name>Naruto Shippuuden 3: The Inheritors of the Will of Fire</name>
+    <name>Naruto Shippuden 3: The Inheritors of the Will of Fire</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-3;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="7483" tvdbid="79824" defaulttvdbseason="0">
+    <name>Gekijouban Naruto Shippuuden: The Lost Tower</name>
+    <name>Naruto Shippuuden: The Lost Tower</name>
+    <name>Naruto Shippuden: The Lost Tower</name>
+    <name>Naruto Shippuuden 4: The Lost Tower</name>
+    <name>Naruto Shippuden 4: The Lost Tower</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-4;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="8312" tvdbid="79824" defaulttvdbseason="0">
+    <name>Gekijouban Naruto: Blood Prison</name>
+    <name>Gekijouban Naruto Shippuden: Blood Prison</name>
+    <name>Naruto Shippuden: Blood Prison</name>
+    <name>Naruto Shippuuden: Blood Prison</name>
+    <name>Naruto Shippuden 5: Blood Prison</name>
+    <name>Naruto Shippuuden 5: Blood Prison</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-7;</mapping>
     </mapping-list>
   </anime>
   <anime anidbid="8593" tvdbid="79719" defaulttvdbseason="4">
@@ -302,6 +349,9 @@
   <anime anidbid="t75417" tvdbid="75417" defaulttvdbseason="1">
     <name>Batman Beyond</name> 
   </anime>
+  <anime anidbid="t75417" tvdbid="75417" defaulttvdbseason="0">
+    <name>Batman Beyond Return of the Joker</name> 
+  </anime>
   <anime anidbid="9045" tvdbid="146401" defaulttvdbseason="2">
     <name>Inazuma Eleven GO: Chrono Stone</name>
     <mapping-list>
@@ -321,6 +371,8 @@
   <anime anidbid="8528" tvdbid="87491" defaulttvdbseason="0">
     <name>Queen's Blade</name>
     <name>Queen`s Blade</name>
+    <name>Queen’S Blade</name>
+    <name>Queens Blade</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-19;2-21;</mapping>
       <mapping anidbseason="0" tvdbseason="0">;1-20;2-22;</mapping>
@@ -329,18 +381,31 @@
   <anime anidbid="6653" tvdbid="87491" defaulttvdbseason="2">
     <name>Queen's Blade: Gyokuza o Tsugu Mono</name>
     <name>Queen`s Blade: Gyokuza o Tsugu Mono</name>
+    <name>Queen’S Blade: Gyokuza o Tsugu Mono</name>
+    <name>Queens Blade Gyokuza No Tsugumono</name>
   </anime>
   <anime anidbid="8737" tvdbid="87491" defaulttvdbseason="3">
     <name>Queen's Blade: Rebellion</name>
     <name>Queen`s Blade: Rebellion</name>
+    <name>Queen’S Blade: Rebellion</name>
+    <name>Queens Blade: Rebellion</name>
+    <name>Queen’S Blade Rebellion – A Saint’S Agony</name>
+    <name>Queens Blade Rebellion A Saints Agony</name>
+    <name>Queen’S Blade Rebellion – Siggy’S Passionate Sacred Pose Lessons</name>
+    <name>Queens Blade Rebellion Siggys Passionate Sacred Pose Lessons</name>
   </anime>
   <anime anidbid="6080" tvdbid="87491" defaulttvdbseason="1">
     <name>Queen's Blade: Rurou no Senshi</name>
     <name>Queen`s Blade: Rurou no Senshi</name>
+    <name>Queen’S Blade Rebellion</name>
   </anime>
   <anime anidbid="7442" tvdbid="87491" defaulttvdbseason="0">
     <name>Queen's Blade: Utsukushiki Toushi-tachi</name>
     <name>Queen`s Blade: Utsukushiki Toushi-tachi</name>
+    <name>Queen’S Blade: Utsukushiki Toushi-tachi</name>
+    <name>Queens Blade: Utsukushiki Toushi-tachi</name>
+    <name>Queens Blade Utsukushiki Toushi Tachi</name>
+    <name>Queens Blade Utsukushiki TōShi Tachi</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-13;2-14;3-15;4-16;5-17;6-18;</mapping>
     </mapping-list>
@@ -363,9 +428,11 @@
   <anime anidbid="6751" tvdbid="117851" defaulttvdbseason="1">
     <name>11 Eyes</name>
     <name>11Eyes</name>
+    <name>11eyes</name>
   </anime>
   <anime anidbid="411" tvdbid="81797" defaulttvdbseason="0">
     <name>One Piece (2000)</name>
+    <name>One Piece 1</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-2;</mapping>
     </mapping-list>
@@ -376,16 +443,14 @@
       <mapping anidbseason="1" tvdbseason="0">;1-22;</mapping>
     </mapping-list>
   </anime>
-  <anime anidbid="8010" tvdbid="81797" defaulttvdbseason="0">
-    <name>One Piece 3D: Mugiwara Chase</name>
+  <anime anidbid="893" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Nejimaki Jima no Bouken</name>
+    <name>One Piece 2 Clockwork Island Adventure</name>
+    <name>One Piece 2 Clockwork Island Adventure 2</name>
+    <name>One Piece Clockwork Island Adventure</name>
     <mapping-list>
-      <mapping anidbseason="1" tvdbseason="0">;1-21;</mapping>
-    </mapping-list>
-  </anime>
-  <anime anidbid="7538" tvdbid="81797" defaulttvdbseason="0">
-    <name>One Piece Film: Strong World - Episode 0</name>
-    <mapping-list>
-      <mapping anidbseason="1" tvdbseason="0">;1-20;</mapping>
+      <mapping anidbseason="0" tvdbseason="0">;1-5;</mapping>
+      <mapping anidbseason="1" tvdbseason="0">;1-4;</mapping>
     </mapping-list>
   </anime>
   <anime anidbid="1253" tvdbid="81797" defaulttvdbseason="0">
@@ -409,36 +474,11 @@
       <mapping anidbseason="1" tvdbseason="0">;1-8;2-8;3-8;</mapping>
     </mapping-list>
   </anime>
-  <anime anidbid="4851" tvdbid="81797" defaulttvdbseason="0">
-    <name>One Piece: Episode of Arabasta - Sabaku no Oujo to Kaizoku-tachi</name>
-    <mapping-list>
-      <mapping anidbseason="1" tvdbseason="0">;1-16;</mapping>
-    </mapping-list>
-  </anime>
-  <anime anidbid="5691" tvdbid="81797" defaulttvdbseason="0">
-    <name>One Piece: Episode of Chopper Plus - Fuyu ni Saku, Kiseki no Sakura</name>
-    <name>One Piece: Episode of Chopper Plus - Fuyu ni Saku, Kiseki no Sakura</name>
-    <mapping-list>
-      <mapping anidbseason="1" tvdbseason="0">;1-17;</mapping>
-    </mapping-list>
-  </anime>
-  <anime anidbid="4097" tvdbid="81797" defaulttvdbseason="0">
-    <name>One Piece: Karakurijou no Mecha Kyohei</name>
-    <mapping-list>
-      <mapping anidbseason="1" tvdbseason="0">;1-15;</mapping>
-    </mapping-list>
-  </anime>
-  <anime anidbid="893" tvdbid="81797" defaulttvdbseason="0">
-    <name>One Piece: Nejimaki Jima no Bouken</name>
-    <name>One Piece 2 Clockwork Island Adventure</name>
-    <name>One Piece Clockwork Island Adventure</name>
-    <mapping-list>
-      <mapping anidbseason="0" tvdbseason="0">;1-5;</mapping>
-      <mapping anidbseason="1" tvdbseason="0">;1-4;</mapping>
-    </mapping-list>
-  </anime>
   <anime anidbid="2036" tvdbid="81797" defaulttvdbseason="0">
     <name>One Piece: Norowareta Seiken</name>
+    <name>One Piece 5 Curse Of The Sacred Sword</name>
+    <name>One Piece 5 The Curse Of The Sacred Sword</name>
+    <name>One Piece 5 The Curse Of The Sacred Sword 2</name>
     <mapping-list>
       <mapping anidbseason="0" tvdbseason="0">;1-12;</mapping>
       <mapping anidbseason="1" tvdbseason="0">;1-11;2-11;3-11;</mapping>
@@ -446,12 +486,52 @@
   </anime>
   <anime anidbid="2644" tvdbid="81797" defaulttvdbseason="0">
     <name>One Piece: Omatsuri Danshaku to Himitsu no Shima</name>
+    <name>One Piece: Baron Omatsuri and the Secret Island</name>
+    <name>One Piece 6 Baron Omatsuri And The Secret Island</name>
+    <name>One Piece 6 Baron Omatsuri And The Secret Island 2</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-13;</mapping>
     </mapping-list>
   </anime>
+  <anime anidbid="2736" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Taose! Kaizoku Ganzack</name>
+    <name>One Piece Defeat Him The Pirate Ganzack</name>
+    <name>One Piece Defeat The Pirate Ganzack</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-1;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="4097" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Karakurijou no Mecha Kyohei</name>
+    <name>One Piece 7 Karakuri Castles Mecha Giant Soldier</name>
+    <name>One Piece 7 Karakuri Castles Mecha Giant Soldier 2</name>
+    <name>One Piece 7 The Giant Mechanical Soldier Of Karakuri Castle</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-15;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="4851" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Episode of Arabasta - Sabaku no Oujo to Kaizoku-tachi</name>
+    <name>One Piece - The Desert Princess and the Pirates: Adventures in Alabasta</name>
+    <name>One Piece 8 The Desert Princess And The Pirates</name>
+    <name>One Piece 8 The Desert Princess And The Pirates 2</name>
+    <name>One Piece The Desert Princess And The Pirates</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-16;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="5691" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece: Episode of Chopper Plus - Fuyu ni Saku, Kiseki no Sakura</name>
+    <name>One Piece: Episode of Chopper Plus - Bloom in the Winter, Miracle Sakura</name>
+    <name>One Piece 9 Bloom In The Winter Miracle Sakura</name>
+    <name>One Piece 9 Bloom In The Winter Miracle Sakura 2</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-17;</mapping>
+    </mapping-list>
+  </anime>
   <anime anidbid="6199" tvdbid="81797" defaulttvdbseason="0">
     <name>One Piece: Romance Dawn Story</name>
+    <name>One Piece: Romance Dawn</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-18;</mapping>
     </mapping-list>
@@ -463,10 +543,17 @@
       <mapping anidbseason="1" tvdbseason="0">;1-19;</mapping>
     </mapping-list>
   </anime>
-  <anime anidbid="2736" tvdbid="81797" defaulttvdbseason="0">
-    <name>One Piece: Taose! Kaizoku Ganzack</name>
+  <anime anidbid="7538" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece Film: Strong World - Episode 0</name>
     <mapping-list>
-      <mapping anidbseason="1" tvdbseason="0">;1-1;</mapping>
+      <mapping anidbseason="1" tvdbseason="0">;1-20;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="8010" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece 3D: Mugiwara Chase</name>
+    <name>One Piece 11 Mugiwara Chase</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-21;</mapping>
     </mapping-list>
   </anime>
   <anime anidbid="136" tvdbid="120181" defaulttvdbseason="1">
@@ -646,6 +733,7 @@
   </anime>
   <anime anidbid="t73630" tvdbid="73630" defaulttvdbseason="1">
     <name>The Adventures of Sonic the Hedgehog</name>
+    <name>Adventures of Sonic the Hedgehog</name>
   </anime>
   <anime anidbid="t73141" tvdbid="73141" defaulttvdbseason="1">
     <name>American Dad!</name>
@@ -655,6 +743,7 @@
   </anime>
   <anime anidbid="t76386" tvdbid="76386" defaulttvdbseason="1">
     <name>The Angry Beavers</name>
+    <name>Angry Beavers</name>
   </anime>
   <anime anidbid="t72879" tvdbid="72879" defaulttvdbseason="1">
     <name>Animaniacs</name>
@@ -667,6 +756,7 @@
   </anime>
   <anime anidbid="t192171" tvdbid="192171" defaulttvdbseason="1">
     <name>The Avengers: Earth's Mightiest Heroes</name>
+    <name>Avengers: Earth's Mightiest Heroes</name>
   </anime>
   <anime anidbid="t71301" tvdbid="71301" defaulttvdbseason="1">
     <name>Baby Looney Tunes</name>
@@ -685,9 +775,11 @@
   </anime>
   <anime anidbid="t72502" tvdbid="72502" defaulttvdbseason="1">
     <name>The Berenstain Bears</name>
+    <name>Berenstain Bears</name>
   </anime>
   <anime anidbid="t249504" tvdbid="249504" defaulttvdbseason="1">
     <name>Biker Mice from Mars (2006)</name>
+    <name>Biker Mice from Mars 2006</name>
   </anime>
   <anime anidbid="t137001" tvdbid="137001" defaulttvdbseason="1">
     <name>Black Panther</name>
@@ -697,6 +789,7 @@
   </anime>
   <anime anidbid="t76879" tvdbid="76879" defaulttvdbseason="1">
     <name>The Bots Master</name>
+    <name>Bots Master</name>
   </anime>
   <anime anidbid="t75858" tvdbid="75858" defaulttvdbseason="1">
     <name>Braceface</name>
@@ -706,6 +799,7 @@
   </anime>
   <anime anidbid="t76788" tvdbid="76788" defaulttvdbseason="1">
     <name>Bucky O'Hare and the Toad Wars</name>
+    <name>Bucky O'Hare</name>
   </anime>
   <anime anidbid="t78699" tvdbid="78699" defaulttvdbseason="1">
     <name>Cadillacs and Dinosaurs</name>
@@ -742,10 +836,10 @@
     <name>Code Monkeys</name>
   </anime>
   <anime anidbid="t71685" tvdbid="71685" defaulttvdbseason="1">
-      <name>Codename: Kids Next Door</name>
+    <name>Codename: Kids Next Door</name>
   </anime>
   <anime anidbid="t79716" tvdbid="79716" defaulttvdbseason="1">
-  <name>Conan the Adventurer</name>
+    <name>Conan the Adventurer</name>
   </anime>
   <anime anidbid="t77435" tvdbid="77435" defaulttvdbseason="1">
     <name>Courage the Cowardly Dog</name>
@@ -756,5 +850,34 @@
   <anime anidbid="t219851" tvdbid="219851" defaulttvdbseason="1">
     <name>Dan Vs.</name>
     <name>Dan Vs</name>
+  </anime>
+  <anime anidbid="8583" tvdbid="254662" defaulttvdbseason="1">
+    <name>Rinne no Lagrange: Flower Declaration of Your Heart</name>
+	<name>Lagrange - The Flower of Rin-ne</name>
+	<name>Lagrange The Flower of Rin Ne</name>
+	<name>Rinne no Lagrange</name>	
+  </anime>
+  <anime anidbid="7435" tvdbid="171701" defaulttvdbseason="1">
+    <name>Seikimatsu Occult Gakuin</name>
+    <name>Seikimatsu Occult Gakuen</name>
+    <name>Occult Academy</name>
+  </anime>
+  <anime anidbid="8154" tvdbid="134181" defaulttvdbseason="2">
+    <name>Seikon no Qwaser II</name>
+    <name>Seikon no Qwaser 2</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-18;2-19;3-20;4-21;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="7103" tvdbid="179791" defaulttvdbseason="1">
+    <name>Break Blade</name>
+    <name>Break Blade 1</name>
+    <name>Break Blade 2</name>
+    <name>Break Blade 3</name>
+    <name>Break Blade 4</name>	
+    <name>Break Blade 5</name>
+  </anime>
+  <anime anidbid="5679" tvdbid="82498" defaulttvdbseason="1">
+    <name>Blade Of The Immortal</name>
   </anime>
 </anime-list>
