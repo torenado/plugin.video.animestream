@@ -65,7 +65,8 @@ def Episode_Listing(url):
 			season = '1'
 			episodePageLink = BASE_URL + episodePageLink
 			subLoc = episodePageName.find(' Version')
-			episodePageName = episodePageName[:subLoc].strip()
+			if subLoc>-1:
+				episodePageName = episodePageName[:subLoc].strip()
 			epNumPart = episodePageName.strip().split()
 			for  epNum in reversed(epNumPart):
 				if epNum.isdigit():
@@ -75,9 +76,9 @@ def Episode_Listing(url):
 				epNum = 0
 			
 			if 'season' in episodePageLink:
-				season=re.compile('season-(.+?)-').findall(episodePageLink)[0][1]
+				season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
 			elif 'Season' in episodePageName.title():
-				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0][1]
+				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
 			
 			season = int(season)	
 			episodePageName = episodePageName.title().replace(' - ',' ').replace(':',' ').replace('-',' ').strip()

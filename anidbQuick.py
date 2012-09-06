@@ -122,7 +122,7 @@ def AID_Resolution(linkAID):
 	if(len(match)>=1):
 		# simAni=re.compile('<episode>(.+?)</episode>').findall(match)
 		for aniEp in match:
-			epNum=''
+			epNum='0'
 			epName=''
 			epAirdate=['','','']
 			epIconimage=''
@@ -155,6 +155,37 @@ def AID_Resolution(linkAID):
 	epList.sort(key=lambda name: name[0], reverse=True)
 	return [aid, iconimage, description, startdate, episodecount, adult, simAniList, synAniList, epList, category]
 
+def AID_Search(linkAID='',searchText=''):
+	base_txt = 'anidb.net: '	
+	
+	if len(searchText)>0:
+		tvdbUrl = 'http://anisearch.outrance.pl/?task=search&query='
+		seachTitle = '+'.join(searchText.split())
+
+		url = tvdbUrl + '%22' + seachTitle + '%22'
+		linkAID = grabUrlSource(url)
+	
+	serList = []
+	
+	match=re.compile('<anime (.+?)</anime>').findall(linkAID)
+	if(len(match)>=1):
+		# simAni=re.compile('<episode>(.+?)</episode>').findall(match)
+		for aniSer in match:
+			
+			aid = re.compile('aid="(.+?)"').findall(aniSer)[0]
+			match1=re.compile('CDATA\[(.+?)\]').findall(aniSer)
+			if(len(match1)>=1):
+				for name in match1:
+					serList.append([aid, name])
+	
+	if len(serList)>0:
+		print base_txt + 'anisearch.outrance.pl found mathces for: ' + searchText
+		print serList
+	else:
+		print base_txt + 'anisearch.outrance.pl search revealed no matches for: ' + searchText
+	
+	return serList
+	
 def TVDBID_Resolution(aid,linkTVDB):
 	base_txt = 'thetvdb.com: '	
 	# print base_txt +  'Parsing TheTVDB id details'
@@ -199,7 +230,7 @@ def TVDBID_Resolution(aid,linkTVDB):
 			epName=''
 			description=''
 			epIconimage=''
-			epNum1=''
+			epNum1='0'
 			seasonNum='1'
 			epAirdate=['','','']
 			if '<EpisodeName>' in TVDBEp:
@@ -222,7 +253,7 @@ def TVDBID_Resolution(aid,linkTVDB):
 				epNum1=re.compile('<EpisodeNumber>(.+?)</EpisodeNumber>').findall(TVDBEp)[0].replace(' ','')
 			
 			if epNum1=='':
-				epNum1 = 0
+				epNum1 = '0'
 			
 			if epNum1.isdigit():
 				epNum = int(epNum1)

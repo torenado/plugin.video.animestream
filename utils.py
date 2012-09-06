@@ -37,6 +37,16 @@ def grabUrlSource(url):
 			pass
 		# link=link.replace(u'\xa0',u'')
 		
+		try:
+			link = U2A(link)
+		except:
+			pass
+			
+		try:
+			link = srt(link)
+		except:
+			pass
+		
 		return link
 	except urllib2.URLError, e:
 		try:

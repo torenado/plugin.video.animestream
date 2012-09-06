@@ -1016,4 +1016,15 @@
   <anime anidbid="6966" tvdbid="119141" defaulttvdbseason="1">    
     <name>Yumeiro Patissiere</name>  
   </anime>
+  <anime anidbid="8323" tvdbid="252345" defaulttvdbseason="1">
+    <name>Kyoukaisen-jou no Horizon</name>
+    <name>Kyoukai senjou no Horizon</name>
+    <name>Horizon in the Middle of Nowhere</name>
+  </anime>
+  <anime anidbid="8886" tvdbid="252345" defaulttvdbseason="2">
+    <name>Kyoukaisen-jou no Horizon II</name>
+    <name>Kyoukaisen-jou no Horizon 2</name>
+    <name>Kyoukai senjou no Horizon II</name>
+    <name>Kyoukai senjou no Horizon 2</name>
+  </anime>
 </anime-list>

@@ -63,9 +63,9 @@ def Episode_Listing(url):
 				epNum = 0
 			
 			if 'season' in episodePageLink:
-				season=re.compile('season-(.+?)-').findall(episodePageLink)[0][1]
+				season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
 			elif 'Season' in episodePageName.title():
-				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0][1]
+				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
 			
 			season = int(season)	
 			epList.append([episodePageLink , episodePageName.title(), '', epNum, season])
@@ -84,9 +84,9 @@ def Episode_Listing(url):
 				epNum = 0
 			
 			if 'season' in episodePageLink:
-				season=re.compile('season-(.+?)-').findall(episodePageLink)[0][1]
+				season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
 			elif 'Season' in episodePageName.title():
-				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0][1]
+				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
 			
 			season = int(season)	
 			episodePageName = episodePageName.title().replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
@@ -106,20 +106,22 @@ def Episode_Page(url):
 	match1=re.compile("Small Div alternate streaming(.+?)End of alternate streaming").findall(link)
 	epMedia = []
 	mirror = 0
-	match2=re.compile('<div class="row">(.+?)</div>').findall(match1[0])
-	if(len(match2) >= 1):
-		for mirrorRow in match2:
-			match=re.compile('return encLink\(\'(.+?)\'\)').findall(mirrorRow)
-			mirror = mirror + 1
-			part = 0
-			if(len(match) >= 1):
-				for episodeMediaMirrors in match:
-					part = part + 1
-					#print base_txt +  'MIRROR ' + str(mirror) +  'PART ' + str(part)
-					episodeMediaMirrors = BASE_URL + episodeMediaMirrors
-					epMedia = epMedia + Episode_Media_Link(episodeMediaMirrors, mirror, part)
-	else:
-		print base_txt +  'No MIRRORS were parsed from Episode_Page: ' + url
+	
+	if(len(match1) > 0):
+		match2=re.compile('<div class="row">(.+?)</div>').findall(match1[0])
+		if(len(match2) > 0):
+			for mirrorRow in match2:
+				match=re.compile('return encLink\(\'(.+?)\'\)').findall(mirrorRow)
+				mirror = mirror + 1
+				part = 0
+				if(len(match) >= 1):
+					for episodeMediaMirrors in match:
+						part = part + 1
+						#print base_txt +  'MIRROR ' + str(mirror) +  'PART ' + str(part)
+						episodeMediaMirrors = BASE_URL + episodeMediaMirrors
+						epMedia = epMedia + Episode_Media_Link(episodeMediaMirrors, mirror, part)
+		else:
+			print base_txt +  'No MIRRORS were parsed from Episode_Page: ' + url
 	
 	return epMedia
 	
