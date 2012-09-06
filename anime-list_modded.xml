@@ -397,7 +397,8 @@
   <anime anidbid="6080" tvdbid="87491" defaulttvdbseason="1">
     <name>Queen's Blade: Rurou no Senshi</name>
     <name>Queen`s Blade: Rurou no Senshi</name>
-    <name>Queen’S Blade Rebellion</name>
+    <name>Queen`s Blade: Wandering Warrior</name>
+    <name>Queen`s Blade: The Exiled Virgin</name>
   </anime>
   <anime anidbid="7442" tvdbid="87491" defaulttvdbseason="0">
     <name>Queen's Blade: Utsukushiki Toushi-tachi</name>
@@ -405,6 +406,7 @@
     <name>Queen’S Blade: Utsukushiki Toushi-tachi</name>
     <name>Queens Blade: Utsukushiki Toushi-tachi</name>
     <name>Queens Blade Utsukushiki Toushi Tachi</name>
+    <name>Queens Blade Utsukushiki Toshi Tachi</name>
     <name>Queens Blade Utsukushiki TōShi Tachi</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-13;2-14;3-15;4-16;5-17;6-18;</mapping>
@@ -599,6 +601,10 @@
     <name>Ben 10</name>
     <name>Ben-10</name>
   </anime>
+  <anime anidbid="t79567" tvdbid="79567" defaulttvdbseason="0">
+    <name>Ben 10 Secret Of The Omnitrix</name>
+    <name>Ben 10 Race Against Time</name>
+  </anime>
   <anime anidbid="t158501" tvdbid="158501" defaulttvdbseason="1">
     <name>Ben 10: Ultimate Alien</name>
     <name>Ben-10: Ultimate Alien</name>
@@ -646,7 +652,7 @@
   <anime anidbid="t79133" tvdbid="79133" defaulttvdbseason="1">
     <name>Class of the Titans</name>
   </anime>
-  <anime anidbid="t77193" tvdbid="77193" defaulttvdbseason="1">
+  <anime anidbid="1524" tvdbid="77193" defaulttvdbseason="1">
     <name>Cybersix</name>
   </anime>
   <anime anidbid="t77996" tvdbid="77996" defaulttvdbseason="1">
@@ -690,6 +696,8 @@
   </anime>
   <anime anidbid="t251807" tvdbid="251807" defaulttvdbseason="1">
     <name>Green Lantern: The Animated Series</name>
+    <name>Green Lantern: Animated Series</name>
+    <name>Green Lantern</name>
   </anime>
   <anime anidbid="t84391" tvdbid="84391" defaulttvdbseason="1">
     <name>Huntik: Secrets & Seekers</name>
@@ -880,12 +888,6 @@
   <anime anidbid="5679" tvdbid="82498" defaulttvdbseason="1">
     <name>Blade Of The Immortal</name>
   </anime>
-  <anime anidbid="t251807" tvdbid="251807" defaulttvdbseason="1">
-    <name>Green Lantern: The Animated Series</name>
-  </anime>
-  <anime anidbid="t260422" tvdbid="260422" defaulttvdbseason="1">
-    <name>Kaijudo Rise Of The Duel Masters (2012)</name>
-  </anime>
   <anime anidbid="t70473" tvdbid="70473" defaulttvdbseason="1">
     <name>Mighty Orbots</name>
   </anime>
@@ -915,6 +917,7 @@
   </anime>
   <anime anidbid="t190511" tvdbid="190511" defaulttvdbseason="1">
     <name>Sym-Bionic Titan</name>
+    <name>SymBionic Titan</name>
   </anime>
   <anime anidbid="t71032" tvdbid="71032" defaulttvdbseason="1">
     <name>Teenage Mutant Ninja Turtles (2003)</name>
@@ -934,5 +937,83 @@
   <anime anidbid="t73333" tvdbid="73333" defaulttvdbseason="1">
     <name>Visionaries: Knights of the Magical Light</name>
   </anime>
-
+  <anime anidbid="2806" tvdbid="79081" defaulttvdbseason="1">    
+    <name>Transformers Cybertron</name>  
+  </anime>
+  <anime anidbid="2077" tvdbid="71475" defaulttvdbseason="1">    
+    <name>Transformers: The Headmasters</name>  
+  </anime>
+  <anime anidbid="3393" tvdbid="77087" defaulttvdbseason="1">    
+    <name>Transformers Robots In Disguise</name>  
+  </anime>
+  <anime anidbid="2065" tvdbid="71551" defaulttvdbseason="1">    
+    <name>Transformers: Victory</name>  
+  </anime>
+  <anime anidbid="4906" tvdbid="80042" defaulttvdbseason="1">
+    <name>Darker than Black: Kuro no Keiyakusha</name>
+    <name>Darker than Black</name>
+  </anime>
+  <anime anidbid="6644" tvdbid="80042" defaulttvdbseason="2">
+    <name>Darker than Black: Ryuusei no Gemini</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-2;2-3;3-4;4-5;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="6257" tvdbid="87501" defaulttvdbseason="1">
+    <name>K-On!</name>
+    <name>K-ON!</name>
+    <name>K-ON</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;3-1;4-2;5-3;6-4;7-5;8-6;9-7;</mapping>
+      <mapping anidbseason="0" tvdbseason="1">;1-13;2-0;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="312" tvdbid="76665" defaulttvdbseason="1">    
+    <name>Yu Yu Hakusho</name>  
+  </anime>
+  <anime anidbid="t133451" tvdbid="133451" defaulttvdbseason="1">    
+    <name>Spirited Away by the Wolf</name>  
+  </anime>
+  <anime anidbid="7233" tvdbid="193841" defaulttvdbseason="1">    
+    <name>Psychic Detective Yakumo</name>    
+    <name>Shinrei Tantei Yakumo</name>  
+  </anime>
+  <anime anidbid="102" tvdbid="70668" defaulttvdbseason="1">    
+    <name>Cardcaptor Sakura</name>  
+  </anime>
+  <anime anidbid="6238" tvdbid="88721" defaulttvdbseason="1">    
+    <name>Eden of the East</name>  
+    <name>Higashi no Eden</name>  
+  </anime>
+  <anime anidbid="449" tvdbid="79060" defaulttvdbseason="1">    
+    <name>Wolf's Rain</name>  
+  </anime>
+  <anime anidbid="8550" tvdbid="252322" defaulttvdbseason="1">    
+    <name>Hunter x Hunter (2011)</name>   
+    <name>Hunter x Hunter 2011</name>  
+  </anime>
+  <anime anidbid="3651" tvdbid="79414" defaulttvdbseason="1">    
+    <name>The Melancholy of Haruhi Suzumiya</name>  
+    <name>Suzumiya Haruhi no Yuuutsu</name>  
+  </anime>
+  <anime anidbid="125" tvdbid="72973" defaulttvdbseason="1">    
+    <name>Rave Master</name>     
+    <name>Groove Adventure Rave</name>  
+  </anime>
+  <anime anidbid="2441" tvdbid="79183" defaulttvdbseason="1">    
+    <name>EyeShield 21</name>  
+  </anime>
+  <anime anidbid="5911" tvdbid="84677" defaulttvdbseason="1">    
+    <name>Chrome Shelled Regios</name>    
+    <name>Koukaku no Regios</name>  
+  </anime>
+  <anime anidbid="229" tvdbid="79327" defaulttvdbseason="1">    
+    <name>Mobile Suit Gundam Wing</name>  
+  </anime>
+  <anime anidbid="234" tvdbid="72241" defaulttvdbseason="1">    
+    <name>Digimon: Digital Monsters</name>  
+  </anime>
+  <anime anidbid="6966" tvdbid="119141" defaulttvdbseason="1">    
+    <name>Yumeiro Patissiere</name>  
+  </anime>
 </anime-list>
