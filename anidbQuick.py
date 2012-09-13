@@ -44,7 +44,7 @@ def Wishlist(link):
 					gg = eps[0]
 					eps=[]
 					eps=(gg,'TBC')
-				anidbWishlist.append([aid,name,eps])
+				anidbWishlist.append([int(aid),name,eps])
 	
 	if(len(anidbWishlist) < 1):
 		print base_txt +  'Nothing was parsed from Wishlist: '
@@ -142,7 +142,9 @@ def AID_Resolution(linkAID):
 					epAirdate=airdateM[0]
 			if not len(epName)>0 and '<title xml:lang="x-jat">' in aniEp:
 				epName=re.compile('<title xml:lang="x-jat">(.+?)</title>').findall(aniEp)
-			epList.append([epNum,epName,epIconimage,description,seasonNum,epAirdate])
+				
+			epNumAb = epNum
+			epList.append([epNumAb,epName,epIconimage,description,seasonNum,epAirdate,epNum])
 			epNum = ''
 			epName = ''
 	
@@ -246,19 +248,28 @@ def TVDBID_Resolution(aid,linkTVDB):
 			if '<absolute_number>' in TVDBEp:
 				epNum1=re.compile('<absolute_number>(.+?)</absolute_number>').findall(TVDBEp)[0].replace(' ','')
 			
+			if  '<EpisodeNumber>' in TVDBEp:
+				epNum2=re.compile('<EpisodeNumber>(.+?)</EpisodeNumber>').findall(TVDBEp)[0].replace(' ','')
+				
 			if len(epNum1)<1 and '<Combined_episodenumber>' in TVDBEp:
 				epNum1=re.compile('<Combined_episodenumber>(.+?)</Combined_episodenumber>').findall(TVDBEp)[0].replace(' ','')
 			
-			if len(epNum1)<1 and '<EpisodeNumber>' in TVDBEp:
-				epNum1=re.compile('<EpisodeNumber>(.+?)</EpisodeNumber>').findall(TVDBEp)[0].replace(' ','')
 			
 			if epNum1=='':
 				epNum1 = '0'
 			
 			if epNum1.isdigit():
-				epNum = int(epNum1)
+				epNumAb = int(epNum1)
 			else:
-				epNum = epNum1				
+				epNumAb = epNum1		
+				
+			if epNum2=='':
+				epNum2 = '0'
+			
+			if epNum2.isdigit():
+				epNum = int(epNum2)
+			else:
+				epNum = epNum2				
 				
 			if '<FirstAired>' in TVDBEp:
 				try:
@@ -268,7 +279,7 @@ def TVDBID_Resolution(aid,linkTVDB):
 				except:
 					pass
 					
-			epList.append([epNum,epName,epIconimage,description,seasonNum,epAirdate])
+			epList.append([epNumAb,epName,epIconimage,description,seasonNum,epAirdate,epNum])
 	
 	
 	epList.sort(key=lambda name: name[0], reverse=True)

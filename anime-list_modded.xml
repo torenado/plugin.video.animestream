@@ -29,6 +29,39 @@
   <anime anidbid="2369" tvdbid="74796" defaulttvdbseason="1">
     <name>Bleach</name>
   </anime>
+  <anime anidbid="4515" tvdbid="74796" defaulttvdbseason="0">
+    <name>Gekijouban Bleach: Memories of Nobody</name>
+    <name>Bleach the Movie: Memories of Nobody</name>
+    <name>Bleach: Memories of Nobody</name>
+    <name>Bleach 1: Memories of Nobody</name>
+  </anime>
+  <anime anidbid="5352" tvdbid="74796" defaulttvdbseason="0">
+    <name>Gekijouban Bleach: The Diamond Dust Rebellion Mou Hitotsu no Hyourinmaru</name>
+    <name>Bleach The Movie 2: The Diamond Dust Rebellion</name>
+    <name>BLEACH The Diamond Dust Rebellion</name>
+    <name>BLEACH 2 The Diamond Dust Rebellion</name>
+    <name>BLEACH 2 The Diamond Dust Rebellion 2</name>
+  </anime>
+  <anime anidbid="6041" tvdbid="74796" defaulttvdbseason="0">
+    <name>Gekijouban Bleach: Fade to Black Kimi no Na o Yobu</name>
+    <name>BLEACH Fade to Black</name>
+    <name>Bleach the Movie 3: Fade to Black</name>
+    <name>Bleach 3 Fade To Black</name>
+  </anime>
+  <anime anidbid="7666" tvdbid="74796" defaulttvdbseason="0">
+    <name>Gekijouban Bleach: Jigoku-hen</name>
+    <name>Bleach: Hell Chapter</name>
+    <name>Bleach 4 Hell Chapter</name>
+    <name>Bleach 4 Jigoku Hen</name>
+    <name>Bleach Jigoku Hen</name>
+    <name>Bleach 4 The Hell Verse</name>
+  </anime>
+  <anime anidbid="2369" tvdbid="74796" defaulttvdbseason="0">
+    <name>Bleach Memories In The Rain</name>
+  </anime>
+  <anime anidbid="2369" tvdbid="74796" defaulttvdbseason="0">
+    <name>Bleach The Sealed Sword Frenzy</name>
+  </anime>
   <anime anidbid="9015" tvdbid="259649" defaulttvdbseason="1">
     <name>Aesthetica of a Rogue Hero</name>
     <name>Hagure Yuusha no Estetica</name>
@@ -100,6 +133,8 @@
     <name>Naruto Shippuuden: The Inheritors of the Will of Fire</name>
     <name>Naruto Shippuuden 3: The Inheritors of the Will of Fire</name>
     <name>Naruto Shippuden 3: The Inheritors of the Will of Fire</name>
+    <name>Naruto Shippuden 3 Inheritors Of The Will Of Fire</name>
+    <name>Naruto Shippuuden 3 Inheritors Of The Will Of Fire</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-3;</mapping>
     </mapping-list>
@@ -110,6 +145,7 @@
     <name>Naruto Shippuden: The Lost Tower</name>
     <name>Naruto Shippuuden 4: The Lost Tower</name>
     <name>Naruto Shippuden 4: The Lost Tower</name>
+    <name>Naruto Shippuden 4 The Lost Toweri</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-4;</mapping>
     </mapping-list>
@@ -383,6 +419,7 @@
     <name>Queen`s Blade: Gyokuza o Tsugu Mono</name>
     <name>Queen’S Blade: Gyokuza o Tsugu Mono</name>
     <name>Queens Blade Gyokuza No Tsugumono</name>
+    <name>Queens Blade Gyokuza O Tsugu Mono</name>
   </anime>
   <anime anidbid="8737" tvdbid="87491" defaulttvdbseason="3">
     <name>Queen's Blade: Rebellion</name>
@@ -399,6 +436,7 @@
     <name>Queen`s Blade: Rurou no Senshi</name>
     <name>Queen`s Blade: Wandering Warrior</name>
     <name>Queen`s Blade: The Exiled Virgin</name>
+    <name>Queens Blade Rurou No Senshi</name>
   </anime>
   <anime anidbid="7442" tvdbid="87491" defaulttvdbseason="0">
     <name>Queen's Blade: Utsukushiki Toushi-tachi</name>
@@ -408,6 +446,8 @@
     <name>Queens Blade Utsukushiki Toushi Tachi</name>
     <name>Queens Blade Utsukushiki Toshi Tachi</name>
     <name>Queens Blade Utsukushiki TōShi Tachi</name>
+    <name>Queen S Blade Utsukushiki Toushi Tachi</name>
+    <name>Queens Blade 3Rd</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-13;2-14;3-15;4-16;5-17;6-18;</mapping>
     </mapping-list>
@@ -1026,5 +1066,30 @@
     <name>Kyoukaisen-jou no Horizon 2</name>
     <name>Kyoukai senjou no Horizon II</name>
     <name>Kyoukai senjou no Horizon 2</name>
+  </anime>
+  <anime anidbid="4226" tvdbid="79931" defaulttvdbseason="1">
+    <name>Jyu-Oh-Sei</name>
+    <name>Planet of the Beast King</name>
+    <name>Juuousei</name>
+  </anime>
+  <anime anidbid="6784" tvdbid="79151" defaulttvdbseason="0">
+    <name>Fate/Stay Night: Unlimited Blade Works</name>
+    <name>Fate Stay Night Unlimited Blade Works</name>
+    <name>Fatestay Night Unlimited Blade Works</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-4;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="2190" tvdbid="0" defaulttvdbseason="1">
+    <name>Shin Angyou Onshi</name>
+    <name>Blade of the Phantom Master</name>
+    <name>New Royal Secret Commissioner</name>
+    <name>Shin Angyo Onshi Blade Of The Phantom Master</name>
+    <name>Blade of the Phantom Mask</name>
+    <name>Phantom Master - Dark Hero From Ruined Empire</name>
+  </anime>
+  <anime anidbid="8594" tvdbid="197261" defaulttvdbseason="2">
+    <name>Tantei Opera Milky Holmes Dai 2 Maku</name>
+    <name>Tantei Opera Milky Holmes 2</name>
   </anime>
 </anime-list>
