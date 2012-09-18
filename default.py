@@ -689,12 +689,19 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 		if int(epwatch)>0:
 			print base_txt + str(searchText) + ' [' + epwatch + ' of ' + eptot + '] (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
 			searchText = str(searchText) + ' [' + epwatch + ' of ' + eptot + ']'
+			
+			if str(aid)=='0' and int(tvdbSer)>0:
+				aid = 't' + str(tvdbSer)
+				
 			addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre=genre,totep=eptot, watchep=epwatch, fanart=fanart, plycnt=playcount)
 		else:
-			if aid==0 and tvdbSer==0:
+			if str(aid)=='0' and tvdbSer==0:
 				print base_txt + '---- ' + str(searchText) + ' (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
 			else:
 				print base_txt + str(searchText) + ' (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
+				
+			if str(aid)=='0' and int(tvdbSer)>0:
+				aid = 't' + str(tvdbSer)
 			addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre=genre,fanart=fanart)
 		
 		
@@ -722,7 +729,7 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 		aidDB = aid
 	
 	# if int(aidDB)>0:
-	[searchText1, aidSer, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList, epList1, season, adult, epwatch, eptot, playcount] = get_all_data(aid=aid)
+	[searchText1, aidSer, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList, epList1, season, adult, epwatch, eptot, playcount] = get_all_data(aid=aid)	
 	# [searchText1, aidSer, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList, epList1, season, adult, epwatch, eptot, playcount] = cache.cacheFunction(get_all_data,'',aid)
 	# [searchText1, aidSer, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList, epList1, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,'',aid)
 
@@ -1416,8 +1423,13 @@ def searchCollection(searchText,aid='0'):
 					# print base_txt + nameTest + ' (aid=' + aidSer + ', tvdbid='+ str(tvdbSer) +') <--> ' + groupUrl
 					# addDir(nameTest,groupUrl,mode,iconimage,numItems=dirLength,aid=aidSer,genre=genre,fanart=fanart)
 				
+				
+				aidSerDB = aidSer
+				if aidSer.isdigit():
+					aidSerDB = int(aidSer)
+					
 				firstName = nameTest.split()
-				searchCollect.append([int(aidSer), nameTest, groupUrl, firstName[0]])
+				searchCollect.append([aidSerDB, nameTest, groupUrl, firstName[0]])
 				
 			groupUrl = ''
 			nameTest = name
