@@ -68,8 +68,14 @@
   </anime>
   <anime anidbid="8879" tvdbid="259642" defaulttvdbseason="1">
     <name>So, I Can't Play H!</name>
+    <name>Dakara Boku Wa H Ga Dekinai</name>
     <name>Dakara Boku wa, H ga Dekinai.</name>
-    <name>Dakara Boku wa, H ga Dekinai</name>
+    <name>Dakara Boku Wa, H Ga Dekinai</name>
+    <name>Dakara Boku Wa, H Ga Dekinai</name>
+    <name>So, I Can`t Fuck Her!</name>
+  </anime>
+  <anime anidbid="9302" tvdbid="259642" defaulttvdbseason="0">
+    <name>Dakara Boku wa, H ga Dekinai. (2013)</name>
   </anime>
   <anime anidbid="8149" tvdbid="239951" defaulttvdbseason="1">
     <name>C</name>
@@ -359,6 +365,7 @@
     <name>Avatar: The Last Airbender</name> 
     <name>Avatar - The Last Airbender</name> 
     <name>Avatar The Last Airbender</name> 
+    <name>Avatar The Last Air Bender</name> 
     <name>Avatar</name> 
   </anime>
   <anime anidbid="t74852" tvdbid="74852" defaulttvdbseason="1">
@@ -1091,5 +1098,38 @@
   <anime anidbid="8594" tvdbid="197261" defaulttvdbseason="2">
     <name>Tantei Opera Milky Holmes Dai 2 Maku</name>
     <name>Tantei Opera Milky Holmes 2</name>
+  </anime>
+  <anime anidbid="5235" tvdbid="81479" defaulttvdbseason="1">
+    <name>Kimi ga Aruji de Shitsuji ga Ore de: They Are My Noble Masters</name>
+    <name>Kimi ga Aruji de Shitsuji ga Ore de</name>
+    <name>They Are My Noble Masters</name>
+  </anime>
+  <anime anidbid="6087" tvdbid="84591" defaulttvdbseason="1">
+    <name>Maria Holic</name>
+    <name>Maria+Holic</name>
+  </anime>  
+  <anime anidbid="8041" tvdbid="84591" defaulttvdbseason="2">
+    <name>Maria Holic Alive</name>
+    <name>Maria+Holic Alive</name>
+    <name>Maria Holic 2</name>
+  </anime>
+  <anime anidbid="5273" tvdbid="81184" defaulttvdbseason="1">
+    <name>Rosario to Vampire</name>
+    <name>Rosario + Vampire</name>
+  </anime>
+  <anime anidbid="5873" tvdbid="81184" defaulttvdbseason="2">
+    <name>Rosario to Vampire Capu2</name>
+    <name>Rosario to Vampire Capu 2</name>
+    <name>Rosario + Vampire Capu2</name>
+    <name>Rosario + Vampire Capu 2</name>
+    <name>Rosario + Vampire 2</name>
+  </anime>
+  <anime anidbid="638" tvdbid="75647" defaulttvdbseason="1">    
+    <name>Zatch Bell!</name>   
+    <name>Konjiki no Gash Bell!!</name>  
+  </anime>
+  <anime anidbid="1799" tvdbid="253583" defaulttvdbseason="1">    
+    <name>Zentrix</name>  
+    <name>Jikuu Boukenki Zentrix</name>  
   </anime>
 </anime-list>
