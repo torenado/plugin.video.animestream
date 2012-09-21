@@ -15,8 +15,9 @@ def grabUrlSource(url):
 	# grab url source data
 	# mozilla_user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
 	mozilla_user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Chrome/0.2.153.1 Safari/525.19 '
+	base_txt = 'grabUrlSource: '
 	try:
-		print 'grabUrlSource: ' + url
+		print base_txt + url
 		req = urllib2.Request(url)
 		req.add_header('User-Agent', mozilla_user_agent)
 		response = urllib2.urlopen(req)
@@ -30,6 +31,7 @@ def grabUrlSource(url):
 		response.close()
 		link = ''.join(link.splitlines()).replace('\t','')		
 		link = urllib.unquote(link)
+		
 		try:
 			link = unescape(link)
 			# link = link
@@ -138,3 +140,51 @@ def U2A_List(iterable):
 		else:
 			iterated_object.append(U2A(elem))
 	return iterated_object
+	
+def find(q):
+	return [(k,v) for k, v in aliases.items() if q in k or q in v]
+	
+def list_decode(txt):
+	ll = find('')
+	
+	for codec, alias in ll:
+		try:
+			print txt.decode(alias)
+		except:
+			print 'FAILED: ' + str(alias)
+
+			
+def list_ord(txt):
+	gg = []
+	for v in txt:
+		if ord(v)>128:
+			gg.append([ord(v),v])
+	gg.sort(key=lambda name: name[0])
+	
+	return f2(gg)
+
+def list_ord_replace(txt):
+	gg = []
+	for v in txt:
+		if ord(v)>128:
+			gg.append(odd_decode(ord(v),v))
+		else:
+			gg.append(v)
+	# print gg
+	return ''.join(gg)	
+
+def odd_decode(num,txt=''):
+
+	htmlCodes = []
+	for n in xrange(0,10):
+		for i in xrange(128+n, 255, 16):
+			htmlCodes.append([i,chr(i),'%'+str(0+n)])
+			
+	for code in htmlCodes:
+		if int(code[0])==int(num):
+			txt = code[2]
+			return txt
+	
+	print 'odd_decode: NUM - ' + str(num) + ' not found'
+	
+	

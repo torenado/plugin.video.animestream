@@ -203,10 +203,19 @@ def CARTOON_LIST(url=''):
 	# mostPop = animeflavor.Video_List_And_Pagination(url)
 	# mostPop = cache.cacheFunction(animeflavor.Video_List_And_Pagination, url)	
 	
-	mostPop.sort(key=lambda name: name[1])
+	
+	name = ''
+	nameTest = ''
+	mostPop2 = []
+	for iconimage, name, urls in mostPop:
+		if name.startswith('The '):
+			name = name[4:] + ', The'
+		mostPop2.append([str(iconimage), name, urls])
+	
+	mostPop2.sort(key=lambda name: name[1])
 	returnMode = 1
 	
-	getSeriesList(mostPop,url,returnMode)
+	getSeriesList(mostPop2,url,returnMode)
 
 def MOST_RECENT(url=''):
 	# Hardcoded to use animecrazy.net
@@ -318,6 +327,7 @@ def cleanSearchText(searchText,skipEnc=False):
 			searchText = searchText[:subLoc]
 		
 	searchText = searchText.replace('-- REFRESH -- ','')
+	searchText = searchText.replace('(Movie/OVA)','').title().strip()
 	searchText = searchText.replace('(TV)','').replace('(OVA)','').replace('(Movie)','').replace('(Movie/OVA)','').title().strip()
 	searchText = searchText.replace(':',' ').replace(' - ',' ').replace('_',' ').replace(' & ',' and ').strip()
 	searchText = searchText.replace('~',' ').replace('?',' ').replace('!',' ').replace('.',' ').replace('  ',' ').replace('  ',' ').strip()
@@ -360,7 +370,6 @@ def get_ani_aid(searchText):
 	# aidList = get_ani_aid_list(linkAID)
 	aidList = cache.cacheFunction(get_ani_aid_list,linkAID)
 
-	# searchText = cleanSearchText(searchText.replace(':',' ').replace('!',' ').replace('-',' ').replace('_',' ').replace('  ',' ').title().strip())
 	print base_txt + 'Searching for aid: ' + searchText
 	
 	for aidFound, name, tvdbid, season in  aidList:
@@ -532,6 +541,10 @@ def get_all_data(searchText='',aid='0',tvdbSer='0'):
 	eptot = ''
 	season = '1'
 	
+	
+	if searchText.endswith(', The'):
+		searchText = 'The ' + searchText.replace(', The','')
+	
 	aidDB = '0'
 	if aid.isdigit():
 		aidDB = aid
@@ -650,7 +663,7 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 	url = ''
 	iconimage = ''
 	for iconimage, name, url in mostPop2:
-		searchText = cleanSearchText(name)
+		searchText = cleanSearchText(name,True)
 		
 		aidDB = '0'
 		if iconimage.isdigit():
@@ -857,7 +870,7 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 							day = epAirdate[2]
 							iconimageTest = epIconimage
 							break
-					else:
+					elif not str(epSeason) == '0':
 						if str(epNum)==str(epNumAb1) and str(epSeason)==str(seasonNum):
 							nameTest = str(epSeason) + 'x' + str(epNum) + ' - ' + epName
 							yr = epAirdate[0]
@@ -917,31 +930,7 @@ def get_epMediaAll_2(groupUrl):
 				siteBase = 'cache.cacheFunction(' + streamList + '.Episode_Page, url)'
 				epMedia = eval(siteBase)
 		epMediaAll = epMediaAll + epMedia
-	
-	
-	# for url in urls:
-		# print base_txt + url
-		# if (anilinkz.base_url_name in url):
-			# epMedia = cache.cacheFunction(anilinkz.Episode_Page, url)
-		# elif (anime44.base_url_name in url):
-			# epMedia = cache.cacheFunction(anime44.Episode_Page, url)
-		# elif (animecrazy.base_url_name in url):
-			# epMedia = cache.cacheFunction(animecrazy.Episode_Page, url)
-		# elif (animeflavor.base_url_name in url):
-			# epMedia = animeflavor.Episode_Page(url)
-			# epMedia = cache.cacheFunction(animeflavor.Episode_Page, url)
-		# elif (animefreak.base_url_name in url):
-			# epMedia = animefreak.Episode_Page(url)
-			# epMedia = cache.cacheFunction(animefreak.Episode_Page, url)
-		# elif (animefushigi.base_url_name in url):
-			# epMedia = animefushigi.Episode_Page(url)
-			# epMedia = cache.cacheFunction(animefushigi.Episode_Page, url)
-		# elif (animetip.base_url_name in url):
-			# epMedia = cache.cacheFunction(animetip.Episode_Page, url)
-		# elif (myanimelinks.base_url_name in url):
-			# epMedia = cache.cacheFunction(myanimelinks.Episode_Page, url)
-		
-		# epMediaAll = epMediaAll + epMedia
+
 		
 	epMediaAll_2=[]
 	siteNnameTest=''

@@ -125,6 +125,15 @@ def Episode_Media_Link(url, mirror=1,part=1):
 	epMedia = []
 	
 
+	match=re.compile('<(iframe|embed)(.+?)src="(.+?)"').findall(link)
+	if(len(match) >= 1):
+		for garbage1, garbage2, episodeMediaLink in match:
+			if ((not 'http://ad' in episodeMediaLink) and not 'animeflavor-gao-gamebox.swf' in episodeMediaLink and not 'http://www3.game' in episodeMediaLink):
+				if (base_url_name in episodeMediaLink):
+					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
+					
+				epMedia.append([base_url_name,episodeMediaLink, mirror, part])
+
 	match=re.compile('<(iframe|embed)src="(.+?)"').findall(link)
 	if(len(match) >= 1):
 		for garbage, episodeMediaLink in match:
