@@ -643,6 +643,7 @@
   <anime anidbid="t158501" tvdbid="158501" defaulttvdbseason="0">
     <name>Ben 10 / Generator Rex Crossover Heroes United</name>
     <name>Ben-10 / Generator Rex Crossover Heroes United</name>
+    <name>Ben-10 Destroy All Aliens</name>
   </anime>
   <anime anidbid="t79567" tvdbid="79567" defaulttvdbseason="1">
     <name>Ben 10</name>
@@ -655,14 +656,17 @@
   <anime anidbid="t158501" tvdbid="158501" defaulttvdbseason="1">
     <name>Ben 10: Ultimate Alien</name>
     <name>Ben-10: Ultimate Alien</name>
+    <name>Ben-10 Ultimate Alien</name>
   </anime>
   <anime anidbid="t260995" tvdbid="260995" defaulttvdbseason="1">
     <name>Ben 10: Omniverse</name>
     <name>Ben-10: Omniverse</name>
+    <name>Ben-10 Omniverse</name>
   </anime>
   <anime anidbid="t81841" tvdbid="81841" defaulttvdbseason="1">
     <name>Ben 10: Alien Force</name>
     <name>Ben-10: Alien Force</name>
+    <name>Ben-10 Alien Force</name>
   </anime>
   <anime anidbid="t78682" tvdbid="78682" defaulttvdbseason="1">
     <name>Blackstar</name>
@@ -1131,5 +1135,66 @@
   <anime anidbid="1799" tvdbid="253583" defaulttvdbseason="1">    
     <name>Zentrix</name>  
     <name>Jikuu Boukenki Zentrix</name>  
+  </anime>
+  <anime anidbid="2138" tvdbid="71863" defaulttvdbseason="0">
+    <name>Operation: Return the Treasure</name>
+    <name>Lupin 3 Operation: Return the Treasure</name>
+    <name>Lupin III Operation: Return the Treasure</name>
+  </anime>
+  <anime anidbid="9242" tvdbid="0" defaulttvdbseason="1">
+    <name>Vivid Red Operation</name>
+  </anime>
+  <anime anidbid="t72219" tvdbid="72219" defaulttvdbseason="1">
+    <name>Ulysees 31</name>
+    <name>Ulysses 31</name>
+  </anime>
+  <anime anidbid="t249174" tvdbid="249174" defaulttvdbseason="1">
+    <name>Voltron Force</name>
+  </anime>
+  <anime anidbid="2041" tvdbid="78646" defaulttvdbseason="1">
+    <name>Voltron</name>
+  </anime>
+  <anime anidbid="2041" tvdbid="78646" defaulttvdbseason="2">
+    <name>Voltron 2</name>
+    <name>Kikou Kantai Dairugger XV</name>
+    <name>Armored Fleet Dairugger XV</name>
+    <name>Vehicle Force Voltron</name>
+    <name>Vehicle Voltron</name>
+  </anime>
+  <anime anidbid="2064" tvdbid="107521" defaulttvdbseason="1">
+    <name>Tsuki wa Higashi ni Hi wa Nishi ni -Operation Sanctuary-</name>
+    <name>Tsuki wa Higashi ni Hi wa Nishi ni: Operation Sanctuary</name>
+    <name>Hani Hani: Operation Sanctuary</name>
+    <name>The Moon is East, The Sun is West: Operation Sanctuary</name>
+  </anime>
+  <anime anidbid="t248368" tvdbid="248368" defaulttvdbseason="1">    
+    <name>The Looney Tunes Show (2011)</name>  
+  </anime>
+  <anime anidbid="t75763" tvdbid="75763" defaulttvdbseason="1">    
+	<name>The Sub-Mariner</name>  
+  </anime>
+  <anime anidbid="t77780" tvdbid="77780" defaulttvdbseason="1">    
+	<name>G I Joe</name>  
+  </anime>
+  <anime anidbid="t208561" tvdbid="208561" defaulttvdbseason="1">    
+	<name>G I Joe Renegades</name>  
+  </anime>
+  <anime anidbid="t100491" tvdbid="100491" defaulttvdbseason="1">    
+	<name>G I Joe Resolute</name>  
+  </anime>
+  <anime anidbid="t71117" tvdbid="71117" defaulttvdbseason="1">    
+	<name>M.A.S.K.</name>  
+	<name>M A S K Mobile Armored Strike Kommand</name>  
+  </anime>
+  <anime anidbid="t74582" tvdbid="74582" defaulttvdbseason="1">    
+	<name>Teenage Mutant Ninja Turtles</name>  
+  </anime>
+  <anime anidbid="t245931" tvdbid="245931" defaulttvdbseason="1">    
+	<name>Thor & Loki: Blood Brothers</name>  
+	<name>Thor and Loki: Blood Brothers</name>  
+  </anime>
+  <anime anidbid="t79498" tvdbid="79498" defaulttvdbseason="1">    
+	<name>Fantastic Four World'S Greatest Heroes</name>  
+	<name>Fantastic Four (2006)</name>  
   </anime>
 </anime-list>
