@@ -1197,4 +1197,27 @@
 	<name>Fantastic Four World'S Greatest Heroes</name>  
 	<name>Fantastic Four (2006)</name>  
   </anime>
+  <anime anidbid="809" tvdbid="79227" defaulttvdbseason="1">    
+	<name>Wild Arms Twilight Venom</name>  
+	<name>Wild Arms</name>  
+  </anime>
+  <anime anidbid="5044" tvdbid="80147" defaulttvdbseason="1">    
+	<name>Blue Dragon</name>  
+  </anime>
+  <anime anidbid="5212" tvdbid="80380" defaulttvdbseason="1">    
+	<name>Mushiuta</name>  
+	<name>Mushi-Uta</name>  
+  </anime>
+  <anime anidbid="755" tvdbid="71584" defaulttvdbseason="1">    
+	<name>Kidou Shin Seiki Gundam X</name>  
+	<name>Gundam X</name>  
+	<name>Mobile Suit Gundam X - After War Gundam X</name>  
+	<name>Mobile Suit Gundam X</name>  
+	<name>After War Gundam X</name>  
+  </anime>
+  <anime anidbid="199" tvdbid="72444" defaulttvdbseason="1">
+    <name>Kareshi Kanojo no Jijou</name>
+    <name>Kare Kano</name>
+    <name>His And Her Circumstances</name>
+  </anime>
 </anime-list>
