@@ -241,4 +241,5 @@ def Total_Video_List(link):
 	else:
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
 		
+	searchRes = U2A_List(searchRes)
 	return searchRes

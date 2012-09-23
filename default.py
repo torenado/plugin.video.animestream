@@ -5,22 +5,13 @@ import cookielib,os,string,cookielib,StringIO
 import os,time,base64,logging
 from datetime import datetime
 try:
-    import json
+	import json
 except ImportError:
-    import simplejson as json
+	import simplejson as json
 
-sys.path.append("./sites")
 
 import utils
 import anidbQuick
-# import anilinkz
-# import anime44
-# import animecrazy
-# import animeflavor
-# import animefreak
-# import animefushigi
-# import animetip
-# import myanimelinks
 
 streamSiteList = ['anilinkz',
 				'anime44',
@@ -40,33 +31,13 @@ except:
 	import storageserverdummy as StorageServer
 cache = StorageServer.StorageServer("animestream", 24) # (Your plugin name, Cache time in hours)
 cache7 = StorageServer.StorageServer("animestream", 24*7) # (Your plugin name, Cache time in hours)
-
-#testing in shell
-#TEST 1
-# python -c "execfile('default2.py'); getEpisode_Listing_Pages('http://www.animefushigi.com/anime/fairy-tail')"
-# python -c "execfile('default2.py'); getEpisode_Listing_Pages('http://www.animetip.com/watch-anime/f/fairy-tail')"
-# python -c "execfile('default2.py'); getEpisode_Listing_Pages('http://www.animecrazy.net/fairy-tail-anime/')"
-# python -c "execfile('default2.py'); getEpisode_Listing_Pages('http://www.myanimelinks.com/category/fairy-tail/')"
-# python -c "execfile('default2.py'); getEpisode_Listing_Pages('http://www.animeflavor.com/index.php?q=node/4871')"
-
-#TEST 2
-# python -c "execfile('default2.py'); getEpisode_Page('http://www.animefushigi.com/watch/fairy-tail-episode-90')"
-# python -c "execfile('default2.py'); getEpisode_Page('http://www.animetip.com/watch-anime/f/fairy-tail/fairy-tail-episode-90.html')"
-# python -c "execfile('default2.py'); getEpisode_Page('http://www.animecrazy.net/fairy-tail-episode-90/')"
-# python -c "execfile('default2.py'); getEpisode_Page('http://www.myanimelinks.com/fairy-tail-episode-90/')"
-# python -c "execfile('default2.py'); getEpisode_Page('http://www.animeflavor.com/index.php?q=node/19518')"
-
-#TEST 3
-# python -c "execfile('default.py'); MOST_POPULAR()"
-
-#TEST 4
-# python -c "execfile('default.py'); SEARCH('Fairy Tail')"
 	
 #animestream
 # modded from --> <addon id="plugin.video.animecrazy" name="Anime Crazy" version="1.0.9" provider-name="AJ">
+
 dc=xbmcaddon.Addon(id='plugin.video.animestream')
 addonPath=os.getcwd()
-#artPath=addonPath+'/resources/art'
+
 mozilla_user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
 base_txt = 'animestream: '
 
@@ -78,34 +49,44 @@ passwd = dc.getSetting('pass')
 unid = dc.getSetting('uid')
 pubpass = dc.getSetting('pubpass')
 
+# Cartoon List URLs
+cartoonUrls = ['http://www.animeflavor.com/index.php?q=cartoons',
+				'http://anilinkz.com/cartoons-list']
+				
+# Most Poular/Recent List URLs
+mostUrls = ['http://www.animecrazy.net/most-popular/',
+			'http://www.animecrazy.net/most-recent/']
+
 THUMBNAIL_VIEW_IDS = {'skin.confluence': 504,
-                      'skin.aeon.nox': 551,
-                      'skin.confluence-vertical': 500,
-                      'skin.jx720': 52,
-                      'skin.pm3-hd': 53,
-                      'skin.rapier': 50,
-                      'skin.simplicity': 500,
-                      'skin.slik': 53,
-                      'skin.touched': 500,
-                      'skin.transparency': 53,
-                      'skin.xeebo': 55}
+					  'skin.aeon.nox': 551,
+					  'skin.confluence-vertical': 500,
+					  'skin.jx720': 52,
+					  'skin.pm3-hd': 53,
+					  'skin.rapier': 50,
+					  'skin.simplicity': 500,
+					  'skin.slik': 53,
+					  'skin.touched': 500,
+					  'skin.transparency': 53,
+					  'skin.xeebo': 55}
 
 def HOME():
 	# XBMC: Default screen
 	print base_txt + 'Create Home Screen'
-	addDir('Anime','',10,'')
-	addDir('Cartoons','',11,'')
-	addDir('Search','',7,'')
+	addDir('Anime','',10,'',numItems=3)
+	addDir('Cartoons','',11,'',numItems=3)
+	addDir('Search','',7,'',numItems=3)
 	
-	# searchRes = allAnimeList()
-	searchRes = cache.cacheFunction(allAnimeList)
+	# searchRes = cache.cacheFunction(allAnimeList)
 
 def ANIME():
 	# XBMC: Anime screen
 	print base_txt + 'Create Anime Screen'
 	
 	if (len(unid)>0 and len(pubpass)>0) :
-		addDir('aniDB Wishlist','',12,'')
+		addDir('aniDB: Wishlist','',12,'')
+	if (len(uname)>0 and len(passwd)>0) :
+		addDir('aniDB: MyList - In Progress','',14,'')
+		addDir('aniDB: MyList','',13,'')
 	addDir('Most Popular','',1,'')
 	addDir('Most Recent','',8,'')
 	addDir('A-Z List','',6,'')
@@ -125,13 +106,74 @@ def ANIDB_WISHLIST(url=''):
 	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
 	# xbmcplugin.setContent(int(sys.argv[1]), 'movies')
 	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
-	
-	watchWishlist_2col = []
-	for rowList in watchWishlist:
-		watchWishlist_2col.append(rowList[:2])
 		
 	getSeriesList(watchWishlist,url,'1')
+	
+def ANIDB_MYLIST(url=''):
+	# MODE 13 = ANIDB_MYLIST
+
+	print base_txt + 'Create Mylist Screen'
+	
+	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
+	# xbmcplugin.setContent(int(sys.argv[1]), 'movies')
+	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
+	
+	myList = []
+	mode = 1
+	dirLength = len(watchMylistSummary)	
+	print base_txt + '# of items: ' + str(dirLength)
+	
+	pb = xbmcgui.DialogProgress()
+	pb.create('Generating List', 'aniDB MyList')
+	
+	ii=0
+	for aidDB, name, eps in watchMylistSummary:
+		ii += 1
+		[searchText, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,'',str(aidDB))
+		if len(searchText)>0:
+			myList.append([aid,searchText,searchText.split()[0]])
 		
+		pb.update(int(ii/float(dirLength)*100), searchText)
+	
+	pb.close()
+	myList.sort(key=lambda name: name[0], reverse=True) 
+	myList.sort(key=lambda name: name[2]) 
+	
+	getSeriesList(myList,url,'1')
+	
+def ANIDB_MYLIST_WATCHING(url=''):
+	# MODE 14 = ANIDB_MYLIST_WATCHING	
+
+	print base_txt + 'Create In-Progress Screen'
+	
+	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
+	# xbmcplugin.setContent(int(sys.argv[1]), 'movies')
+	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
+	
+	myList = []
+	mode = 1
+	dirLength = len(watchMylistSummary)	
+	print base_txt + '# of items to check: ' + str(dirLength)
+	
+	
+	pb = xbmcgui.DialogProgress()
+	pb.create('Generating List', 'aniDB MyList')
+	
+	ii=0
+	for aidDB, name, eps in watchMylistSummary:
+		ii += 1
+		[searchText, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,'',str(aidDB))
+		if len(searchText) > 0 and int(eptot) > int(epwatch):
+			myList.append([aid,searchText,searchText.split()[0]])
+			pb.update(int(ii/float(dirLength)*100), searchText)		
+	
+	pb.close()
+	
+	myList.sort(key=lambda name: name[0], reverse=True) 
+	myList.sort(key=lambda name: name[2]) 
+	
+	getSeriesList(myList,url,'1')
+
 def ANIDB_SIMILAR(aid_org):
 	# MODE 121 = ANIDB_SIMILAR
 
@@ -180,8 +222,6 @@ def MOST_POPULAR(url=''):
 	
 	if url == '':
 		url = 'http://www.animecrazy.net/most-popular/'
-	# mostPop = animecrazy.Video_List_And_Pagination(url)
-	# mostPop = cache.cacheFunction(animecrazy.Video_List_And_Pagination, url)
 	mostPop = cache7.cacheFunction(animecrazy.Video_List_And_Pagination, url)
 	
 	returnMode = 1
@@ -194,12 +234,14 @@ def CARTOON_LIST(url=''):
 	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
 	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
 	mostPop = []
+	
 	if url == '':
-		url = 'http://www.animeflavor.com/index.php?q=cartoons'
-		mostPop = mostPop + cache7.cacheFunction(animeflavor.Video_List_And_Pagination, url)
-		url = 'http://anilinkz.com/cartoons-list'
-		mostPop = mostPop + cache7.cacheFunction(anilinkz.Video_List_And_Pagination, url)
-		
+		for url in cartoonUrls:
+			for streamList in streamSiteList:
+				if streamList in url:
+					siteBase = 'cache7.cacheFunction(' + streamList + '.Video_List_And_Pagination, url)'
+					mostPop = mostPop + eval(siteBase)
+			
 	# mostPop = animeflavor.Video_List_And_Pagination(url)
 	# mostPop = cache.cacheFunction(animeflavor.Video_List_And_Pagination, url)	
 	
@@ -261,14 +303,14 @@ def A_Z_LIST_VIDEOS(url):
 	getSeriesList(azList,url,returnMode)
 
 def TYPED_SEARCH():
-        keyb = xbmc.Keyboard('', 'Enter search text')
-        keyb.doModal()
-        searchText = ''
-        if (keyb.isConfirmed()):
-                searchText = urllib.quote_plus(keyb.getText())
+		keyb = xbmc.Keyboard('', 'Enter search text')
+		keyb.doModal()
+		searchText = ''
+		if (keyb.isConfirmed()):
+				searchText = urllib.quote_plus(keyb.getText())
 		
 		searchText = searchText.title()
-        SEARCH(searchText)
+		SEARCH(searchText)
 
 def SEARCH(searchText,aid='0'):
 	# Searches the various websites for the searched content
@@ -328,6 +370,9 @@ def cleanSearchText(searchText,skipEnc=False):
 		
 	searchText = searchText.replace('-- REFRESH -- ','')
 	searchText = searchText.replace('(Movie/OVA)','').title().strip()
+	searchText = searchText.replace('(Tv)','').title().strip()
+	searchText = searchText.replace(' &Amp; ',' and ').title().strip()
+	searchText = searchText.replace('((','(').replace('))',')')
 	searchText = searchText.replace('(TV)','').replace('(OVA)','').replace('(Movie)','').replace('(Movie/OVA)','').title().strip()
 	searchText = searchText.replace(':',' ').replace(' - ',' ').replace('_',' ').replace(' & ',' and ').strip()
 	searchText = searchText.replace('~',' ').replace('?',' ').replace('!',' ').replace('.',' ').replace('  ',' ').replace('  ',' ').strip()
@@ -418,13 +463,13 @@ def search_aid_tvid(searchText, aidGet=False, tvdbGet=True):
 		tvdbid = str(tvdb_detail_search[0][1])
 		name = str(tvdb_detail_search[0][0])
 		print ' ---- '
-		print '  <anime anidbid="' + aid + '" tvdbid="' + tvdbid + '" defaulttvdbseason="1">    <name>' + name + '</name>  </anime>'
+		print '  <anime anidbid="' + aid + '" tvdbid="' + tvdbid + '" defaulttvdbseason="1">	<name>' + name + '</name>  </anime>'
 		print ' ---- '
 	elif len(tvdb_detail_search)==1:
 		tvdbid = str(tvdb_detail_search[0][1])
 		name = str(tvdb_detail_search[0][0])
 		print ' ---- '
-		print '  <anime anidbid="t' + tvdbid + '" tvdbid="' + tvdbid + '" defaulttvdbseason="1">    <name>' + name + '</name>  </anime>'
+		print '  <anime anidbid="t' + tvdbid + '" tvdbid="' + tvdbid + '" defaulttvdbseason="1">	<name>' + name + '</name>  </anime>'
 		print ' ---- '
 		
 	elif len(tvdb_detail_search)>1:
@@ -456,7 +501,7 @@ def get_tvdb_id(aid):
 
 def get_ani_aid_list(linkAID):
 
-	# linkAID = linkAID.replace('> <','><').replace('>  <','><').replace('>   <','><').replace('>    <','><').replace('>     <','><')
+	# linkAID = linkAID.replace('> <','><').replace('>  <','><').replace('>   <','><').replace('>	<','><').replace('>	 <','><')
 	linkAID = linkAID.replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('> <','><')
 	match=re.compile('<anime (.+?)</anime>').findall(linkAID)
 	aniInfo = []
@@ -540,6 +585,7 @@ def get_all_data(searchText='',aid='0',tvdbSer='0'):
 	synAniList = []
 	eptot = ''
 	season = '1'
+	searchText1 = ''
 	
 	
 	if searchText.endswith(', The'):
@@ -595,6 +641,8 @@ def get_all_data(searchText='',aid='0',tvdbSer='0'):
 		if len(tvdb_detail[8])>0:
 			genre = " / ".join(tvdb_detail[8])
 	
+		if searchText=='':
+			searchText1 = tvdb_detail[9]
 	
 	if (int(aidDB)>0 and len(uname)>0 and len(passwd)>0) :
 		for aidWish, nameWish, epsWish in watchListTotal:
@@ -629,6 +677,10 @@ def get_all_data(searchText='',aid='0',tvdbSer='0'):
 			
 		if len(ani_detail[9])>0:
 			genre = " / ".join(ani_detail[9])
+			
+		if searchText=='':
+			searchText1 = ani_detail[10]
+		
 		
 	if epwatch==eptot:
 		playcount = 1
@@ -637,6 +689,9 @@ def get_all_data(searchText='',aid='0',tvdbSer='0'):
 		
 	if fanart=='':
 		fanart=iconimage
+	
+	if searchText=='':
+		searchText = searchText1
 		
 	allData = [searchText, aid, tvdbSer, description, fanart, iconimage, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount]
 	
@@ -650,10 +705,14 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 	nameTest = ''
 	mostPop2 = []
 	for iconimage, name, urls in mostPop:
-		searchText = cleanSearchText(name)		
-		if not nameTest == searchText:
+		if not name=='':
+			searchText = cleanSearchText(name)		
+			if not nameTest == searchText:
+				mostPop2.append([str(iconimage), name, urls])
+			nameTest = cleanSearchText(name)
+		else:
 			mostPop2.append([str(iconimage), name, urls])
-		nameTest = cleanSearchText(name)
+			
 	
 	dirLength = len(mostPop2)
 	print base_txt + url
@@ -674,6 +733,9 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_all_data('',aidDB)
 			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache.cacheFunction(get_all_data,'',aidDB)
 			[searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,'',aidDB)
+			if name=='' or name.isspace():
+				name = searchText2
+				searchText = searchText2
 		else:
 			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_all_data(searchText)
 			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache.cacheFunction(get_all_data,searchText)
@@ -705,7 +767,10 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 			
 			if str(aid)=='0' and int(tvdbSer)>0:
 				aid = 't' + str(tvdbSer)
-				
+			
+			if adult=='Yes':
+				searchText = '[I]' + searchText + '[/I]'
+			
 			addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre=genre,totep=eptot, watchep=epwatch, fanart=fanart, plycnt=playcount)
 		else:
 			if str(aid)=='0' and tvdbSer==0:
@@ -715,6 +780,10 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 				
 			if str(aid)=='0' and int(tvdbSer)>0:
 				aid = 't' + str(tvdbSer)
+			
+			if adult=='Yes':
+				searchText = '[I]' + searchText + '[/I]'
+				
 			addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre=genre,fanart=fanart)
 		
 		
@@ -778,16 +847,26 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 	epList = []
 	
 	
+	dirLength = len(urls)	
+	print base_txt + '# of items: ' + str(dirLength)
+	
+	pb = xbmcgui.DialogProgress()
+	pb.create('Generating List', 'Episodes')
+	
+	ii=0	
 	for url in urls:
+		ii += 1
 		for streamList in streamSiteList:
 			siteBase = streamList + '.base_url_name'
 			site_base_url_name = eval(siteBase)
 			if (site_base_url_name in url):
 				# siteBase = streamList + '.Episode_Listing_Pages(url)'
 				siteBase = 'cache.cacheFunction(' + streamList + '.Episode_Listing_Pages, url)'
-				epList = eval(siteBase)				
+				epList = eval(siteBase)		
+			pb.update(int(ii/float(dirLength)*100), 'Grabbing Episodes from: ' + streamList)		
 		epListAll = epListAll + epList
 	
+	pb.close()
 		
 	epListAllClean = []
 	for episodePageLink, episodePageName, episodeMediaThumb, epNum, epSeason in epListAll:		
@@ -806,7 +885,7 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 	print base_txt + '# of items: ' + str(dirLength)
 	
 	if int(aidDB)>0 and len(uname)>0 and len(passwd)>0:
-		print base_txt + 'WATCHED ' + epsWish[0] + ' of ' + epsWish[1]
+		print base_txt + 'WATCHED ' + str(epsWish[0]) + ' of ' + str(epsWish[1])
 	else:		
 		print base_txt 
 		
@@ -920,8 +999,16 @@ def get_epMediaAll_2(groupUrl):
 	epMedia = []
 	
 	
+	dirLength = len(urls)	
+	print base_txt + '# of items: ' + str(dirLength)
+	
+	pb = xbmcgui.DialogProgress()
+	pb.create('Generating List', 'Streaming Media')
+	
+	ii=0	
 	for url in urls:
 		print base_txt + url
+		ii += 1
 		for streamList in streamSiteList:
 			siteBase = streamList + '.base_url_name'
 			site_base_url_name = eval(siteBase)
@@ -929,8 +1016,11 @@ def get_epMediaAll_2(groupUrl):
 				# siteBase = streamList + '.Episode_Page(url)'
 				siteBase = 'cache.cacheFunction(' + streamList + '.Episode_Page, url)'
 				epMedia = eval(siteBase)
+			pb.update(int(ii/float(dirLength)*100), 'Streaming Media from: ' + streamList)
 		epMediaAll = epMediaAll + epMedia
-
+		
+	
+	pb.close()
 		
 	epMediaAll_2=[]
 	siteNnameTest=''
@@ -959,6 +1049,7 @@ def getEpisode_PageMerged(groupUrl):
 	iconimage = ''
 	mediaValid = []
 	mediaInValid = []
+	
 	for siteNname, url, mirror, part, totParts in epMediaAll_2:
 		name = ''
 		# media_url = urlresolver.HostedMediaFile(url).resolve()
@@ -1169,9 +1260,8 @@ def allAnimeList(url=''):
 						searchRes = searchRes + eval(siteBase)
 					except:
 						print base_txt + 'FAILED - ' + aniUrl + ' failed to load allAnimeList()'
+					searchRes = utils.U2A_List(searchRes)
 	
-	
-	searchRes = utils.U2A_List(searchRes)
 	try:
 		searchRes.sort(key=lambda name: name[1]) 
 	except:
@@ -1240,9 +1330,8 @@ def searchCollection(searchText,aid='0'):
 		# [searchText1, aid1, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList1, epList, season, adult, epwatch, eptot, playcount] = cache.cacheFunction(get_all_data,'',aidDB)
 		[searchText1, aid1, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList1, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,'',aidDB)
 		
-			
+		searchAlts = []
 		if (int(aidDB)>0 and len(synAniList1)>0):
-			print base_txt + 'Searching ' + str(len(synAniList1)) + ' alternate names + variations'
 			for aidAlt, name in synAniList1:
 				subLoc = name.find('(')
 				if subLoc > 0:
@@ -1250,48 +1339,38 @@ def searchCollection(searchText,aid='0'):
 				name = urllib.unquote(name).title()
 				print base_txt + 'Searching for ... ' + name
 				searchRes = searchRes + cache.cacheFunction(allSearchList,name)
+				searchAlts.append(name)
 				if name.find(' ') > 0:
-					print base_txt + 'Searching for ... ' + name.replace(' ','')
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace(' ',''))
+					searchAlts.append(name.replace(' ',''))
 				if name.find(':') > 0:
-					print base_txt + 'Searching for ... ' + name.replace(':',' ')
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace(':',' '))
-					print base_txt + 'Searching for ... ' + name.replace(':',' ').replace('  ',' ')
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace(':',' ').replace('  ',' '))
-					print base_txt + 'Searching for ... ' + name.replace(':','')
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace(':',''))
-					print base_txt + 'Searching for ... ' + name.replace(':','').replace('!','')
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace(':','').replace('!',''))
+					searchAlts.append(name.replace(':',' '))
+					searchAlts.append(name.replace(':',' ').replace('  ',' '))
+					searchAlts.append(name.replace(':',''))
+					searchAlts.append(name.replace(':','').replace('!',''))
 				if name.find('\'') > 0 or name.find('`') > 0:
-					print base_txt + 'Searching for ... ' + name.replace('\'','').replace('`','').replace(':',' ').title()
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('\'','').replace('`','').replace(':',' ').title())
-					print base_txt + 'Searching for ... ' + name.replace('\'','').replace('`','').replace(':',' ').replace('  ',' ').title()
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('\'','').replace('`','').replace(':',' ').replace('  ',' ').title())
-					print base_txt + 'Searching for ... ' + name.replace('\'','').replace('`','').replace(':','').title()
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('\'','').replace('`','').replace(':','').title())
+					searchAlts.append(name.replace('\'','').replace('`','').replace(':',' ').title())
+					searchAlts.append(name.replace('\'','').replace('`','').replace(':',' ').replace('  ',' ').title())
+					searchAlts.append(name.replace('\'','').replace('`','').replace(':','').title())
 				if name.find('?') > 0 or name.find('!') > 0:
-					print base_txt + 'Searching for ... ' + name.replace('?','').replace('!','')
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('?','').replace('!',''))
+					searchAlts.append(name.replace('?','').replace('!',''))
 				if name.find('-') > 0:
-					print base_txt + 'Searching for ... ' + name.replace('-',' ')
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('-',' '))
-					print base_txt + 'Searching for ... ' + name.replace('-',' ').replace('  ',' ')
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('-',' ').replace('  ',' '))
-					print base_txt + 'Searching for ... ' + name.replace('-','')
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('-',''))
+					searchAlts.append(name.replace('-',' '))
+					searchAlts.append(name.replace('-',' ').replace('  ',' '))
+					searchAlts.append(name.replace('-',''))
 				if name.find('~') > 0:
-					print base_txt + 'Searching for ... ' + name.replace('~','')
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('~',''))
+					searchAlts.append(name.replace('~',''))
 				if name.startswith('The'):
-					print base_txt + 'Searching for ... ' + name.replace('The ','')
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('The ',''))
+					searchAlts.append(name.replace('The ',''))
 				if name.find('.') > 0 or name.find(',') > 0:
-					print base_txt + 'Searching for ... ' + name.replace('.','').replace(',','')
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('.','').replace(',',''))
-					print base_txt + 'Searching for ... ' + name.replace(',','')
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace(',',''))
-					print base_txt + 'Searching for ... ' + name.replace('.','')
-					searchRes = searchRes + cache.cacheFunction(allSearchList,name.replace('.',''))
+					searchAlts.append(name.replace('.','').replace(',',''))
+					searchAlts.append(name.replace(',',''))
+					searchAlts.append(name.replace('.',''))
+		
+			searchAlts = f2(searchAlts)
+			print base_txt + 'Searching ' + str(len(searchAlts)) + ' alternate names + variations'
+			for nameSearch in searchAlts:
+				print base_txt + 'Searching for ... ' + nameSearch
+				searchRes = searchRes + cache.cacheFunction(allSearchList,nameSearch)
 		
 	searchRes.append(['','zzzzzzEND'])
 	
@@ -1395,7 +1474,11 @@ def searchCollection(searchText,aid='0'):
 	searchCollect = []
 	dirLength = len(searchRes)
 	print base_txt + '# of items: ' + str(dirLength)
+	pb = xbmcgui.DialogProgress()
+	pb.create('Generating List', '# of items: ' + str(dirLength))
+	ii=0
 	for url, name in searchRes:
+		ii+=1
 		name = name.title().strip()
 		if not nameTest.replace(' ','').title() == name.replace(' ','').title():
 			if not nameTest == '':
@@ -1425,7 +1508,10 @@ def searchCollection(searchText,aid='0'):
 		
 		if nameTest == name:
 			groupUrl = groupUrl +' <--> '+ url
-	
+		
+		pb.update(int(ii/float(dirLength)*100), str(ii) + ' of ' + str(dirLength) + ': ' + nameTest)
+	pb.close()
+		
 	searchCollect_2 = [] + searchCollect
 	try:
 		searchCollect_2.sort(key=lambda name: name[0], reverse=True) 
@@ -1558,7 +1644,7 @@ def f2(seq):
 		# if e not in checked:
 			# checked.append(e)
 	return utils.f2(seq)	
-     
+	 
 def grabUrlSource(url):
 	link = cache.cacheFunction(utils.grabUrlSource,url)
 	# link = cache.cacheFunction(grabUrlSource_Src,url)
@@ -1585,22 +1671,22 @@ def grabUrlSource_Src(url):
 		
 		
 def get_params():
-        param=[]
-        paramstring=sys.argv[2]
-        if len(paramstring)>=2:
-                params=sys.argv[2]
-                cleanedparams=params.replace('?','')
-                if (params[len(params)-1]=='/'):
-                        params=params[0:len(params)-2]
-                pairsofparams=cleanedparams.split('&')
-                param={}
-                for i in range(len(pairsofparams)):
-                        splitparams={}
-                        splitparams=pairsofparams[i].split('=')
-                        if (len(splitparams))==2:
-                                param[splitparams[0]]=splitparams[1]
-                                
-        return param    
+	param=[]
+	paramstring=sys.argv[2]
+	if len(paramstring)>=2:
+		params=sys.argv[2]
+		cleanedparams=params.replace('?','')
+		if (params[len(params)-1]=='/'):
+			params=params[0:len(params)-2]
+		pairsofparams=cleanedparams.split('&')
+		param={}
+		for i in range(len(pairsofparams)):
+			splitparams={}
+			splitparams=pairsofparams[i].split('=')
+			if (len(splitparams))==2:
+				param[splitparams[0]]=splitparams[1]
+							
+	return param	
 
 params=get_params()
 url=None
@@ -1609,87 +1695,125 @@ mode=None
 aid=None
 
 watchListTotal = []
+
+# pre-cache aniDB MyWishlist
 if (len(unid)>0 and len(pubpass)>0) :
-	# watchWishlist = get_aniDB_list()
 	watchWishlist = cache.cacheFunction(get_aniDB_list)
 	watchListTotal = f2(watchWishlist)
 
+# pre-cache aniDB MyList
 if (len(uname)>0 and len(passwd)>0) :
-	# watchMylistSummary = get_aniDB_mysummarylist()
 	watchMylistSummary = cache.cacheFunction(get_aniDB_mysummarylist)
 	watchListTotal = f2(watchListTotal + watchMylistSummary)
+
+if datetime.today().hour==3:
 	
-cache.cacheFunction(allAnimeList)
+	# pre-cache all activated streaming website series lists 
+	cache.cacheFunction(allAnimeList)
+	
+	# pre-cache all the aniDB MyWishlist and MyList series data
+	dirLength = len(watchListTotal)	
+	print base_txt + '# of items: ' + str(dirLength)
+	pb = xbmcgui.DialogProgress()
+	pb.create('Generating List', 'Total aniDB List')
+	ii=0
+	for aidDB, name1, ep1 in watchListTotal:
+		ii+=1
+		[searchText, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,'',str(aidDB))
+		pb.update(int(ii/float(dirLength)*100), searchText)
+	pb.close()
+	
+	# pre-cache cartoon list
+	for url in cartoonUrls:
+		for streamList in streamSiteList:
+			if streamList in url:
+				siteBase = 'cache7.cacheFunction(' + streamList + '.Video_List_And_Pagination, url)'
+				eval(siteBase)
+				
+	# pre-cache most popular & most recent lists
+	for url in mostUrls:
+		cache7.cacheFunction(animecrazy.Video_List_And_Pagination, url)
+	
+	url = None
+	
 
+try:
+	url=urllib.unquote_plus(params["url"])
+except:
+	pass
+try:
+	name=urllib.unquote_plus(params["name"])
+except:
+	pass
+try:
+	mode=int(params["mode"])
+except:
+	pass
+try:
+	aid=str(params["aid"])
+except:
+	pass
 
-try:
-        url=urllib.unquote_plus(params["url"])
-except:
-        pass
-try:
-        name=urllib.unquote_plus(params["name"])
-except:
-        pass
-try:
-        mode=int(params["mode"])
-except:
-        pass
-try:
-        aid=str(params["aid"])
-except:
-        pass
-
-                
+				
 
 if mode==None:
-        HOME()
+	HOME()
 
 elif mode==10:
-        ANIME() 
+	ANIME() 
 
 elif mode==11:
-        CARTOON() 
+	CARTOON() 
 
 elif mode==1:
-        MOST_POPULAR(url) 
-        
+	MOST_POPULAR(url) 
+		
 elif mode==2:
-        SEARCH(name,aid) 
-        
+	SEARCH(name,aid) 
+		
 elif mode==3:
-        getEpisode_Listing_Pages(url,aid)
-        
+	getEpisode_Listing_Pages(url,aid)
+		
 elif mode==4:
-		getEpisode_PageMerged(url)
+	getEpisode_PageMerged(url)
+
 elif mode==41:
-        getEpisode_Page_Fail(url)
+	getEpisode_Page_Fail(url)
+
 elif mode==42:
-        PLAYLIST_VIDEOLINKS(url,name)
+	PLAYLIST_VIDEOLINKS(url,name)
+
 elif mode==43:
-        getEpisode_Page(url)
-        
+	getEpisode_Page(url)
+		
 elif mode==5:
-        LOAD_AND_PLAY_VIDEO(url,name)
+	LOAD_AND_PLAY_VIDEO(url,name)
 
 elif mode==6:
-        A_Z_LIST()
+	A_Z_LIST()
 
 elif mode==61:
-        A_Z_LIST_VIDEOS(url)
-        
+	A_Z_LIST_VIDEOS(url)
+		
 elif mode==7:
-        TYPED_SEARCH() 
+	TYPED_SEARCH() 
 
 elif mode==8:
-        MOST_RECENT(url)
+	MOST_RECENT(url)
 
 elif mode==9:
-        CARTOON_LIST()
+	CARTOON_LIST()
 
 elif mode==12:
-        ANIDB_WISHLIST(url)
+	ANIDB_WISHLIST(url)
 
 elif mode==121:
-        ANIDB_SIMILAR(aid)
+	ANIDB_SIMILAR(aid)
+
+elif mode==13:
+	ANIDB_MYLIST(url)
+		
+elif mode==14:
+	ANIDB_MYLIST_WATCHING(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

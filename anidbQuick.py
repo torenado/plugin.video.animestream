@@ -95,6 +95,7 @@ def AID_Resolution(linkAID):
 	synAniList = []
 	match=re.compile('<titles>(.+?)</titles>').findall(linkAID)
 	if(len(match)>=1):
+		seriesName=re.compile('<title (.+?)type="main">(.+?)<').findall(match[0])[0][1]
 		simAni=re.compile('<title xml:lang="x-jat"(.+?)>(.+?)<').findall(match[0])
 		simAni=simAni + re.compile('<title xml:lang="en"(.+?)>(.+?)<').findall(match[0])
 		for garbage, name in simAni:
@@ -155,7 +156,7 @@ def AID_Resolution(linkAID):
 		# print category
 		
 	epList.sort(key=lambda name: name[0], reverse=True)
-	return [aid, iconimage, description, startdate, episodecount, adult, simAniList, synAniList, epList, category]
+	return [aid, iconimage, description, startdate, episodecount, adult, simAniList, synAniList, epList, category, seriesName]
 
 def AID_Search(linkAID='',searchText=''):
 	base_txt = 'anidb.net: '	
@@ -366,7 +367,7 @@ def MyListSummaryAPI(link):
 			else:
 				eps_watched = 0
 				
-			anidbMylistsummary.append([aid,'',(eps_watched,'TBC')])
+			anidbMylistsummary.append([int(aid),'',(eps_watched,'TBC')])
 	
 	if(len(anidbMylistsummary) < 1):
 		print base_txt +  'Nothing was parsed from MyListSummaryAPI: '
