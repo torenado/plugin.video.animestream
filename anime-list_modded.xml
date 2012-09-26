@@ -1120,10 +1120,12 @@
   <anime anidbid="5273" tvdbid="81184" defaulttvdbseason="1">
     <name>Rosario to Vampire</name>
     <name>Rosario + Vampire</name>
+    <name>Rosario Vampire</name>
   </anime>
   <anime anidbid="5873" tvdbid="81184" defaulttvdbseason="2">
     <name>Rosario to Vampire Capu2</name>
     <name>Rosario to Vampire Capu 2</name>
+    <name>Rosario Vampire Capu2</name>
     <name>Rosario + Vampire Capu2</name>
     <name>Rosario + Vampire Capu 2</name>
     <name>Rosario + Vampire 2</name>
@@ -1219,5 +1221,10 @@
     <name>Kareshi Kanojo no Jijou</name>
     <name>Kare Kano</name>
     <name>His And Her Circumstances</name>
+  </anime>
+  <anime anidbid="7490" tvdbid="87881" defaulttvdbseason="2">
+    <name>Sengoku Basara Ni</name>
+    <name>Sengoku Basara 2</name>
+    <name>Sengoku Basara Two</name>
   </anime>
 </anime-list>
