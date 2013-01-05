@@ -49,6 +49,37 @@ def Wishlist(link):
 	if(len(anidbWishlist) < 1):
 		print base_txt +  'Nothing was parsed from Wishlist: '
 	return anidbWishlist
+	
+def MyListSummary(link):
+	# Grabs and parses the mylist from anidb.  User must set username and password in settings
+	# ***WARNING: both this addon and anidb sends this password in the clear (plain text)
+	base_txt = 'anidb.net: '
+	print base_txt +  'Parsing anidb wishlist info'
+	anidbMylistsummary = []
+	link = link.replace('http://static.anidb.net/pics/anidb_pri_low.gif','')
+	match=re.compile('<tr (.+?)</tr>').findall(link)
+	if(len(match) >= 1):
+		for aniLine in match:
+			aid=re.compile('id="a(.+?)"').findall(aniLine)
+			if(len(aid) >= 1):
+				aid=re.compile('id="a(.+?)"').findall(aniLine)[0]
+				name=re.compile('<label><a href=(.+?)>(.+?)</a></label>').findall(aniLine)[0][1]
+				eps=re.compile('<td class="stats eps">(.+?)/(.+?)</td>').findall(aniLine)[0]
+				
+				if 'TBC' in eps[1]:
+					gg = eps[0]
+					eps=[]
+					eps=(gg,'TBC')
+				elif '+' in eps[1]:
+					gg = eps[0].split('+')[0]
+					hh = eps[1].split('+')[0]
+					eps=[]
+					eps=(gg,'TBC')
+				anidbMylistsummary.append([int(aid),name,eps])
+	
+	if(len(anidbMylistsummary) < 1):
+		print base_txt +  'Nothing was parsed from MyListSummary: '
+	return anidbMylistsummary
 
 def AID_Resolution(linkAID):
 	base_txt = 'anidb.net: '	
@@ -94,6 +125,7 @@ def AID_Resolution(linkAID):
 		
 	synAniList = []
 	match=re.compile('<titles>(.+?)</titles>').findall(linkAID)
+	seriesName = ''
 	if(len(match)>=1):
 		seriesName=re.compile('<title (.+?)type="main">(.+?)<').findall(match[0])[0][1]
 		simAni=re.compile('<title xml:lang="x-jat"(.+?)>(.+?)<').findall(match[0])

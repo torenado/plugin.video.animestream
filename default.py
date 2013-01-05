@@ -49,6 +49,9 @@ passwd = dc.getSetting('pass')
 unid = dc.getSetting('uid')
 pubpass = dc.getSetting('pubpass')
 
+#aniDB Access
+# aniDB_access = True
+
 # Cartoon List URLs
 cartoonUrls = ['http://www.animeflavor.com/index.php?q=cartoons',
 				'http://anilinkz.com/cartoons-list']
@@ -75,8 +78,6 @@ def HOME():
 	addDir('Anime','',10,'',numItems=3)
 	addDir('Cartoons','',11,'',numItems=3)
 	addDir('Search','',7,'',numItems=3)
-	
-	# searchRes = cache.cacheFunction(allAnimeList)
 
 def ANIME():
 	# XBMC: Anime screen
@@ -163,6 +164,9 @@ def ANIDB_MYLIST_WATCHING(url=''):
 	for aidDB, name, eps in watchMylistSummary:
 		ii += 1
 		[searchText, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,'',str(aidDB))
+		if int(eps[0]) > int(epwatch) :
+			epwatch = eps[0]
+					
 		if len(searchText) > 0 and int(eptot) > int(epwatch):
 			myList.append([aid,searchText,searchText.split()[0]])
 			pb.update(int(ii/float(dirLength)*100), searchText)		
@@ -352,9 +356,6 @@ def SEARCH(searchText,aid='0'):
 		if (int(aid)>0):
 			addDir('-- SIMILAR TITLES --','',121,'',aid=aid)
 	
-	# if not cacheRefresh:
-		# addDir('-- REFRESH -- ' + searchTextOrg,'',2,'',aid='REFRESH')
-
 def cleanSearchText(searchText,skipEnc=False):
 	# cleans up the text for easier searching
 	# print base_txt + 'Clean up the search term: ' +searchText
@@ -562,10 +563,14 @@ def get_aniDB_mysummarylist(url=''):
 	
 	if url == '':
 		url = 'http://api.anidb.net:9001/httpapi?client=xbmcscrap&clientver=1&protover=1&request=mylistsummary&user=%(un)s&pass=%(pass)s' % {"un": uname, "pass": passwd}
-	
-	link = grabUrlSource(url)
+		link = grabUrlSource(url)
 		
-	watchMylistSummary = anidbQuick.MyListSummaryAPI(link)	
+	if '<error>Banned</error>' in link:
+		url = 'http://anidb.net/perl-bin/animedb.pl?show=mylist&uid=%(un)s&pass=%(pass)s' % {"un": unid, "pass": pubpass}
+		watchMylistSummary = anidbQuick.MyListSummary(link)	
+	else:
+		watchMylistSummary = anidbQuick.MyListSummaryAPI(link)	
+	
 	watchMylistSummary.sort(key=lambda name: name[1]) 
 	
 	return watchMylistSummary
@@ -652,6 +657,7 @@ def get_all_data(searchText='',aid='0',tvdbSer='0'):
 				
 		linkAID = get_ani_detail(aidDB)
 		# linkAID = cache.cacheFunction(get_ani_detail,aidDB)
+		
 		
 		ani_detail = anidbQuick.AID_Resolution(linkAID)
 		# ani_detail = cache.cacheFunction(anidbQuick.AID_Resolution,linkAID)
@@ -1092,6 +1098,7 @@ def getEpisode_PageMerged(groupUrl):
 		siteNnameTest = mediaValid[0][3]
 		mirrorTest = mediaValid[0][4]
 		epPlaylist = '' 
+		addPlaylistInfo = []
 		for name, media_url, iconimage, siteNname, mirror in mediaValid:
 			if siteNnameTest==siteNname and mirrorTest==mirror:
 				if not epPlaylist=='':
@@ -1108,13 +1115,27 @@ def getEpisode_PageMerged(groupUrl):
 				nameTest = nameTest1 + ' -- Mirror ' + str(mirrorTest) + ' ' + nameTest + ' [' + str(len(epPlaylist.split(' <--> '))) +']'
 				print base_txt + nameTest
 				print base_txt + epPlaylist
-				addPlaylist(nameTest,epPlaylist,42,'')
+				# addPlaylist(nameTest,epPlaylist,42,'')
+				if 'auengine' in nameTest:
+					mediaOrder = 10
+				elif 'mp4upload' in nameTest:
+					mediaOrder = 20
+				elif 'videoweed' in nameTest:
+					mediaOrder = 30
+				else:
+					mediaOrder = 100
+				addPlaylistInfo.append([nameTest,epPlaylist,42,'',mediaOrder])
 				nameTest = name
 				siteNnameTest = siteNname 
 				mirrorTest = mirror
 				epPlaylist = media_url
 	
-	
+		
+		addPlaylistInfo.sort(key=lambda name: name[4]) 
+		# print addPlaylistInfo
+		
+		for name, url, mode, iconimage ,mediaOrder in addPlaylistInfo:
+			addPlaylist(name,url,mode,iconimage)
 	
 	if(len(mediaValid) > 0):
 		name = 'View List of -- INDIVIDUAL VIDEOS'
@@ -1244,8 +1265,14 @@ def allAnimeList(url=''):
 		
 	
 	searchRes = []
+	dirLength = len(searchSiteList)
+	print base_txt + '# of items: ' + str(dirLength)
+	pb = xbmcgui.DialogProgress()
+	pb.create('Generating List', '# of items: ' + str(dirLength))
+	ii=0
 	for streamList, url in searchSiteList:
-		xbmc.executebuiltin('XBMC.Notification(Retrieving Info!,'+ url +',5000)')
+		ii+=1
+		# xbmc.executebuiltin('XBMC.Notification(Retrieving Info!,'+ url +',5000)')
 		link = ''
 		siteBase = streamList + '.base_url_name'
 		site_base_url = eval(siteBase)
@@ -1260,8 +1287,9 @@ def allAnimeList(url=''):
 						searchRes = searchRes + eval(siteBase)
 					except:
 						print base_txt + 'FAILED - ' + aniUrl + ' failed to load allAnimeList()'
-					searchRes = utils.U2A_List(searchRes)
-	
+					searchRes = utils.U2A_List(searchRes)	
+		pb.update(int(ii/float(dirLength)*100), str(ii) + ' of ' + str(dirLength) + ': ' + url)
+	pb.close()
 	try:
 		searchRes.sort(key=lambda name: name[1]) 
 	except:
@@ -1624,7 +1652,7 @@ def addLink(name,url,iconimage):
 	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
 	return ok
 
-def addPlaylist(name,url,mode,iconimage):
+def addPlaylist(name,url,mode,iconimage,descr=''):
 	# XBMC: create playlist link
 	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&aid="+str(aid)
 	ok=True
@@ -1632,7 +1660,7 @@ def addPlaylist(name,url,mode,iconimage):
 	name = urllib.unquote(name)
 	
 	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-	liz.setInfo( type="Video", infoLabels={ "Title":name} )
+	liz.setInfo( type="Video", infoLabels={ "Title":name, "Plot":descr} )
 	liz.setProperty('Fanart_Image',iconimage)
 	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
 	return ok
@@ -1668,8 +1696,7 @@ def grabUrlSource_Src(url):
 	except urllib2.URLError, e:
 		base_txt + '- got http error %d fetching %s' % (e.code, url)
 		return False
-		
-		
+				
 def get_params():
 	param=[]
 	paramstring=sys.argv[2]
@@ -1694,6 +1721,7 @@ name=None
 mode=None
 aid=None
 
+
 watchListTotal = []
 
 # pre-cache aniDB MyWishlist
@@ -1706,12 +1734,11 @@ if (len(uname)>0 and len(passwd)>0) :
 	watchMylistSummary = cache.cacheFunction(get_aniDB_mysummarylist)
 	watchListTotal = f2(watchListTotal + watchMylistSummary)
 
-if datetime.today().hour==3:
-	
-	# pre-cache all activated streaming website series lists 
+if (datetime.today().hour > 2 and datetime.today().hour < 6):	
+	print base_txt + 'pre-cache all activated streaming website series lists'
 	cache.cacheFunction(allAnimeList)
 	
-	# pre-cache all the aniDB MyWishlist and MyList series data
+	print base_txt + 'pre-cache all the aniDB MyWishlist and MyList series data'
 	dirLength = len(watchListTotal)	
 	print base_txt + '# of items: ' + str(dirLength)
 	pb = xbmcgui.DialogProgress()
@@ -1723,19 +1750,37 @@ if datetime.today().hour==3:
 		pb.update(int(ii/float(dirLength)*100), searchText)
 	pb.close()
 	
-	# pre-cache cartoon list
+	mostPop = []
+	print base_txt + 'pre-cache cartoon list'
 	for url in cartoonUrls:
 		for streamList in streamSiteList:
 			if streamList in url:
 				siteBase = 'cache7.cacheFunction(' + streamList + '.Video_List_And_Pagination, url)'
-				eval(siteBase)
+				mostPop = mostPop + eval(siteBase)
+		
 				
-	# pre-cache most popular & most recent lists
+	print base_txt + 'pre-cache most popular & most recent lists'
 	for url in mostUrls:
-		cache7.cacheFunction(animecrazy.Video_List_And_Pagination, url)
+		mostPop = mostPop + cache7.cacheFunction(animecrazy.Video_List_And_Pagination, url)
 	
+	
+	print base_txt + 'pre-cache allData based on series title'
+	mostPop2 = []
+	for iconimage, name, urls in mostPop:
+		if name.startswith('The '):
+			name = name[4:] + ', The'
+		mostPop2.append([str(iconimage), name, urls])
+	
+	mostPop2.sort(key=lambda name: name[1])
+	mostPop2 = f2(mostPop2)
+	for iconimage, name, url in mostPop2:
+		searchText = cleanSearchText(name,True)
+		cache7.cacheFunction(get_all_data,searchText)
+		
+	searchText = None
+	mostPop = None
+	mostPop2 = None
 	url = None
-	
 
 try:
 	url=urllib.unquote_plus(params["url"])
