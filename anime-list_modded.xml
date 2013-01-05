@@ -916,6 +916,14 @@
 	<name>Lagrange The Flower of Rin Ne</name>
 	<name>Rinne no Lagrange</name>	
   </anime>
+  <anime anidbid="8962" tvdbid="254662" defaulttvdbseason="2">
+    <name>Rinne no Lagrange: Flower Declaration of Your Heart 2</name>
+	<name>Lagrange - The Flower of Rin-ne 2</name>
+	<name>Lagrange The Flower of Rin Ne 2</name>
+	<name>Rinne no Lagrange 2</name>	
+	<name>Lagrange - The Flower of Rin-ne Season 2</name>	
+	<name>Rinne no Lagrange: Flower Declaration of Your Heart - Season 2</name>	
+  </anime>
   <anime anidbid="7435" tvdbid="171701" defaulttvdbseason="1">
     <name>Seikimatsu Occult Gakuin</name>
     <name>Seikimatsu Occult Gakuen</name>
@@ -1226,5 +1234,127 @@
     <name>Sengoku Basara Ni</name>
     <name>Sengoku Basara 2</name>
     <name>Sengoku Basara Two</name>
+  </anime>
+  <anime anidbid="9158" tvdbid="259655" defaulttvdbseason="1">   
+    <name>Chitose Get You!!</name>  
+  </anime>
+  <anime anidbid="2352" tvdbid="171771" defaulttvdbseason="1">   
+    <name>Fang of the Sun Dougram</name>  
+    <name>Taiyou no Kiba Dagram</name>  
+  </anime>
+  <anime anidbid="480" tvdbid="112661" defaulttvdbseason="1">   
+    <name>G-On Riders</name>  
+  </anime>
+  <anime anidbid="6257" tvdbid="87501" defaulttvdbseason="1">     
+    <name>K-ON!</name>  
+  </anime>
+  <anime anidbid="7307" tvdbid="87501" defaulttvdbseason="2">     
+    <name>K-ON!!</name>  
+  </anime>
+  <anime anidbid="3651" tvdbid="79414" defaulttvdbseason="1">     
+    <name>The Melancholy of Haruhi Suzumiya</name>    
+    <name>Suzumiya Haruhi no Yuuutsu</name>  
+  </anime>
+  <anime anidbid="6367" tvdbid="79414" defaulttvdbseason="2">     
+    <name>The Melancholy of Haruhi Suzumiya (2009)</name>    
+    <name>Suzumiya Haruhi no Yuuutsu (2009)</name>   
+    <name>The Melancholy of Haruhi Suzumiya 2</name>    
+    <name>Suzumiya Haruhi no Yuuutsu 2</name>  
+  </anime>
+  <anime anidbid="7904" tvdbid="248584" defaulttvdbseason="1">   
+    <name>Time Paladin Sakura</name>  
+    <name>T.P. Sakura: Time Paladin Sakura</name>  
+  </anime>
+  <anime anidbid="4917" tvdbid="80554" defaulttvdbseason="1">
+    <name>Hayate no Gotoku!</name>
+  </anime>
+  <anime anidbid="6413" tvdbid="80554" defaulttvdbseason="2">
+    <name>Hayate no Gotoku!!</name>
+    <name>Hayate no Gotoku 2</name>
+    <name>Hayate no Gotoku Two</name>
+    <name>Hayate no Gotoku!! Hayate the Combat Butler 2nd Season</name>
+  </anime>
+  <anime anidbid="6389" tvdbid="80554" defaulttvdbseason="0">
+    <name>Hayate no Gotoku!! OVA</name>
+  </anime>
+  <anime anidbid="9291" tvdbid="80554" defaulttvdbseason="1">
+    <name>Hayate no Gotoku 3rd</name>
+    <name>Hayate No Gotoku 2012 Can T Take My Eyes Off You</name>
+    <name>Hayate no Gotoku! Hayate the Combat Butler: Can`t Take My Eyes Off You</name>
+  </anime>
+  <anime anidbid="8130" tvdbid="80554" defaulttvdbseason="0">
+    <name>Gekijouban Hayate no Gotoku! Heaven is a Place on Earth</name>
+    <name>Hayate No Gotoku Heaven Is A Place On Earth</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-2;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="8924" tvdbid="252423" defaulttvdbseason="2">
+    <name>Phi Brain: Kami no Puzzle (2012)</name>
+    <name>Phi Brain: Kami no Puzzle 2</name>
+    <name>Phi Brain: Kami no Puzzle S2</name>
+  </anime>
+  <anime anidbid="8853" tvdbid="257571" defaulttvdbseason="1">
+    <name>Nazo no Kanojo X</name>
+    <name>Mysterious Girlfriend X</name>
+    <name>Mysterious Girlfriend X Nazo No Kanojo X</name>
+  </anime>
+  <anime anidbid="5252" tvdbid="80675" defaulttvdbseason="1">
+    <name>Kidou Senshi Gundam 00</name>
+    <name>Mobile Suit Gundam 00</name>
+    <supplemental-info>
+      <studio>Sunrise</studio>
+    </supplemental-info>
+  </anime>
+  <anime anidbid="5903" tvdbid="80675" defaulttvdbseason="2">
+    <name>Kidou Senshi Gundam 00 2nd Season</name>
+    <name>Mobile Suit Gundam 00 2</name>
+    <supplemental-info>
+      <studio>Sunrise</studio>
+    </supplemental-info>
+  </anime>
+  <anime anidbid="9214" tvdbid="263065" defaulttvdbseason="1">   
+    <name>Zetsuen no Tempest</name>    
+    <name>Forsaken Tempest</name>  
+  </anime>
+  <anime anidbid="9367" tvdbid="262856" defaulttvdbseason="1">   
+    <name>Teekyuu</name>  
+  </anime>
+  <anime anidbid="9295" tvdbid="262110" defaulttvdbseason="1">   
+    <name>Haitai Nanafa</name>  
+  </anime>
+  <anime anidbid="8376" tvdbid="251984" defaulttvdbseason="1">
+    <name>C3: Cube x Cursed x Curious</name>
+    <name>C3: CubexCursedxCurious</name>
+    <name>C3</name>
+    <name>C Cube</name>
+  </anime>
+  <anime anidbid="8924" tvdbid="252423" defaulttvdbseason="2">
+    <name>Phi Brain: Kami no Puzzle (2012)</name>
+    <name>Phi Brain: Kami no Puzzle 2</name>
+    <name>Phi Brain Kami No Puzzle S2</name>
+  </anime>
+  <anime anidbid="6636" tvdbid="88721" defaulttvdbseason="0">
+    <name>Higashi no Eden: Gekijouban I The King of Eden</name>
+    <name>Eden of the East: The King of Eden</name>
+    <name>Eden of the East Movie I: The King of Eden</name>
+    <name>Eden Of The East: Movie 1</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-2;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="6637" tvdbid="88721" defaulttvdbseason="0">
+    <name>Higashi no Eden: Gekijouban II Paradise Lost</name>
+    <name>Eden of the East: Paradise Lost</name>
+    <name>Eden of the East Movie II: Paradise Lost</name>
+    <name>Eden Movie 2</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-3;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="6763" tvdbid="88721" defaulttvdbseason="0">
+    <name>Higashi no Eden: Soushuuhen Air Communication</name>
+    <name>Eden of the East: Air Communication</name>
+    <name>Eden of The East Compilation: Air Communication</name>
   </anime>
 </anime-list>
