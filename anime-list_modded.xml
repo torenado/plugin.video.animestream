@@ -1357,4 +1357,15 @@
     <name>Eden of the East: Air Communication</name>
     <name>Eden of The East Compilation: Air Communication</name>
   </anime>
+  <anime anidbid="7382" tvdbid="171591" defaulttvdbseason="1">
+    <name>Gakuen Mokushiroku: High School of the Dead</name>
+    <name>High School of the Dead</name>
+    <name>Highschool of the Dead</name>
+  </anime>
+  <anime anidbid="8549" tvdbid="259636" defaulttvdbseason="1">
+    <name>Muv-Luv Alternative: Total Eclipse</name>
+    <name>Total Eclipse</name>
+    <name>Muv Luv Alternative: Total Eclipse</name>
+    <name>Muv Luv Alternative Total Eclipse</name>
+  </anime>
 </anime-list>
