@@ -77,6 +77,7 @@ def HOME():
 	print base_txt + 'Create Home Screen'
 	addDir('Anime','',10,'',numItems=3)
 	addDir('Cartoons','',11,'',numItems=3)
+	addDir('Streaming Site','',20,'')
 	addDir('Search','',7,'',numItems=3)
 
 def ANIME():
@@ -98,6 +99,35 @@ def CARTOON():
 	print base_txt + 'Create Cartoon Screen'
 	addDir('Cartoons','',9,'')
 	addDir('Search','',7,'')
+
+def STREAMING_SITE():
+	# XBMC: Streaming Site screen
+	print base_txt + 'Create Streaming Site Screen'
+	
+	searchSiteList = []
+	
+	
+	dirLength = len(streamSiteList)	
+	print base_txt + '# of items: ' + str(dirLength)
+	pb = xbmcgui.DialogProgress()
+	pb.create('Generating List', 'Streaming Site')
+	
+	ii=0
+	for streamList in streamSiteList:
+		ii += 1
+		updateText = 'Streaming Site: ' + streamList
+		print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
+		pb.update(int(ii/float(dirLength)*100), updateText)
+		siteOn = streamList + '_on'
+		searchText = ''
+		if (dc.getSetting(siteOn) == 'true'):
+			siteBase = streamList + '.base_url_name'
+			searchText = eval(siteBase)
+			mostPop2 = getStreamingSiteList(searchText)	
+			name = searchText + ' [' + str(len(mostPop2)) + ']'
+			addDir(name,searchText,21,'')
+		
+	pb.close()
 
 def ANIDB_WISHLIST(url=''):
 	# MODE 12 = ANIDB_WISHLIST
@@ -134,7 +164,9 @@ def ANIDB_MYLIST(url=''):
 		if len(searchText)>0:
 			myList.append([aid,searchText,searchText.split()[0]])
 		
-		pb.update(int(ii/float(dirLength)*100), searchText)
+		updateText = searchText
+		print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
+		pb.update(int(ii/float(dirLength)*100), updateText)
 	
 	pb.close()
 	myList.sort(key=lambda name: name[0], reverse=True) 
@@ -169,7 +201,9 @@ def ANIDB_MYLIST_WATCHING(url=''):
 					
 		if len(searchText) > 0 and int(eptot) > int(epwatch):
 			myList.append([aid,searchText,searchText.split()[0]])
-			pb.update(int(ii/float(dirLength)*100), searchText)		
+			updateText = searchText
+			print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
+			pb.update(int(ii/float(dirLength)*100), updateText)		
 	
 	pb.close()
 	
@@ -261,6 +295,19 @@ def CARTOON_LIST(url=''):
 	mostPop2.sort(key=lambda name: name[1])
 	returnMode = 1
 	
+	getSeriesList(mostPop2,url,returnMode)
+	
+def STREAMING_SITE_LIST(searchText,url=''):
+	# MODE 21 = STREAMING_SITE_LIST
+	
+	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
+	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
+	mostPop = []
+	
+	mostPop2 = getStreamingSiteList(searchText,url='')
+	
+	returnMode = 1
+	# print len(mostPop2)
 	getSeriesList(mostPop2,url,returnMode)
 
 def MOST_RECENT(url=''):
@@ -724,10 +771,16 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 	print base_txt + url
 	print base_txt + '# of items: ' + str(dirLength)
 	
+	pb = xbmcgui.DialogProgress()
+	pb.create('Generating Series List', 'Series')
+	
+	ii=0	
+	
 	name = ''
 	url = ''
 	iconimage = ''
 	for iconimage, name, url in mostPop2:
+		ii += 1
 		searchText = cleanSearchText(name,True)
 		
 		aidDB = '0'
@@ -746,6 +799,10 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_all_data(searchText)
 			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache.cacheFunction(get_all_data,searchText)
 			[searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,searchText)
+		
+		updateText = 'Series: ' + searchText
+		print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
+		pb.update(int(ii/float(dirLength)*100), updateText)
 		
 		if not iconimage2 == '':
 			iconimage = iconimage2
@@ -791,6 +848,8 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 				searchText = '[I]' + searchText + '[/I]'
 				
 			addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre=genre,fanart=fanart)
+	
+	pb.close()
 		
 		
 	skin = xbmc.getSkinDir()
@@ -869,7 +928,9 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 				# siteBase = streamList + '.Episode_Listing_Pages(url)'
 				siteBase = 'cache.cacheFunction(' + streamList + '.Episode_Listing_Pages, url)'
 				epList = eval(siteBase)		
-			pb.update(int(ii/float(dirLength)*100), 'Grabbing Episodes from: ' + streamList)		
+			updateText = 'Grabbing Episodes from: ' + streamList
+			print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
+			pb.update(int(ii/float(dirLength)*100), updateText)		
 		epListAll = epListAll + epList
 	
 	pb.close()
@@ -1016,13 +1077,15 @@ def get_epMediaAll_2(groupUrl):
 		print base_txt + url
 		ii += 1
 		for streamList in streamSiteList:
+			updateText = 'Streaming Media from: ' + streamList
+			print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
+			pb.update(int(ii/float(dirLength)*100), updateText)	
 			siteBase = streamList + '.base_url_name'
 			site_base_url_name = eval(siteBase)
 			if (site_base_url_name in url):
 				# siteBase = streamList + '.Episode_Page(url)'
 				siteBase = 'cache.cacheFunction(' + streamList + '.Episode_Page, url)'
 				epMedia = eval(siteBase)
-			pb.update(int(ii/float(dirLength)*100), 'Streaming Media from: ' + streamList)
 		epMediaAll = epMediaAll + epMedia
 		
 	
@@ -1246,6 +1309,33 @@ def getEpisode_Page_Fail(groupUrl):
 	for name, media_url, iconimage in mediaInValid:
 		addLink(name,media_url,iconimage)
 
+def getStreamingSiteList(searchText,url=''):
+	# formats the list of of steaming content by streaming site
+	
+	mostPop = []	
+	searchRes = cache.cacheFunction(allAnimeList)
+	# print searchRes
+	for possLink in searchRes:
+		
+		if not possLink[1]==None and not possLink[1].startswith('<') and possLink[0].startswith('http'):
+			if searchText in possLink[0]:
+				mostPop.append([0,possLink[1],possLink[0]])	
+	
+	name = ''
+	nameTest = ''
+	mostPop2 = []
+	for iconimage, name, urls in mostPop:
+		if name.startswith('The '):
+			name = name[4:] + ', The'
+		mostPop2.append([str(iconimage), name, urls])
+		
+	try:
+		mostPop2.sort(key=lambda name: name[1])
+	except:
+		pass
+		
+	return mostPop2
+		
 def allAnimeList(url=''):
 	# Searches the various websites for the searched content
 	
@@ -1272,6 +1362,9 @@ def allAnimeList(url=''):
 	ii=0
 	for streamList, url in searchSiteList:
 		ii+=1
+		updateText = str(ii) + ' of ' + str(dirLength) + ': ' + url
+		print base_txt + updateText
+		pb.update(int(ii/float(dirLength)*100), updateText)	
 		# xbmc.executebuiltin('XBMC.Notification(Retrieving Info!,'+ url +',5000)')
 		link = ''
 		siteBase = streamList + '.base_url_name'
@@ -1288,7 +1381,6 @@ def allAnimeList(url=''):
 					except:
 						print base_txt + 'FAILED - ' + aniUrl + ' failed to load allAnimeList()'
 					searchRes = utils.U2A_List(searchRes)	
-		pb.update(int(ii/float(dirLength)*100), str(ii) + ' of ' + str(dirLength) + ': ' + url)
 	pb.close()
 	try:
 		searchRes.sort(key=lambda name: name[1]) 
@@ -1537,7 +1629,9 @@ def searchCollection(searchText,aid='0'):
 		if nameTest == name:
 			groupUrl = groupUrl +' <--> '+ url
 		
-		pb.update(int(ii/float(dirLength)*100), str(ii) + ' of ' + str(dirLength) + ': ' + nameTest)
+		updateText = str(ii) + ' of ' + str(dirLength) + ': ' + nameTest
+		print base_txt + updateText
+		pb.update(int(ii/float(dirLength)*100), updateText)	
 	pb.close()
 		
 	searchCollect_2 = [] + searchCollect
@@ -1747,7 +1841,10 @@ if (datetime.today().hour > 2 and datetime.today().hour < 6):
 	for aidDB, name1, ep1 in watchListTotal:
 		ii+=1
 		[searchText, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,'',str(aidDB))
-		pb.update(int(ii/float(dirLength)*100), searchText)
+		
+		updateText = searchText
+		print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
+		pb.update(int(ii/float(dirLength)*100), updateText)	
 	pb.close()
 	
 	mostPop = []
@@ -1809,6 +1906,12 @@ elif mode==10:
 
 elif mode==11:
 	CARTOON() 
+
+elif mode==20:
+	STREAMING_SITE() 
+
+elif mode==21:
+	STREAMING_SITE_LIST(url) 
 
 elif mode==1:
 	MOST_POPULAR(url) 
