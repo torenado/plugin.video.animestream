@@ -57,8 +57,6 @@ def grabUrlSource(url):
 			print 'grabUrlSource: FAILED - got UNKNOWN http error'
 			
 		return 'No Dice'
-
-
 		
 def f2(seq): 
 	# order preserving uniqify --> http://www.peterbe.com/plog/uniqifiers-benchmark
@@ -110,7 +108,6 @@ def unescape(text):
 	
 	return re.sub("&#?\w+;", fixup, text)
 
-
 def escapeall(str):
 	match = re.compile('([A-Z\~\!\@\#\$\*\{\}\[\]\-\+\.])').findall(str)
 	
@@ -118,8 +115,7 @@ def escapeall(str):
 		str = str.replace(ii,'')
 		
 	return str
-	
-	
+		
 def U2A(text):
 	# convert Unicode into ASCII
 	try:
@@ -152,7 +148,6 @@ def list_decode(txt):
 			print txt.decode(alias)
 		except:
 			print 'FAILED: ' + str(alias)
-
 			
 def list_ord(txt):
 	gg = []

@@ -186,7 +186,10 @@ def AID_Resolution(linkAID):
 	if(len(match)>=1):
 		category = re.compile('<name>(.+?)</name>').findall(match[0])
 		# print category
-		
+	
+	synAniList = f2(synAniList)
+	simAniList = f2(simAniList)
+	
 	epList.sort(key=lambda name: name[0], reverse=True)
 	return [aid, iconimage, description, startdate, episodecount, adult, simAniList, synAniList, epList, category, seriesName]
 
