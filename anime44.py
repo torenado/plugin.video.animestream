@@ -35,7 +35,8 @@ def Episode_Listing_Pages(url):
 	intNumPage = [0]
 	if(len(match) >= 1):
 		for numPage in match:
-			intNumPage.append(int(numPage))
+			if numPage.isdigit():
+				intNumPage.append(int(numPage))
 	
 	numPage = max(intNumPage) + 1
 	

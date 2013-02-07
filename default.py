@@ -78,9 +78,9 @@ cartoonUrls = ['http://www.animeflavor.com/index.php?q=cartoons',
 mostUrls = ['http://www.animecrazy.net/most-popular/',
 			'http://www.animecrazy.net/most-recent/']
 
-THUMBNAIL_VIEW_IDS = {'skin.confluence': 504,
+THUMBNAIL_VIEW_IDS = {'skin.confluence': 515,
 					  'skin.aeon.nox': 551,
-					  'skin.confluence-vertical': 500,
+					  'skin.confluence-vertical': 515,
 					  'skin.jx720': 52,
 					  'skin.pm3-hd': 53,
 					  'skin.rapier': 50,
@@ -152,10 +152,6 @@ def ANIDB_WISHLIST(url=''):
 	# MODE 12 = ANIDB_WISHLIST
 
 	print base_txt + 'Create Wishlist Screen'
-	
-	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
-	# xbmcplugin.setContent(int(sys.argv[1]), 'movies')
-	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
 		
 	getSeriesList(watchWishlist,url,'1')
 	
@@ -164,45 +160,12 @@ def ANIDB_MYLIST(url=''):
 
 	print base_txt + 'Create Mylist Screen'
 	
-	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
-	# xbmcplugin.setContent(int(sys.argv[1]), 'movies')
-	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
-	
-	# myList = []
-	# mode = 1
-	# dirLength = len(watchMylistSummary)	
-	# print base_txt + '# of items: ' + str(dirLength)
-	
-	# pb = xbmcgui.DialogProgress()
-	# pb.create('Generating List', 'aniDB MyList')
-	
-	# ii=0
-	# for aidDB, name, eps in watchMylistSummary:
-		# ii += 1
-		# [searchText, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,'',str(aidDB))
-		# [searchText, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_detail_db('',str(aidDB))
-		# if len(searchText)>0:
-			# myList.append([aid,searchText,searchText.split()[0]])
-		
-		# updateText = searchText
-		# print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
-		# pb.update(int(ii/float(dirLength)*100), updateText)
-		# if (pb.iscanceled()): return
-	
-	# pb.close()
-	# myList.sort(key=lambda name: name[0], reverse=True) 
-	# myList.sort(key=lambda name: name[2]) 
-	
 	getSeriesList(watchMylistSummary_List,url,'1')
 	
 def ANIDB_MYLIST_WATCHING(url=''):
 	# MODE 14 = ANIDB_MYLIST_WATCHING	
 
 	print base_txt + 'Create In-Progress Screen'
-	
-	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
-	# xbmcplugin.setContent(int(sys.argv[1]), 'movies')
-	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
 	
 	myList = []
 	mode = 1
@@ -240,10 +203,6 @@ def ANIDB_SIMILAR(aid_org):
 
 	print base_txt + 'Create Similar Title(s) Screen'
 	
-	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
-	# xbmcplugin.setContent(int(sys.argv[1]), 'movies')
-	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
-	
 	# [searchText1, aidSer, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_all_data(aid=aid_org)
 	# [searchText1, aidSer, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache.cacheFunction(get_all_data,'',aid_org)
 	# [searchText1, aidSer, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,'',aid_org)
@@ -279,8 +238,6 @@ def MOST_POPULAR(url=''):
 	# MODE 1 = MOST_POPULAR
 	
 	print base_txt + 'Create Most Popular Screen'
-	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
-	xbmcplugin.setContent(int(sys.argv[1]), 'movies')
 	
 	if url == '':
 		url = 'http://www.animecrazy.net/most-popular/'
@@ -293,8 +250,6 @@ def CARTOON_LIST(url=''):
 	# Hardcoded to use animeflavor.com
 	# MODE 9 = CARTOON_LIST
 	
-	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
-	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
 	mostPop = []
 	
 	if url == '':
@@ -324,8 +279,6 @@ def CARTOON_LIST(url=''):
 def STREAMING_SITE_LIST(searchText,url=''):
 	# MODE 21 = STREAMING_SITE_LIST
 	
-	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
-	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
 	mostPop = []
 	
 	mostPop2 = getStreamingSiteList(searchText,url='')
@@ -339,8 +292,6 @@ def MOST_RECENT(url=''):
 	# MODE 8 = MOST_RECENT
 	
 	print base_txt + 'Create Most Recent Screen'
-	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
-	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
 	
 	if url == '':
 		url = 'http://www.animecrazy.net/most-recent/'
@@ -367,9 +318,6 @@ def A_Z_LIST_VIDEOS(url):
 	# Hardcoded to use animecrazy.net
 	# MODE 61 = A_Z_LIST_VIDEOS
 	
-	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
-	# xbmcplugin.setContent(int(sys.argv[1]), 'movies')
-	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
 	
 	# azList = cache.cacheFunction(animecrazy.Video_List_And_Pagination, url)
 	azList = cache7.cacheFunction(animecrazy.Video_List_And_Pagination, url)	
@@ -389,6 +337,7 @@ def TYPED_SEARCH():
 
 def SEARCH(searchText,aid='0'):
 	# Searches the various websites for the searched content
+	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
 
 	url = ''
 	mode = 3
@@ -428,15 +377,17 @@ def SEARCH(searchText,aid='0'):
 		if (int(aid)>0):
 			addDir('-- SIMILAR TITLES --','',121,'',aid=aid)
 	
-	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
-	# xbmcplugin.setContent(int(sys.argv[1]), 'movies')
-	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
+	skin = xbmc.getSkinDir()
+	thumbnail_view = THUMBNAIL_VIEW_IDS.get(skin)
+	if thumbnail_view:
+		cmd = 'Container.SetViewMode(%s)' % thumbnail_view
+		xbmc.executebuiltin(cmd)
 	
 def cleanSearchText(searchText,skipEnc=False):
 	# cleans up the text for easier searching
 	# print base_txt + 'Clean up the search term: ' +searchText
 	searchText = utils.unescape(searchText)
-	
+	searchText = utils.U2A(searchText)
 	if not skipEnc:
 		subLoc = searchText.find('[')
 		if subLoc > 0:
@@ -460,8 +411,9 @@ def cleanSearchText(searchText,skipEnc=False):
 def get_ani_detail(aid):
 	
 	time_now = datetime.now().isoformat(' ')
+	time_then = dc.getSetting('aniDB_access')
 	linkAID = ' '
-	if time_now > aniDB_access:
+	if time_now > time_then:
 		if not aid.isdigit():
 			aid = '0'
 		if int(aid)>0 :
@@ -470,9 +422,10 @@ def get_ani_detail(aid):
 			linkAID = grabUrlSource(urlPg)
 			
 		if '<error>Banned</error>' in linkAID:
-			aniDB_access_time = datetime.now() + timedelta(0,0,0,0,61) # access to aniDB API should be available again in 30 min
+			aniDB_access_time = datetime.now() + timedelta(0,0,0,0,61) # access to aniDB API should be available again in 60 min
 			dc.setSetting('aniDB_access',aniDB_access_time.isoformat(' '))
 			xbmc.executebuiltin('XBMC.Notification(aniDB API Access,Banned for 60 minutes,5000)')
+			print base_txt + 'access to aniDB API should be available again at ' + aniDB_access_time.isoformat(' ')
 			return False
 		
 	return linkAID
@@ -509,7 +462,30 @@ def get_ani_aid(searchText):
 		if name == searchText:
 			return str(aidFound)
 	
-	return aid
+	return aid	
+	
+def get_ani_searchText(aid):
+
+	groupUrl = []
+	groupUrl.append('https://sites.google.com/site/anidblist/anime-list.xml?attredirects=0')
+	groupUrl.append('https://raw.github.com/torenado/plugin.video.animestream/master/anime-list_modded.xml')
+	
+	linkAID = ''
+	for url in groupUrl:
+		linkAID = linkAID + str(grabUrlSource(url))
+	
+	searchText = []
+	
+	# aidList = get_ani_aid_list(linkAID)
+	aidList = cache.cacheFunction(get_ani_aid_list,linkAID)
+
+	print base_txt + 'Searching anime-list for aid: ' + str(aid)
+	
+	for aidFound, name, tvdbid, season in  aidList:
+		if aidFound == aid:
+			searchText.append(name)
+	
+	return searchText
 	
 def search_aid_tvid(searchText, aidGet=False, tvdbGet=True):
 	
@@ -809,7 +785,7 @@ def get_all_data(searchText='',aid='0',tvdbSer='0'):
 		fanart=iconimage
 	
 	if searchText=='':
-		searchText = searchText1
+		searchText = utils.U2A(searchText1)
 		
 	allData = [searchText, aid, tvdbSer, description, fanart, iconimage, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount]
 	
@@ -849,7 +825,7 @@ def get_detail_db(searchText='',aid='0',tvdbSer='0'):
 		except sqlite.Error, e:
 			print base_txt + 'animestream DB path - ' + user_path
 			[searchText, aid, tvdbSer, description, fanart, iconimage, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = set_detail_db(searchText,aid,tvdbSer)
-		
+			utils.U2A(searchText)
 	if aid == '0' and int(tvdbSer)!=0 :
 		aid ='t' + str(tvdbSer)
 	
@@ -886,7 +862,7 @@ def get_detail_db(searchText='',aid='0',tvdbSer='0'):
 				iconimage = row['iconimage']
 				adult = row['adult']
 				eptot = row['eptot']
-				season = row['season']
+				season = str(row['season'])
 				searchText = row['searchText']
 				playcount = row['playcount']
 				year = row['year']
@@ -946,13 +922,19 @@ def set_detail_db(searchText='',aid='0',tvdbSer='0'):
 		# print tvdbSer
 		
 		if aid != '0':
-			description = description.replace('\'','"')
+			description = description.replace('\'','&lsquo;')
 			# sql = 'INSERT INTO Series VALUES("%s", "%s", "%s", \'%s\', "%s", "%s", "%s", %s, %s, "%s", %s, %s, %s)' % (aid, tvdbSer, searchText, description, fanart, iconimage, genre, year, season, adult, epwatch, eptot, playcount)
 			sql = 'INSERT INTO Series VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' 
 			sql_para = (aid, tvdbSer, searchText, description, fanart, iconimage, genre, year, season, adult, epwatch, eptot, playcount)
 			# print base_txt + sql
 			con.text_factory = str
-			cur.execute(sql,sql_para)
+			
+			cur.execute('SELECT * FROM Series WHERE aid="%s"' % aid)   
+			rows = cur.fetchall()   
+			if len(rows)==0: 
+				cur.execute(sql,sql_para)
+			else:
+				print base_txt + 'RECORD ALREADY EXISTS - INSERT INTO Series ... aid = ' + searchText
 			# try:
 				# sql = 'INSERT INTO Series VALUES("%s", "%s", "%s", \'%s\', "%s", "%s", "%s", %s, %s, "%s", %s, %s, %s)' % (aid, tvdbSer, searchText, description, fanart, iconimage, genre, year, season, adult, epwatch, eptot, playcount)
 				# print base_txt + sql
@@ -984,8 +966,8 @@ def set_detail_db(searchText='',aid='0',tvdbSer='0'):
 						epAirdate_month = 1
 					if epAirdate_day == '':
 						epAirdate_day = 1
-					description = description.replace('\'','"')
-					epName = epName.replace('\'','"')
+					description = description.replace('\'','&lsquo;')
+					epName = epName.replace('\'','&lsquo;')
 					
 					run_sql = True
 					if isinstance(epNumAb, str) and run_sql:
@@ -1008,7 +990,7 @@ def set_detail_db(searchText='',aid='0',tvdbSer='0'):
 	return allData
 	
 def getSeriesList(mostPop,url='',returnMode='1',mode=2):
-
+	
 	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
 	
 	name = ''
@@ -1025,7 +1007,7 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 			
 	
 	dirLength = len(mostPop2)
-	print base_txt + url
+	print base_txt + str(url)
 	print base_txt + '# of items: ' + str(dirLength)
 	
 	pb = xbmcgui.DialogProgress()
@@ -1049,7 +1031,8 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_all_data('',aidDB)
 			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache.cacheFunction(get_all_data,'',aidDB)
 			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,'',aidDB)
-			[searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_detail_db('',aidDB)
+			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_detail_db('',aidDB)
+			[searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_detail_db,'',aidDB)
 			if name=='' or name.isspace():
 				name = searchText2
 				searchText = searchText2
@@ -1057,7 +1040,8 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_all_data(searchText)
 			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache.cacheFunction(get_all_data,searchText)
 			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,searchText)
-			[searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_detail_db(searchText)
+			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_detail_db(searchText)
+			[searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_detail_db,searchText)
 		
 		updateText = 'Series: ' + searchText
 		print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
@@ -1108,8 +1092,7 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 				
 			addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre=genre,fanart=fanart)
 		if (pb.iscanceled()): return
-	pb.close()
-		
+	pb.close()		
 		
 	skin = xbmc.getSkinDir()
 	thumbnail_view = THUMBNAIL_VIEW_IDS.get(skin)
@@ -1123,7 +1106,7 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 	
 	# content: files, songs, artists, albums, movies, tvshows, episodes, musicvideos
 	# xbmcplugin.setContent(int(sys.argv[1]), 'movies')
-	xbmcplugin.setContent(int(sys.argv[1]), 'episodes')
+	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
 	
 	iconimageSeries = ''
 	epWishWatch = '0'
@@ -1268,6 +1251,7 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 			# if int(aidDB)>0 or int(tvdbSer)>0:
 			if len(epTvDetail)>0:
 				for epNumAb1,epName,epIconimage,description,seasonNum,epAirdate,epNum1 in epTvDetail:
+					epName = utils.U2A(epName)
 					if str(epSeason) == '1':
 						if str(epNum)==str(epNumAb1) and not str(seasonNum)=='0':
 							nameTest = str(epSeason) + 'x' + str(epNum) + ' - ' + epName
@@ -1292,7 +1276,6 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 							day = epAirdate[2]
 							iconimageTest = epIconimage
 							break
-		
 		if seaEpNumTest == seaEpNum:
 			try:
 				groupUrl = groupUrl +' <--> '+ url
@@ -1693,6 +1676,10 @@ def searchCollection(searchText,aid='0'):
 	
 	searchTextOrg = searchText
 	
+	for name1 in get_ani_searchText(aid):
+		print base_txt + 'Searching for ... ' + name1
+		searchRes = searchRes + cache.cacheFunction(allSearchList,name1)
+	
 	if (len(uname)>0 and len(passwd)>0):
 	
 		# linkAID = get_ani_detail(aid_org)
@@ -1716,7 +1703,8 @@ def searchCollection(searchText,aid='0'):
 		# [searchText1, aid1, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList1, epList, season, adult, epwatch, eptot, playcount] = get_all_data('',aidDB)
 		# [searchText1, aid1, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList1, epList, season, adult, epwatch, eptot, playcount] = cache.cacheFunction(get_all_data,'',aidDB)
 		# [searchText1, aid1, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList1, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,'',aidDB)
-		[searchText1, aid1, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList1, epList, season, adult, epwatch, eptot, playcount] = get_detail_db('',aidDB)
+		# [searchText1, aid1, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList1, epList, season, adult, epwatch, eptot, playcount] = get_detail_db('',aidDB)
+		[searchText1, aid1, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList1, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_detail_db,'',aidDB)
 		
 		searchAlts = []
 		if (int(aidDB)>0 and len(synAniList1)>0):
@@ -1730,6 +1718,11 @@ def searchCollection(searchText,aid='0'):
 				searchAlts.append(name)
 				if name.find(' ') > 0:
 					searchAlts.append(name.replace(' ',''))
+				if name.find('[') > 0:
+					searchAlts.append(name.replace('[',' ').replace('  ',' '))
+					searchAlts.append(name.replace(']',' ').replace('  ',' '))
+					searchAlts.append(name.replace('[',' ').replace(']',' ').replace('  ',' '))
+					searchAlts.append(name.replace('[','').replace(']','').replace('  ',' '))
 				if name.find(':') > 0:
 					searchAlts.append(name.replace(':',' '))
 					searchAlts.append(name.replace(':',' ').replace('  ',' '))
@@ -1859,7 +1852,7 @@ def searchCollection(searchText,aid='0'):
 	dirLength = len(searchRes)
 	print base_txt + '# of items: ' + str(dirLength)
 	pb = xbmcgui.DialogProgress()
-	pb.create('Generating List', '# of items: ' + str(dirLength))
+	pb.create('Searching for Series', '# of items: ' + str(dirLength))
 	ii=0
 	for url, name in searchRes:
 		ii+=1
@@ -1902,8 +1895,8 @@ def searchCollection(searchText,aid='0'):
 		
 	searchCollect_2 = [] + searchCollect
 	try:
-		searchCollect_2.sort(key=lambda name: name[0], reverse=True) 
 		searchCollect_2.sort(key=lambda name: name[3]) 
+		searchCollect_2.sort(key=lambda name: name[0], reverse=True) 
 	except:
 		print base_txt + 'Sorting failed in SEARCH() regarding searchCollect_2'
 	searchCollect_2.append(['', 'Zzzzzzend', '',''])
@@ -1926,6 +1919,8 @@ def searchCollection(searchText,aid='0'):
 		elif aidSerTest == aidSer and str(aidSerTest) == '0':
 			combinedSearchCollect.append([str(aidSerTest), nameTest, groupUrl])
 	
+	
+	combinedSearchCollect.sort(key=lambda name: name[1]) 
 	print combinedSearchCollect
 	# return searchCollect
 	return combinedSearchCollect

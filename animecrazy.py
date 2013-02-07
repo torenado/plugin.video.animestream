@@ -32,11 +32,13 @@ def Episode_Listing_Pages(url):
 	link = grabUrlSource(url)
 	
 	match=re.compile('bottomSide"><a href="(.+?)" class="floatRight"').findall(link)
-	if not '-reviews' in match[0]:
-		episodeListPage = BASE_URL + match[0]
-	else:
-		episodeListPage = url
-	epList = Episode_Listing(episodeListPage)
+	epList = []
+	if(len(match) >= 1):
+		if not '-reviews' in match[0]:
+			episodeListPage = BASE_URL + match[0]
+		else:
+			episodeListPage = url
+		epList = Episode_Listing(episodeListPage)
 	
 	return epList
 	
