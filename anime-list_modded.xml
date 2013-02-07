@@ -33,12 +33,15 @@
     <name>Gekijouban Bleach: Memories of Nobody</name>
     <name>Bleach the Movie: Memories of Nobody</name>
     <name>Bleach: Memories of Nobody</name>
+    <name>Bleach Memories</name>
     <name>Bleach 1: Memories of Nobody</name>
   </anime>
   <anime anidbid="5352" tvdbid="74796" defaulttvdbseason="0">
     <name>Gekijouban Bleach: The Diamond Dust Rebellion Mou Hitotsu no Hyourinmaru</name>
     <name>Bleach The Movie 2: The Diamond Dust Rebellion</name>
     <name>BLEACH The Diamond Dust Rebellion</name>
+    <name>BLEACH Diamond Dust Rebellion</name>
+    <name>BLEACH 2 Diamond Dust Rebellion</name>
     <name>BLEACH 2 The Diamond Dust Rebellion</name>
     <name>BLEACH 2 The Diamond Dust Rebellion 2</name>
   </anime>
@@ -252,6 +255,7 @@
     <name>Shakugan no Shana 3</name>
     <name>Shakugan III</name>
     <name>Shakugan 3</name>
+    <name>Shakugan No Shana 3 Final</name>
   </anime>  
   <anime anidbid="826" tvdbid="72775" defaulttvdbseason="1">
     <name>Saint Seiya</name>
@@ -346,6 +350,7 @@
   <anime anidbid="8971" tvdbid="259652" defaulttvdbseason="1">
     <name>Arcana Famiglia: La Storia Della Arcana Famiglia!</name>
     <name>Arcana Famiglia</name>
+    <name>La Storia Della Arcana Famiglia</name>
   </anime>
   <anime anidbid="4909" tvdbid="80278" defaulttvdbseason="1">
     <name>Kishin Taisen Gigantic Formula</name>
@@ -1226,6 +1231,11 @@
 	<name>Mobile Suit Gundam X</name>  
 	<name>After War Gundam X</name>  
   </anime>
+  <anime anidbid="8494" tvdbid="252621" defaulttvdbseason="1">    
+	<name>Kidou Senshi Gundam AGE</name>  
+	<name>Gundam AGE</name>  
+	<name>Mobile Suit Gundam AGE</name>  
+  </anime>
   <anime anidbid="199" tvdbid="72444" defaulttvdbseason="1">
     <name>Kareshi Kanojo no Jijou</name>
     <name>Kare Kano</name>
@@ -1388,6 +1398,7 @@
   </anime>
   <anime anidbid="9043" tvdbid="261249" defaulttvdbseason="1">
     <name>K</name> 
+    <name>K-Project</name> 
   </anime>
   <anime anidbid="8235" tvdbid="132961" defaulttvdbseason="2">
     <name>Baka to Test to Shoukanjuu Ni!</name>
@@ -1408,5 +1419,64 @@
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-2;</mapping>
     </mapping-list>
+  </anime>
+  <anime anidbid="114" tvdbid="79520" defaulttvdbseason="1">
+    <name>Ima, Soko ni Iru Boku</name>
+	<name>Now and Then, Here and There</name>
+    <supplemental-info>
+      <studio>AIC</studio>
+    </supplemental-info>
+  </anime>
+  <anime anidbid="1769" tvdbid="84119" defaulttvdbseason="1">
+    <name>Ninin ga Shinobuden: The Nonsense Kunoichi Fiction</name>
+	<name>Ninja Nonsense</name>
+  </anime>
+  <anime anidbid="59" tvdbid="82119" defaulttvdbseason="1">
+    <name>Night Warriors Darkstalkers' Revenge</name>
+  </anime>
+  <anime anidbid="t70785" tvdbid="70785" defaulttvdbseason="1">   
+    <name>The Avengers: United They Stand</name>  
+  </anime>
+  <anime anidbid="t241431" tvdbid="241431" defaulttvdbseason="1">   
+    <name>ThunderCats (2011)</name>   
+    <name>ThunderCats 2011</name>  
+  </anime>
+  <anime anidbid="t192171" tvdbid="192171" defaulttvdbseason="1">   
+    <name>The Avengers: Earth's Mightiest Heroes</name>  
+  </anime>
+  <anime anidbid="t110381" tvdbid="110381" defaulttvdbseason="1">   
+    <name>Archer</name>  
+    <name>Archer (2009)</name>  
+  </anime>
+  <anime anidbid="t73546" tvdbid="73546" defaulttvdbseason="1">     
+    <name>A Pup Named Scooby-Doo</name>  
+  </anime>
+  <anime anidbid="7440" tvdbid="186911" defaulttvdbseason="1">
+    <name>Hyakka Ryoran: Samurai Girls</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;2-7;3-1;4-2;5-3;6-4;7-5;8-6;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="191" tvdbid="79071" defaulttvdbseason="1">
+    <name>GTO</name>
+    <name>Great Teacher Onizuka</name>
+    <name>G.T.O. - Great Teacher Onizuka</name>
+    <name>G.T.O.</name>
+  </anime>
+  <anime anidbid="4841" tvdbid="79071" defaulttvdbseason="0">
+    <name>Young GTO</name>
+    <name>Shounan Jun`ai-gumi</name>
+    <name>Shonan Junai Gumi</name>
+  </anime>
+  <anime anidbid="7219" tvdbid="80158" defaulttvdbseason="4">
+    <name>Ikkitousen: Xtreme Xecutor</name>
+    <name>Ikki Tousen: Xtreme Xecutor</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-13;2-14;3-15;4-16;5-17;6-18;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="618" tvdbid="80158" defaulttvdbseason="1">
+    <name>Ikkitousen</name>
+    <name>Ikki Tousen</name>
   </anime>
 </anime-list>
