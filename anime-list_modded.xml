@@ -1073,7 +1073,8 @@
     <name>Koukaku no Regios</name>  
   </anime>
   <anime anidbid="229" tvdbid="79327" defaulttvdbseason="1">    
-    <name>Mobile Suit Gundam Wing</name>  
+    <name>Mobile Suit Gundam Wing</name>    
+    <name>Gundam Wing</name>  
   </anime>
   <anime anidbid="234" tvdbid="72241" defaulttvdbseason="1">    
     <name>Digimon: Digital Monsters</name>  
@@ -1313,6 +1314,7 @@
   <anime anidbid="5252" tvdbid="80675" defaulttvdbseason="1">
     <name>Kidou Senshi Gundam 00</name>
     <name>Mobile Suit Gundam 00</name>
+    <name>Gundam 00</name>
     <supplemental-info>
       <studio>Sunrise</studio>
     </supplemental-info>
@@ -1320,6 +1322,8 @@
   <anime anidbid="5903" tvdbid="80675" defaulttvdbseason="2">
     <name>Kidou Senshi Gundam 00 2nd Season</name>
     <name>Mobile Suit Gundam 00 2</name>
+    <name>Gundam 00 2nd Season</name>
+    <name>Gundam 00 2</name>
     <supplemental-info>
       <studio>Sunrise</studio>
     </supplemental-info>
@@ -1341,6 +1345,8 @@
     <name>C Cube</name>
     <name>C3 Cube×Cursed×Curious</name>
     <name>C3 C Cube</name>
+    <name>C^3 C Cube</name>
+    <name>C3 - Cube X Cursed X Curious</name>
   </anime>
   <anime anidbid="8924" tvdbid="252423" defaulttvdbseason="2">
     <name>Phi Brain: Kami no Puzzle (2012)</name>
@@ -1404,6 +1410,7 @@
     <name>Baka to Test to Shoukanjuu Ni!</name>
     <name>Baka to Test to Shoukanjuu Ni</name>
     <name>Baka to Test to Shoukanjuu 2</name>
+    <name>Baka and Test: Summon the Beasts 2</name>
     <name>Baka to Test to Shoukanjuu Ni 2</name>
     <mapping-list>
       <mapping anidbseason="0" tvdbseason="0">;1-10;2-11;3-12;4-13;5-14;6-15;</mapping>
@@ -1478,5 +1485,9 @@
   <anime anidbid="618" tvdbid="80158" defaulttvdbseason="1">
     <name>Ikkitousen</name>
     <name>Ikki Tousen</name>
+  </anime>
+  <anime anidbid="81" tvdbid="80407" defaulttvdbseason="1">
+    <name>DNA2: Dokoka de Nakushita Aitsu no Aitsu</name>
+    <name>DNA2</name>
   </anime>
 </anime-list>
