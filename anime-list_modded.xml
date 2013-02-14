@@ -194,6 +194,7 @@
     <name>Prince of Tennis - National Championship Chapter</name>
     <name>The Prince of Tennis: The National Tournament</name>
     <name>Prince of Tennis: The National Tournament</name>
+    <name>Prince Of Tennis National Tournament</name>
   </anime>
   <anime anidbid="5750" tvdbid="73532" defaulttvdbseason="10">
     <name>Tennis no Ouji-sama: Zenkoku Taikai Hen - Final</name>
@@ -218,11 +219,28 @@
     <name>New Prince of Tennis</name>
     <name>The Prince of Tennis II</name>
     <name>Prince of Tennis II</name>
+    <name>Prince of Tennis 2</name>
     <name>Shin Tennis no Ouji-sama</name>
   </anime>
   <anime anidbid="8373" tvdbid="73532" defaulttvdbseason="13">
     <name>Tennis no Ouji-sama OVA Another Story II: Ano Toki no Bokura</name>
     <name>Prince of Tennis: OVA Another Story II</name>
+    <name>Prince Of Tennis Another Story 2 Ano Toki No Bokura</name>
+  </anime>
+  <anime anidbid="56" tvdbid="20995" defaulttvdbseason="0">
+    <name>Prince Of Tennis A Day On Survival Mountain</name>
+  </anime>
+  <anime anidbid="8344" tvdbid="20995" defaulttvdbseason="0">
+    <name>Prince Of Tennis A Gift From Atobe</name>
+    <name>Tennis No Oujisama Atobe Kara No Okurimono</name>
+  </anime>
+  <anime anidbid="8374" tvdbid="20995" defaulttvdbseason="0">
+    <name>Prince Of Tennis Eikokushiki Teikyuu Shiro Kessen</name>
+    <name>Gekijouban Tennis no Ouji-sama: Eikoku Shiki Teikyuu Shiro Kessen!</name>
+    <name>The Prince of Tennis - Showdown in England`s Tennis Fortress</name>
+  </anime>
+  <anime anidbid="2380" tvdbid="20995" defaulttvdbseason="0">
+    <name>Prince Of Tennis The Two Samurai The First Game</name>
   </anime>
   <anime anidbid="8692" tvdbid="259640" defaulttvdbseason="1">
     <name>Sword Art Online</name>
@@ -1489,5 +1507,75 @@
   <anime anidbid="81" tvdbid="80407" defaulttvdbseason="1">
     <name>DNA2: Dokoka de Nakushita Aitsu no Aitsu</name>
     <name>DNA2</name>
+  </anime>
+  <anime anidbid="6120" tvdbid="82884" defaulttvdbseason="2">
+    <name>Tetsuwan Birdy Decode:02</name>
+    <name>Tetsuwan Birdy Decode 2</name>
+  </anime>
+  <anime anidbid="5418" tvdbid="78812" defaulttvdbseason="2">
+    <name>Gunslinger Girl: Il Teatrino</name>
+    <name>Gunslinger Girl Teatrino</name>
+    <name>Gunslinger Girls Teatrino</name>
+  </anime>
+  <anime anidbid="6128" tvdbid="78812" defaulttvdbseason="0">
+    <name>Gunslinger Girl: Il Teatrino OVA</name>
+  </anime>
+  <anime anidbid="7568" tvdbid="195711" defaulttvdbseason="1">
+    <name>Kami nomi zo Shiru Sekai</name>
+    <name>The World God Only Knows</name>
+  </anime>
+  <anime anidbid="8167" tvdbid="195711" defaulttvdbseason="2">
+    <name>Kami nomi zo Shiru Sekai II</name>
+    <name>The World God Only Knows II</name>
+  </anime>
+  <anime anidbid="9324" tvdbid="195711" defaulttvdbseason="0">
+    <name>The World God Only Knows Tenri Arc</name>
+    <name>The World God Only Knows Tenri Hen</name>
+    <name>The World God Only Knows Tenri Hen 2</name>
+  </anime>
+  <anime anidbid="8490" tvdbid="195711" defaulttvdbseason="0">
+    <name>Kami nomi zo Shiru Sekai: 4-nin to Idol</name>
+    <name>The World God Only Knows: 4-nin to Idol</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-2;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="5869" tvdbid="80147" defaulttvdbseason="2">
+    <name>Blue Dragon Tenkai No Shichi Ryuu</name>
+    <name>Blue Dragon 2</name>
+  </anime>
+  <anime anidbid="6772" tvdbid="112521" defaulttvdbseason="1">
+    <name>Tegami Bachi Letter Bee</name>
+    <name>Letter Bee</name>
+    <name>Tegami Bachi</name>
+  </anime>
+  <anime anidbid="7458" tvdbid="112521" defaulttvdbseason="2">
+    <name>Tegami Bachi Letter Bee Reverse</name>
+    <name>Letter Bee 2</name>
+    <name>Tegami Bachi Reverse</name>
+  </anime>
+  <anime anidbid="217" tvdbid="80784" defaulttvdbseason="1">
+    <name>Mobile Suit Gudam 08Th Ms Team</name>
+  </anime>
+  <anime anidbid="4222" tvdbid="79194" defaulttvdbseason="2">
+    <name>School Rumble Ni Gakki</name>
+    <name>School Rumble 2 Term</name>
+    <name>School Rumble 2nd Term</name>
+  </anime>
+  <anime anidbid="5745" tvdbid="79194" defaulttvdbseason="0">
+    <name>School Rumble San Gakki</name>
+    <name>School Rumble 3Rd Term</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-4;2-5;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="4199" tvdbid="76703" defaulttvdbseason="0">
+    <name>Pocket Monsters Advanced Generation: Pokemon Ranger to Umi no Ouji Manaphy</name>
+    <name>Pokemon 9 Pokemon Ranger And The Temple Of The Sea</name>
+    <name>Pokemon 9 Ranger And The Temple Of The Sea</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-0;</mapping>
+      <mapping anidbseason="1" tvdbseason="0">;1-12;</mapping>
+    </mapping-list>
   </anime>
 </anime-list>
