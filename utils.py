@@ -121,8 +121,16 @@ def escapeall(str):
 		
 	return str
 		
+def U2A_over(text):
+	# overwrite encoded character with user defined character	
+	try:
+		return re.sub('(' + '|'.join(chars.keys()) + ')', replace_chars, text)
+	except:
+		print 'U2A_over: Conversion to user defined character failed on: ' + text
+		return text
+		
 def U2A(text):
-	# convert Unicode into ASCII
+	# convert Unicode into ASCII		
 	try:
 		str(text)
 		return text
@@ -130,11 +138,8 @@ def U2A(text):
 		try:
 			return unicodedata.normalize('NFKD', text).encode('ascii','ignore')
 		except:
-			try:
-				return re.sub('(' + '|'.join(chars.keys()) + ')', replace_chars, text)
-			except:
-				print 'U2A: Conversion to ASCII failed on: ' + text
-				return text
+			print 'U2A: Conversion to ASCII failed on: ' + text
+			return text
 	
 def U2A_List(iterable):
 	iterated_object=[]
@@ -212,8 +217,8 @@ chars = {
     '\xc2\xbe' : '3/4',      # three quarters
     '\xca\xbf' : '\x27',     # c-single quote
     '\xcc\xa8' : '',         # modifier - under curve
-    '\xe2\x80\x93' : '-',         # long hyphen
-    '\xc2\xb3' : '^3',         # superscript 3
+    '\xe2\x80\x93' : '-',    # long hyphen
+    '\xc2\xb3' : '^3',       # superscript 3
     '\xcc\xb1' : ''          # modifier - under line
 }
 def replace_chars(match):
