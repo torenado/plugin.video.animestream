@@ -131,29 +131,31 @@ def Episode_Media_Link(url, mirror=1, part=1):
 	# Extracts the URL for the content media file
 
 	link = grabUrlSource(url)
-	streamingPlayer = re.compile('document.write\(unescape\(\'(.+?)\'\)\);').findall(link)
-	frame = urllib.unquote_plus(streamingPlayer[0]).replace('\'','"').replace(' =','=').replace('= ','=')
 	epMedia = []
-	
-	# part = 1
-	# if link.find('class="part focused"'):
+	streamingPlayer = re.compile('document.write\(unescape\(\'(.+?)\'\)\);').findall(link)
+	if(len(streamingPlayer) >= 1):
+		print streamingPlayer
+		frame = urllib.unquote_plus(streamingPlayer[0]).replace('\'','"').replace(' =','=').replace('= ','=')
+		
 		# part = 1
-	# else:
-		# match=re.compile('class="currentPart"(.+?)>(.+?)</a>').findall(link)
-		# print base_txt +  'Multi-part content' 
-		# if(len(match) >= 1):
-			# for garbage, part in match:
-				# print base_txt +  'Multi-part content: Found - Part '  + part
-				# part = int(part)
-	
-	match=re.compile('src="(.+?)"').findall(frame)
-	if(len(match) >= 1):
-		for episodeMediaLink in match:
-			if (not 'http://ads.' in episodeMediaLink):
-				if (base_url_name in episodeMediaLink):
-					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
-					
-				epMedia.append([base_url_name,episodeMediaLink, mirror, part])
+		# if link.find('class="part focused"'):
+			# part = 1
+		# else:
+			# match=re.compile('class="currentPart"(.+?)>(.+?)</a>').findall(link)
+			# print base_txt +  'Multi-part content' 
+			# if(len(match) >= 1):
+				# for garbage, part in match:
+					# print base_txt +  'Multi-part content: Found - Part '  + part
+					# part = int(part)
+		
+		match=re.compile('src="(.+?)"').findall(frame)
+		if(len(match) >= 1):
+			for episodeMediaLink in match:
+				if (not 'http://ads.' in episodeMediaLink):
+					if (base_url_name in episodeMediaLink):
+						episodeMediaLink = Media_Link_Finder(episodeMediaLink)
+						
+					epMedia.append([base_url_name,episodeMediaLink, mirror, part])
 				
 	if(len(epMedia) < 1):
 		print base_txt +  'Nothing was parsed from Episode_Media_Link: ' + url
