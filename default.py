@@ -377,6 +377,21 @@ def SEARCH(searchText,aid='0'):
 		if (int(aid)>0):
 			addDir('-- SIMILAR TITLES --','',121,'',aid=aid)
 	
+	groupAid = ''
+	for aid2, name2, url2 in searchRes:		
+		if aid2 != '0':
+			groupAid = groupAid + ' <--> ' + aid2
+			
+	if (len(groupAid)>0):
+		# addDir(name,url,mode,iconimage,aid='0') <-- overloaded variables used in special as follows
+		# MAP: 
+		# name = "-- REFRESH --",
+		# url = searchText
+		# mode = 121
+		# iconimage = aid
+		# aid=groupAid
+		addDir('-- REFRESH (All Items) --',searchText,211,aid,aid=groupAid)	
+	
 	skin = xbmc.getSkinDir()
 	thumbnail_view = THUMBNAIL_VIEW_IDS.get(skin)
 	if thumbnail_view:
@@ -455,6 +470,15 @@ def get_ani_aid(searchText):
 	aidList = cache.cacheFunction(get_ani_aid_list,linkAID)
 
 	print base_txt + 'Searching for aid: ' + searchText
+	
+	for aidFound, name, tvdbid, season in  aidList:
+		name = cleanSearchText(name.replace(':',' ').replace('!',' ').replace('-',' ').replace('_',' ').replace('  ',' ').title().strip(),True)
+		# name = name.replace(':',' ').replace('!',' ').replace('-',' ').replace('_',' ').replace('  ',' ').title().strip()
+		if name == searchText:
+			return str(aidFound)
+			
+	searchText = utils.U2A_over(searchText)
+	print base_txt + 'Searching for aid: ' + searchText + ' <-- converted'
 	
 	for aidFound, name, tvdbid, season in  aidList:
 		name = cleanSearchText(name.replace(':',' ').replace('!',' ').replace('-',' ').replace('_',' ').replace('  ',' ').title().strip(),True)
@@ -989,6 +1013,37 @@ def set_detail_db(searchText='',aid='0',tvdbSer='0'):
 	allData = [searchText, aid, tvdbSer, description, fanart, iconimage, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount]
 	return allData
 	
+def refresh_detail_db(groupAid):
+	# remove entries related to aid from the animestream DB	
+
+	try:
+		aid_mult = groupAid.split(' <--> ')
+	except:
+		aid_mult = groupAid
+		
+	for aid in aid_mult:
+		if aid != '' and aid != '0':
+			con = sqlite.connect(user_path)
+			with con:
+				cur = con.cursor()
+				print base_txt + 'REMOVING Data - aid = ' + str(aid)
+				
+				sql = 'DELETE FROM Series WHERE aid="'+ str(aid) +'"'
+				print base_txt + sql
+				cur.execute(sql)
+				
+				sql = 'DELETE FROM SimilarSeries WHERE aid="'+ str(aid) +'"'
+				print base_txt + sql
+				cur.execute(sql)
+				
+				sql = 'DELETE FROM SynonymSeries WHERE aid="'+ str(aid) +'"'
+				print base_txt + sql
+				cur.execute(sql)
+				
+				sql = 'DELETE FROM EpisodeList WHERE aid="'+ str(aid) +'"'
+				print base_txt + sql
+				cur.execute(sql)		
+	
 def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 	
 	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
@@ -1076,7 +1131,9 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 			
 			if adult=='Yes':
 				searchText = '[I]' + searchText + '[/I]'
-			
+				
+			searchText = html_special(searchText)
+			description = html_special(description)
 			addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre=genre,totep=eptot, watchep=epwatch, fanart=fanart, plycnt=playcount)
 		else:
 			if str(aid)=='0' and tvdbSer==0:
@@ -1090,9 +1147,11 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 			if adult=='Yes':
 				searchText = '[I]' + searchText + '[/I]'
 				
+			searchText = html_special(searchText)
+			description = html_special(description)
 			addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre=genre,fanart=fanart)
 		if (pb.iscanceled()): return
-	pb.close()		
+	pb.close()	
 		
 	skin = xbmc.getSkinDir()
 	thumbnail_view = THUMBNAIL_VIEW_IDS.get(skin)
@@ -1100,7 +1159,7 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 		cmd = 'Container.SetViewMode(%s)' % thumbnail_view
 		xbmc.executebuiltin(cmd)
 	
-def getEpisode_Listing_Pages(groupUrl,aid='0'):
+def getEpisode_Listing_Pages(groupUrls,aid='0'):
 	# Extracts the URL and Page name of the various content pages
 	# MODE 3 = getEpisode_Listing_Pages
 	
@@ -1147,9 +1206,9 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 	# print epList1	
 	
 	try:
-		urls = groupUrl.split(' <--> ')
+		urls = groupUrls.split(' <--> ')
 	except:
-		urls = groupUrl
+		urls = groupUrls
 		
 	epListAll = []
 	epList = []
@@ -1162,6 +1221,7 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 	pb.create('Generating List', 'Episodes')
 	
 	ii=0	
+	updateText = ''
 	for url in urls:
 		ii += 1
 		for streamList in streamSiteList:
@@ -1171,8 +1231,8 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 				# siteBase = streamList + '.Episode_Listing_Pages(url)'
 				siteBase = 'cache.cacheFunction(' + streamList + '.Episode_Listing_Pages, url)'
 				epList = eval(siteBase)		
-			updateText = 'Grabbing Episodes from: ' + streamList
-			print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
+				updateText = 'Grabbing Episodes from: ' + streamList
+				print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
 			pb.update(int(ii/float(dirLength)*100), updateText)		
 		epListAll = epListAll + epList
 	
@@ -1229,6 +1289,8 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 						
 					nameTest = '[B]' + nameTest + '[/B]'
 					
+				nameTest = html_special(nameTest)
+				description = html_special(description)
 				addDir(nameTest,groupUrl,mode,iconimageTest,numItems=dirLength,descr=description,yr=yr,mo=mo,day=day,epSeason=epSeasonTest,epNum=epNumTest,fanart=fanart,plycnt=playcount)
 			groupUrl = ''
 			iconimageTest = ''
@@ -1289,7 +1351,9 @@ def getEpisode_Listing_Pages(groupUrl,aid='0'):
 		# except:
 			# print base_txt + 'Directory not created in SEARCH() for ' + url + ' ' + str(epNum)
 
-
+	if (aid != '0'):
+		addDir('-- REFRESH --',groupUrls,31,'',aid=aid)
+			
 	skin = xbmc.getSkinDir()
 	thumbnail_view = THUMBNAIL_VIEW_IDS.get(skin)
 	if thumbnail_view:
@@ -1810,6 +1874,7 @@ def searchCollection(searchText,aid='0'):
 		name = name.replace('Dragonball','Dragon Ball')
 		name = name.replace('Diamonddust','Diamond Dust')
 		name = name.replace('Highschool','High School')
+		name = name.replace('Fatestaynightunlimitedbladeworks','Fate Stay Night Unlimited Blade Works')
 		# name = name.replace('Piecedefeat','Piece Defeat')
 		# name = name.replace('Pieceadventure','Piece Adventure')
 		# name = name.replace('Pieceopen','Piece Open')
@@ -1968,7 +2033,7 @@ def PLAYLIST_VIDEOLINKS(url,name):
 	
 def addDir(name,url,mode,iconimage,numItems=1,aid='0',descr='',yr='1900',genre='',totep='0',watchep='0',epSeason=1, epNum=0, mo='01', day='01', fanart='', plycnt=0):
 	# XBMC: create directory
-	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&aid="+str(aid)
+	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&aid="+urllib.quote_plus(aid)+"&iconimage="+urllib.quote_plus(iconimage)
 	ok=True
 	unwatchep = '0'
 	airdate = str(yr)+'-'+str(mo).zfill(2)+'-'+str(day).zfill(2)
@@ -2058,7 +2123,15 @@ def grabUrlSource_Src(url):
 	except urllib2.URLError, e:
 		base_txt + '- got http error %d fetching %s' % (e.code, url)
 		return False
-				
+	
+def html_special(text):
+
+	text = text.replace('&lsquo;',"'")
+	text = text.replace('&quot;','"')
+	
+	return text
+	
+	
 def get_params():
 	param=[]
 	paramstring=sys.argv[2]
@@ -2081,6 +2154,7 @@ params=get_params()
 url=None
 name=None
 mode=None
+iconimage=None
 aid=None
 
 
@@ -2162,7 +2236,12 @@ try:
 except:
 	pass
 try:
-	aid=str(params["aid"])
+	iconimage=urllib.unquote_plus(params["iconimage"])
+except:
+	pass
+try:
+	# aid=str(params["aid"])
+	aid=urllib.unquote_plus(params["aid"])
 except:
 	pass
 
@@ -2189,7 +2268,15 @@ elif mode==1:
 elif mode==2:
 	SEARCH(name,aid) 
 		
+elif mode==211:
+	refresh_detail_db(aid)
+	SEARCH(url,iconimage) # <-- overloaded variables used: see SEARCH function
+		
 elif mode==3:
+	getEpisode_Listing_Pages(url,aid)
+		
+elif mode==31:
+	refresh_detail_db(aid)
 	getEpisode_Listing_Pages(url,aid)
 		
 elif mode==4:
