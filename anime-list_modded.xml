@@ -1545,6 +1545,7 @@
     <name>Tegami Bachi Letter Bee</name>
     <name>Letter Bee</name>
     <name>Tegami Bachi</name>
+	<name>Tegamibachi Letter Bee</name>
   </anime>
   <anime anidbid="7458" tvdbid="112521" defaulttvdbseason="2">
     <name>Tegami Bachi Letter Bee Reverse</name>
@@ -1552,7 +1553,8 @@
     <name>Tegami Bachi Reverse</name>
   </anime>
   <anime anidbid="217" tvdbid="80784" defaulttvdbseason="1">
-    <name>Mobile Suit Gudam 08Th Ms Team</name>
+    <name>Mobile Suit Gundam 08Th Ms Team</name>
+	<name>Mobile Suit Gundam: The 08th MS Team</name>
   </anime>
   <anime anidbid="4222" tvdbid="79194" defaulttvdbseason="2">
     <name>School Rumble Ni Gakki</name>
@@ -1617,6 +1619,9 @@
 	<name>Hanaukyou Maid Tai</name>      
 	<name>Hanaukyo Maids</name>  
   </anime>
+  <anime anidbid="t75873" tvdbid="75873" defaulttvdbseason="1">     
+    <name>Hanaukyo Maid Team: La Verite</name>  
+  </anime>
   <anime anidbid="567" tvdbid="0" defaulttvdbseason="1">       
 	<name>Tekken: The Motion Picture</name>   
 	<name>Tekken Anime</name>      
@@ -1646,6 +1651,14 @@
     <name>Tenchi Muyou! Ryououki</name>
     <name>Tenchi Muyo Ryo Ohki</name>
     <name>Tenshi Muyo Ryo Ohki</name>
+  </anime>
+  <anime anidbid="337" tvdbid="80583" defaulttvdbseason="1">     
+	<name>Tenchi in Tokyo</name>  
+	<name>Tenchi Muyo! Tenchi in Tokyo</name> 
+	<name>Shin Tenchi Muyou!</name>  
+  </anime>
+  <anime anidbid="358" tvdbid="79064" defaulttvdbseason="1">     
+	<name>Tenchi Muyo! GXP</name>  
   </anime>
   <anime anidbid="1674" tvdbid="182391" defaulttvdbseason="1">
     <name>Tetsujin 28Th</name>
@@ -1682,5 +1695,17 @@
     <name>Munto 2009 Tenjou Jin To Akuto Jin Saigo No Tatakai</name>
     <name>Tenjoubito to Akutobito Saigo no Tatakai</name>
     <name>Last War of Heavenloids and Akutoloids</name>
+  </anime>
+  <anime anidbid="238" tvdbid="232991" defaulttvdbseason="1">       
+	<name>Legendary Gambler Tetsuya</name>  
+  </anime>
+  <anime anidbid="4902" tvdbid="80387" defaulttvdbseason="1">     
+	<name>Saint Beast: Kouin Jojishi Tenshi Tan</name>  
+  </anime>
+  <anime anidbid="5084" tvdbid="80237" defaulttvdbseason="1">       
+	<name>Shining Tears X Wind</name>  
+  </anime>
+  <anime anidbid="8290" tvdbid="266077" defaulttvdbseason="1">   
+	<name>Spelunker Is a Teacher</name>  
   </anime>
 </anime-list>
