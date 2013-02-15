@@ -291,10 +291,6 @@
   <anime anidbid="7274" tvdbid="82028" defaulttvdbseason="3">
     <name>Ring ni Kakero 1: Shadow</name>
   </anime>
-  <anime anidbid="8549" tvdbid="259636" defaulttvdbseason="3">
-    <name>Muv-Luv Alternative: Total Eclipse</name>
-    <name>Total Eclipse</name>
-  </anime>
   <anime anidbid="7443" tvdbid="254663" defaulttvdbseason="1">
     <name>Mouretsu Pirates</name>
     <name>Bodacious Space Pirates</name>
@@ -1402,10 +1398,10 @@
     <name>Highschool of the Dead</name>
   </anime>
   <anime anidbid="8549" tvdbid="259636" defaulttvdbseason="1">
-    <name>Muv-Luv Alternative: Total Eclipse</name>
     <name>Total Eclipse</name>
     <name>Muv Luv Alternative: Total Eclipse</name>
     <name>Muv Luv Alternative Total Eclipse</name>
+    <name>Muv-Luv Alternative: Total Eclipse</name>
   </anime>
   <anime anidbid="5842" tvdbid="82834" defaulttvdbseason="1">     
     <name>Xam'd: Lost Memories</name>  
@@ -1577,5 +1573,11 @@
       <mapping anidbseason="0" tvdbseason="0">;1-0;</mapping>
       <mapping anidbseason="1" tvdbseason="0">;1-12;</mapping>
     </mapping-list>
+  </anime>
+  <anime anidbid="2820" tvdbid="81112" defaulttvdbseason="1">       
+	<name>Bokusatsu Tenshi Dokuro-Chan</name>  
+  </anime>
+  <anime anidbid="16" tvdbid="79062" defaulttvdbseason="1"> 
+    <name>Please Teacher!</name>  
   </anime>
 </anime-list>
