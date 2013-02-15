@@ -241,6 +241,7 @@
   </anime>
   <anime anidbid="2380" tvdbid="20995" defaulttvdbseason="0">
     <name>Prince Of Tennis The Two Samurai The First Game</name>
+    <name>The Prince Of Tennis Two Samurais The First Game</name>
   </anime>
   <anime anidbid="8692" tvdbid="259640" defaulttvdbseason="1">
     <name>Sword Art Online</name>
@@ -1595,5 +1596,91 @@
   </anime>
   <anime anidbid="2820" tvdbid="81112" defaulttvdbseason="1">       
 	<name>Bokusatsu Tenshi Dokuro-Chan</name>  
+  </anime>
+  <anime anidbid="5089" tvdbid="81112" defaulttvdbseason="2">       
+	<name>Bokusatsu Tenshi Dokuro-Chan 2</name>  
+	<name>Bokusatsu Tenshi Dokuro-Chan Second</name>  
+  </anime>
+  <anime anidbid="2983" tvdbid="0" defaulttvdbseason="1">       
+	<name>Ame to Shoujo to Watashi no Tegami</name>  
+	<name>Ame To Shoujo To Watashi No Tegami Rain The Little Girl And My Letter</name>  
+	<name>Rain, the Little Girl, and My Letter</name>  
+  </anime>
+  <anime anidbid="8860" tvdbid="259656" defaulttvdbseason="1">       
+	<name>Ebiten Kouritsu Ebisugawa Koukou Tenmon Bu</name>  
+	<name>Ebiten: Kouritsu Ebi Sugawa Koukou Tenmonbu</name>  
+	<name>Ebiten: Ebisugawa Public High School`s Tenmonbu</name>  
+	<name>Ebiten</name>  
+  </anime>
+  <anime anidbid="54" tvdbid="80654" defaulttvdbseason="1">       
+	<name>Hanaukyo Maid Team</name>      
+	<name>Hanaukyou Maid Tai</name>      
+	<name>Hanaukyo Maids</name>  
+  </anime>
+  <anime anidbid="567" tvdbid="0" defaulttvdbseason="1">       
+	<name>Tekken: The Motion Picture</name>   
+	<name>Tekken Anime</name>      
+  </anime>
+  <anime anidbid="8414" tvdbid="0" defaulttvdbseason="1">       
+	<name>Tekken Blood Vengeance 3D Cg</name>        
+	<name>Tekken Blood Vengeance</name>      
+  </anime>
+  <anime anidbid="359" tvdbid="80009" defaulttvdbseason="0">
+    <name>Tenchi Muyou! in Love</name>
+    <name>Tenchi Muyo 1 Tenchi In Love</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-2;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="375" tvdbid="80009" defaulttvdbseason="0">
+    <name>Tenchi Muyou! Manatsu no Eve</name>
+    <name>Tenchi Muyo 2 Daughter Of Darkness</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-3;</mapping>
+    </mapping-list>
+    <supplemental-info>
+      <studio>AIC</studio>
+    </supplemental-info>
+  </anime>
+  <anime anidbid="205" tvdbid="80009" defaulttvdbseason="1">
+    <name>Tenchi Muyou! Ryououki</name>
+    <name>Tenchi Muyo Ryo Ohki</name>
+    <name>Tenshi Muyo Ryo Ohki</name>
+  </anime>
+  <anime anidbid="1674" tvdbid="182391" defaulttvdbseason="1">
+    <name>Tetsujin 28Th</name>
+    <name>Tetsujin 28</name>
+  </anime>
+  <anime anidbid="1416" tvdbid="80241" defaulttvdbseason="0">
+    <name>Towards The Terra</name>
+    <name>Toward the Terra: Kampen om Jorden</name>
+  </anime>
+  <anime anidbid="9214" tvdbid="262109" defaulttvdbseason="1">
+    <name>Zetsuen No Tempest The Civilization Blaster</name>
+    <name>Zetsuen no Tempest</name>
+  </anime>
+  <anime anidbid="2784" tvdbid="78974" defaulttvdbseason="0">
+    <name>Tenjou Tenge: Ultimate Fight</name>
+    <name>Tenjou Tenge The Ultimate Fight</name>
+  </anime>
+  <anime anidbid="3121" tvdbid="78974" defaulttvdbseason="0">
+    <name>Tenjou Tenge: Past Chapter</name>
+    <name>Tenjou Tenge The Past Chapter</name>
+  </anime>
+  <anime anidbid="6814" tvdbid="78974" defaulttvdbseason="2">
+    <name>Tales of Symphonia The Animation: Tethe`alla Hen</name>
+    <name>Tales Of Symphonia Tethealla Hen</name>
+    <name>Tales of Symphonia The Animation: Tethe`alla Episode</name>
+    <name>Tales of Symphonia 2</name>
+    <name>Tales of Symphonia: Tethe`alla Chapter</name>
+  </anime>
+  <anime anidbid="8968" tvdbid="0" defaulttvdbseason="1">
+    <name>Otome Nadeshiko Koi Techou 1</name>
+    <name>Otome Nadeshiko Koi Techou </name>
+  </anime>
+  <anime anidbid="6427" tvdbid="84932" defaulttvdbseason="0">
+    <name>Munto 2009 Tenjou Jin To Akuto Jin Saigo No Tatakai</name>
+    <name>Tenjoubito to Akutobito Saigo no Tatakai</name>
+    <name>Last War of Heavenloids and Akutoloids</name>
   </anime>
 </anime-list>
