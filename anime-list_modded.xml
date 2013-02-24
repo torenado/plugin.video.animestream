@@ -170,6 +170,15 @@
       <mapping anidbseason="1" tvdbseason="0">;1-7;</mapping>
     </mapping-list>
   </anime>
+  <anime anidbid="4421" tvdbid="78857" defaulttvdbseason="0">
+    <name>Gekijouban Naruto: Dai Koufun! Mikazuki-jima no Animal Panic Datte ba yo!</name>
+    <name>Naruto 3 Guardians Of The Crescent Moon Kingdom</name>
+    <name>Naruto Guardians Of The Crescent Moon Kingdom</name>
+    <name>Naruto Third 3 Guardians Of The Crescent Moon Kingdom</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-7;</mapping>
+    </mapping-list>
+  </anime>
   <anime anidbid="8593" tvdbid="79719" defaulttvdbseason="4">
     <name>Zero no Tsukaima F</name>
     <name>Familiar of Zero F</name>
@@ -534,6 +543,7 @@
   <anime anidbid="1253" tvdbid="81797" defaulttvdbseason="0">
     <name>One Piece: Chinjuujima no Chopper Oukoku</name>
     <name>One Piece 3 Choppers Kingdom On The Island Of Strange Animals</name>
+    <name>One Piece 3 Chopper’S Kingdom On The Island Of Strange Animals</name>
     <name>One Piece 3 Kingdom On The Island Of Strange Animals</name>
     <name>One Piece Choppers Kingdom On The Island Of Strange Animals</name>
     <name>One Piece Kingdom On The Island Of Strange Animals</name>
@@ -1718,6 +1728,23 @@
   <anime anidbid="8290" tvdbid="266077" defaulttvdbseason="1">   
 	<name>Spelunker Is a Teacher</name>  
   </anime>
+  <anime anidbid="4092" tvdbid="0" defaulttvdbseason="1">   
+	<name>Varanoir Kingdom Of Chaos The Universe</name>  
+  </anime>
+  <anime anidbid="8119" tvdbid="0" defaulttvdbseason="1">   
+	<name>Ore Sama Kingdom</name>  
+	<name>Ore-Sama Kingdom</name>  
+  </anime>
+  <anime anidbid="9108" tvdbid="254662" defaulttvdbseason="0">   
+	<name>Rinne No Lagrange Kamogawa Days</name>  
+	<name>Rinne no Lagrange: Flower Declaration of Your Heart - Kamogawa Days</name>  
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-7;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="9108" tvdbid="254662" defaulttvdbseason="0">   
+	<name>Rinne No Lagrange Specials</name>  
+  </anime>
 <anime anidbid="101" tvdbid="74539" defaulttvdbseason="1">        <name>Nazca</name>  </anime>
 <anime anidbid="1015" tvdbid="74522" defaulttvdbseason="1">       <name>Lunar Legend Tsukihime</name>  </anime>
 <anime anidbid="1052" tvdbid="73993" defaulttvdbseason="1">       <name>Chrono Crusade</name>  </anime>
@@ -1765,7 +1792,7 @@
 <anime anidbid="2448" tvdbid="71014" defaulttvdbseason="1">       <name>Kirby: Right Back at Ya!</name>  </anime>
 <anime anidbid="2456" tvdbid="83584" defaulttvdbseason="0">     <name>Aquarian Age: The Movie</name>  </anime>
 <anime anidbid="247" tvdbid="73749" defaulttvdbseason="1">     <name>Ghost in the Shell: Stand Alone Complex</name>  </anime>
-<anime anidbid="26" tvdbid="74125" defaulttvdbseason="1">     <name>The Twelve Kingdoms</name>  </anime>
+<anime anidbid="26" tvdbid="74125" defaulttvdbseason="1">     <name>The Twelve Kingdoms</name><name>Twelve Kingdoms</name><name>12 Kingdoms</name>  </anime>
 <anime anidbid="2621" tvdbid="79043" defaulttvdbseason="1">     <name>He Is My Master</name>  </anime>
 <anime anidbid="2624" tvdbid="70978" defaulttvdbseason="2">     <name>BTX Neo</name>  </anime>
 <anime anidbid="2695" tvdbid="83303" defaulttvdbseason="1">     <name>Emma: A Victorian Romance</name>  </anime>
