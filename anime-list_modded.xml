@@ -436,6 +436,7 @@
   </anime>
   <anime anidbid="1805" tvdbid="78856" defaulttvdbseason="1">
     <name>Girls Bravo</name>
+    <name>Bravo Girls</name>
     <name>Girls Bravo - First Season</name>
     <name>Girls Bravo First Season</name>
     <name>Girls Bravo: First Season</name>
@@ -1805,7 +1806,7 @@
 <anime anidbid="2724" tvdbid="79115" defaulttvdbseason="1">       <name>Xenosaga: The Animation</name>  </anime>
 <anime anidbid="2733" tvdbid="76023" defaulttvdbseason="1">       <name>Tsubasa: RESERVoir CHRoNiCLE</name>  </anime>
 <anime anidbid="277" tvdbid="72842" defaulttvdbseason="1">        <name>Ninja Scroll</name>  </anime>
-<anime anidbid="2808" tvdbid="229291" defaulttvdbseason="1">     <name>Buzzer Beater (2005)</name>  </anime>
+<anime anidbid="2808" tvdbid="229291" defaulttvdbseason="1">     <name>Buzzer Beater (2005)</name><name>Buzzer Beater 2005</name>  </anime>
 <anime anidbid="2829" tvdbid="259589" defaulttvdbseason="1">   <name>Fushigiboshi no Futago Hime</name>  </anime>
 <anime anidbid="285" tvdbid="79544" defaulttvdbseason="1">        <name>Kodocha</name>  </anime>
 <anime anidbid="2855" tvdbid="80830" defaulttvdbseason="1">     <name>MÄR</name>  </anime>
@@ -1860,7 +1861,7 @@
 <anime anidbid="5042" tvdbid="81107" defaulttvdbseason="1">       <name>Oh! Edo Rocket</name>  </anime>
 <anime anidbid="5052" tvdbid="81631" defaulttvdbseason="1">       <name>Mokke</name>  </anime>
 <anime anidbid="517" tvdbid="80468" defaulttvdbseason="1">        <name>The Animatrix</name>  </anime>
-<anime anidbid="5224" tvdbid="80503" defaulttvdbseason="1">     <name>Buzzer Beater (2007)</name>  </anime>
+<anime anidbid="5224" tvdbid="80503" defaulttvdbseason="1">     <name>Buzzer Beater (2007)</name><name>Buzzer Beater 2007</name>  </anime>
 <anime anidbid="5406" tvdbid="81178" defaulttvdbseason="1">       <name>Spice and Wolf</name>  </anime>
 <anime anidbid="5414" tvdbid="145011" defaulttvdbseason="1">      <name>Suteki Tantei Labyrinth</name>  </anime>
 <anime anidbid="5435" tvdbid="81484" defaulttvdbseason="1">     <name>Myself; Yourself</name>  </anime>
