@@ -1752,6 +1752,10 @@
   <anime anidbid="9108" tvdbid="254662" defaulttvdbseason="0">   
 	<name>Rinne No Lagrange Specials</name>  
   </anime>
+  <anime anidbid="8014" tvdbid="117801" defaulttvdbseason="2">
+    <name>Kimi ni Todoke 2nd Season</name>
+    <name>Kimi ni Todoke 2</name>
+  </anime>
 <anime anidbid="101" tvdbid="74539" defaulttvdbseason="1">        <name>Nazca</name>  </anime>
 <anime anidbid="1015" tvdbid="74522" defaulttvdbseason="1">       <name>Lunar Legend Tsukihime</name>  </anime>
 <anime anidbid="1052" tvdbid="73993" defaulttvdbseason="1">       <name>Chrono Crusade</name>  </anime>
