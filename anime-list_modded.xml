@@ -435,11 +435,13 @@
     </mapping-list>
   </anime>
   <anime anidbid="1805" tvdbid="78856" defaulttvdbseason="1">
+    <name>Girls Bravo</name>
     <name>Girls Bravo - First Season</name>
     <name>Girls Bravo First Season</name>
     <name>Girls Bravo: First Season</name>
   </anime>
   <anime anidbid="2679" tvdbid="78856" defaulttvdbseason="2">
+    <name>Girls Bravo 2</name>
     <name>Girls Bravo - Second Season</name>
     <name>Girls Bravo Second Season</name>
     <name>Girls Bravo: Second Season</name>
@@ -1775,7 +1777,6 @@
 <anime anidbid="171" tvdbid="75911" defaulttvdbseason="1">        <name>Outlaw Star</name>  </anime>
 <anime anidbid="1750" tvdbid="74737" defaulttvdbseason="1">       <name>Legendz: Yomigaeru Ryuuou Densetsu</name>  </anime>
 <anime anidbid="1774" tvdbid="84040" defaulttvdbseason="1">     <name>Zoids: New Century Zero</name>  </anime>
-<anime anidbid="1805" tvdbid="78856" defaulttvdbseason="1">       <name>Girls Bravo</name>  </anime>
 <anime anidbid="181" tvdbid="80504" defaulttvdbseason="1">     <name>Rose of Versailles</name>  </anime>
 <anime anidbid="1953" tvdbid="199541" defaulttvdbseason="1">   <name>Sandglass of Summer Colors</name>  </anime>
 <anime anidbid="2147" tvdbid="85064" defaulttvdbseason="1">     <name>Wind: A breath of Heart</name>  </anime>
