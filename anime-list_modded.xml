@@ -1497,6 +1497,7 @@
   </anime>
   <anime anidbid="7440" tvdbid="186911" defaulttvdbseason="1">
     <name>Hyakka Ryoran: Samurai Girls</name>
+    <name>Hyakka RyōRan Samurai Girls</name>
     <mapping-list>
       <mapping anidbseason="0" tvdbseason="0">;2-7;3-1;4-2;5-3;6-4;7-5;8-6;</mapping>
     </mapping-list>
@@ -1530,6 +1531,9 @@
   <anime anidbid="6120" tvdbid="82884" defaulttvdbseason="2">
     <name>Tetsuwan Birdy Decode:02</name>
     <name>Tetsuwan Birdy Decode 2</name>
+  </anime>
+  <anime anidbid="1002" tvdbid="78812" defaulttvdbseason="1">
+    <name>Gunslinger Girls</name>
   </anime>
   <anime anidbid="5418" tvdbid="78812" defaulttvdbseason="2">
     <name>Gunslinger Girl: Il Teatrino</name>
@@ -1925,7 +1929,7 @@
 <anime anidbid="9132" tvdbid="259638" defaulttvdbseason="1">      <name>Little Busters!</name>  </anime>
 <anime anidbid="915" tvdbid="80398" defaulttvdbseason="1">        <name>Mobile Fighter G Gundam</name>  </anime>
 <anime anidbid="9207" tvdbid="264054" defaulttvdbseason="1">   <name>Mangirl!</name>  </anime>
-<anime anidbid="9227" tvdbid="262098" defaulttvdbseason="1">   <name>Girls und Panzer</name>  </anime>
+<anime anidbid="9227" tvdbid="262098" defaulttvdbseason="1">   <name>Girls und Panzer</name><name>Girls and Panzer</name>  </anime>
 <anime anidbid="9230" tvdbid="262092" defaulttvdbseason="1">   <name>OniAi</name>  </anime>
 <anime anidbid="9271" tvdbid="264533" defaulttvdbseason="1">   <name>Love Live!</name>  </anime>
 <anime anidbid="9292" tvdbid="264527" defaulttvdbseason="1">   <name>Hakkenden: Touhou Hakken Ibun</name>  </anime>
@@ -2008,4 +2012,15 @@
 <anime anidbid="t83931" tvdbid="83931" defaulttvdbseason="1">     <name>The Drinky Crow Show</name>  </anime>
 <anime anidbid="t84391" tvdbid="84391" defaulttvdbseason="1">     <name>Huntik: Secrets & Seekers</name>  </anime>
 <anime anidbid="t93991" tvdbid="93991" defaulttvdbseason="1">     <name>The Cleveland Show</name>  </anime>
+<anime anidbid="4067" tvdbid="81426" defaulttvdbseason="1">       <name>Girl's High</name>  </anime>
+<anime anidbid="8686" tvdbid="254654" defaulttvdbseason="1">   <name>Listen to Me, Girls. I Am Your Father!</name><name>Listen To Me Girls I'm Your Father</name>  </anime>
+<anime anidbid="t76200" tvdbid="76200" defaulttvdbseason="1">     <name>The Powerpuff Girls</name>  </anime>
+<anime anidbid="2602" tvdbid="80607" defaulttvdbseason="1">       <name>UG: Ultimate Girls</name>  </anime>
+<anime anidbid="t74256" tvdbid="74256" defaulttvdbseason="1">       <name>Winx Club</name>  </anime>
+<anime anidbid="t74256" tvdbid="74256" defaulttvdbseason="0">       <name>Winx Club Secret Of The Lost Kingdom</name>  </anime>
+<anime anidbid="289" tvdbid="84543" defaulttvdbseason="1">       <name>Piano: The Melody of a Young Girl`s Heart</name>  </anime>
+<anime anidbid="4522" tvdbid="79975" defaulttvdbseason="1">       <name>Red Garden</name>  </anime>
+<anime anidbid="5209" tvdbid="79975" defaulttvdbseason="0">       <name>Red Garden Dead Girls</name><name>Dead Girls: Red Garden</name>  </anime>
+<anime anidbid="4116" tvdbid="178531" defaulttvdbseason="1">       <name>Sasami: Magical Girls Club</name>  </anime>
+<anime anidbid="4619" tvdbid="178531" defaulttvdbseason="2">       <name>Sasami: Magical Girls Club 2</name>  </anime>
 </anime-list>
