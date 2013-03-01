@@ -187,6 +187,15 @@
     <name>Kingdom</name>
     <name>Kingdom (2012)</name>
   </anime>
+  <anime anidbid="3186" tvdbid="78960" defaulttvdbseason="1">
+    <name>Blood Plus</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="1">;1-1;2-2;3-3;4-4;5-5;6-6;7-7;8-8;9-9;10-10;11-11;12-12;13-13;</mapping>
+      <mapping anidbseason="1" tvdbseason="2">;14-1;15-2;16-3;17-4;18-5;19-6;20-7;21-8;22-9;23-10;24-11;25-12;</mapping>
+      <mapping anidbseason="1" tvdbseason="3">;26-1;27-2;28-3;29-4;30-5;31-6;32-7;33-8;34-9;35-10;36-11;37-12;38-13;</mapping>
+      <mapping anidbseason="1" tvdbseason="4">;39-1;40-2;41-3;42-4;43-5;44-6;45-7;46-8;47-9;48-10;49-11;50-12;</mapping>
+    </mapping-list>
+  </anime>
   <anime anidbid="56" tvdbid="73532" defaulttvdbseason="1">
     <name>Tennis no Ouji-sama</name>
     <name>The Prince of Tennis</name>
@@ -686,29 +695,36 @@
     <name>Ben 10 / Generator Rex Crossover Heroes United</name>
     <name>Ben-10 / Generator Rex Crossover Heroes United</name>
     <name>Ben-10 Destroy All Aliens</name>
+    <name>Ben10 Destroy All Aliens</name>
   </anime>
   <anime anidbid="t79567" tvdbid="79567" defaulttvdbseason="1">
     <name>Ben 10</name>
     <name>Ben-10</name>
+    <name>Ben10</name>
   </anime>
   <anime anidbid="t79567" tvdbid="79567" defaulttvdbseason="0">
     <name>Ben 10 Secret Of The Omnitrix</name>
     <name>Ben 10 Race Against Time</name>
+    <name>Ben10 Secret Of The Omnitrix</name>
+    <name>Ben10 Race Against Time</name>
   </anime>
   <anime anidbid="t158501" tvdbid="158501" defaulttvdbseason="1">
     <name>Ben 10: Ultimate Alien</name>
     <name>Ben-10: Ultimate Alien</name>
     <name>Ben-10 Ultimate Alien</name>
+    <name>Ben10 Ultimate Alien</name>
   </anime>
   <anime anidbid="t260995" tvdbid="260995" defaulttvdbseason="1">
     <name>Ben 10: Omniverse</name>
     <name>Ben-10: Omniverse</name>
     <name>Ben-10 Omniverse</name>
+    <name>Ben10 Omniverse</name>
   </anime>
   <anime anidbid="t81841" tvdbid="81841" defaulttvdbseason="1">
     <name>Ben 10: Alien Force</name>
     <name>Ben-10: Alien Force</name>
     <name>Ben-10 Alien Force</name>
+    <name>Ben10 Alien Force</name>
   </anime>
   <anime anidbid="t78682" tvdbid="78682" defaulttvdbseason="1">
     <name>Blackstar</name>
@@ -1015,6 +1031,12 @@
   </anime>
   <anime anidbid="t71788" tvdbid="71788" defaulttvdbseason="1">
     <name>Superman: The Animated Series</name>
+    <name>Superman (1996)</name>
+    <name>Superman 1996</name>
+    <name>Superman TAS</name>
+  </anime>
+  <anime anidbid="t71788" tvdbid="71788" defaulttvdbseason="0">
+    <name>Superman Brainiac Attacks</name>
   </anime>
   <anime anidbid="t190511" tvdbid="190511" defaulttvdbseason="1">
     <name>Sym-Bionic Titan</name>
@@ -1038,6 +1060,7 @@
   </anime>
   <anime anidbid="t73333" tvdbid="73333" defaulttvdbseason="1">
     <name>Visionaries: Knights of the Magical Light</name>
+    <name>Visionaries</name>
   </anime>
   <anime anidbid="2806" tvdbid="79081" defaulttvdbseason="1">    
     <name>Transformers Cybertron</name>  
@@ -1205,6 +1228,8 @@
   </anime>
   <anime anidbid="t249174" tvdbid="249174" defaulttvdbseason="1">
     <name>Voltron Force</name>
+    <name>Voltron Force (2011)</name>
+    <name>Voltron Force 2011</name>
   </anime>
   <anime anidbid="2041" tvdbid="78646" defaulttvdbseason="1">
     <name>Voltron</name>
@@ -1227,6 +1252,8 @@
   </anime>
   <anime anidbid="t75763" tvdbid="75763" defaulttvdbseason="1">    
 	<name>The Sub-Mariner</name>  
+	<name>Sub-Mariner (1966)</name> 
+	<name>Sub-Mariner 1966</name>  
   </anime>
   <anime anidbid="t77780" tvdbid="77780" defaulttvdbseason="1">    
 	<name>G I Joe</name>  
@@ -1752,9 +1779,25 @@
   <anime anidbid="9108" tvdbid="254662" defaulttvdbseason="0">   
 	<name>Rinne No Lagrange Specials</name>  
   </anime>
+  <anime anidbid="9298" tvdbid="262106" defaulttvdbseason="1">   
+	<name>Kamisama Hajimemashita</name>  
+  </anime>
   <anime anidbid="8014" tvdbid="117801" defaulttvdbseason="2">
     <name>Kimi ni Todoke 2nd Season</name>
     <name>Kimi ni Todoke 2</name>
+  </anime>
+  <anime anidbid="7404" tvdbid="171731" defaulttvdbseason="1">
+    <name>Grandchild Of Nurarihyon</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-1;2-3;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="7278" tvdbid="140741" defaulttvdbseason="1">
+    <name>Senkou no Night Raid</name>
+    <name>Senko No Night Raid</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-2;2-1;4-5;5-4;</mapping>
+    </mapping-list>
   </anime>
 <anime anidbid="101" tvdbid="74539" defaulttvdbseason="1">        <name>Nazca</name>  </anime>
 <anime anidbid="1015" tvdbid="74522" defaulttvdbseason="1">       <name>Lunar Legend Tsukihime</name>  </anime>
@@ -1769,6 +1812,7 @@
 <anime anidbid="1209" tvdbid="80043" defaulttvdbseason="1">     <name>Gun Frontier</name>  </anime>
 <anime anidbid="1266" tvdbid="83628" defaulttvdbseason="1">     <name>Le Portrait de Petit Cossette</name>  </anime>
 <anime anidbid="1327" tvdbid="266365" defaulttvdbseason="1">      <name>Midori Days</name>  </anime>
+<anime anidbid="1342" tvdbid="72776" defaulttvdbseason="1">       <name>Transformers Energon</name>  </anime>
 <anime anidbid="1353" tvdbid="250580" defaulttvdbseason="1">   <name>8 Man After</name>  </anime>
 <anime anidbid="138" tvdbid="84141" defaulttvdbseason="1">        <name>Sakura Mail</name>  </anime>
 <anime anidbid="1383" tvdbid="137801" defaulttvdbseason="1">   <name>3000 Leagues in Search of Mother</name>  </anime>
@@ -1786,6 +1830,7 @@
 <anime anidbid="171" tvdbid="75911" defaulttvdbseason="1">        <name>Outlaw Star</name>  </anime>
 <anime anidbid="1750" tvdbid="74737" defaulttvdbseason="1">       <name>Legendz: Yomigaeru Ryuuou Densetsu</name>  </anime>
 <anime anidbid="1774" tvdbid="84040" defaulttvdbseason="1">     <name>Zoids: New Century Zero</name>  </anime>
+<anime anidbid="1805" tvdbid="78856" defaulttvdbseason="1">       <name>Girls Bravo</name>  </anime>
 <anime anidbid="181" tvdbid="80504" defaulttvdbseason="1">     <name>Rose of Versailles</name>  </anime>
 <anime anidbid="1953" tvdbid="199541" defaulttvdbseason="1">   <name>Sandglass of Summer Colors</name>  </anime>
 <anime anidbid="2147" tvdbid="85064" defaulttvdbseason="1">     <name>Wind: A breath of Heart</name>  </anime>
@@ -1802,7 +1847,9 @@
 <anime anidbid="2448" tvdbid="71014" defaulttvdbseason="1">       <name>Kirby: Right Back at Ya!</name>  </anime>
 <anime anidbid="2456" tvdbid="83584" defaulttvdbseason="0">     <name>Aquarian Age: The Movie</name>  </anime>
 <anime anidbid="247" tvdbid="73749" defaulttvdbseason="1">     <name>Ghost in the Shell: Stand Alone Complex</name>  </anime>
+<anime anidbid="26" tvdbid="74125" defaulttvdbseason="1">     <name>The Twelve Kingdoms</name>  </anime>
 <anime anidbid="26" tvdbid="74125" defaulttvdbseason="1">     <name>The Twelve Kingdoms</name><name>Twelve Kingdoms</name><name>12 Kingdoms</name>  </anime>
+<anime anidbid="2602" tvdbid="80607" defaulttvdbseason="1">       <name>UG: Ultimate Girls</name>  </anime>
 <anime anidbid="2621" tvdbid="79043" defaulttvdbseason="1">     <name>He Is My Master</name>  </anime>
 <anime anidbid="2624" tvdbid="70978" defaulttvdbseason="2">     <name>BTX Neo</name>  </anime>
 <anime anidbid="2695" tvdbid="83303" defaulttvdbseason="1">     <name>Emma: A Victorian Romance</name>  </anime>
@@ -1810,11 +1857,13 @@
 <anime anidbid="2724" tvdbid="79115" defaulttvdbseason="1">       <name>Xenosaga: The Animation</name>  </anime>
 <anime anidbid="2733" tvdbid="76023" defaulttvdbseason="1">       <name>Tsubasa: RESERVoir CHRoNiCLE</name>  </anime>
 <anime anidbid="277" tvdbid="72842" defaulttvdbseason="1">        <name>Ninja Scroll</name>  </anime>
+<anime anidbid="2808" tvdbid="229291" defaulttvdbseason="1">     <name>Buzzer Beater (2005)</name>  </anime>
 <anime anidbid="2808" tvdbid="229291" defaulttvdbseason="1">     <name>Buzzer Beater (2005)</name><name>Buzzer Beater 2005</name>  </anime>
 <anime anidbid="2829" tvdbid="259589" defaulttvdbseason="1">   <name>Fushigiboshi no Futago Hime</name>  </anime>
 <anime anidbid="285" tvdbid="79544" defaulttvdbseason="1">        <name>Kodocha</name>  </anime>
 <anime anidbid="2855" tvdbid="80830" defaulttvdbseason="1">     <name>MÄR</name>  </anime>
 <anime anidbid="287" tvdbid="79449" defaulttvdbseason="1">        <name>Revolutionary Girl Utena</name>  </anime>
+<anime anidbid="289" tvdbid="84543" defaulttvdbseason="1">       <name>Piano The Melody Of A Young Girl'S Heart</name><name>Piano: The Melody of a Young Girl`s Heart</name>  </anime>
 <anime anidbid="2908" tvdbid="72858" defaulttvdbseason="1">       <name>Monster Rancher</name>  </anime>
 <anime anidbid="2921" tvdbid="76031" defaulttvdbseason="1">     <name>The Law of Ueki</name>  </anime>
 <anime anidbid="293" tvdbid="79457" defaulttvdbseason="1">        <name>Karakuri Zoushi Ayatsuri Sakon</name>  </anime>
@@ -1834,7 +1883,9 @@
 <anime anidbid="3703" tvdbid="81932" defaulttvdbseason="1">     <name>Beet the Vandel Buster Excellion</name>  </anime>
 <anime anidbid="40" tvdbid="81789" defaulttvdbseason="1">     <name>Nadia - The Secret of Blue Water</name>  </anime>
 <anime anidbid="406" tvdbid="72427" defaulttvdbseason="1">        <name>The Legend of Black Heaven</name>  </anime>
+<anime anidbid="4067" tvdbid="81426" defaulttvdbseason="1">       <name>Girl's High</name>  </anime>
 <anime anidbid="4113" tvdbid="80050" defaulttvdbseason="1">       <name>Yomigaeru Sora: Rescue Wings</name>  </anime>
+<anime anidbid="4116" tvdbid="178531" defaulttvdbseason="1">       <name>Sasami: Magical Girls Club</name>  </anime>
 <anime anidbid="412" tvdbid="79174" defaulttvdbseason="1">     <name>Zone of the Enders: Dolores, i</name>  </anime>
 <anime anidbid="4150" tvdbid="80979" defaulttvdbseason="1">     <name>The Story of Saiunkoku</name>  </anime>
 <anime anidbid="4197" tvdbid="149911" defaulttvdbseason="1">   <name>Angelique -When the Heart Awakens</name>  </anime>
@@ -1846,9 +1897,11 @@
 <anime anidbid="447" tvdbid="79099" defaulttvdbseason="2">   <name>.hack//Legend of the Twilight Bracelet</name>  </anime>
 <anime anidbid="449" tvdbid="79060" defaulttvdbseason="1">        <name>Wolf's Rain</name>  </anime>
 <anime anidbid="45" tvdbid="82699" defaulttvdbseason="1"> <name>Gunsmith Cats</name>  </anime>
+<anime anidbid="4522" tvdbid="79975" defaulttvdbseason="1">       <name>Red Garden</name>  </anime>
 <anime anidbid="4568" tvdbid="82945" defaulttvdbseason="1">     <name>5 Centimeters Per Second</name>  </anime>
 <anime anidbid="4583" tvdbid="112781" defaulttvdbseason="1">      <name>Shattered Angels</name>  </anime>
 <anime anidbid="460" tvdbid="70516" defaulttvdbseason="1">        <name>Ronin Warriors</name>  </anime>
+<anime anidbid="4619" tvdbid="178531" defaulttvdbseason="2">       <name>Sasami: Magical Girls Club 2</name>  </anime>
 <anime anidbid="469" tvdbid="101441" defaulttvdbseason="1">   <name>Beyond the Clouds, The Promised Place</name>  </anime>
 <anime anidbid="472" tvdbid="81024" defaulttvdbseason="1">        <name>Gravion</name>  </anime>
 <anime anidbid="4729" tvdbid="83303" defaulttvdbseason="2">     <name>Emma: A Victorian Romance Season 2</name>  </anime>
@@ -1865,7 +1918,9 @@
 <anime anidbid="5042" tvdbid="81107" defaulttvdbseason="1">       <name>Oh! Edo Rocket</name>  </anime>
 <anime anidbid="5052" tvdbid="81631" defaulttvdbseason="1">       <name>Mokke</name>  </anime>
 <anime anidbid="517" tvdbid="80468" defaulttvdbseason="1">        <name>The Animatrix</name>  </anime>
+<anime anidbid="5209" tvdbid="79975" defaulttvdbseason="0">       <name>Red Garden Dead Girls</name><name>Dead Girls: Red Garden</name>  </anime>
 <anime anidbid="5224" tvdbid="80503" defaulttvdbseason="1">     <name>Buzzer Beater (2007)</name><name>Buzzer Beater 2007</name>  </anime>
+<anime anidbid="525" tvdbid="78628" defaulttvdbseason="1">        <name>Transformers Armada</name>  </anime>
 <anime anidbid="5406" tvdbid="81178" defaulttvdbseason="1">       <name>Spice and Wolf</name>  </anime>
 <anime anidbid="5414" tvdbid="145011" defaulttvdbseason="1">      <name>Suteki Tantei Labyrinth</name>  </anime>
 <anime anidbid="5435" tvdbid="81484" defaulttvdbseason="1">     <name>Myself; Yourself</name>  </anime>
@@ -1892,6 +1947,7 @@
 <anime anidbid="719" tvdbid="72352" defaulttvdbseason="1">     <name>Mobile Suit Gundam ZZ</name>  </anime>
 <anime anidbid="737" tvdbid="82070" defaulttvdbseason="1">        <name>Nightwalker: Midnight Detective</name>  </anime>
 <anime anidbid="7405" tvdbid="151281" defaulttvdbseason="1">   <name>Hakuouki</name>  </anime>
+<anime anidbid="7434" tvdbid="0" defaulttvdbseason="1">       <name>Romance Of The Three Kingdoms</name>  </anime>
 <anime anidbid="7469" tvdbid="160911" defaulttvdbseason="1">      <name>Magic Kaito</name>  </anime>
 <anime anidbid="750" tvdbid="78855" defaulttvdbseason="1">     <name>Descendants of Darkness</name>  </anime>
 <anime anidbid="7591" tvdbid="194951" defaulttvdbseason="1">      <name>Star Driver Kagayaki no Takuto</name>  </anime>
@@ -1920,6 +1976,7 @@
 <anime anidbid="847" tvdbid="85067" defaulttvdbseason="1">        <name>Rumiko Takahashi Anthology</name>  </anime>
 <anime anidbid="8620" tvdbid="255056" defaulttvdbseason="1">   <name>Waiting in the Summer</name>  </anime>
 <anime anidbid="8673" tvdbid="262093" defaulttvdbseason="1">   <name>Code:Breaker</name>  </anime>
+<anime anidbid="8686" tvdbid="254654" defaulttvdbseason="1">   <name>Listen to Me, Girls. I Am Your Father!</name><name>Listen To Me Girls I'm Your Father</name>  </anime>
 <anime anidbid="8798" tvdbid="254660" defaulttvdbseason="1">   <name>The Knight in the Area</name>  </anime>
 <anime anidbid="8847" tvdbid="263259" defaulttvdbseason="1">   <name>Chousoku Henkei Gyrozetter</name>  </anime>
 <anime anidbid="8899" tvdbid="259651" defaulttvdbseason="1">      <name>Joshiraku</name>  </anime>
@@ -1935,7 +1992,7 @@
 <anime anidbid="915" tvdbid="80398" defaulttvdbseason="1">        <name>Mobile Fighter G Gundam</name>  </anime>
 <anime anidbid="9207" tvdbid="264054" defaulttvdbseason="1">   <name>Mangirl!</name>  </anime>
 <anime anidbid="9227" tvdbid="262098" defaulttvdbseason="1">   <name>Girls und Panzer</name><name>Girls and Panzer</name>  </anime>
-<anime anidbid="9230" tvdbid="262092" defaulttvdbseason="1">   <name>OniAi</name>  </anime>
+<anime anidbid="9230" tvdbid="262092" defaulttvdbseason="1">   <name>OniAi</name> <name>Oniichan dakedo Ai sae Areba Kankeinai yo ne!</name>  <name>Onii-chan Dakedo Ai Sae Areba Kankeinai yo ne!</name><name>Onii Chan Dakedo Ai Sae Areba Kankeinai Yo Ne Oniai</name>  </anime>
 <anime anidbid="9271" tvdbid="264533" defaulttvdbseason="1">   <name>Love Live!</name>  </anime>
 <anime anidbid="9292" tvdbid="264527" defaulttvdbseason="1">   <name>Hakkenden: Touhou Hakken Ibun</name>  </anime>
 <anime anidbid="93" tvdbid="72792" defaulttvdbseason="1">     <name>I My Me! Strawberry Eggs</name>  </anime>
@@ -1945,89 +2002,176 @@
 <anime anidbid="9386" tvdbid="264312" defaulttvdbseason="1">   <name>Wooser no Sono Higurashi</name>  </anime>
 <anime anidbid="9394" tvdbid="264049" defaulttvdbseason="1">   <name>Kotoura-san</name>  </anime>
 <anime anidbid="9421" tvdbid="264528" defaulttvdbseason="1">   <name>The Unlimited - Hyoubu Kyousuke</name>  </anime>
+<anime anidbid="943" tvdbid="0" defaulttvdbseason="1">       <name>Romance Of The Three Kingdoms Sangokushi</name>  </anime>
 <anime anidbid="945" tvdbid="70978" defaulttvdbseason="1">     <name>BTX</name>  </anime>
 <anime anidbid="9499" tvdbid="264529" defaulttvdbseason="1">   <name>Bakumatsu Gijinden Roman</name>  </anime>
 <anime anidbid="9523" tvdbid="266581" defaulttvdbseason="1">   <name>Dokidoki! Precure</name>  </anime>
 <anime anidbid="9525" tvdbid="264534" defaulttvdbseason="1">   <name>Tamako Market</name>  </anime>
 <anime anidbid="957" tvdbid="93721" defaulttvdbseason="1">     <name>GaoGaiGar: King of Braves</name>  </anime>
 <anime anidbid="998" tvdbid="79446" defaulttvdbseason="1">        <name>Mezzo</name>  </anime>
+<anime anidbid="t108241" tvdbid="108241" defaulttvdbseason="1">   <name>Terminator Salvation: The Machinima Series</name>  </anime>
 <anime anidbid="t109541" tvdbid="109541" defaulttvdbseason="1">   <name>Dino Squad</name>  </anime>
+<anime anidbid="t113901" tvdbid="113901" defaulttvdbseason="1">   <name>The Super Hero Squad Show</name>  </anime>
 <anime anidbid="t159221" tvdbid="159221" defaulttvdbseason="1">   <name>Kick Buttowski</name>  </anime>
+<anime anidbid="t165231" tvdbid="165231" defaulttvdbseason="1">   <name>Spliced!</name>  </anime>
+<anime anidbid="t174681" tvdbid="174681" defaulttvdbseason="1">   <name>Scooby-Doo! Mystery Incorporated</name>  </anime>
 <anime anidbid="t177221" tvdbid="177221" defaulttvdbseason="1">   <name>Kappa Mikey</name>  </anime>
+<anime anidbid="t188401" tvdbid="188401" defaulttvdbseason="1">   <name>Regular Show</name>  </anime>
 <anime anidbid="t192171" tvdbid="192171" defaulttvdbseason="1">   <name>The Avengers: Earth's Mightiest Heroes</name>  </anime>
 <anime anidbid="t193491" tvdbid="193491" defaulttvdbseason="1">   <name>Fish Hooks</name>  </anime>
+<anime anidbid="t205901" tvdbid="205901" defaulttvdbseason="1">   <name>Transformers: Prime</name>  </anime>
+<anime anidbid="t246161" tvdbid="246161" defaulttvdbseason="1">   <name>The Problem Solverz</name>  </anime>
 <anime anidbid="t248368" tvdbid="248368" defaulttvdbseason="1">   <name>The Looney Tunes Show (2011)</name>  </anime>
 <anime anidbid="t250498" tvdbid="250498" defaulttvdbseason="1">   <name>LEGO Star Wars</name>  </anime>
+<anime anidbid="t251451" tvdbid="251451" defaulttvdbseason="1">   <name>Redakai: Conquer the Kairu</name>  </anime>
 <anime anidbid="t251807" tvdbid="251807" defaulttvdbseason="1">   <name>Green Lantern: The Animated Series</name>  </anime>
+<anime anidbid="t252485" tvdbid="252485" defaulttvdbseason="1">   <name>Secret Mountain Fort Awesome</name>  </anime>
+<anime anidbid="t253780" tvdbid="253780" defaulttvdbseason="1">   <name>Wayside School</name>  </anime>
+<anime anidbid="t253986" tvdbid="253986" defaulttvdbseason="1">   <name>Super Robot Monkey Team Hyperforce Go!</name>  </anime>
 <anime anidbid="t254119" tvdbid="254119" defaulttvdbseason="1">   <name>Death Battle!</name>  </anime>
+<anime anidbid="t254654" tvdbid="254654" defaulttvdbseason="1">   <name>Listen to Me, Girls. I Am Your Father!</name>  </anime>
 <anime anidbid="t258233" tvdbid="258233" defaulttvdbseason="1">   <name>Motorcity</name>  </anime>
 <anime anidbid="t260422" tvdbid="260422" defaulttvdbseason="1">   <name>Kaijudo Rise Of The Duel Masters (2012)</name>  </anime>
+<anime anidbid="t261451" tvdbid="261451" defaulttvdbseason="1">   <name>Teenage Mutant Ninja Turtles (2012)</name>  </anime>
 <anime anidbid="t263589" tvdbid="263589" defaulttvdbseason="1">   <name>Dragonball Z Abridged</name>  </anime>
 <anime anidbid="t264030" tvdbid="264030" defaulttvdbseason="1">   <name>Avengers Assemble (2013)</name>  </anime>
 <anime anidbid="t264561" tvdbid="264561" defaulttvdbseason="1">   <name>Dragon Flyz</name>  </anime>
+<anime anidbid="t264838" tvdbid="264838" defaulttvdbseason="1">   <name>The Bugs Bunny Road Runner Show</name>  </anime>
 <anime anidbid="t265113" tvdbid="265113" defaulttvdbseason="1">   <name>Inferno Cop</name>  </anime>
 <anime anidbid="t265393" tvdbid="265393" defaulttvdbseason="1">   <name>LEGO Legends of Chima</name>  </anime>
 <anime anidbid="t70410" tvdbid="70410" defaulttvdbseason="1">     <name>Extreme Dinosaurs</name>  </anime>
 <anime anidbid="t70437" tvdbid="70437" defaulttvdbseason="1">     <name>Highlander: The Animated Series</name>  </anime>
+<anime anidbid="t70489" tvdbid="70489" defaulttvdbseason="1">     <name>NASCAR Racers</name>  </anime>
+<anime anidbid="t70512" tvdbid="70512" defaulttvdbseason="1">     <name>RoboCop: Alpha Commando</name>  </anime>
+<anime anidbid="t70545" tvdbid="70545" defaulttvdbseason="1">     <name>Swat Kats: The Radical Squadron</name>  </anime>
+<anime anidbid="t70852" tvdbid="70852" defaulttvdbseason="1">     <name>Stargate: Infinity</name>  </anime>
 <anime anidbid="t70889" tvdbid="70889" defaulttvdbseason="1">     <name>Dragon's Lair</name>  </anime>
+<anime anidbid="t70909" tvdbid="70909" defaulttvdbseason="1">     <name>The New Adventures of Batman</name>  </anime>
+<anime anidbid="t71032" tvdbid="71032" defaulttvdbseason="1">     <name>Teenage Mutant Ninja Turtles (2003)</name>  </anime>
+<anime anidbid="t71132" tvdbid="71132" defaulttvdbseason="1">     <name>Xcalibur</name>  </anime>
 <anime anidbid="t71162" tvdbid="71162" defaulttvdbseason="1">     <name>Donkey Kong Country</name>  </anime>
+<anime anidbid="t71168" tvdbid="71168" defaulttvdbseason="1">     <name>X-Men: Evolution</name>  </anime>
+<anime anidbid="t71786" tvdbid="71786" defaulttvdbseason="1">     <name>The Real Adventures of Jonny Quest</name>  </anime>
+<anime anidbid="t71946" tvdbid="71946" defaulttvdbseason="1">     <name>Phantom 2040</name>  </anime>
 <anime anidbid="t72005" tvdbid="72005" defaulttvdbseason="1">     <name>Hey Arnold!</name>  </anime>
 <anime anidbid="t72215" tvdbid="72215" defaulttvdbseason="1">     <name>The Incredible Hulk (1982)</name>  </anime>
+<anime anidbid="t72245" tvdbid="72245" defaulttvdbseason="1">     <name>Xiaolin Showdown</name>  </anime>
+<anime anidbid="t72461" tvdbid="72461" defaulttvdbseason="1">     <name>The Silver Surfer</name>  </anime>
 <anime anidbid="t72543" tvdbid="72543" defaulttvdbseason="1">     <name>Max Steel</name>  </anime>
 <anime anidbid="t72773" tvdbid="72773" defaulttvdbseason="1">     <name>Martin Mystery</name>  </anime>
 <anime anidbid="t72875" tvdbid="72875" defaulttvdbseason="1">     <name>Freakazoid!</name>  </anime>
 <anime anidbid="t73016" tvdbid="73016" defaulttvdbseason="1">     <name>Jayce and the Wheeled Warriors</name>  </anime>
+<anime anidbid="t73540" tvdbid="73540" defaulttvdbseason="1">     <name>Tales From the Cryptkeeper</name>  </anime>
+<anime anidbid="t73566" tvdbid="73566" defaulttvdbseason="1">     <name>Star Trek: The Animated Series</name>  </anime>
 <anime anidbid="t73617" tvdbid="73617" defaulttvdbseason="1">     <name>Gravedale High</name>  </anime>
+<anime anidbid="t73634" tvdbid="73634" defaulttvdbseason="1">     <name>Sonic Underground</name>  </anime>
 <anime anidbid="t73693" tvdbid="73693" defaulttvdbseason="1">     <name>Inspector Gadget</name>  </anime>
+<anime anidbid="t73704" tvdbid="73704" defaulttvdbseason="1">     <name>Tiny Toon Adventures</name>  </anime>
+<anime anidbid="t73720" tvdbid="73720" defaulttvdbseason="1">     <name>Pepper Ann</name>  </anime>
+<anime anidbid="t73721" tvdbid="73721" defaulttvdbseason="1">     <name>Mummies Alive!</name>  </anime>
 <anime anidbid="t73728" tvdbid="73728" defaulttvdbseason="1">     <name>Histeria!</name>  </anime>
 <anime anidbid="t73903" tvdbid="73903" defaulttvdbseason="1">     <name>King of the Hill</name>  </anime>
 <anime anidbid="t74095" tvdbid="74095" defaulttvdbseason="1">     <name>Megas XLR</name>  </anime>
+<anime anidbid="t74097" tvdbid="74097" defaulttvdbseason="1">     <name>Skeleton Warriors</name>  </anime>
 <anime anidbid="t74189" tvdbid="74189" defaulttvdbseason="1">     <name>House of Mouse</name>  </anime>
+<anime anidbid="t74256" tvdbid="74256" defaulttvdbseason="0">       <name>Winx Club Secret Of The Lost Kingdom</name>  </anime>
+<anime anidbid="t74256" tvdbid="74256" defaulttvdbseason="1">       <name>Winx Club</name>  </anime>
 <anime anidbid="t74413" tvdbid="74413" defaulttvdbseason="1">     <name>The Boondocks</name>  </anime>
+<anime anidbid="t74583" tvdbid="74583" defaulttvdbseason="1">     <name>The Super Mario Bros. Super Show!</name>  </anime>
+<anime anidbid="t75056" tvdbid="75056" defaulttvdbseason="1">     <name>Spicy City</name>  </anime>
+<anime anidbid="t75164" tvdbid="75164" defaulttvdbseason="1">     <name>Samurai Jack</name>  </anime>
 <anime anidbid="t75475" tvdbid="75475" defaulttvdbseason="1">     <name>Darkwing Duck</name>  </anime>
+<anime anidbid="t75476" tvdbid="75476" defaulttvdbseason="1">     <name>TaleSpin</name>  </anime>
+<anime anidbid="t75534" tvdbid="75534" defaulttvdbseason="1">     <name>Street Fighter II: V</name>  </anime>
 <anime anidbid="t75545" tvdbid="75545" defaulttvdbseason="1">     <name>Invader ZIM</name>  </anime>
+<anime anidbid="t75719" tvdbid="75719" defaulttvdbseason="1">     <name>The Smurfs</name>  </anime>
+<anime anidbid="t75729" tvdbid="75729" defaulttvdbseason="1">     <name>Rocko's Modern Life</name>  </anime>
+<anime anidbid="t75763" tvdbid="75763" defaulttvdbseason="1">     <name>The Sub-Mariner</name>  </anime>
+<anime anidbid="t75885" tvdbid="75885" defaulttvdbseason="1">     <name>Time Squad</name>  </anime>
+<anime anidbid="t75886" tvdbid="75886" defaulttvdbseason="1">     <name>SpongeBob SquarePants</name>  </anime>
+<anime anidbid="t75897" tvdbid="75897" defaulttvdbseason="1">     <name>South Park</name>  </anime>
 <anime anidbid="t75931" tvdbid="75931" defaulttvdbseason="1">     <name>DuckTales</name>  </anime>
 <anime anidbid="t75978" tvdbid="75978" defaulttvdbseason="1">     <name>Family Guy</name>  </anime>
 <anime anidbid="t76171" tvdbid="76171" defaulttvdbseason="1">     <name>The Flintstones</name>  </anime>
+<anime anidbid="t76200" tvdbid="76200" defaulttvdbseason="1">     <name>The Powerpuff Girls</name>  </anime>
 <anime anidbid="t76392" tvdbid="76392" defaulttvdbseason="1">     <name>Life with Louie</name>  </anime>
+<anime anidbid="t76599" tvdbid="76599" defaulttvdbseason="1">     <name>Quack Pack</name>  </anime>
+<anime anidbid="t76705" tvdbid="76705" defaulttvdbseason="1">     <name>The Rocky and Bullwinkle Show</name>  </anime>
 <anime anidbid="t76711" tvdbid="76711" defaulttvdbseason="1">     <name>Jackie Chan Adventures</name>  </anime>
+<anime anidbid="t76776" tvdbid="76776" defaulttvdbseason="1">     <name>Undergrads</name>  </anime>
+<anime anidbid="t76859" tvdbid="76859" defaulttvdbseason="1">     <name>The Ripping Friends</name>  </anime>
+<anime anidbid="t76978" tvdbid="76978" defaulttvdbseason="1">     <name>Peter Pan and the Pirates</name>  </anime>
 <anime anidbid="t76993" tvdbid="76993" defaulttvdbseason="1">     <name>Earthworm Jim</name>  </anime>
+<anime anidbid="t77038" tvdbid="77038" defaulttvdbseason="1">     <name>Rugrats</name>  </anime>
 <anime anidbid="t77119" tvdbid="77119" defaulttvdbseason="1">     <name>Harvey Birdman, Attorney at Law</name>  </anime>
 <anime anidbid="t77155" tvdbid="77155" defaulttvdbseason="1">     <name>The Incredible Hulk (1996)</name>  </anime>
+<anime anidbid="t77291" tvdbid="77291" defaulttvdbseason="1">     <name>Pelswick</name>  </anime>
 <anime anidbid="t77466" tvdbid="77466" defaulttvdbseason="1">     <name>Ed, Edd n' Eddy</name>  </anime>
+<anime anidbid="t77625" tvdbid="77625" defaulttvdbseason="1">     <name>Totally Spies</name>  </anime>
+<anime anidbid="t77764" tvdbid="77764" defaulttvdbseason="1">     <name>War Planets: Shadow Raiders</name>  </anime>
 <anime anidbid="t77772" tvdbid="77772" defaulttvdbseason="1">     <name>The Adventures of the Galaxy Rangers</name>  </anime>
 <anime anidbid="t77972" tvdbid="77972" defaulttvdbseason="1">     <name>The Karate Kid</name>  </anime>
 <anime anidbid="t78026" tvdbid="78026" defaulttvdbseason="1">     <name>Exosquad</name>  </anime>
+<anime anidbid="t78067" tvdbid="78067" defaulttvdbseason="1">     <name>Roughnecks: Starship Troopers Chronicles</name>  </anime>
+<anime anidbid="t78138" tvdbid="78138" defaulttvdbseason="1">     <name>The Raccoons</name>  </anime>
+<anime anidbid="t78158" tvdbid="78158" defaulttvdbseason="1">     <name>Mr. Bean: The Animated Series</name>  </anime>
 <anime anidbid="t78250" tvdbid="78250" defaulttvdbseason="1">     <name>Goof Troop</name>  </anime>
 <anime anidbid="t78272" tvdbid="78272" defaulttvdbseason="1">     <name>I am Weasel</name>  </anime>
 <anime anidbid="t78276" tvdbid="78276" defaulttvdbseason="1">     <name>The Legend of Zelda</name>  </anime>
+<anime anidbid="t78282" tvdbid="78282" defaulttvdbseason="1">     <name>Rocket Power</name>  </anime>
 <anime anidbid="t78328" tvdbid="78328" defaulttvdbseason="1">     <name>Scooby's All Star Laff-A-Lympics</name>  </anime>
+<anime anidbid="t78416" tvdbid="78416" defaulttvdbseason="1">     <name>Spider-Man: The New Animated Series</name>  </anime>
 <anime anidbid="t78443" tvdbid="78443" defaulttvdbseason="1">     <name>Danny Phantom</name>  </anime>
 <anime anidbid="t78519" tvdbid="78519" defaulttvdbseason="1">     <name>Dinosaucers</name>  </anime>
+<anime anidbid="t78523" tvdbid="78523" defaulttvdbseason="1">     <name>Captain N and the New Super Mario World</name>  </anime>
 <anime anidbid="t78561" tvdbid="78561" defaulttvdbseason="1">     <name>Heavy Gear</name>  </anime>
 <anime anidbid="t78581" tvdbid="78581" defaulttvdbseason="1">     <name>Dilbert</name>  </anime>
+<anime anidbid="t78783" tvdbid="78783" defaulttvdbseason="1">     <name>The Mysterious Cities of Gold</name>  </anime>
 <anime anidbid="t78831" tvdbid="78831" defaulttvdbseason="1">     <name>Drawn Together</name>  </anime>
 <anime anidbid="t79067" tvdbid="79067" defaulttvdbseason="1">     <name>Static Shock</name>  </anime>
 <anime anidbid="t79323" tvdbid="79323" defaulttvdbseason="1">     <name>Foster's Home for Imaginary Friends</name>  </anime>
 <anime anidbid="t79563" tvdbid="79563" defaulttvdbseason="1">     <name>Metalocalypse</name>  </anime>
 <anime anidbid="t79594" tvdbid="79594" defaulttvdbseason="1">     <name>God, The Devil and Bob</name>  </anime>
 <anime anidbid="t79666" tvdbid="79666" defaulttvdbseason="1">     <name>Dragon Hunters</name>  </anime>
+<anime anidbid="t80845" tvdbid="80845" defaulttvdbseason="1">     <name>Storm Hawks</name>  </anime>
+<anime anidbid="t81036" tvdbid="81036" defaulttvdbseason="1">     <name>Transformers: Animated</name>  </anime>
+<anime anidbid="t81212" tvdbid="81212" defaulttvdbseason="1">     <name>Sheep In The Big City</name>  </anime>
+<anime anidbid="t81494" tvdbid="81494" defaulttvdbseason="1">     <name>The Spectacular Spider-Man</name>  </anime>
 <anime anidbid="t82365" tvdbid="82365" defaulttvdbseason="1">     <name>Login</name>  </anime>
+<anime anidbid="t82618" tvdbid="82618" defaulttvdbseason="1">     <name>Watchmen: The Motion Comic</name>  </anime>
+<anime anidbid="t83268" tvdbid="83268" defaulttvdbseason="1">     <name>Star Wars: The Clone Wars</name>  </anime>
 <anime anidbid="t83297" tvdbid="83297" defaulttvdbseason="1">     <name>Jane and the Dragon</name>  </anime>
+<anime anidbid="t83306" tvdbid="83306" defaulttvdbseason="1">     <name>Superjail!</name>  </anime>
 <anime anidbid="t83931" tvdbid="83931" defaulttvdbseason="1">     <name>The Drinky Crow Show</name>  </anime>
 <anime anidbid="t84391" tvdbid="84391" defaulttvdbseason="1">     <name>Huntik: Secrets & Seekers</name>  </anime>
+<anime anidbid="t84619" tvdbid="84619" defaulttvdbseason="1">     <name>Silverwing</name>  </anime>
+<anime anidbid="t85075" tvdbid="85075" defaulttvdbseason="1">     <name>The Penguins of Madagascar</name>  </anime>
 <anime anidbid="t93991" tvdbid="93991" defaulttvdbseason="1">     <name>The Cleveland Show</name>  </anime>
-<anime anidbid="4067" tvdbid="81426" defaulttvdbseason="1">       <name>Girl's High</name>  </anime>
-<anime anidbid="8686" tvdbid="254654" defaulttvdbseason="1">   <name>Listen to Me, Girls. I Am Your Father!</name><name>Listen To Me Girls I'm Your Father</name>  </anime>
-<anime anidbid="t76200" tvdbid="76200" defaulttvdbseason="1">     <name>The Powerpuff Girls</name>  </anime>
-<anime anidbid="2602" tvdbid="80607" defaulttvdbseason="1">       <name>UG: Ultimate Girls</name>  </anime>
-<anime anidbid="t74256" tvdbid="74256" defaulttvdbseason="1">       <name>Winx Club</name>  </anime>
-<anime anidbid="t74256" tvdbid="74256" defaulttvdbseason="0">       <name>Winx Club Secret Of The Lost Kingdom</name>  </anime>
-<anime anidbid="289" tvdbid="84543" defaulttvdbseason="1">       <name>Piano: The Melody of a Young Girl`s Heart</name>  </anime>
-<anime anidbid="4522" tvdbid="79975" defaulttvdbseason="1">       <name>Red Garden</name>  </anime>
-<anime anidbid="5209" tvdbid="79975" defaulttvdbseason="0">       <name>Red Garden Dead Girls</name><name>Dead Girls: Red Garden</name>  </anime>
-<anime anidbid="4116" tvdbid="178531" defaulttvdbseason="1">       <name>Sasami: Magical Girls Club</name>  </anime>
-<anime anidbid="4619" tvdbid="178531" defaulttvdbseason="2">       <name>Sasami: Magical Girls Club 2</name>  </anime>
-<anime anidbid="943" tvdbid="0" defaulttvdbseason="1">       <name>Romance Of The Three Kingdoms Sangokushi</name>  </anime>
-<anime anidbid="7434" tvdbid="0" defaulttvdbseason="1">       <name>Romance Of The Three Kingdoms</name>  </anime>
+<anime anidbid="t96351" tvdbid="96351" defaulttvdbseason="1">     <name>Space Ace</name>  </anime>
+<anime anidbid="t78732" tvdbid="78732" defaulttvdbseason="1">     <name>WildC.A.T.S.</name>  </anime>
+<anime anidbid="t72306" tvdbid="72306" defaulttvdbseason="1">     <name>The Venture Brothers</name><name>Venture Brothers</name>  </anime>
+<anime anidbid="t257645" tvdbid="257645" defaulttvdbseason="1">     <name>Ultimate Spider Man</name><name>Ultimate Spiderman</name>  </anime>
+<anime anidbid="t78075" tvdbid="78075" defaulttvdbseason="1">     <name>Transformers Beast Machines</name>  </anime>
+<anime anidbid="t73562" tvdbid="73562" defaulttvdbseason="1">     <name>Beast Wars</name><name>Transformers Beast Wars</name>  </anime>
+<anime anidbid="t72499" tvdbid="72499" defaulttvdbseason="1">     <name>Transformers</name>  </anime>
+<anime anidbid="t83294" tvdbid="83294" defaulttvdbseason="1">     <name>Total Drama Island</name>  </anime>
+<anime anidbid="t76992" tvdbid="76992" defaulttvdbseason="1">     <name>The Tick</name>  </anime>
+<anime anidbid="t70355" tvdbid="70355" defaulttvdbseason="1">     <name>Thundercats</name>  </anime>
+<anime anidbid="t71503" tvdbid="71503" defaulttvdbseason="1">     <name>Teen Titans</name>  </anime>
+<anime anidbid="t102621" tvdbid="102621" defaulttvdbseason="1">     <name>Superman (1941)</name><name>Superman (1943)</name>  </anime>
+<anime anidbid="t78852" tvdbid="78852" defaulttvdbseason="1">     <name>Stripperella</name><name>Striperella</name>  </anime>
+<anime anidbid="t70399" tvdbid="70399" defaulttvdbseason="1">     <name>Star Wars: Droids</name><name>Star Wars Droids The Adventures Of C3Po And R2D2</name>  </anime>
+<anime anidbid="t72244" tvdbid="72244" defaulttvdbseason="1">     <name>Star Wars Clone Wars</name>  </anime>
+<anime anidbid="t78416" tvdbid="78416" defaulttvdbseason="1">     <name>Spider-Man: The New Animated Series</name><name>Spider Man The New Animated Adventures</name>  </anime>
+<anime anidbid="t78645" tvdbid="78645" defaulttvdbseason="1">     <name>Spawn</name><name>Spawn The Animated Series</name>  </anime>
+<anime anidbid="t73629" tvdbid="73629" defaulttvdbseason="1">     <name>Sonic The Hedgehog</name> <name>Sonic The Hedgehog (Satam)</name>  </anime>
+<anime anidbid="t71663" tvdbid="71663" defaulttvdbseason="1">     <name>Simpsons</name><name>The Simpsons</name>  </anime>
+<anime anidbid="t73025" tvdbid="73025" defaulttvdbseason="1">     <name>Reboot</name>  </anime>
+<anime anidbid="t71780" tvdbid="71780" defaulttvdbseason="1">     <name>Recess</name>  </anime>
+<anime anidbid="t78259" tvdbid="78259" defaulttvdbseason="1">     <name>Kim Possible</name>  </anime>
+<anime anidbid="t72210" tvdbid="72210" defaulttvdbseason="1">     <name>Doug</name>  </anime>
+<anime anidbid="t77313" tvdbid="77313" defaulttvdbseason="1">     <name>The Addams Family</name><name>The Addams Family 1992</name><name>The Addams Family (1992)</name>  </anime>
+<anime anidbid="t76168" tvdbid="76168" defaulttvdbseason="0">     <name>Batman Mystery Of The Batwoman</name><name>Batman Mask Of The Phantasm</name><name>Batman And Mr Freeze Subzero</name>  </anime>
+<anime anidbid="t79300" tvdbid="79300" defaulttvdbseason="1">     <name>Ctrl+Alt+Del</name>  </anime>
+<anime anidbid="t253323" tvdbid="253323" defaulttvdbseason="1">     <name>Ninjago Masters Of Spinjitsu</name>  </anime>
 </anime-list>
