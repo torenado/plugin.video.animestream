@@ -187,6 +187,18 @@
     <name>Kingdom</name>
     <name>Kingdom (2012)</name>
   </anime>
+  <anime anidbid="8142" tvdbid="247231" defaulttvdbseason="1">
+    <name>Toriko</name>
+    <name>Toriko (2011)</name>
+  </anime>
+  <anime anidbid="8009" tvdbid="247231" defaulttvdbseason="0">
+    <name>Toriko 3D: Kaimaku! Gourmet Adventure!!</name>
+    <name>Toriko 3D Kaimaku Gourmet Adventure</name>
+    <name>Toriko 3D Kaimaku Gourmet Adventure</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-3;</mapping>
+    </mapping-list>
+  </anime>
   <anime anidbid="3186" tvdbid="78960" defaulttvdbseason="1">
     <name>Blood Plus</name>
     <mapping-list>
@@ -1121,6 +1133,11 @@
   <anime anidbid="173" tvdbid="79076" defaulttvdbseason="2">
     <name>Hunter X Hunter: Original Video Animation</name>
     <name>Hunter X Hunter 1</name>
+  </anime>
+  <anime anidbid="132" tvdbid="79076" defaulttvdbseason="1">
+    <name>Hunter X Hunter</name>
+    <name>Hunter X Hunter (1999)</name>
+    <name>Hunter X Hunter 1999</name>
   </anime>
   <anime anidbid="545" tvdbid="79076" defaulttvdbseason="3">
     <name>Hunter X Hunter - Greed Island</name>
