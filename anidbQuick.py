@@ -54,7 +54,7 @@ def MyListSummary(link):
 	# Grabs and parses the mylist from anidb.  User must set username and password in settings
 	# ***WARNING: both this addon and anidb sends this password in the clear (plain text)
 	base_txt = 'anidb.net: '
-	print base_txt +  'Parsing anidb wishlist info'
+	print base_txt +  'Parsing anidb MyList info'
 	anidbMylistsummary = []
 	link = link.replace('http://static.anidb.net/pics/anidb_pri_low.gif','')
 	match=re.compile('<tr (.+?)</tr>').findall(link)
@@ -80,6 +80,31 @@ def MyListSummary(link):
 	if(len(anidbMylistsummary) < 1):
 		print base_txt +  'Nothing was parsed from MyListSummary: '
 	return anidbMylistsummary
+	
+def HotAnimeSummary(link):
+	# Grabs and parses the mylist from anidb.  User must set username and password in settings
+	
+	base_txt = 'anidb.net: '
+	print base_txt +  'Parsing anidb Hot Anime info'
+	anidbHotAnimeSummary = []
+	
+	match=re.compile('<anime (.+?)</anime>').findall(link)
+	if(len(match) >= 1):
+		for aniLine in match:
+			aid=re.compile('id="(.+?)"').findall(aniLine)[0]	
+			name=re.compile('type="main">(.+?)</title>').findall(aniLine)[0]			
+			eps_cnt=re.compile('<episodecount>(.+?)</episodecount>').findall(aniLine)
+			
+			if len(eps_cnt)>0:
+				eps_num = eps_cnt[0]
+			else:
+				eps_num = 'TBC'
+				
+			anidbHotAnimeSummary.append([int(aid),name,(0,eps_num)])
+	
+	if(len(anidbHotAnimeSummary) < 1):
+		print base_txt +  'Nothing was parsed from HotAnimeSummary: '
+	return anidbHotAnimeSummary
 
 def AID_Resolution(linkAID):
 	base_txt = 'anidb.net: '	
@@ -104,7 +129,7 @@ def AID_Resolution(linkAID):
 	if(len(match)>=1):
 		description=match[0]
 	
-	# print base_txt +  description
+	print base_txt +  description
 	
 	episodecount=0
 	match=re.compile('<episodecount>(.+?)</episodecount>').findall(linkAID)
@@ -159,7 +184,7 @@ def AID_Resolution(linkAID):
 			epName=''
 			epAirdate=['','','']
 			epIconimage=''
-			description=''
+			epDescription=''
 			seasonNum='1'
 			if 'epno' in aniEp:
 				epNum1=re.compile('<epno (.+?)>(.+?)<').findall(aniEp)[0][-1]
@@ -177,7 +202,7 @@ def AID_Resolution(linkAID):
 				epName=re.compile('<title xml:lang="x-jat">(.+?)</title>').findall(aniEp)
 				
 			epNumAb = epNum
-			epList.append([epNumAb,epName,epIconimage,description,seasonNum,epAirdate,epNum])
+			epList.append([epNumAb,epName,epIconimage,epDescription,seasonNum,epAirdate,epNum])
 			epNum = ''
 			epName = ''
 	
