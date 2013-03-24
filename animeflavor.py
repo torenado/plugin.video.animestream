@@ -44,6 +44,8 @@ def Episode_Listing(url):
 	epBlockMatch1=re.compile('Watch episodes(.+?)Login</a> to post').findall(link)
 	epBlockMatch2=re.compile('<div class="relativity_child">(.+?)<div class="block block-block"').findall(link)
 	
+			
+	epList = []	
 	if len(epBlockMatch) >= 1:
 		epBlock=epBlockMatch[0]
 	elif len(epBlockMatch1) >= 1:
@@ -52,9 +54,7 @@ def Episode_Listing(url):
 		epBlock=epBlockMatch2[0]
 	else:
 		print base_txt +  'Nothing was parsed from Episode_Listing (failed epBlock): ' + url
-		return
-			
-	epList = []	
+		return epList
 	
 	epNum = 0
 	episodeMediaThumb = ''

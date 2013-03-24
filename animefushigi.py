@@ -71,10 +71,15 @@ def Episode_Listing(url):
 						break
 			
 			if 'season' in episodePageLink:
-				season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
+				if '-2nd-season-' in  episodePageLink:
+					season = '2'
+				else:
+					season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
 			elif 'Season' in episodePageName.title():
-				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
-			
+				if '2Nd Season' in  episodePageName.title():
+					season = '2'
+				else:
+					season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
 			season = int(season)	
 			epList.append([episodePageLink, episodePageName.title(),'', epNum, season])
 	elif(len(match1) >= 1):
