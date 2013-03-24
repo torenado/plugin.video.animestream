@@ -4,6 +4,7 @@ import os,time,base64,logging
 import gzip, io
 import htmlentitydefs
 import unicodedata
+import hashlib
 from datetime import datetime
 try:
 	import json
@@ -110,8 +111,11 @@ def unescape(text):
 		for code in htmlCodes:
 			url = url.replace(code[1], code[0])
 		return url
-	
-	return re.sub("&#?\w+;", fixup, text)
+	try:
+		return re.sub("&#?\w+;", fixup, text)
+	except:
+		print 'unescape(text): FAILED - Element failed to reconcile in function'
+		return text
 
 def escapeall(str):
 	match = re.compile('([A-Z\~\!\@\#\$\*\{\}\[\]\-\+\.])').findall(str)
@@ -224,3 +228,26 @@ chars = {
 def replace_chars(match):
 	char = match.group(0)
 	return chars[char]
+
+def commonCacheKey(funct, *args):
+	# hashkey created for use with the Common plugin cache
+	name = repr(funct)
+	if name.find(" of ") > -1:
+		name = name[name.find("method") + 7:name.find(" of ")]
+	elif name.find(" at ") > -1:
+		name = name[name.find("function") + 9:name.find(" at ")]
+	keyhash = hashlib.md5()
+	for params in args:
+		if isinstance(params, dict):
+			for key in sorted(params.iterkeys()):
+				if key not in ["new_results_function"]:
+					keyhash.update("'%s'='%s'" % (key, params[key]))
+		elif isinstance(params, list):
+			keyhash.update(",".join(["%s" % el for el in params]))
+		else:
+			try:
+				keyhash.update(params)
+			except:
+				keyhash.update(str(params))
+	name += "|" + keyhash.hexdigest() + "|"
+	return name
