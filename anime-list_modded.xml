@@ -703,6 +703,12 @@
   <anime anidbid="t76168" tvdbid="76168" defaulttvdbseason="1">
     <name>Batman The Animated Series</name>
   </anime>
+  <anime anidbid="t158501" tvdbid="158501" defaulttvdbseason="1">
+    <name>Ben 10: Ultimate Alien</name>
+    <name>Ben-10: Ultimate Alien</name>
+    <name>Ben-10 Ultimate Alien</name>
+    <name>Ben10 Ultimate Alien</name>
+  </anime>
   <anime anidbid="t158501" tvdbid="158501" defaulttvdbseason="0">
     <name>Ben 10 / Generator Rex Crossover Heroes United</name>
     <name>Ben-10 / Generator Rex Crossover Heroes United</name>
@@ -719,12 +725,6 @@
     <name>Ben 10 Race Against Time</name>
     <name>Ben10 Secret Of The Omnitrix</name>
     <name>Ben10 Race Against Time</name>
-  </anime>
-  <anime anidbid="t158501" tvdbid="158501" defaulttvdbseason="1">
-    <name>Ben 10: Ultimate Alien</name>
-    <name>Ben-10: Ultimate Alien</name>
-    <name>Ben-10 Ultimate Alien</name>
-    <name>Ben10 Ultimate Alien</name>
   </anime>
   <anime anidbid="t260995" tvdbid="260995" defaulttvdbseason="1">
     <name>Ben 10: Omniverse</name>
