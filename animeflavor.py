@@ -23,7 +23,7 @@ BASE_URL = 'http://www.animeflavor.com'
 base_url_name = BASE_URL.split('www.')[1]
 base_txt = base_url_name + ': '
 
-aniUrls = ['http://www.animeflavor.com/index.php?q=node/anime_list','http://www.animeflavor.com/index.php?q=anime_movies','http://www.animeflavor.com/index.php?q=cartoons']
+aniUrls = ['http://www.animeflavor.com/node/anime_list','http://www.animeflavor.com/anime_movies','http://www.animeflavor.com/cartoons']
 
 
 def Episode_Listing_Pages(url):
@@ -233,7 +233,8 @@ def Total_Video_List(link):
 	# Generate list of shows/movies
 	
 	searchRes = []
-	match=re.compile('<a(.+?)>(.+?)</a>').findall(link)
+	match1=re.compile('<div class="view-content">(.+?)<div id="sidearea">').findall(link)
+	match=re.compile('<a(.+?)>(.+?)</a>').findall(match1[0])
 	if(len(match) >= 1):
 		for linkFound, videoName in match:
 			if (not 'title="Go' in linkFound):

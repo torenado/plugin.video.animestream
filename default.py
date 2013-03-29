@@ -30,8 +30,9 @@ streamSiteList = ['anilinkz',
 				'animefushigi',
 				'animetip',
 				'myanimelinks',
-				'tubeplus']
-# streamSiteList = ['tubeplus']
+				'tubeplus',
+				'hentaiseries']
+# streamSiteList = ['hentaiseries']
 
 for module in streamSiteList:
 	vars()[module]=__import__(module)
@@ -130,7 +131,7 @@ def STREAMING_SITE():
 	searchSiteList = []
 	
 	
-	dirLength = len(streamSiteList)	
+	dirLength = len(streamSiteList)	+1
 	print base_txt + '# of items: ' + str(dirLength)
 	pb = xbmcgui.DialogProgress()
 	pb.create('Generating List', 'Streaming Site')
@@ -151,7 +152,18 @@ def STREAMING_SITE():
 			addDir(name,searchText,21,'')
 		if (pb.iscanceled()): return
 		
+	
+	ii += 1
+	updateText = 'Streaming Site: ALL SITES'
+	print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
+	pb.update(int(ii/float(dirLength)*100), updateText)
+	mostPop2 = getStreamingSiteList('')	
+	name = 'ALL SITES [' + str(len(mostPop2)) + ']'
+	addDir(name,'',21,'')
 	pb.close()
+	
+	addDir('REFRESH -- UNKNOWN Series Data','',23,'',numItems=3)
+	addDir('REFRESH -- Streaming Sites Info','',22,'',numItems=3)
 
 def ANIDB_WISHLIST(url=''):
 	# MODE 12 = ANIDB_WISHLIST
@@ -309,7 +321,7 @@ def STREAMING_SITE_LIST(searchText,url=''):
 	
 	mostPop = []
 	
-	mostPop2 = getStreamingSiteList(searchText,url='')
+	mostPop2 = getStreamingSiteList(searchText)
 	
 	returnMode = 1
 	# print len(mostPop2)
@@ -375,6 +387,7 @@ def SEARCH(searchText,aid='0'):
 	getSeriesList(searchRes,'',mode=mode)
 	
 	searchText = cleanSearchText(searchText)
+	searchText_org = cleanSearchText(searchText)
 	subLoc = searchText.rfind(':')
 	if subLoc == -1:
 		subLoc = searchText.rfind('-')
@@ -414,12 +427,12 @@ def SEARCH(searchText,aid='0'):
 		# addDir(name,url,mode,iconimage,aid='0') <-- overloaded variables used in special as follows
 		# MAP: 
 		# name = "-- REFRESH --",
-		# url = searchText
+		# url = searchText_org
 		# mode = 121
 		# iconimage = aid
 		# aid=groupAid
-		addDir('-- REFRESH (All Items) --',searchText,211,aid,aid=groupAid)	
-		addDir('-- REFRESH (Re-Search w/ Name) --',searchText,211,'0',aid=groupAid)	
+		addDir('-- REFRESH (All Items) --',searchText_org,211,aid,aid=groupAid)	
+		addDir('-- REFRESH (Re-Search w/ Name) --',searchText_org,211,'0',aid=groupAid)	
 	
 	skin = xbmc.getSkinDir()
 	thumbnail_view = THUMBNAIL_VIEW_IDS.get(skin)
@@ -434,6 +447,18 @@ def SETTINGS():
 	print base_txt + 'Create Settings Screen'
 	addDir('REFRESH -- Streaming Sites Info','',161,'',numItems=3)
 		
+def TOGGEL_CONTENT_VISIBILITY(content_type='general'):
+	# toggle the content visibility
+	
+	if dc.getSetting(content_type + '_show') == 'true':
+		dc.setSetting(content_type + '_show','false')
+		xbmc.executebuiltin('XBMC.Notification(Content Visibility,Hide '+ content_type.title() +' Content,5000)')
+		print base_txt + content_type.title() + ' Content is Hidden'
+	else:
+		dc.setSetting(content_type + '_show','true')
+		xbmc.executebuiltin('XBMC.Notification(Content Visibility,Show '+ content_type.title() +' Content,5000)')
+		print base_txt + content_type.title() + ' Content is Visible'
+	
 def cleanSearchText(searchText,skipEnc=False):
 	# cleans up the text for easier searching
 	# print base_txt + 'Clean up the search term: ' +searchText
@@ -441,7 +466,14 @@ def cleanSearchText(searchText,skipEnc=False):
 	searchText = utils.U2A(searchText)
 	if not skipEnc:
 		subLoc = searchText.find('[')
-		if subLoc > 0 and searchText[subLoc+1:subLoc+4]>1900 and 'of' not in searchText[subLoc+1:]:
+		
+		searchText_year = searchText[subLoc+1:subLoc+4]
+		if searchText_year.isdigit():
+			searchText_year = int(searchText_year)
+		else:
+			searchText_year = 0
+			
+		if subLoc > 0 and searchText_year>1900:
 			searchText = searchText.replace('[',' ').replace(']',' ').replace('  ',' ').replace('  ',' ')
 		elif subLoc > 0:
 			searchText = searchText[:subLoc]
@@ -453,6 +485,7 @@ def cleanSearchText(searchText,skipEnc=False):
 			searchText = searchText[:subLoc]
 		
 	searchText = searchText.replace('-- REFRESH -- ','')
+	searchText = searchText.replace('[I]','').replace('[/I]','')
 	searchText = searchText.replace('(Movie/OVA)','').title().strip()
 	searchText = searchText.replace('(Tv)','').title().strip()
 	searchText = searchText.replace(' &Amp; ',' and ').title().strip()
@@ -787,7 +820,8 @@ def get_all_data(searchText='',aid='0',tvdbSer='0'):
 		if aid.isdigit():
 			aidDB = aid
 		tvdbSer = get_tvdb_id(aid)[0]
-		season = get_tvdb_id(aid)[1]
+		if not get_tvdb_id(aid)[1] == '':
+			season = get_tvdb_id(aid)[1]
 		
 		if int(aidDB)==0 and int(tvdbSer)==0:			
 			(aidDB , tvdbSer) = search_aid_tvid(searchText,True,True)
@@ -805,7 +839,8 @@ def get_all_data(searchText='',aid='0',tvdbSer='0'):
 			
 	elif (int(aidDB)>0 and len(uname)>0 and len(passwd)>0):
 		tvdbSer = get_tvdb_id(aid)[0]
-		season = get_tvdb_id(aid)[1]	
+		if not get_tvdb_id(aid)[1] == '':
+			season = get_tvdb_id(aid)[1]	
 	
 	if int(tvdbSer)>0:
 		linkTVDB = get_tvdb_detail(tvdbSer)
@@ -877,11 +912,53 @@ def get_all_data(searchText='',aid='0',tvdbSer='0'):
 	
 	if searchText=='':
 		searchText = utils.U2A(searchText1)
-		
+	
+	if(aid==0 or aid =='0'):	
+		aidtemp = aid
+		con = sqlite.connect(user_path)
+		with con:
+			cur = con.cursor()
+			print base_txt + 'aid NOT found...making one up'
+			
+			sql = 'SELECT aid FROM Series WHERE aid LIKE "un%" ORDER BY aid DESC'
+			print base_txt + sql
+			cur.execute(sql)
+			rows = cur.fetchall() 
+			if len(rows)==0:
+				aid = 'un%07d' % (1,)
+			else:
+				# print str(rows[0][0]).split('un')
+				last_un = str(rows[0][0]).split('un')[1]
+				aid = 'un%07d' % (int(last_un)+1,)
+	
 	allData = [searchText, aid, tvdbSer, description, fanart, iconimage, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount]
 	
 	return allData
-	
+
+def refresh_un_detail_db():
+	# remove entries related to aid from the animestream DB	
+
+	con = sqlite.connect(user_path)
+	with con:
+		cur = con.cursor()
+		print base_txt + 'REMOVING un* data'
+		
+		sql = 'DELETE FROM Series WHERE aid LIKE "un%"'
+		print base_txt + sql
+		cur.execute(sql)
+		
+		sql = 'DELETE FROM SimilarSeries WHERE aid LIKE "un%"'
+		print base_txt + sql
+		cur.execute(sql)
+		
+		sql = 'DELETE FROM SynonymSeries WHERE aid LIKE "un%"'
+		print base_txt + sql
+		cur.execute(sql)
+		
+		sql = 'DELETE FROM EpisodeList WHERE aid LIKE "un%"'
+		print base_txt + sql
+		cur.execute(sql)	
+		
 def get_detail_db(searchText='',aid='0',tvdbSer='0'):
 	
 	if searchText.endswith(', The'):
@@ -1153,6 +1230,12 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 	
 	xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
 	
+	show_general = dc.getSetting('general_show')
+	show_adult = dc.getSetting('adult_show')
+	print base_txt + 'Show General Content: ' + show_general
+	print base_txt + 'Show Adult Content: ' + show_adult
+	
+	
 	name = ''
 	nameTest = ''
 	mostPop2 = []
@@ -1181,7 +1264,7 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 	for iconimage, name, url in mostPop2:
 		ii += 1
 		searchText = cleanSearchText(name,True)
-		
+		mpaa = ''
 		aidDB = '0'
 		if iconimage.isdigit():
 			aidDB = iconimage
@@ -1204,54 +1287,65 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_detail_db(searchText)
 			[searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_detail_db,searchText)
 		
-		updateText = 'Series: ' + searchText
-		print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
-		pb.update(int(ii/float(dirLength)*100), updateText)
+		show = False
+		if show_general=='true' and show_adult=='true':
+			show = True
+		elif show_general=='true' and show_adult=='false' and not adult == 'Yes':
+			show = True
+		elif show_general=='false' and show_adult=='true' and adult == 'Yes':
+			show = True
 		
-		if not iconimage2 == '':
-			iconimage = iconimage2
+		if show:
+			updateText = 'Series: ' + searchText
+			print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
+			pb.update(int(ii/float(dirLength)*100), updateText)
 			
-		if not 'http' in iconimage:
-			iconimage = ''
-		
-		if searchText == '-- NEXT PAGE --' or searchText == '-- Next Page --':
-			mode = int(returnMode)
-			url = iconimage
-			iconimage = ''
-		
-		if not 'http' in url:
-			url = ''
-		
-		if (int(aidDB)>0 and len(uname)>0 and len(passwd)>0) :
-			for aidWish, nameWish, epsWish in watchListTotal:
-				if int(aidDB) == int(aidWish):
-					epwatch = str(epsWish[0])
-					break
-		
-		if int(epwatch)>0:
-			print base_txt + str(searchText) + ' [' + str(epwatch) + ' of ' + str(eptot) + '] (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
-			searchText = str(searchText) + ' [' + str(epwatch) + ' of ' + str(eptot) + ']'
-			
-			if str(aid)=='0' and int(tvdbSer)>0:
-				aid = 't' + str(tvdbSer)
-			
-			if adult=='Yes':
-				searchText = '[I]' + searchText + '[/I]'
+			if not iconimage2 == '':
+				iconimage = iconimage2
 				
-			addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre=genre,totep=eptot, watchep=epwatch, fanart=fanart, plycnt=playcount)
-		else:
-			if str(aid)=='0' and tvdbSer==0:
-				print base_txt + '---- ' + str(searchText) + ' (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
+			if not 'http' in iconimage:
+				iconimage = ''
+			
+			if searchText == '-- NEXT PAGE --' or searchText == '-- Next Page --':
+				mode = int(returnMode)
+				url = iconimage
+				iconimage = ''
+			
+			if not 'http' in url:
+				url = ''
+			
+			if (int(aidDB)>0 and len(uname)>0 and len(passwd)>0) :
+				for aidWish, nameWish, epsWish in watchListTotal:
+					if int(aidDB) == int(aidWish):
+						epwatch = str(epsWish[0])
+						break
+			
+			if int(epwatch)>0:
+				print base_txt + str(searchText) + ' [' + str(epwatch) + ' of ' + str(eptot) + '] (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
+				searchText = str(searchText) + ' [' + str(epwatch) + ' of ' + str(eptot) + ']'
+				
+				if str(aid)=='0' and int(tvdbSer)>0:
+					aid = 't' + str(tvdbSer)
+				
+				if adult=='Yes':
+					searchText = '[I]' + searchText + '[/I]'
+					mpaa = 'XXX'
+					
+				addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre=genre,totep=eptot, watchep=epwatch, fanart=fanart, plycnt=playcount, mpaa=mpaa)
 			else:
-				print base_txt + str(searchText) + ' (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
+				if str(aid)=='0' and tvdbSer==0:
+					print base_txt + '---- ' + str(searchText) + ' (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
+				else:
+					print base_txt + str(searchText) + ' (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
+					
+				if str(aid)=='0' and int(tvdbSer)>0:
+					aid = 't' + str(tvdbSer)
 				
-			if str(aid)=='0' and int(tvdbSer)>0:
-				aid = 't' + str(tvdbSer)
-			
-			if adult=='Yes':
-				searchText = '[I]' + searchText + '[/I]'
-				
-			addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre=genre,fanart=fanart)
+				if adult=='Yes':
+					searchText = '[I]' + searchText + '[/I]'
+					mpaa = 'XXX'
+					
+				addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre=genre,fanart=fanart, mpaa=mpaa)
 		if (pb.iscanceled()): return
 	pb.close()	
 		
@@ -1390,7 +1484,6 @@ def getEpisode_Listing_Pages(groupUrls,aid='0'):
 						print nameTest
 						
 					nameTest = '[B]' + nameTest + '[/B]'
-					
 				nameTest = html_special(nameTest)
 				description = html_special(description)
 				addDir(nameTest,groupUrl,mode,iconimageTest,numItems=dirLength,descr=description,yr=yr,mo=mo,day=day,epSeason=epSeasonTest,epNum=epNumTest,fanart=fanart,plycnt=playcount)
@@ -1440,6 +1533,9 @@ def getEpisode_Listing_Pages(groupUrls,aid='0'):
 							day = epAirdate[2]
 							iconimageTest = epIconimage
 							break
+			else:
+				nameTest = str(epSeason) + 'x' + str(epNum) + ' - ' + nameTest
+				
 		if seaEpNumTest == seaEpNum:
 			try:
 				groupUrl = groupUrl +' <--> '+ url
@@ -1453,14 +1549,45 @@ def getEpisode_Listing_Pages(groupUrls,aid='0'):
 		# except:
 			# print base_txt + 'Directory not created in SEARCH() for ' + url + ' ' + str(epNum)
 
+	# addDir('-- REFRESH (Media Sources)--',groupUrls,32,'',aid=aid)
+	
 	if (aid != '0'):
-		addDir('-- REFRESH --',groupUrls,31,'',aid=aid)
+		# addDir('-- REFRESH (Episode Data) --',groupUrls,31,'',aid=aid)
+		addDir('-- REFRESH --',groupUrls,33,'',aid=aid)
 			
 	skin = xbmc.getSkinDir()
 	thumbnail_view = THUMBNAIL_VIEW_IDS.get(skin)
 	if thumbnail_view:
 		cmd = 'Container.SetViewMode(%s)' % thumbnail_view
 		xbmc.executebuiltin(cmd)	
+		
+def refresh_getEpisode_Listing_Pages(groupUrl):
+	# remove entries related to getEpisode_Listing_Pages	
+
+	con = sqlite.connect(cache_path)
+	with con:
+		cur = con.cursor()
+		
+		try:
+			urls = groupUrl.split(' <--> ')
+		except:
+			urls = groupUrl
+		
+		urls = f2(urls)
+		
+		# grab meida link from the streaming episode page
+		for url in urls:
+			for streamList in streamSiteList:
+				siteBase = streamList + '.base_url_name'
+				site_base_url_name = eval(siteBase)
+				if (site_base_url_name in url):
+					# siteBase = streamList + '.Episode_Page(url)'
+					siteBase = 'utils.commonCacheKey(' + streamList + '.Episode_Listing_Pages, url)'
+					cacheRemove = 'cache' + eval(siteBase)
+		
+					sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
+					print base_txt + sql
+					cur.execute(sql)
 
 def get_epMediaAll_2(groupUrl):
 	
@@ -1542,9 +1669,9 @@ def getEpisode_PageMerged(groupUrl):
 		# media_url = urlresolver.HostedMediaFile(url).resolve()
 		
 		if 'vidxden' in url:
-			url = 'vidxden - CAPTCHA nuisance'
+			url = 'http://www.vidxden.com/CAPTCHA/nuisance'
 		if 'vidbux' in url:
-			url = 'vidbux - CAPTCHA nuisance'
+			url = 'http://www.vidbux.com/CAPTCHA/nuisance'
 			
 		try:
 			media_url = urlresolver.HostedMediaFile(url).resolve()
@@ -1555,6 +1682,9 @@ def getEpisode_PageMerged(groupUrl):
 			media_url = False
 			
 		if (media_url == False and url.endswith('.flv')):
+			media_url = url
+			
+		if (media_url == False and url.endswith('.mp4')):
 			media_url = url
 		
 		print 'Mirror: ' + str(mirror) + ' Part: ' + str(part)
@@ -1773,7 +1903,7 @@ def getEpisode_Page_Fail(groupUrl):
 	for name, media_url, iconimage in mediaInValid:
 		addLink(name,media_url,iconimage)
 
-def getStreamingSiteList(searchText,url=''):
+def getStreamingSiteList(searchText='',url=''):
 	# formats the list of of steaming content by streaming site
 	
 	mostPop = []	
@@ -1782,7 +1912,10 @@ def getStreamingSiteList(searchText,url=''):
 	for possLink in searchRes:
 		
 		if not possLink[1]==None and not possLink[1].startswith('<') and possLink[0].startswith('http'):
-			if searchText in possLink[0]:
+			if not searchText == '' and not searchText == None:
+				if searchText in possLink[0]:
+					mostPop.append([0,possLink[1],possLink[0]])	
+			else:					
 				mostPop.append([0,possLink[1],possLink[0]])	
 	
 	name = ''
@@ -1840,11 +1973,11 @@ def allAnimeList(url=''):
 					print base_txt + aniUrl
 					pb.update(int(ii/float(dirLength)*100), updateText,aniUrl)	
 					link = grabUrlSource(aniUrl)	
-					try:					
-						siteBase = streamList + '.Total_Video_List(link)'
-						searchRes = searchRes + eval(siteBase)
-					except:
-						print base_txt + 'FAILED - ' + aniUrl + ' failed to load allAnimeList()'
+					# try:					
+					siteBase = streamList + '.Total_Video_List(link)'
+					searchRes = searchRes + eval(siteBase)
+					# except:
+						# print base_txt + 'FAILED - ' + aniUrl + ' failed to load allAnimeList()'
 					searchRes = utils.U2A_List(searchRes)	
 	pb.close()
 	try:
@@ -1900,19 +2033,23 @@ def allSearchList(searchText):
 	
 	return searchResults
 	
-def searchCollection(searchText,aid='0'):
+def searchCollection_2(searchText,aid='0',outSearchName=False):
 	# Searches the various websites for the searched content
 	searchText = cleanSearchText(searchText)
 	print base_txt + 'Searching for ... ' + searchText
 	
 	# searchRes = allSearchList(searchText)
-	searchRes = cache.cacheFunction(allSearchList,searchText)
+	searchRes = []
+	searchAlts = []
+	searchAlts.append(searchText)
+	# searchRes = cache.cacheFunction(allSearchList,searchText)
 	
 	searchTextOrg = searchText
 	
 	for name1 in get_ani_searchText(aid):
 		print base_txt + 'Searching for ... ' + name1
-		searchRes = searchRes + cache.cacheFunction(allSearchList,name1)
+		searchAlts.append(name1)
+		# searchRes = searchRes + cache.cacheFunction(allSearchList,name1)
 	
 	if (len(uname)>0 and len(passwd)>0):
 	
@@ -1940,7 +2077,6 @@ def searchCollection(searchText,aid='0'):
 		# [searchText1, aid1, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList1, epList, season, adult, epwatch, eptot, playcount] = get_detail_db('',aidDB)
 		[searchText1, aid1, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList1, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_detail_db,'',aidDB)
 		
-		searchAlts = []
 		if (int(aidDB)>0 and len(synAniList1)>0):
 			for aidAlt, name in synAniList1:
 				subLoc = name.find('(')
@@ -1948,7 +2084,7 @@ def searchCollection(searchText,aid='0'):
 					name = name[:subLoc]
 				name = urllib.unquote(name).title()
 				print base_txt + 'Searching for ... ' + name
-				searchRes = searchRes + cache.cacheFunction(allSearchList,name)
+				# searchRes = searchRes + cache.cacheFunction(allSearchList,name)
 				searchAlts.append(name)
 				if name.find(' ') > 0:
 					searchAlts.append(name.replace(' ',''))
@@ -1985,14 +2121,22 @@ def searchCollection(searchText,aid='0'):
 					searchAlts.append(name.replace(',',''))
 					searchAlts.append(name.replace('.',''))
 		
-			searchAlts = f2(searchAlts)
-			print base_txt + 'Searching ' + str(len(searchAlts)) + ' alternate names + variations'
-			for nameSearch in searchAlts:
-				print base_txt + 'Searching for ... ' + nameSearch
-				searchRes = searchRes + cache.cacheFunction(allSearchList,nameSearch)
-		
+	searchAlts = f2(searchAlts)
+	print base_txt + 'Searching ' + str(len(searchAlts)) + ' alternate names + variations'		
+	for nameSearch in searchAlts:
+		print base_txt + 'Searching for ... ' + nameSearch
+		searchRes = searchRes + cache.cacheFunction(allSearchList,nameSearch)
+
 	searchRes.append(['','zzzzzzEND'])
+	if outSearchName:
+		return searchAlts
+	else:
+		return searchRes
+
+def searchCollection(searchText,aid='0'):
 	
+	searchRes = searchCollection_2(searchText,aid='0')
+	print searchRes
 	tempsearchRes = searchRes
 	searchRes = []
 	for url, name in tempsearchRes:
@@ -2164,6 +2308,27 @@ def searchCollection(searchText,aid='0'):
 	print combinedSearchCollect
 	# return searchCollect
 	return combinedSearchCollect
+		
+def refresh_searchCollection(groupAid):
+	# remove entries related to searchCollection	
+
+	try:
+		aid_mult = groupAid.split(' <--> ')
+	except:
+		aid_mult = groupAid
+	
+	for aid in aid_mult:
+		if aid != '' and aid != '0':
+			searchAlts = searchCollection_2('',aid,outSearchName=True)			
+			con = sqlite.connect(cache_path)
+			with con:
+				cur = con.cursor()
+				for nameSearch in searchAlts:
+					cacheRemove = 'cache' + utils.commonCacheKey(allSearchList,nameSearch)
+					
+					sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
+					print base_txt + sql
+					cur.execute(sql)
 	
 def PLAYLIST_VIDEOLINKS(url,name):
 	ok=True
@@ -2206,8 +2371,9 @@ def PLAYLIST_VIDEOLINKS(url,name):
 		
 	return ok
 	
-def addDir(name,url,mode,iconimage,numItems=1,aid='0',descr='',yr='1900',genre='',totep='0',watchep='0',epSeason=1, epNum=0, mo='01', day='01', fanart='', plycnt=0):
+def addDir(name,url,mode,iconimage,numItems=1,aid='0',descr='',yr='1900',genre='',totep='0',watchep='0',epSeason=1, epNum=0, mo='01', day='01', fanart='', plycnt=0, mpaa='PG-13'):
 	# XBMC: create directory
+	
 	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&aid="+urllib.quote_plus(aid)+"&iconimage="+urllib.quote_plus(iconimage)
 	ok=True
 	unwatchep = '0'
@@ -2225,11 +2391,15 @@ def addDir(name,url,mode,iconimage,numItems=1,aid='0',descr='',yr='1900',genre='
 	name = urllib.unquote(name)
 	
 	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-	liz.setInfo( type="Video", infoLabels={ "Title":name, "Plot":descr, "Year":yr, "Genre":genre,"Season":epSeason,"Episode":epNum,"Aired":airdate,"PlayCount":plycnt,"Watched":watched} )
+	liz.setInfo( type="Video", infoLabels={ "Title":name, "Plot":descr, "Year":yr, "Genre":genre,"Season":epSeason,"Episode":epNum,"Aired":airdate,"PlayCount":plycnt,"Watched":watched,"Mpaa":mpaa} )
 	liz.setProperty('Fanart_Image',fanart)
 	liz.setProperty('TotalEpisodes',totep)
 	liz.setProperty('WatchedEpisodes',watchep)
 	liz.setProperty('UnWatchedEpisodes',unwatchep)
+	contextMenuItems = []
+	contextMenuItems.append(('Toggle General Content', 'XBMC.RunPlugin(%s?mode=162&name=%s)' % (sys.argv[0], 'general')))
+	contextMenuItems.append(('Toggle Adult Content', 'XBMC.RunPlugin(%s?mode=162&name=%s)' % (sys.argv[0],  'adult')))		
+	liz.addContextMenuItems(contextMenuItems, replaceItems=True)
 	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True, totalItems=numItems)
 	return ok
 		
@@ -2305,7 +2475,6 @@ def html_special(text):
 	text = text.replace('&quot;','"')
 	
 	return text
-	
 	
 def get_params():
 	param=[]
@@ -2436,6 +2605,14 @@ elif mode==20:
 
 elif mode==21:
 	STREAMING_SITE_LIST(url) 
+	
+elif mode==22:
+	refresh_allAnimeList()
+	STREAMING_SITE() 
+	
+elif mode==23:
+	refresh_un_detail_db()
+	STREAMING_SITE() 
 
 elif mode==1:
 	MOST_POPULAR(url) 
@@ -2444,14 +2621,24 @@ elif mode==2:
 	SEARCH(name,aid) 
 		
 elif mode==211:
-	refresh_detail_db(aid)
+	refresh_detail_db(aid) # <-- overloaded variables used: see SEARCH function
+	refresh_searchCollection(aid) # <-- overloaded variables used: see SEARCH function
 	SEARCH(url,iconimage) # <-- overloaded variables used: see SEARCH function
 		
 elif mode==3:
 	getEpisode_Listing_Pages(url,aid)
 		
-elif mode==31:
+# elif mode==31:
+	# refresh_detail_db(aid)
+	# getEpisode_Listing_Pages(url,aid)
+	
+# elif mode==32:
+	# refresh_getEpisode_Listing_Pages(url)
+	# getEpisode_Listing_Pages(url,aid)
+	
+elif mode==33:
 	refresh_detail_db(aid)
+	refresh_getEpisode_Listing_Pages(url)
 	getEpisode_Listing_Pages(url,aid)
 		
 elif mode==4:
@@ -2513,5 +2700,8 @@ elif mode==16:
 elif mode==161:
 	refresh_allAnimeList()
 	SETTINGS()
+
+elif mode==162:
+	TOGGEL_CONTENT_VISIBILITY(name)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

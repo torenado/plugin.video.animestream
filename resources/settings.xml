@@ -10,6 +10,7 @@
 		<setting id="animetip_on" type="bool" label="animetip.com" default="false"/>
 		<setting id="myanimelinks_on" type="bool" label="myanimelinks.com" default="false"/>
 		<setting id="tubeplus_on" type="bool" label="tubeplus.me" default="false"/>
+		<setting id="hentaiseries_on" type="bool" label="hentaiseries.net" default="false"/>
 	</category>
 	<category label="aniDB">
 		<setting label="aniDB Login:" type="lsep" />
@@ -23,5 +24,9 @@
 	<category label="Media Source">
 		<setting id="media_order_on" type="bool" label="Media Order On" default="false"/>
 		<setting label="Media Display Order" type="lsep" />
+	</category>
+	<category label="Content View">
+		<setting id="general_show" type="bool" label="Show General Content" default="true"/>
+		<setting id="adult_show" type="bool" label="Show Adult Content" default="false"/>
 	</category>
 </settings>

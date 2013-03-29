@@ -187,7 +187,11 @@ def Total_Video_List(link):
 	# Generate list of shows/movies
 	
 	searchRes = []
-	match=re.compile('<a(.+?)>(.+?)</a>').findall(link)
+	match1=re.compile('<div id="ddmcc_container">(.+?)<div id="sectionRight">').findall(link)
+	if(len(match1) == 0):
+		match1=re.compile('--><div class="block rounded">(.+?)<div id="sectionRight">').findall(link)
+
+	match=re.compile('<a(.+?)>(.+?)</a>').findall(match1[0])
 	if(len(match) >= 1):
 		for linkFound, videoName in match:
 			videoInfo = re.compile('href="(.+?)"').findall(linkFound)
