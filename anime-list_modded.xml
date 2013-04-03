@@ -85,6 +85,18 @@
   <anime anidbid="9302" tvdbid="259642" defaulttvdbseason="0">
     <name>Dakara Boku wa, H ga Dekinai. (2013)</name>
   </anime>
+  <anime anidbid="8419" tvdbid="251908" defaulttvdbseason="1">
+    <name>Haganai</name>
+    <name>Boku wa Tomodachi ga Sukunai</name>
+  </anime>
+  <anime anidbid="9342" tvdbid="264528" defaulttvdbseason="2">
+    <name>Zettai Karen Children The Unlimited Hyoubu Kyousuke</name>
+    <name>Courtesy of Zettai Karen Children: The Unlimited - Hyoubu Kyousuke</name>
+  </anime>
+  <anime anidbid="9421" tvdbid="251908" defaulttvdbseason="2">
+    <name>Haganai Next</name>
+    <name>Boku wa Tomodachi ga Sukunai Next</name>
+  </anime>
   <anime anidbid="8149" tvdbid="239951" defaulttvdbseason="1">
     <name>C</name>
     <name>[C] The Money of Soul and Possibility Control</name>
@@ -183,6 +195,18 @@
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-7;</mapping>
     </mapping-list>
+  </anime>
+  <anime anidbid="4146" tvdbid="79719" defaulttvdbseason="1">
+    <name>Zero no Tsukaima</name>
+  </anime>
+  <anime anidbid="4915" tvdbid="79719" defaulttvdbseason="2">
+    <name>Zero no Tsukaima: Futatsuki no Kishi</name>
+    <name>Zero No Tsukaima Season 2</name>
+  </anime>
+  <anime anidbid="5635" tvdbid="79719" defaulttvdbseason="3">
+    <name>Zero no Tsukaima: Princess no Rondo</name>
+    <name>Zero No Tsukaima Season 3</name>
+    <name>Zero No Tsukaima Princesses No Rondo</name>
   </anime>
   <anime anidbid="8593" tvdbid="79719" defaulttvdbseason="4">
     <name>Zero no Tsukaima F</name>
@@ -1578,6 +1602,14 @@
     <name>Young GTO</name>
     <name>Shounan Jun`ai-gumi</name>
     <name>Shonan Junai Gumi</name>
+  </anime>
+  <anime anidbid="412" tvdbid="79174" defaulttvdbseason="1">     
+	<name>Zone of the Enders: Dolores, i</name>  
+	<name>Z O E Dolores, I</name>  
+  </anime>
+  <anime anidbid="412" tvdbid="79174" defaulttvdbseason="0">     
+	<name>Zone Of The Enders Idolo</name>  
+	<name>Zone Of The Enders I Dolo</name>  
   </anime>
   <anime anidbid="7219" tvdbid="80158" defaulttvdbseason="4">
     <name>Ikkitousen: Xtreme Xecutor</name>
