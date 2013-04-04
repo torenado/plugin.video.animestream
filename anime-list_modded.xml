@@ -1604,12 +1604,39 @@
     <name>Shonan Junai Gumi</name>
   </anime>
   <anime anidbid="412" tvdbid="79174" defaulttvdbseason="1">     
+	<name>Zone Of The Enders</name> 
 	<name>Zone of the Enders: Dolores, i</name>  
 	<name>Z O E Dolores, I</name>  
   </anime>
   <anime anidbid="412" tvdbid="79174" defaulttvdbseason="0">     
 	<name>Zone Of The Enders Idolo</name>  
 	<name>Zone Of The Enders I Dolo</name>  
+  </anime>
+  <anime anidbid="5787" tvdbid="82788" defaulttvdbseason="1">     
+	<name>Natsume Yujincho</name>  
+  </anime>
+  <anime anidbid="6185" tvdbid="82788" defaulttvdbseason="2">     
+	<name>Zoku Natsume Yuujinchou</name>  
+	<name>Zoku Natsume Yuujin Chou</name>  
+	<name>Zoku Natsume Yuujin-Chou</name>     
+	<name>Natsume Yujincho 2</name>     
+  </anime>
+  <anime anidbid="8286" tvdbid="82788" defaulttvdbseason="3">     
+	<name>Natsume Yuujinchou San</name>  
+	<name>Zoku Natsume Yujin Cho San</name>  
+	<name>Zoku Natsume Yuujinchou San</name>    
+	<name>Natsume Yujincho 3</name> 
+  </anime>
+  <anime anidbid="8667" tvdbid="82788" defaulttvdbseason="4">     
+	<name>Natsume Yuujinchou Shi</name>  
+  </anime>
+  <anime anidbid="111" tvdbid="74924" defaulttvdbseason="1">     
+	<name>Sentou Yousei Yukikaze</name>  
+	<name>Yukikaze 1</name>    
+	<name>Yukikaze 2</name>    
+	<name>Yukikaze 3</name>    
+	<name>Yukikaze 4</name>    
+	<name>Yukikaze 5</name>   
   </anime>
   <anime anidbid="7219" tvdbid="80158" defaulttvdbseason="4">
     <name>Ikkitousen: Xtreme Xecutor</name>
