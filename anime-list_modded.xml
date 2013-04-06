@@ -873,6 +873,12 @@
   <anime anidbid="t76320" tvdbid="76320" defaulttvdbseason="1">
     <name>Justice League</name>
   </anime>
+  <anime anidbid="t76320" tvdbid="76320" defaulttvdbseason="3">
+    <name>Justice League Unlimited</name>
+  </anime>
+  <anime anidbid="t76320" tvdbid="76320" defaulttvdbseason="0">
+    <name>Justice League Unlimited Crisis Of Two Earths</name>
+  </anime>
   <anime anidbid="t260422" tvdbid="260422" defaulttvdbseason="1">
     <name>Kaijudo Rise Of The Duel Masters (2012)</name>
   </anime>
@@ -1059,6 +1065,7 @@
   </anime>
   <anime anidbid="t70473" tvdbid="70473" defaulttvdbseason="1">
     <name>Mighty Orbots</name>
+    <name>Mighty Orborts</name>
   </anime>
   <anime anidbid="t260070" tvdbid="260070" defaulttvdbseason="1">
     <name>Monsuno: World Master</name>
@@ -2248,7 +2255,7 @@
 <anime anidbid="t267978" tvdbid="267978" defaulttvdbseason="1">   <name>Monsters vs. Aliens</name>  </anime>
 <anime anidbid="t70355" tvdbid="70355" defaulttvdbseason="1">     <name>Thundercats</name>  </anime>
 <anime anidbid="t70394" tvdbid="70394" defaulttvdbseason="1">     <name>Dog City</name>  </anime>
-<anime anidbid="t70399" tvdbid="70399" defaulttvdbseason="1">     <name>Star Wars: Droids</name><name>Droids</name><name>Star Wars Droids The Adventures Of C3Po And R2D2</name>  </anime>
+<anime anidbid="t70399" tvdbid="70399" defaulttvdbseason="1">     <name>Star Wars: Droids</name><name>Star Wars Droids</name><name>Droids</name><name>Star Wars Droids The Adventures Of C3Po And R2D2</name>  </anime>
 <anime anidbid="t70410" tvdbid="70410" defaulttvdbseason="1">     <name>Extreme Dinosaurs</name>  </anime>
 <anime anidbid="t70437" tvdbid="70437" defaulttvdbseason="1">     <name>Highlander: The Animated Series</name>  </anime>
 <anime anidbid="t70453" tvdbid="70453" defaulttvdbseason="1">     <name>King Arthur and the Knights of Justice</name>  </anime>
@@ -2293,7 +2300,7 @@
 <anime anidbid="t71745" tvdbid="71745" defaulttvdbseason="1">     <name>Clerks</name>  </anime>
 <anime anidbid="t71780" tvdbid="71780" defaulttvdbseason="1">     <name>Recess</name>  </anime>
 <anime anidbid="t71786" tvdbid="71786" defaulttvdbseason="1">     <name>The Real Adventures of Jonny Quest</name>  </anime>
-<anime anidbid="t71811" tvdbid="71811" defaulttvdbseason="1">     <name>Sabrina the Animated Series</name>  </anime>
+<anime anidbid="t71811" tvdbid="71811" defaulttvdbseason="1">     <name>Sabrina the Animated Series</name><name>Sabrina</name>  </anime>
 <anime anidbid="t71839" tvdbid="71839" defaulttvdbseason="1">     <name>The Maxx</name>  </anime>
 <anime anidbid="t71880" tvdbid="71880" defaulttvdbseason="1">     <name>Spider-Man and His Amazing Friends</name>  </anime>
 <anime anidbid="t71946" tvdbid="71946" defaulttvdbseason="1">     <name>Phantom 2040</name>  </anime>
@@ -2624,4 +2631,18 @@
 <anime anidbid="t97671" tvdbid="97671" defaulttvdbseason="1">     <name>Michael Wood on Beowulf</name>  </anime>
 <anime anidbid="t98731" tvdbid="98731" defaulttvdbseason="1">     <name>Seven Little Monsters</name>  </anime>
 <anime anidbid="t99961" tvdbid="99961" defaulttvdbseason="1">     <name>The Adventures of Spot</name>  </anime>
+<anime anidbid="t79154" tvdbid="79154" defaulttvdbseason="1">     <name>W.I.T.C.H.</name>  </anime>
+<anime anidbid="t76964" tvdbid="76964" defaulttvdbseason="1">     <name>The Woody Woodpecker Show</name><name>Woody Woodpecker</name>  </anime>
+<anime anidbid="t72860" tvdbid="72860" defaulttvdbseason="1">     <name>Tom And Jerry</name>  </anime>
+<anime anidbid="t76835" tvdbid="76835" defaulttvdbseason="1">     <name>The New Fantastic Four (1978)</name>  </anime>
+<anime anidbid="t70784" tvdbid="70784" defaulttvdbseason="1">     <name>Ozzy And Drix</name><name>Ozzy & Drix</name>  </anime>
+<anime anidbid="t81848" tvdbid="81848" defaulttvdbseason="1">     <name>Phineas and Ferb</name>  </anime>
+<anime anidbid="t77084" tvdbid="77084" defaulttvdbseason="1">     <name>The New Batman Adventures</name>  </anime>
+<anime anidbid="t124031" tvdbid="124031" defaulttvdbseason="1">     <name>Marvel Knights Astonishing X-Men Gifted</name>  </anime>
+<anime anidbid="t124031" tvdbid="124031" defaulttvdbseason="2">     <name>Marvel Knights Astonishing X-Men Dangerous</name>  </anime>
+<anime anidbid="t124031" tvdbid="124031" defaulttvdbseason="3">     <name>Marvel Knights Astonishing X-Men Torn</name>  </anime>
+<anime anidbid="t124031" tvdbid="124031" defaulttvdbseason="4">     <name>Marvel Knights Astonishing X-Men Unstoppable</name>  </anime>
+<anime anidbid="t187911" tvdbid="187911" defaulttvdbseason="1">     <name>Mad</name>  </anime>
+<anime anidbid="t73014" tvdbid="73014" defaulttvdbseason="1">     <name>He-Man and the Masters of the Universe</name>  </anime>
+<anime anidbid="t71179" tvdbid="71179" defaulttvdbseason="1">     <name>He-Man and the Masters of the Universe (2002)</name><name>He-Man And The Masters Of The Universe (2002 Tv Series)</name>  </anime>
 </anime-list>
