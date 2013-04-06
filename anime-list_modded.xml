@@ -891,6 +891,11 @@
   <anime anidbid="t82870" tvdbid="82870" defaulttvdbseason="1">
     <name>Wolverine and the X-Men</name>
   </anime>
+  <anime anidbid="8058" tvdbid="236061" defaulttvdbseason="1">
+    <name>X-Men</name>
+    <name>X-Men 2011 Anime</name>
+    <name>X-Men (2011)</name>
+  </anime>
   <anime anidbid="t76297" tvdbid="76297" defaulttvdbseason="1">
     <name>2 Stupid Dogs</name>
   </anime>
@@ -1172,6 +1177,26 @@
   <anime anidbid="449" tvdbid="79060" defaulttvdbseason="1">    
     <name>Wolf's Rain</name>  
   </anime>
+  <anime anidbid="6662" tvdbid="114801" defaulttvdbseason="1">
+    <name>Fairy Tail</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="1">;1-1;2-2;3-3;4-4;5-5;6-6;7-7;8-8;9-9;10-10;11-11;12-12;13-13;14-14;15-15;16-16;17-17;18-18;19-19;20-20;21-21;22-22;23-23;24-24;25-25;26-26;27-27;28-28;29-29;30-30;31-31;32-32;33-33;34-34;35-35;36-36;37-37;38-38;39-39;40-40;41-41;42-42;43-43;44-44;45-45;46-46;47-47;48-48;</mapping>
+      <mapping anidbseason="1" tvdbseason="2">;49-1;50-2;51-3;52-4;53-5;54-6;55-7;56-8;57-9;58-10;59-11;60-12;61-13;62-14;63-15;64-16;65-17;66-18;67-19;68-20;69-21;70-22;71-23;72-24;73-25;74-26;75-27;76-28;77-29;78-30;79-31;80-32;81-33;82-34;83-35;84-36;85-37;86-38;87-39;88-40;89-41;90-42;91-43;92-44;93-45;94-46;95-47;96-48;</mapping>
+      <mapping anidbseason="1" tvdbseason="3">;97-1;98-2;99-3;100-4;101-5;102-6;103-7;104-8;105-9;106-10;107-11;108-12;109-13;110-14;111-15;112-16;113-17;114-18;115-19;116-20;117-21;118-22;119-23;120-24;121-25;122-26;123-27;124-28;125-29;126-30;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="8132" tvdbid="114801" defaulttvdbseason="0">
+    <name>Fairy Tail (2011)</name>
+    <name>Fairy Tail Youkoso Fairy Hills</name>
+  </anime>
+  <anime anidbid="8788" tvdbid="114801" defaulttvdbseason="0">
+    <name>Fairy Tail Houou No Miko</name>
+    <name>Fairy Tail The Phoenix Priestess</name>
+  </anime>
+  <anime anidbid="735" tvdbid="0" defaulttvdbseason="0">
+    <name>Night Shift Nurses</name>
+    <name>Yakin Byoutou</name>
+  </anime>
   <anime anidbid="8550" tvdbid="252322" defaulttvdbseason="1">    
     <name>Hunter x Hunter (2011)</name>   
     <name>Hunter x Hunter 2011</name>  
@@ -1195,7 +1220,7 @@
   </anime>
   <anime anidbid="1427" tvdbid="79076" defaulttvdbseason="4">
     <name>Hunter X Hunter - Greed Island Final</name>
-    <name> Hunter X Hunter 3 Greed Island Final</name>
+    <name>Hunter X Hunter 3 Greed Island Final</name>
   </anime>
   <anime anidbid="3651" tvdbid="79414" defaulttvdbseason="1">    
     <name>The Melancholy of Haruhi Suzumiya</name>  
@@ -1485,6 +1510,7 @@
     <name>C3</name>
     <name>C Cube</name>
     <name>C3 Cube×Cursed×Curious</name>
+    <name>C3 - CubexCursedxCurious</name>
     <name>C3 C Cube</name>
     <name>C^3 C Cube</name>
     <name>C3 - Cube X Cursed X Curious</name>
@@ -2088,7 +2114,7 @@
 <anime anidbid="7944" tvdbid="202931" defaulttvdbseason="1">      <name>Agriculture Angel Baraki</name>  </anime>
 <anime anidbid="7991" tvdbid="265684" defaulttvdbseason="1">   <name>Berserk - The Golden Age Arc</name>  </anime>
 <anime anidbid="7992" tvdbid="214891" defaulttvdbseason="1">   <name>Haiyoru! Nyaruani: Remember My Mr. Lovecraft</name>  </anime>
-<anime anidbid="8" tvdbid="83584" defaulttvdbseason="1">     <name>Aquarian Age</name>  </anime>
+<anime anidbid="8" tvdbid="83584" defaulttvdbseason="1">     <name>Aquarian Age</name><name>Aquarian Age - Sign For Evolution</name>  </anime>
 <anime anidbid="805" tvdbid="252176" defaulttvdbseason="1">   <name>Violinist of Hamelin</name>  </anime>
 <anime anidbid="8109" tvdbid="247949" defaulttvdbseason="1">   <name>Aria the Scarlet Ammo</name>  </anime>
 <anime anidbid="8148" tvdbid="248035" defaulttvdbseason="1">      <name>Blue Exorcist</name>  </anime>
@@ -2118,7 +2144,7 @@
 <anime anidbid="915" tvdbid="80398" defaulttvdbseason="1">        <name>Mobile Fighter G Gundam</name>  </anime>
 <anime anidbid="9207" tvdbid="264054" defaulttvdbseason="1">   <name>Mangirl!</name>  </anime>
 <anime anidbid="9227" tvdbid="262098" defaulttvdbseason="1">   <name>Girls und Panzer</name><name>Girls and Panzer</name>  </anime>
-<anime anidbid="9230" tvdbid="262092" defaulttvdbseason="1">   <name>OniAi</name> <name>Oniichan dakedo Ai sae Areba Kankeinai yo ne!</name>  <name>Onii-chan Dakedo Ai Sae Areba Kankeinai yo ne!</name><name>Onii Chan Dakedo Ai Sae Areba Kankeinai Yo Ne Oniai</name>  </anime>
+<anime anidbid="9230" tvdbid="262092" defaulttvdbseason="1">   <name>OniAi</name><name>Onii Chan Dakedo Ai Sae Areba Kankeinai Yo Ne! (Oniai)</name> <name>Oniichan dakedo Ai sae Areba Kankeinai yo ne!</name>  <name>Onii-chan Dakedo Ai Sae Areba Kankeinai yo ne!</name><name>Onii Chan Dakedo Ai Sae Areba Kankeinai Yo Ne Oniai</name>  </anime>
 <anime anidbid="9271" tvdbid="264533" defaulttvdbseason="1">   <name>Love Live!</name>  </anime>
 <anime anidbid="9292" tvdbid="264527" defaulttvdbseason="1">   <name>Hakkenden: Touhou Hakken Ibun</name>  </anime>
 <anime anidbid="93" tvdbid="72792" defaulttvdbseason="1">     <name>I My Me! Strawberry Eggs</name>  </anime>
@@ -2645,4 +2671,9 @@
 <anime anidbid="t187911" tvdbid="187911" defaulttvdbseason="1">     <name>Mad</name>  </anime>
 <anime anidbid="t73014" tvdbid="73014" defaulttvdbseason="1">     <name>He-Man and the Masters of the Universe</name>  </anime>
 <anime anidbid="t71179" tvdbid="71179" defaulttvdbseason="1">     <name>He-Man and the Masters of the Universe (2002)</name><name>He-Man And The Masters Of The Universe (2002 Tv Series)</name>  </anime>
+<anime anidbid="t103851" tvdbid="103851" defaulttvdbseason="1">     <name>Batman The Motion Comic Black And White</name>  </anime>
+<anime anidbid="t71745" tvdbid="71745" defaulttvdbseason="1">     <name>Clerks The Animated Series</name><name>Clerks</name>  </anime>
+<anime anidbid="t76423" tvdbid="76423" defaulttvdbseason="1">     <name>Dennis The Menace</name>  </anime>
+<anime anidbid="t76115" tvdbid="76115" defaulttvdbseason="1">     <name>X-Men The Animated Series</name>  </anime>
+<anime anidbid="t76115" tvdbid="76115" defaulttvdbseason="0">     <name>X-Men Pryde Of The X-Men</name>  </anime>
 </anime-list>
