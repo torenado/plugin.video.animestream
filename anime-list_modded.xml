@@ -89,13 +89,13 @@
     <name>Haganai</name>
     <name>Boku wa Tomodachi ga Sukunai</name>
   </anime>
-  <anime anidbid="9342" tvdbid="264528" defaulttvdbseason="2">
-    <name>Zettai Karen Children The Unlimited Hyoubu Kyousuke</name>
-    <name>Courtesy of Zettai Karen Children: The Unlimited - Hyoubu Kyousuke</name>
-  </anime>
-  <anime anidbid="9421" tvdbid="251908" defaulttvdbseason="2">
+  <anime anidbid="9342" tvdbid="251908" defaulttvdbseason="2">
     <name>Haganai Next</name>
     <name>Boku wa Tomodachi ga Sukunai Next</name>
+  </anime>
+  <anime anidbid="9421" tvdbid="264528" defaulttvdbseason="1">
+    <name>Zettai Karen Children The Unlimited Hyoubu Kyousuke</name>
+    <name>Courtesy of Zettai Karen Children: The Unlimited - Hyoubu Kyousuke</name>
   </anime>
   <anime anidbid="8149" tvdbid="239951" defaulttvdbseason="1">
     <name>C</name>
@@ -199,6 +199,7 @@
   <anime anidbid="9268" tvdbid="262094" defaulttvdbseason="1">
     <name>Magi</name>
     <name>Magi: The Labyrinth of Magic</name>
+    <name>Magi The Labyrinth Of Magic</name>
   </anime>
   <anime anidbid="9269" tvdbid="262113" defaulttvdbseason="1">
     <name>Ixion Saga DT</name>
@@ -732,6 +733,11 @@
     <supplemental-info>
       <studio>AIC Build</studio>
     </supplemental-info>
+  </anime>
+  <anime anidbid="9134" tvdbid="194961" defaulttvdbseason="2">
+    <name>Ore no Imouto ga Konna ni Kawaii Wake ga Nai 2</name>
+    <name>My Little Sister Can`t Be This Cute 2</name>
+    <name>Oreimo 2</name>
   </anime>
   <anime anidbid="8254" tvdbid="246971" defaulttvdbseason="1">
     <name>Sengoku Otome: Momoiro Paradox</name>
