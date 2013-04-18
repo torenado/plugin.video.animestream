@@ -91,11 +91,14 @@
   </anime>
   <anime anidbid="9342" tvdbid="251908" defaulttvdbseason="2">
     <name>Haganai Next</name>
+    <name>Haganai 2</name>
     <name>Boku wa Tomodachi ga Sukunai Next</name>
+    <name>Boku wa Tomodachi ga Sukunai 2</name>
   </anime>
   <anime anidbid="9421" tvdbid="264528" defaulttvdbseason="1">
     <name>Zettai Karen Children The Unlimited Hyoubu Kyousuke</name>
     <name>Courtesy of Zettai Karen Children: The Unlimited - Hyoubu Kyousuke</name>
+	<name>The Unlimited - Hyoubu Kyousuke</name>
   </anime>
   <anime anidbid="8149" tvdbid="239951" defaulttvdbseason="1">
     <name>C</name>
@@ -1520,6 +1523,7 @@
     <name>C3 C Cube</name>
     <name>C^3 C Cube</name>
     <name>C3 - Cube X Cursed X Curious</name>
+    <name>C³ Cube X Cursed X Curious</name>
   </anime>
   <anime anidbid="8924" tvdbid="252423" defaulttvdbseason="2">
     <name>Phi Brain: Kami no Puzzle (2012)</name>
