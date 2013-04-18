@@ -585,6 +585,24 @@
     <name>11Eyes</name>
     <name>11eyes</name>
   </anime>
+  <anime anidbid="69" tvdbid="81797" defaulttvdbseason="1">
+    <name>One Piece</name>
+    <name> Wan PSu One Piece</name>
+  </anime>
+  <anime anidbid="69" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece Episode of Luffy: The Hand Island Adventure</name>
+    <name>One Piece Luffy – Hand Island No Bouken</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-24;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="69" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece Nami</name>
+    <name>Episode of Nami: Tears of a Navigator and the Bonds of Friends</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-23;</mapping>
+    </mapping-list>
+  </anime>
   <anime anidbid="411" tvdbid="81797" defaulttvdbseason="0">
     <name>One Piece (2000)</name>
     <name>One Piece 1</name>
@@ -710,6 +728,16 @@
     <name>One Piece 11 Mugiwara Chase</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-21;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="8940" tvdbid="81797" defaulttvdbseason="0">
+    <name>One Piece 12: Film Z</name>
+    <name>One Piece 12</name>
+    <name>One Piece Movie 12: Film Z</name>
+    <name>One Piece Movie 12</name>
+    <name>One Piece Film Z</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-26;</mapping>
     </mapping-list>
   </anime>
   <anime anidbid="136" tvdbid="120181" defaulttvdbseason="1">
@@ -1518,11 +1546,13 @@
     <name>C3: CubexCursedxCurious</name>
     <name>C3</name>
     <name>C Cube</name>
-    <name>C3 Cube×Cursed×Curious</name>
     <name>C3 - CubexCursedxCurious</name>
     <name>C3 C Cube</name>
     <name>C^3 C Cube</name>
     <name>C3 - Cube X Cursed X Curious</name>
+    <name>C3 Cube×Cursed×Curious</name>
+    <name>C³</name>
+    <name>C³ C Cube</name>
     <name>C³ Cube X Cursed X Curious</name>
   </anime>
   <anime anidbid="8924" tvdbid="252423" defaulttvdbseason="2">
