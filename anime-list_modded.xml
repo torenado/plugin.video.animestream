@@ -100,6 +100,10 @@
     <name>Courtesy of Zettai Karen Children: The Unlimited - Hyoubu Kyousuke</name>
 	<name>The Unlimited - Hyoubu Kyousuke</name>
   </anime>
+  <anime anidbid="9346" tvdbid="0" defaulttvdbseason="1">
+    <name>Zettai Junpaku Mahou Shoujo</name>
+    <name>Zettai Junpaku Mahou Shoujo Ova</name>
+  </anime>
   <anime anidbid="8149" tvdbid="239951" defaulttvdbseason="1">
     <name>C</name>
     <name>[C] The Money of Soul and Possibility Control</name>
@@ -121,6 +125,8 @@
     <name>Inuyasha Kanketsu Hen</name>
     <name>Inuyasha Kanketsuhen</name>
     <name>Inuyasha: The Final Act</name>
+    <name>Inuyasha The Final Act</name>
+    <name>Inuyasha Final Act</name>
   </anime>
   <anime anidbid="4880" tvdbid="79824" defaulttvdbseason="1">
     <name>Naruto Shippuuden</name>
@@ -587,7 +593,7 @@
   </anime>
   <anime anidbid="69" tvdbid="81797" defaulttvdbseason="1">
     <name>One Piece</name>
-    <name> Wan PSu One Piece</name>
+    <name>Wan PSu One Piece</name>
   </anime>
   <anime anidbid="69" tvdbid="81797" defaulttvdbseason="0">
     <name>One Piece Episode of Luffy: The Hand Island Adventure</name>
@@ -1238,10 +1244,13 @@
     <name>Hunter x Hunter (2011)</name>   
     <name>Hunter x Hunter 2011</name>  
     <name>Hunter x Hunter 2011 2</name>  
+    <name>Hunter × Hunter (Tv 2011)</name>  
   </anime>
   <anime anidbid="173" tvdbid="79076" defaulttvdbseason="2">
     <name>Hunter X Hunter: Original Video Animation</name>
     <name>Hunter X Hunter 1</name>
+    <name>Hunter X Hunter Ova 1</name>
+    <name>Hunter X Hunter Ova</name>
   </anime>
   <anime anidbid="132" tvdbid="79076" defaulttvdbseason="1">
     <name>Hunter X Hunter</name>
@@ -1251,6 +1260,8 @@
   <anime anidbid="545" tvdbid="79076" defaulttvdbseason="3">
     <name>Hunter X Hunter - Greed Island</name>
     <name>Hunter X Hunter 2 Greed Island</name>
+    <name>Hunter X Hunter Ova 2</name>
+    <name>Hunter X Hunter Ova 2 Greed Island</name>
     <supplemental-info>
       <studio>Nippon Animation</studio>
     </supplemental-info>
@@ -1258,6 +1269,8 @@
   <anime anidbid="1427" tvdbid="79076" defaulttvdbseason="4">
     <name>Hunter X Hunter - Greed Island Final</name>
     <name>Hunter X Hunter 3 Greed Island Final</name>
+    <name>Hunter X Hunter Ova 3</name>
+    <name>Hunter X Hunter Ova 3 Greed Island Final</name>
   </anime>
   <anime anidbid="3651" tvdbid="79414" defaulttvdbseason="1">    
     <name>The Melancholy of Haruhi Suzumiya</name>  
@@ -1687,13 +1700,16 @@
 	<name>Zone Of The Enders</name> 
 	<name>Zone of the Enders: Dolores, i</name>  
 	<name>Z O E Dolores, I</name>  
+	<name>Z.O.E Dolores,i</name>  
   </anime>
   <anime anidbid="412" tvdbid="79174" defaulttvdbseason="0">     
 	<name>Zone Of The Enders Idolo</name>  
 	<name>Zone Of The Enders I Dolo</name>  
   </anime>
   <anime anidbid="5787" tvdbid="82788" defaulttvdbseason="1">     
-	<name>Natsume Yujincho</name>  
+	<name>Natsume Yujincho</name>      
+	<name>Natsume Yujinchou</name>     
+	<name>Natsume Yuujinchou</name>  
   </anime>
   <anime anidbid="6185" tvdbid="82788" defaulttvdbseason="2">     
 	<name>Zoku Natsume Yuujinchou</name>  
@@ -1710,6 +1726,65 @@
   <anime anidbid="8667" tvdbid="82788" defaulttvdbseason="4">     
 	<name>Natsume Yuujinchou Shi</name>  
   </anime>
+  <anime anidbid="8353" tvdbid="250022" defaulttvdbseason="1">     
+	<name>Yuru Yuri</name>  
+  </anime>
+  <anime anidbid="8844" tvdbid="250022" defaulttvdbseason="2">     
+	<name>Yuru Yuri S2</name>  
+	<name>Yuru Yuri Season 2</name>  
+  </anime>
+  <anime anidbid="1548" tvdbid="198751" defaulttvdbseason="1">     
+	<name>Yuusha Tokkyuu Might Gain</name>  
+	<name>Yuusha Tokkyuu Might Gaine</name>  
+	<name>Brave Express Might Gain</name>   
+	<name>Might Gain</name>  
+  </anime>
+  <anime anidbid="7276" tvdbid="256891" defaulttvdbseason="1">     
+	<name>Yutori Chan</name>  
+  </anime>
+  <anime anidbid="9392" tvdbid="0" defaulttvdbseason="1">     
+	<name>Yumekuri</name>  
+  </anime>
+  <anime anidbid="1084" tvdbid="76665" defaulttvdbseason="0">     
+	<name>Yu Yu Hakusho The Golden Seal</name> 
+	<name>Yu Yu Hakusho Movie 1 The Golden Seal</name>  
+  </anime>
+  <anime anidbid="753" tvdbid="76665" defaulttvdbseason="0">     
+	<name>Yu Yu Hakusho Poltergeist Report</name>      
+	<name>Yu Yu Hakusho Movie 2 Poltergeist Report</name>  
+  </anime>
+  <anime anidbid="593" tvdbid="113561" defaulttvdbseason="1">     
+	<name>Yu-Gi-Oh</name>  
+	<name>Yu-Gi-Oh!</name>  
+	<name>Yu Gi Oh</name>  
+  </anime>
+  <anime anidbid="1608" tvdbid="113561" defaulttvdbseason="0">     
+	<name>Yu Gi Oh The Movie</name>  
+  </anime>
+  <anime anidbid="t253797" tvdbid="253797" defaulttvdbseason="1">     
+	<name>Yu Gi Oh The Abridged Series</name>  
+  </anime>
+  <anime anidbid="2061" tvdbid="76894" defaulttvdbseason="1">     
+	<name>Yugioh Duel Monsters</name>  
+	<name>Yu-Gi-Oh! Duel Monsters</name>  
+  </anime>
+  <anime anidbid="2761" tvdbid="76894" defaulttvdbseason="0">     
+	<name>Yu Gi Oh The Movie Pyramid Of Light</name>  
+  </anime>
+  <anime anidbid="7036" tvdbid="76894" defaulttvdbseason="0">     
+	<name>Yu-Gi-Oh 3D Bonds Beyond Time</name>  
+	<name>Yu Gi Oh 3D Bonds Beyond Time</name>  
+	<name>Yu Gi Oh Bonds Beyong Time</name>  
+	<name>Yu Gi Oh 5D’S – Bonds Beyond Time</name>  
+  </anime>
+  <anime anidbid="8140" tvdbid="248049" defaulttvdbseason="1">     
+	<name>Yugioh Zexal</name>    
+	<name>Yu Gi Oh Zexal</name>  
+  </anime>
+  <anime anidbid="9400" tvdbid="248049" defaulttvdbseason="2">     
+	<name>Yugioh Zexal Second</name>     
+	<name>Yu Gi Oh Zexal Second</name>  
+  </anime>
   <anime anidbid="111" tvdbid="74924" defaulttvdbseason="1">     
 	<name>Sentou Yousei Yukikaze</name>  
 	<name>Yukikaze 1</name>    
@@ -1717,6 +1792,11 @@
 	<name>Yukikaze 3</name>    
 	<name>Yukikaze 4</name>    
 	<name>Yukikaze 5</name>   
+    <name>Yukikaze Ova 1</name>
+    <name>Yukikaze Ova 2</name>
+    <name>Yukikaze Ova 3</name>
+    <name>Yukikaze Ova 4</name>
+    <name>Yukikaze Ova 5</name>
   </anime>
   <anime anidbid="7219" tvdbid="80158" defaulttvdbseason="4">
     <name>Ikkitousen: Xtreme Xecutor</name>
@@ -1957,6 +2037,14 @@
   <anime anidbid="9108" tvdbid="254662" defaulttvdbseason="0">   
 	<name>Rinne No Lagrange Specials</name>  
   </anime>
+  <anime anidbid="t77120" tvdbid="77120" defaulttvdbseason="1">   
+	<name>Aqua Something You Know Whatever</name>  
+	<name>Aqua Teen Hunger Force</name>  
+  </anime>
+  <anime anidbid="t75880" tvdbid="75880" defaulttvdbseason="1">   
+	<name>Back to the Future</name>  
+	<name>Back To The Future The Animated Series</name>  
+  </anime>
   <anime anidbid="9298" tvdbid="262106" defaulttvdbseason="1">   
 	<name>Kamisama Hajimemashita</name>  
   </anime>
@@ -1976,6 +2064,12 @@
     <mapping-list>
       <mapping anidbseason="0" tvdbseason="0">;1-2;2-1;4-5;5-4;</mapping>
     </mapping-list>
+  </anime>
+  <anime anidbid="1382" tvdbid="77907" defaulttvdbseason="1">   
+	<name>Zoids</name>  
+  </anime>
+  <anime anidbid="3070" tvdbid="80820" defaulttvdbseason="1">   
+	<name>Zoids Genesis</name>  
   </anime>
 <anime anidbid="1007" tvdbid="85199" defaulttvdbseason="1">       <name>Moomin (1990)</name>  </anime>
 <anime anidbid="101" tvdbid="74539" defaulttvdbseason="1">        <name>Nazca</name>  </anime>
@@ -2074,7 +2168,6 @@
 <anime anidbid="4067" tvdbid="81426" defaulttvdbseason="1">       <name>Girl's High</name>  </anime>
 <anime anidbid="4113" tvdbid="80050" defaulttvdbseason="1">       <name>Yomigaeru Sora: Rescue Wings</name>  </anime>
 <anime anidbid="4116" tvdbid="178531" defaulttvdbseason="1">       <name>Sasami: Magical Girls Club</name>  </anime>
-<anime anidbid="412" tvdbid="79174" defaulttvdbseason="1">     <name>Zone of the Enders: Dolores, i</name>  </anime>
 <anime anidbid="4150" tvdbid="80979" defaulttvdbseason="1">     <name>The Story of Saiunkoku</name>  </anime>
 <anime anidbid="4197" tvdbid="149911" defaulttvdbseason="1">   <name>Angelique -When the Heart Awakens</name>  </anime>
 <anime anidbid="4242" tvdbid="186311" defaulttvdbseason="1">      <name>Spider Riders</name>  </anime>
@@ -2711,7 +2804,7 @@
 <anime anidbid="t187911" tvdbid="187911" defaulttvdbseason="1">     <name>Mad</name>  </anime>
 <anime anidbid="t73014" tvdbid="73014" defaulttvdbseason="1">     <name>He-Man and the Masters of the Universe</name>  </anime>
 <anime anidbid="t71179" tvdbid="71179" defaulttvdbseason="1">     <name>He-Man and the Masters of the Universe (2002)</name><name>He-Man And The Masters Of The Universe (2002 Tv Series)</name>  </anime>
-<anime anidbid="t103851" tvdbid="103851" defaulttvdbseason="1">     <name>Batman The Motion Comic Black And White</name>  </anime>
+<anime anidbid="t103851" tvdbid="103851" defaulttvdbseason="1">     <name>Batman The Motion Comic Black And White</name><name>Batman The Motion Comic Black & White</name>  </anime>
 <anime anidbid="t71745" tvdbid="71745" defaulttvdbseason="1">     <name>Clerks The Animated Series</name><name>Clerks</name>  </anime>
 <anime anidbid="t76423" tvdbid="76423" defaulttvdbseason="1">     <name>Dennis The Menace</name>  </anime>
 <anime anidbid="t76115" tvdbid="76115" defaulttvdbseason="1">     <name>X-Men The Animated Series</name>  </anime>
