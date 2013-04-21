@@ -1771,6 +1771,15 @@
   <anime anidbid="2761" tvdbid="76894" defaulttvdbseason="0">     
 	<name>Yu Gi Oh The Movie Pyramid Of Light</name>  
   </anime>
+  <anime anidbid="2766" tvdbid="76113" defaulttvdbseason="1">     
+	<name>Yu Gi Oh Gx</name>    
+	<name>Yu-Gi-Oh! Duel Monsters GX</name>  
+  </anime>
+  <anime anidbid="5739" tvdbid="84911" defaulttvdbseason="1">     
+	<name>Yu Gi Oh 5D</name>    
+	<name>Yu Gi Oh 5Ds</name>   
+	<name>Yu Gi Oh 5D’S</name>  
+  </anime>
   <anime anidbid="7036" tvdbid="76894" defaulttvdbseason="0">     
 	<name>Yu-Gi-Oh 3D Bonds Beyond Time</name>  
 	<name>Yu Gi Oh 3D Bonds Beyond Time</name>  
