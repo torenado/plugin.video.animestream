@@ -150,6 +150,16 @@
       <mapping anidbseason="1" tvdbseason="12">;243-1;244-2;245-3;246-4;247-5;248-6;249-7;250-8;251-9;252-10;253-11;254-12;255-13;256-14;257-15;258-16;259-17;260-18;</mapping>
     </mapping-list>
   </anime>
+  <anime anidbid="5178" tvdbid="79824" defaulttvdbseason="0">
+    <name>Naruto Shippuden The Movie</name>
+    <name>Naruto Shippuuden Movie 1</name>
+    <name>Naruto Shippuuden Movie 1 - Clash of Ninja Revolution</name>
+    <name>Naruto Shippuden 1 (Naruto 4)</name>
+    <name>naruto-shippuden-movie-naruto-hurricane-chronicles</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-2;</mapping>
+    </mapping-list>
+  </anime>
   <anime anidbid="5914" tvdbid="79824" defaulttvdbseason="0">
     <name>Gekijouban Naruto Shippuuden: Kizuna</name>
     <name>Naruto Shippuuden: Kizuna</name>
@@ -157,6 +167,8 @@
     <name>Naruto Shippuden: Bonds</name>
     <name>Naruto Shippuuden 2: Bonds</name>
     <name>Naruto Shippuden 2: Bonds</name>
+    <name>Naruto Shippuden 2 Bonds</name>
+    <name>Naruto Shippuuden 2 Bonds (Naruto 5)</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-2;</mapping>
     </mapping-list>
@@ -181,6 +193,7 @@
     <name>Naruto Shippuuden 4: The Lost Tower</name>
     <name>Naruto Shippuden 4: The Lost Tower</name>
     <name>Naruto Shippuden 4 The Lost Toweri</name>
+    <name>Naruto Shippuden 4 The Lost Tower</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-4;</mapping>
     </mapping-list>
@@ -192,9 +205,17 @@
     <name>Naruto Shippuuden: Blood Prison</name>
     <name>Naruto Shippuden 5: Blood Prison</name>
     <name>Naruto Shippuuden 5: Blood Prison</name>
+    <name>Naruto Shippuden 5</name>
+    <name>Naruto Shippuden 5 Blood Prison</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-7;</mapping>
     </mapping-list>
+  </anime>
+  <anime anidbid="9023" tvdbid="79824" defaulttvdbseason="0">
+    <name>Naruto Shippuden 6 Road To Ninja 2012</name>
+    <name>Naruto Shippuuden 6 Road To Ninja</name>
+    <name>Naruto the Movie Road to Ninja</name>
+    <name>Naruto the Movie: Road to Ninja</name>
   </anime>
   <anime anidbid="4421" tvdbid="78857" defaulttvdbseason="0">
     <name>Gekijouban Naruto: Dai Koufun! Mikazuki-jima no Animal Panic Datte ba yo!</name>
@@ -499,11 +520,23 @@
   <anime anidbid="t75417" tvdbid="75417" defaulttvdbseason="0">
     <name>Batman Beyond Return of the Joker</name> 
   </anime>
-  <anime anidbid="9045" tvdbid="146401" defaulttvdbseason="2">
+  <anime anidbid="6143" tvdbid="146401" defaulttvdbseason="1">
+    <name>Inazuma Eleven</name>
+  </anime>
+  <anime anidbid="8381" tvdbid="146401" defaulttvdbseason="2">
     <name>Inazuma Eleven GO: Chrono Stone</name>
-    <mapping-list>
-      <mapping anidbseason="1" tvdbseason="2">;1-48;</mapping>
-    </mapping-list>
+  </anime>
+  <anime anidbid="9045" tvdbid="146401" defaulttvdbseason="3">
+    <name>Inazuma Eleven GO: Chrono Stone</name>
+  </anime>
+  <anime anidbid="8226" tvdbid="260946" defaulttvdbseason="1">
+    <name>Danball Senki</name>
+  </anime>
+  <anime anidbid="8903" tvdbid="260946" defaulttvdbseason="2">
+    <name>Danball Senki W</name>
+  </anime>
+  <anime anidbid="9738" tvdbid="260946" defaulttvdbseason="3">
+    <name>Danball Senki Wars</name>
   </anime>
   <anime anidbid="1805" tvdbid="78856" defaulttvdbseason="1">
     <name>Girls Bravo</name>
@@ -540,6 +573,9 @@
     <name>Queen`s Blade: Rebellion</name>
     <name>Queen’S Blade: Rebellion</name>
     <name>Queens Blade: Rebellion</name>
+    <name>Queen’S Blade Rebellion</name>
+    <name>Queens Blade: Rebellion</name>
+    <name>Queens Blade: Rebellion</name>
     <name>Queen’S Blade Rebellion – A Saint’S Agony</name>
     <name>Queens Blade Rebellion A Saints Agony</name>
     <name>Queen’S Blade Rebellion – Siggy’S Passionate Sacred Pose Lessons</name>
@@ -549,6 +585,7 @@
     <name>Queen's Blade: Rebellion Specials</name>
     <name>Queen's Blade: Rebellion Specials 2</name>
     <name>Queens Blade Rebellion Vs Hagure Yuusha No Estetica</name>
+    <name>Queen’S Blade Premium Visual Book</name>
   </anime>
   <anime anidbid="6080" tvdbid="87491" defaulttvdbseason="1">
     <name>Queen's Blade: Rurou no Senshi</name>
@@ -1745,13 +1782,27 @@
   <anime anidbid="9392" tvdbid="0" defaulttvdbseason="1">     
 	<name>Yumekuri</name>  
   </anime>
+  <anime anidbid="9666" tvdbid="267439" defaulttvdbseason="1">     
+	<name>Mushibugyou</name>  
+  </anime>
+  <anime anidbid="9242" tvdbid="264530" defaulttvdbseason="1">     
+	<name>Vividred Operation</name>  
+  </anime>
+  <anime anidbid="8787" tvdbid="259675" defaulttvdbseason="1">     
+	<name>Uchuu Senkan Yamato 2199</name>  
+  </anime>
+  <anime anidbid="8808" tvdbid="264663" defaulttvdbseason="1">     
+	<name>Date a Live</name>  
+  </anime>
   <anime anidbid="1084" tvdbid="76665" defaulttvdbseason="0">     
 	<name>Yu Yu Hakusho The Golden Seal</name> 
 	<name>Yu Yu Hakusho Movie 1 The Golden Seal</name>  
+	<name>Yu Yu Hakusho 1 The Golden Seal</name>  
   </anime>
   <anime anidbid="753" tvdbid="76665" defaulttvdbseason="0">     
 	<name>Yu Yu Hakusho Poltergeist Report</name>      
 	<name>Yu Yu Hakusho Movie 2 Poltergeist Report</name>  
+	<name>Yu Yu Hakusho 2 Poltergeist Report</name>  
   </anime>
   <anime anidbid="593" tvdbid="113561" defaulttvdbseason="1">     
 	<name>Yu-Gi-Oh</name>  
@@ -1766,10 +1817,12 @@
   </anime>
   <anime anidbid="2061" tvdbid="76894" defaulttvdbseason="1">     
 	<name>Yugioh Duel Monsters</name>  
-	<name>Yu-Gi-Oh! Duel Monsters</name>  
+	<name>Yu-Gi-Oh! Duel Monsters</name> 
+	<name>Yu Gi Oh Duel Monsters</name>  
   </anime>
   <anime anidbid="2761" tvdbid="76894" defaulttvdbseason="0">     
-	<name>Yu Gi Oh The Movie Pyramid Of Light</name>  
+	<name>Yu Gi Oh The Movie Pyramid Of Light</name>    
+	<name>Yu Gi Oh Series Zero War Of The Dragons</name>  
   </anime>
   <anime anidbid="2766" tvdbid="76113" defaulttvdbseason="1">     
 	<name>Yu Gi Oh Gx</name>    
@@ -2045,6 +2098,24 @@
   </anime>
   <anime anidbid="9108" tvdbid="254662" defaulttvdbseason="0">   
 	<name>Rinne No Lagrange Specials</name>  
+  </anime>
+  <anime anidbid="739" tvdbid="82595" defaulttvdbseason="1">   
+	<name>Future GPX Cyber Formula</name>  
+	<name>Shin Seiki GPX Cyber Formula</name> 
+	<name>Cyber Formula: Shinseki-GPX</name> 
+	<name>Future Grand Prix Cyber Formula</name>  
+  </anime>
+  <anime anidbid="2463" tvdbid="82595" defaulttvdbseason="2">   
+	<name>Shin Seiki GPX Cyber Formula Double One</name>   
+  </anime>
+  <anime anidbid="2462" tvdbid="82595" defaulttvdbseason="3">   
+	<name>Shin Seiki GPX Cyber Formula Zero</name>   
+  </anime>
+  <anime anidbid="2149" tvdbid="82595" defaulttvdbseason="4">   
+	<name>Shin Seiki GPX Cyber Formula Saga</name>   
+  </anime>
+  <anime anidbid="2438" tvdbid="82595" defaulttvdbseason="5">   
+	<name>Future GPX Cyber Formula SIN</name>   
   </anime>
   <anime anidbid="t77120" tvdbid="77120" defaulttvdbseason="1">   
 	<name>Aqua Something You Know Whatever</name>  
