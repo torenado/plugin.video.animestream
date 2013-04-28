@@ -1789,6 +1789,10 @@
   <anime anidbid="9242" tvdbid="264530" defaulttvdbseason="1">     
 	<name>Vividred Operation</name>  
   </anime>
+  <anime anidbid="9568" tvdbid="268289" defaulttvdbseason="1">     
+	<name>Kakumeiki Valvrave</name>  
+	<name>Valvrave the Liberator</name>  
+  </anime>
   <anime anidbid="8787" tvdbid="259675" defaulttvdbseason="1">     
 	<name>Uchuu Senkan Yamato 2199</name>  
   </anime>
@@ -2151,6 +2155,48 @@
   </anime>
   <anime anidbid="3070" tvdbid="80820" defaulttvdbseason="1">   
 	<name>Zoids Genesis</name>  
+  </anime>
+  <anime anidbid="222" tvdbid="79099" defaulttvdbseason="0">
+    <name>.hack//Liminality</name>
+    <name>Dot Hack Liminality</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-2;2-3;3-4;4-5;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="447" tvdbid="79099" defaulttvdbseason="2">
+    <name>.hack//Tasogare no Udewa Densetsu</name>
+    <name>Hack//Legend Of The Twilight</name>
+    <name>Hack // Legend Of The Twilight Bracelet</name>
+    <name>Dot Hack Legend Of The Twilight</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-7;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="7883" tvdbid="79099" defaulttvdbseason="0">
+    <name>.hack//Quantum</name>
+    <name>Hack Quantum</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-9;2-10;3-11;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="4324" tvdbid="79099" defaulttvdbseason="3">
+    <name>.hack//Roots</name>
+    <name>Dot Hack Roots</name>
+  </anime>
+  <anime anidbid="24" tvdbid="79099" defaulttvdbseason="1">
+    <name>.hack//Sign</name>
+    <name>Dot Hack Sign</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-1;2-6;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="5459" tvdbid="79099" defaulttvdbseason="0">
+    <name>Hack//Gu Trilogy</name>
+    <name>Hack//G U Trilogy</name>
+    <name>Hack//G U Trilogy Parody Mode</name>
+  </anime>
+  <anime anidbid="5391" tvdbid="79099" defaulttvdbseason="0">
+    <name>Hack//G U Returner</name>
   </anime>
 <anime anidbid="1007" tvdbid="85199" defaulttvdbseason="1">       <name>Moomin (1990)</name>  </anime>
 <anime anidbid="101" tvdbid="74539" defaulttvdbseason="1">        <name>Nazca</name>  </anime>
