@@ -2157,6 +2157,7 @@
 	<name>Zoids Genesis</name>  
   </anime>
   <anime anidbid="222" tvdbid="79099" defaulttvdbseason="0">
+    <name>Hack// Liminality</name>
     <name>.hack//Liminality</name>
     <name>Dot Hack Liminality</name>
     <mapping-list>
@@ -2165,14 +2166,17 @@
   </anime>
   <anime anidbid="447" tvdbid="79099" defaulttvdbseason="2">
     <name>.hack//Tasogare no Udewa Densetsu</name>
+    <name>Hack//Tasogare No Udewa Densetsu</name>
     <name>Hack//Legend Of The Twilight</name>
     <name>Hack // Legend Of The Twilight Bracelet</name>
+	<name>.hack//Legend of the Twilight Bracelet</name>
     <name>Dot Hack Legend Of The Twilight</name>
     <mapping-list>
       <mapping anidbseason="0" tvdbseason="0">;1-7;</mapping>
     </mapping-list>
   </anime>
   <anime anidbid="7883" tvdbid="79099" defaulttvdbseason="0">
+    <name>Hack // Quantum</name>
     <name>.hack//Quantum</name>
     <name>Hack Quantum</name>
     <mapping-list>
@@ -2180,10 +2184,12 @@
     </mapping-list>
   </anime>
   <anime anidbid="4324" tvdbid="79099" defaulttvdbseason="3">
+    <name>Hack // Roots</name>
     <name>.hack//Roots</name>
     <name>Dot Hack Roots</name>
   </anime>
   <anime anidbid="24" tvdbid="79099" defaulttvdbseason="1">
+    <name>Hack // Sign</name>
     <name>.hack//Sign</name>
     <name>Dot Hack Sign</name>
     <mapping-list>
@@ -2197,6 +2203,12 @@
   </anime>
   <anime anidbid="5391" tvdbid="79099" defaulttvdbseason="0">
     <name>Hack//G U Returner</name>
+  </anime>
+  <anime anidbid="8606" tvdbid="79099" defaulttvdbseason="0">
+    <name>Hack//Beyond The World</name>
+    <name>Hack//The Sekai No Mukou Ni</name>
+    <name>Hack//Versus The Thanatos Report</name>
+    <name>Hackversus</name>
   </anime>
 <anime anidbid="1007" tvdbid="85199" defaulttvdbseason="1">       <name>Moomin (1990)</name>  </anime>
 <anime anidbid="101" tvdbid="74539" defaulttvdbseason="1">        <name>Nazca</name>  </anime>
@@ -2302,7 +2314,6 @@
 <anime anidbid="4308" tvdbid="81422" defaulttvdbseason="1">     <name>Tokyo Tribe 2</name>  </anime>
 <anime anidbid="4381" tvdbid="82628" defaulttvdbseason="1">       <name>Ramen Fighter Miki</name>  </anime>
 <anime anidbid="439" tvdbid="72896" defaulttvdbseason="1">        <name>Prétear</name>  </anime>
-<anime anidbid="447" tvdbid="79099" defaulttvdbseason="2">   <name>.hack//Legend of the Twilight Bracelet</name>  </anime>
 <anime anidbid="449" tvdbid="79060" defaulttvdbseason="1">        <name>Wolf's Rain</name>  </anime>
 <anime anidbid="45" tvdbid="82699" defaulttvdbseason="1"> <name>Gunsmith Cats</name>  </anime>
 <anime anidbid="4522" tvdbid="79975" defaulttvdbseason="1">       <name>Red Garden</name>  </anime>
