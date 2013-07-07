@@ -1720,6 +1720,9 @@
       <mapping anidbseason="0" tvdbseason="0">;2-7;3-1;4-2;5-3;6-4;7-5;8-6;</mapping>
     </mapping-list>
   </anime>
+  <anime anidbid="9398" tvdbid="186911" defaulttvdbseason="2">
+    <name>Hyakka Ryouran Samurai Bride</name>
+  </anime>
   <anime anidbid="191" tvdbid="79071" defaulttvdbseason="1">
     <name>GTO</name>
     <name>Great Teacher Onizuka</name>
@@ -2232,6 +2235,31 @@
     <name>Hataraku Maou-sama!</name>   
     <name>Hataraku Maou Sama</name>  
     <name>Hataraku Maou-Sama</name>  
+  </anime>
+  <anime anidbid="9555" tvdbid="270058" defaulttvdbseason="1">   
+    <name>Danganronpa: The Animation</name>  
+	<name>Danganronpa: Kibou no Gakuen to Zetsubou no Koukousei - The Animation</name>
+  </anime>
+  <anime anidbid="9551" tvdbid="268059" defaulttvdbseason="1">   
+    <name>Arata Kangatari</name>  
+  </anime>
+  <anime anidbid="9554" tvdbid="267434" defaulttvdbseason="1">   
+    <name>Devil Survivor 2 The Animation</name>  
+  </anime>
+  <anime anidbid="9344" tvdbid="70900" defaulttvdbseason="5">   
+    <name>Initial D Fifth Stage</name>  
+  </anime>
+  <anime anidbid="7723" tvdbid="193821" defaulttvdbseason="1">   
+    <name>Iron Man (2010)</name>  
+  </anime>
+  <anime anidbid="9468" tvdbid="193821" defaulttvdbseason="0">   
+    <name>Iron Man Rise Of Technovore</name>  
+  </anime>
+  <anime anidbid="5072" tvdbid="82831" defaulttvdbseason="1">   
+    <name>Overdrive</name>  
+  </anime>
+  <anime anidbid="8889" tvdbid="264051" defaulttvdbseason="1">   
+    <name>Sasami-San Ganbaranai</name>  
   </anime>
 <anime anidbid="1007" tvdbid="85199" defaulttvdbseason="1">       <name>Moomin (1990)</name>  </anime>
 <anime anidbid="101" tvdbid="74539" defaulttvdbseason="1">        <name>Nazca</name>  </anime>
