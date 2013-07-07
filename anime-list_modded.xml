@@ -1238,9 +1238,6 @@
       <mapping anidbseason="0" tvdbseason="1">;1-13;2-0;</mapping>
     </mapping-list>
   </anime>
-  <anime anidbid="312" tvdbid="76665" defaulttvdbseason="1">    
-    <name>Yu Yu Hakusho</name>  
-  </anime>
   <anime anidbid="t133451" tvdbid="133451" defaulttvdbseason="1">    
     <name>Spirited Away by the Wolf</name>  
   </anime>
@@ -1765,10 +1762,12 @@
 	<name>Natsume Yuujinchou Shi</name>  
   </anime>
   <anime anidbid="8353" tvdbid="250022" defaulttvdbseason="1">     
-	<name>Yuru Yuri</name>  
+	<name>Yuru Yuri</name> 
+	<name>Yuru Yuri ♪♪</name>
   </anime>
   <anime anidbid="8844" tvdbid="250022" defaulttvdbseason="2">     
 	<name>Yuru Yuri S2</name>  
+	<name>Yuru Yuri 2</name>  
 	<name>Yuru Yuri Season 2</name>  
   </anime>
   <anime anidbid="1548" tvdbid="198751" defaulttvdbseason="1">     
@@ -1802,6 +1801,15 @@
   </anime>
   <anime anidbid="8808" tvdbid="264663" defaulttvdbseason="1">     
 	<name>Date a Live</name>  
+  </anime>
+  <anime anidbid="9654" tvdbid="266840" defaulttvdbseason="1">     
+	<name>Straight Title Robot Anime</name>
+	<name>Chokkyuu Hyoudai Robot Anime: Straight Title</name>  
+  </anime>
+  <anime anidbid="312" tvdbid="76665" defaulttvdbseason="1">    
+    <name>Yu Yu Hakusho</name>   
+    <name>YuYu Hakusho</name>    
+    <name>Y Y Hakusho</name>  
   </anime>
   <anime anidbid="1084" tvdbid="76665" defaulttvdbseason="0">     
 	<name>Yu Yu Hakusho The Golden Seal</name> 
@@ -1854,7 +1862,7 @@
   </anime>
   <anime anidbid="9400" tvdbid="248049" defaulttvdbseason="2">     
 	<name>Yugioh Zexal Second</name>     
-	<name>Yu Gi Oh Zexal Second</name>  
+	<name>Yu Gi Oh Zexal Second</name>
   </anime>
   <anime anidbid="111" tvdbid="74924" defaulttvdbseason="1">     
 	<name>Sentou Yousei Yukikaze</name>  
@@ -2213,6 +2221,17 @@
     <name>Hack//The Sekai No Mukou Ni</name>
     <name>Hack//Versus The Thanatos Report</name>
     <name>Hackversus</name>
+  </anime>
+  <anime anidbid="9541" tvdbid="267440" defaulttvdbseason="1">      
+    <name>Attack on Titan</name>  
+    <name>Attack On Titan (Shingeki No Kyojin)</name>  
+    <name>Shingeki No Kyojin</name>  
+  </anime>
+  <anime anidbid="9466" tvdbid="267441" defaulttvdbseason="1">      
+    <name>The Devil Is a Part-Timer!</name>       
+    <name>Hataraku Maou-sama!</name>   
+    <name>Hataraku Maou Sama</name>  
+    <name>Hataraku Maou-Sama</name>  
   </anime>
 <anime anidbid="1007" tvdbid="85199" defaulttvdbseason="1">       <name>Moomin (1990)</name>  </anime>
 <anime anidbid="101" tvdbid="74539" defaulttvdbseason="1">        <name>Nazca</name>  </anime>
