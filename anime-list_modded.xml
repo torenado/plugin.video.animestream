@@ -1903,6 +1903,7 @@
   <anime anidbid="7219" tvdbid="80158" defaulttvdbseason="4">
     <name>Ikkitousen: Xtreme Xecutor</name>
     <name>Ikki Tousen: Xtreme Xecutor</name>
+    <name>Ikkitousen Xtreme Xecutor</name>
     <mapping-list>
       <mapping anidbseason="0" tvdbseason="0">;1-13;2-14;3-15;4-16;5-17;6-18;</mapping>
     </mapping-list>
@@ -2280,8 +2281,32 @@
     <name>Overdrive</name>  
     <name>Over Drive</name>  
   </anime>
+  <anime anidbid="5625" tvdbid="81831" defaulttvdbseason="1">   
+    <name>To Love-Ru Trouble</name>  
+    <name>To Love-Ru</name>  
+  </anime>
+  <anime anidbid="6463" tvdbid="81831" defaulttvdbseason="0">   
+    <name>To Love-Ru: Trouble (2009)</name>  
+  </anime>
+  <anime anidbid="7680" tvdbid="81831" defaulttvdbseason="2">   
+    <name>Motto To Love-Ru: Trouble</name>  
+    <name>Motto To Loveru</name>  
+  </anime>
+  <anime anidbid="9133" tvdbid="81831" defaulttvdbseason="3">   
+    <name>To Love-Ru: Trouble - Darkness</name>  
+    <name>To Loveru: Darkness</name>  
+  </anime>
   <anime anidbid="8889" tvdbid="264051" defaulttvdbseason="1">   
-    <name>Sasami-San Ganbaranai</name>  
+    <name>Sasami-San Ganbaranai</name>   
+    <name>Sasami-san@Ganbaranai</name>   
+    <name>Sasami-san at Ganbaranai</name>  
+  </anime>
+  <anime anidbid="6793" tvdbid="82807" defaulttvdbseason="2">
+    <name>Sekirei: Pure Engagement</name>
+    <name>Sekirei Pure Engagement</name>
+    <mapping-list>
+      <mapping anidbseason="0" tvdbseason="0">;1-2;</mapping>
+    </mapping-list>
   </anime>
 <anime anidbid="1007" tvdbid="85199" defaulttvdbseason="1">       <name>Moomin (1990)</name>  </anime>
 <anime anidbid="101" tvdbid="74539" defaulttvdbseason="1">        <name>Nazca</name>  </anime>
