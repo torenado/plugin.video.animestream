@@ -360,6 +360,7 @@
   <anime anidbid="3394" tvdbid="85415" defaulttvdbseason="1">
     <name>Super Robot Taisen: Original Generation - The Animation</name>
     <name>Super Robot Wars: Original Generation - The Animation</name>
+    <name>Super Robot Taisen Original Generation The Animation</name>
     <name>Super Robot Wars OG</name>
   </anime>
   <anime anidbid="4596" tvdbid="80000" defaulttvdbseason="1">
@@ -769,6 +770,7 @@
   </anime>
   <anime anidbid="8010" tvdbid="81797" defaulttvdbseason="0">
     <name>One Piece 3D: Mugiwara Chase</name>
+    <name>One Piece 3D Mugiwara Chase</name>
     <name>One Piece 11 Mugiwara Chase</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-21;</mapping>
@@ -780,6 +782,9 @@
     <name>One Piece Movie 12: Film Z</name>
     <name>One Piece Movie 12</name>
     <name>One Piece Film Z</name>
+    <name>One Piece 12 Film Z (2013)</name>
+    <name>One Piece 12 Film Z</name>
+    <name>One Piece 12 Film Z 2013</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-26;</mapping>
     </mapping-list>
@@ -800,6 +805,7 @@
   </anime>
   <anime anidbid="7525" tvdbid="194961" defaulttvdbseason="1">
     <name>Ore no Imouto ga Konna ni Kawaii Wake ga Nai</name>
+    <name>Ore No Imouto Ga Konnani Kawaii Wake Ga Nai</name>
     <name>My Little Sister Can`t Be This Cute</name>
     <name>Oreimo</name>
     <mapping-list>
@@ -811,12 +817,19 @@
   </anime>
   <anime anidbid="9134" tvdbid="194961" defaulttvdbseason="2">
     <name>Ore no Imouto ga Konna ni Kawaii Wake ga Nai 2</name>
+    <name>Ore No Imouto Ga Konnani Kawaii Wake Ga Nai S2</name>
     <name>My Little Sister Can`t Be This Cute 2</name>
     <name>Oreimo 2</name>
+    <name>Oreimo S2</name>
+    <name>Oreimo2</name>
   </anime>
   <anime anidbid="8254" tvdbid="246971" defaulttvdbseason="1">
     <name>Sengoku Otome: Momoiro Paradox</name>
     <name>Battle Girls - Time Paradox</name>
+  </anime>
+  <anime anidbid="8787" tvdbid="259675" defaulttvdbseason="1">
+    <name>Uchuu Senkan Yamato 2199</name>
+    <name>Space Battleship Yamato 2199</name>
   </anime>
   <anime anidbid="t152831" tvdbid="152831" defaulttvdbseason="1">
     <name>Adventure Time</name>
@@ -1643,6 +1656,7 @@
     <name>Muv Luv Alternative: Total Eclipse</name>
     <name>Muv Luv Alternative Total Eclipse</name>
     <name>Muv-Luv Alternative: Total Eclipse</name>
+    <name>Muv-Luv Alternative Total Eclipse</name>
   </anime>
   <anime anidbid="5842" tvdbid="82834" defaulttvdbseason="1">     
     <name>Xam'd: Lost Memories</name>  
@@ -1715,13 +1729,18 @@
   </anime>
   <anime anidbid="7440" tvdbid="186911" defaulttvdbseason="1">
     <name>Hyakka Ryoran: Samurai Girls</name>
+    <name>Hyakka Ryoran Samurai Girls</name>
     <name>Hyakka RyōRan Samurai Girls</name>
+    <name>Hyakka Ryouran Samurai Girls Uncensored</name>
     <mapping-list>
       <mapping anidbseason="0" tvdbseason="0">;2-7;3-1;4-2;5-3;6-4;7-5;8-6;</mapping>
     </mapping-list>
   </anime>
   <anime anidbid="9398" tvdbid="186911" defaulttvdbseason="2">
     <name>Hyakka Ryouran Samurai Bride</name>
+  </anime>
+  <anime anidbid="8230" tvdbid="252343" defaulttvdbseason="1">
+    <name>Majikoi Oh Samurai Girls</name>
   </anime>
   <anime anidbid="191" tvdbid="79071" defaulttvdbseason="1">
     <name>GTO</name>
@@ -1738,7 +1757,8 @@
 	<name>Zone Of The Enders</name> 
 	<name>Zone of the Enders: Dolores, i</name>  
 	<name>Z O E Dolores, I</name>  
-	<name>Z.O.E Dolores,i</name>  
+	<name>Z.O.E Dolores,i</name>
+	<name>Z O E Dolores I</name>  
   </anime>
   <anime anidbid="412" tvdbid="79174" defaulttvdbseason="0">     
 	<name>Zone Of The Enders Idolo</name>  
@@ -1796,7 +1816,7 @@
 	<name>Valvrave the Liberator</name>  
   </anime>
   <anime anidbid="8787" tvdbid="259675" defaulttvdbseason="1">     
-	<name>Uchuu Senkan Yamato 2199</name>  
+	<name>Uchuu Senkan Yamato</name>  
   </anime>
   <anime anidbid="1102" tvdbid="0" defaulttvdbseason="1">     
 	<name>F-Force</name>     
@@ -2241,7 +2261,8 @@
 	<name>Danganronpa: Kibou no Gakuen to Zetsubou no Koukousei - The Animation</name>
   </anime>
   <anime anidbid="9551" tvdbid="268059" defaulttvdbseason="1">   
-    <name>Arata Kangatari</name>  
+    <name>Arata Kangatari</name> 
+    <name>Arata The Legend</name>  
   </anime>
   <anime anidbid="9554" tvdbid="267434" defaulttvdbseason="1">   
     <name>Devil Survivor 2 The Animation</name>  
@@ -2257,6 +2278,7 @@
   </anime>
   <anime anidbid="5072" tvdbid="82831" defaulttvdbseason="1">   
     <name>Overdrive</name>  
+    <name>Over Drive</name>  
   </anime>
   <anime anidbid="8889" tvdbid="264051" defaulttvdbseason="1">   
     <name>Sasami-San Ganbaranai</name>  
