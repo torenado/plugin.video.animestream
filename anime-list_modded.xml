@@ -839,6 +839,13 @@
     <name>Uchuu Senkan Yamato 2199</name>
     <name>Space Battleship Yamato 2199</name>
     <name>Uchuu Senkan Yamato (Space Battleship Yamato) 2199</name>
+    <name>Uchuu Senkan Yamato Space Battleship Yamato 2199</name>
+  </anime>
+  <anime anidbid="648" tvdbid="77773" defaulttvdbseason="1">
+    <name>Uchuu Senkan Yamato</name>
+    <name>Space Battleship Yamato</name>
+    <name>Star Blazers</name>
+    <name>Star Blazers Space Battleship Yamato S 1</name>
   </anime>
   <anime anidbid="82" tvdbid="79996" defaulttvdbseason="1">
     <name>Dual! Parallel Trouble Adventures</name>
