@@ -282,7 +282,7 @@ def Total_Video_List(link):
 				if(len(videoNameSplit) > 1):
 					videoName = videoName.replace('-',' ').replace('_',' ').title().strip()
 					if (not 'http://ads.' in videoLink and not 'episode' in videoLink):
-						searchRes.append([BASE_URL + videoLink, videoName.split('(')[0].strip()])
+						# searchRes.append([BASE_URL + videoLink, videoName.split('(')[0].strip()])
 						
 						videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
 						searchRes.append([BASE_URL + videoLink, videoName.replace('Anime','').strip()])
