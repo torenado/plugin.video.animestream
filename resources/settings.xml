@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
 	<category label="Streaming Sites">
+		<setting label="Anime/Cartoons:" type="lsep" />
 		<setting id="anilinkz_on" type="bool" label="anilinkz.com" default="true"/>
 		<setting id="anime44_on" type="bool" label="anime44.com" default="true"/>
-		<setting id="animecrazy_on" type="bool" label="animecrazy.net" default="true"/>
+		<setting id="animecrazy_on" type="bool" label="animecrazy.net (retired)" default="false"/>
 		<setting id="animeflavor_on" type="bool" label="animeflavor.com" default="false"/>
 		<setting id="animefreak_on" type="bool" label="animefreak.tv" default="false"/>
-		<setting id="animefushigi_on" type="bool" label="animefushigi.com" default="false"/>
-		<setting id="animetip_on" type="bool" label="animetip.com" default="false"/>
+		<setting id="animefushigi_on" type="bool" label="animefushigi.com" default="true"/>
+		<setting id="animereboot_on" type="bool" label="animereboot.com" default="false"/>
+		<setting id="animesubbed_on" type="bool" label="animesubbed.com" default="false"/>
+		<setting id="animetip_on" type="bool" label="animetip.com" default="true"/>
+		<setting id="lovemyanime_on" type="bool" label="lovemyanime.net" default="false"/>
 		<setting id="myanimelinks_on" type="bool" label="myanimelinks.com" default="false"/>
 		<setting id="tubeplus_on" type="bool" label="tubeplus.me" default="false"/>
+		<setting label="Hentai:" type="lsep" />
 		<setting id="hentaiseries_on" type="bool" label="hentaiseries.net" default="false"/>
+		<setting id="hentaistream_on" type="bool" label="hentaistream.com" default="false"/>
 	</category>
 	<category label="aniDB">
 		<setting label="aniDB Login:" type="lsep" />
