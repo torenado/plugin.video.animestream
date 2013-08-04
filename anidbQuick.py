@@ -105,6 +105,31 @@ def HotAnimeSummary(link):
 	if(len(anidbHotAnimeSummary) < 1):
 		print base_txt +  'Nothing was parsed from HotAnimeSummary: '
 	return anidbHotAnimeSummary
+	
+def aniDBFullList(link):
+	# Grabs and parses the mylist from anidb.  User must set username and password in settings
+	# http://anidb.net/api/animetitles.xml.gz
+	
+	base_txt = 'anidb.net: '
+	print base_txt +  'Parsing anidb full anime list'
+	fullList = []
+	
+	match=re.compile('<anime (.+?)</anime>').findall(link)
+	if(len(match) >= 1):
+		for aniLine in match:
+			aid=re.compile('aid="(.+?)"').findall(aniLine)[0]			
+			eps_num = 'TBC'
+			name1=re.compile('="en">(.+?)</title>').findall(aniLine)
+			name2=re.compile('="x-jat">(.+?)</title>').findall(aniLine)	
+			names = name1+name2
+			for name in names:
+				if '"' in name:
+					name = name.replace('"',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ')
+				fullList.append([int(aid),name,(0,eps_num)])
+	
+	if(len(fullList) < 1):
+		print base_txt +  'Nothing was parsed from aniDBFullList: '
+	return fullList
 
 def AID_Resolution(linkAID):
 	base_txt = 'anidb.net: '	
@@ -239,7 +264,7 @@ def AID_Search(linkAID='',searchText=''):
 			match1=re.compile('CDATA\[(.+?)\]').findall(aniSer)
 			if(len(match1)>=1):
 				for name in match1:
-					serList.append([aid, name])
+					serList.append([name, aid])
 	
 	if len(serList)>0:
 		print base_txt + 'anisearch.outrance.pl found mathces for: ' + searchText

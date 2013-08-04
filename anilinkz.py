@@ -190,13 +190,16 @@ def Video_List_And_Pagination(url):
 
 	mostPop = []
 	videoImg = ''
-	seriesBlock = re.compile('<div id="ddmcc_container">(.+?)<div style="clear:both;"><!-- --></div>').findall(link)[0]
-	
-	match=re.compile('<a href="(.+?)">(.+?)<').findall(seriesBlock)
-	for videoLink, videoName in match:
-		videoLink = BASE_URL + videoLink
-		videoName = urllib.unquote(videoName)
-		mostPop.append(['', videoName, videoLink])
+	if (not link == 'No Dice'):
+		seriesBlock = re.compile('<div id="ddmcc_container">(.+?)<div style="clear:both;"><!-- --></div>').findall(link)[0]
+		
+		match=re.compile('<a href="(.+?)">(.+?)<').findall(seriesBlock)
+		for videoLink, videoName in match:
+			videoLink = BASE_URL + videoLink
+			# videoName = urllib.unquote(videoName)
+			videoNameSplit = videoLink.split('/')
+			videoName = videoNameSplit[-1].replace('-',' ').replace('_',' ').title().strip()
+			mostPop.append(['', videoName, videoLink])
 	
 	return mostPop
 	
@@ -227,20 +230,17 @@ def Total_Video_List(link):
 	# Generate list of shows/movies
 	
 	searchRes = []
-	match1=re.compile('<div id="ddmcc_container">(.+?)<div id="sidebar">').findall(link)
-	match=re.compile('<a(.+?)>(.+?)</a>').findall(match1[0])
-	if(len(match) >= 1):
-		for linkFound, videoName in match:
-			videoInfo = re.compile('href="(.+?)"').findall(linkFound)
-			if(len(videoInfo) >= 1):
-				videoLink = videoInfo[-1]
+	match1=re.compile('<div id="ddmcc_container">(.+?)<div id="sidebar">').findall(link)	
+	if(len(match1) > 0):
+		match=re.compile('<a href="(.+?)">(.+?)</a>').findall(match1[0])
+		if(len(match) >= 1):
+			for videoLink, videoName in match:
 				videoNameSplit = videoLink.split('/')
 				videoName = videoName.replace('-',' ').replace('_',' ').title().strip()
 				if (not 'http://ads.' in videoLink and not 'episode' in videoLink):
-					searchRes.append([videoLink, videoName])
-					
-					videoName = videoNameSplit[-1].replace('-',' ').replace('_',' ').title().strip()
 					searchRes.append([BASE_URL + videoLink, videoName])
+		else:
+			print base_txt +  'Nothing was parsed from Total_Video_List' 
 	else:
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
 	

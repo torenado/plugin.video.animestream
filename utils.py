@@ -106,7 +106,9 @@ def unescape(text):
 			[' ', '&Nbsp;'],
 			["'", '&#039;'],
 			["'", '&#8217;'],
-			[' ', '&#8211;']
+			["'", '&8217;'],
+			[' ', '&#8211;'],
+			['x', '&#215;']
 		]
 		for code in htmlCodes:
 			url = url.replace(code[1], code[0])
@@ -152,6 +154,15 @@ def U2A_List(iterable):
 			iterated_object.append(U2A_List(elem))
 		else:
 			iterated_object.append(U2A(elem))
+	return iterated_object
+	
+def U2A_List_over(iterable):
+	iterated_object=[]
+	for elem in iterable:
+		if hasattr(elem,"__iter__"):
+			iterated_object.append(U2A_List_over(elem))
+		else:
+			iterated_object.append(U2A_over(elem))
 	return iterated_object
 	
 def find(q):
@@ -223,6 +234,10 @@ chars = {
     '\xcc\xa8' : '',         # modifier - under curve
     '\xe2\x80\x93' : '-',    # long hyphen
     '\xc2\xb3' : '^3',       # superscript 3
+    '\x92' : "'",       	 # right single quotation mark
+	'\xe2\x80\x99' : "'",    # right single quotation mark
+	'\xe2\x80\x93' : "-",    # en dash
+    '\xfb' : 'u',    	 	 # latin small letter u with circumflex
     '\xcc\xb1' : ''          # modifier - under line
 }
 def replace_chars(match):

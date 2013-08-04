@@ -159,19 +159,22 @@ def Total_Video_List(link):
 	
 	searchRes = []
 	match1=re.compile('<h1>Anime List</h1>(.+?)</ul></div><div class="defaultblock">').findall(link)
-	match=re.compile('<a(.+?)>(.+?)</a>').findall(match1[0])
-	if(len(match) > 0):
-		for linkFound, videoName in match:
-			videoInfo = re.compile('href="(.+?)"').findall(linkFound)
-			if(len(videoInfo) >= 1):
-				if not 'http' in videoInfo[-1]:
-					videoLink = BASE_URL + videoInfo[-1]
-				videoNameSplit = videoLink.split('/')[-1]
-				# videoName = videoNameSplit.replace('-',' ').replace('_',' ').title().strip()
-				if 'dubbed' in videoLink:
-					videoName = videoName + ' (Dubbed)'
-				if (not 'http://ads.' in videoLink and not 'episode' in videoLink and not videoName.startswith('<')):
-					searchRes.append([videoLink, videoName])
+	if(len(match1) > 0):
+		match=re.compile('<a(.+?)>(.+?)</a>').findall(match1[0])
+		if(len(match) > 0):
+			for linkFound, videoName in match:
+				videoInfo = re.compile('href="(.+?)"').findall(linkFound)
+				if(len(videoInfo) >= 1):
+					if not 'http' in videoInfo[-1]:
+						videoLink = BASE_URL + videoInfo[-1]
+					videoNameSplit = videoLink.split('/')[-1]
+					# videoName = videoNameSplit.replace('-',' ').replace('_',' ').title().strip()
+					if 'dubbed' in videoLink:
+						videoName = videoName + ' (Dubbed)'
+					if (not 'http://ads.' in videoLink and not 'episode' in videoLink and not videoName.startswith('<')):
+						searchRes.append([videoLink, videoName])
+		else:
+			print base_txt +  'Nothing was parsed from Total_Video_List' 
 	else:
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
 	

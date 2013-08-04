@@ -190,21 +190,21 @@ def Total_Video_List(link):
 	match1=re.compile('<div id="ddmcc_container">(.+?)<div id="sectionRight">').findall(link)
 	if(len(match1) == 0):
 		match1=re.compile('--><div class="block rounded">(.+?)<div id="sectionRight">').findall(link)
-
-	match=re.compile('<a(.+?)>(.+?)</a>').findall(match1[0])
-	if(len(match) >= 1):
-		for linkFound, videoName in match:
-			videoInfo = re.compile('href="(.+?)"').findall(linkFound)
-			if(len(videoInfo) >= 1):
-				videoLink = videoInfo[-1]
-				videoNameSplit = videoLink.split('/')
-				videoName = videoName.replace('-',' ').replace('_',' ').replace('.html','').replace('(Movie)','Movie').title().strip()
-				if (not 'http://ads.' in videoLink):
-					searchRes.append([videoLink, videoName])
-					
-					videoName = videoNameSplit[-1].replace('-',' ').replace('_',' ').replace('.html','').title().strip()
-					searchRes.append([videoLink, videoName])
-	else:
+	
+	if(len(match1) > 0):
+		match=re.compile('<a(.+?)>(.+?)</a>').findall(match1[0])
+		if(len(match) > 0):
+			for linkFound, videoName in match:
+				videoInfo = re.compile('href="(.+?)"').findall(linkFound)
+				if(len(videoInfo) > 0):
+					videoLink = videoInfo[-1].rstrip('//')
+					videoNameSplit = videoLink.split('/')
+					videoName = videoName.replace('-',' ').replace('_',' ').replace('.html','').replace('(Movie)','Movie').title().strip()
+					if (not 'http://ads.' in videoLink and videoLink.startswith('http://')):						
+						videoName = videoNameSplit[-1].replace('-',' ').replace('_',' ').replace('.html','').title().strip()
+						searchRes.append([videoLink, videoName])
+						
+	if(len(searchRes) >= 1):
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
 	
 	# searchRes.sort(key=lambda name: name[1]) 
