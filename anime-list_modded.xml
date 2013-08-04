@@ -651,6 +651,7 @@
   <anime anidbid="411" tvdbid="81797" defaulttvdbseason="0">
     <name>One Piece (2000)</name>
     <name>One Piece 1</name>
+    <name>One Piece I</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-2;</mapping>
     </mapping-list>
@@ -664,6 +665,8 @@
   <anime anidbid="893" tvdbid="81797" defaulttvdbseason="0">
     <name>One Piece: Nejimaki Jima no Bouken</name>
     <name>One Piece 2 Clockwork Island Adventure</name>
+    <name>One Piece 2</name>
+    <name>One Piece II</name>
     <name>One Piece 2 Clockwork Island Adventure 2</name>
     <name>One Piece Clockwork Island Adventure</name>
     <mapping-list>
@@ -674,6 +677,9 @@
   <anime anidbid="1253" tvdbid="81797" defaulttvdbseason="0">
     <name>One Piece: Chinjuujima no Chopper Oukoku</name>
     <name>One Piece 3 Choppers Kingdom On The Island Of Strange Animals</name>
+    <name>One Piece 3 Chopper Kingdom On The Island Of Strange Animals</name>
+    <name>One Piece 3</name>
+    <name>One Piece III</name>
     <name>One Piece 3 Chopper’S Kingdom On The Island Of Strange Animals</name>
     <name>One Piece 3 Kingdom On The Island Of Strange Animals</name>
     <name>One Piece Choppers Kingdom On The Island Of Strange Animals</name>
@@ -687,6 +693,8 @@
     <name>One Piece: Dead End no Bouken</name>
     <name>One Piece 4 Dead End Adventure </name>
     <name>One Piece 4 The Dead End Adventure</name>
+    <name>One Piece 4</name>
+    <name>One Piece IV</name>
     <name>One Piece Dead End Adventure </name>
     <name>One Piece The Dead End Adventure</name>
     <mapping-list>
@@ -697,6 +705,8 @@
     <name>One Piece: Norowareta Seiken</name>
     <name>One Piece 5 Curse Of The Sacred Sword</name>
     <name>One Piece 5 The Curse Of The Sacred Sword</name>
+    <name>One Piece 5</name>
+    <name>One Piece V</name>
     <name>One Piece 5 The Curse Of The Sacred Sword 2</name>
     <mapping-list>
       <mapping anidbseason="0" tvdbseason="0">;1-12;</mapping>
@@ -708,6 +718,8 @@
     <name>One Piece: Baron Omatsuri and the Secret Island</name>
     <name>One Piece 6 Baron Omatsuri And The Secret Island</name>
     <name>One Piece 6 Baron Omatsuri And The Secret Island 2</name>
+    <name>One Piece 6</name>
+    <name>One Piece VI</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-13;</mapping>
     </mapping-list>
@@ -725,6 +737,8 @@
     <name>One Piece 7 Karakuri Castles Mecha Giant Soldier</name>
     <name>One Piece 7 Karakuri Castles Mecha Giant Soldier 2</name>
     <name>One Piece 7 The Giant Mechanical Soldier Of Karakuri Castle</name>
+    <name>One Piece 7</name>
+    <name>One Piece VII</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-15;</mapping>
     </mapping-list>
@@ -734,6 +748,8 @@
     <name>One Piece - The Desert Princess and the Pirates: Adventures in Alabasta</name>
     <name>One Piece 8 The Desert Princess And The Pirates</name>
     <name>One Piece 8 The Desert Princess And The Pirates 2</name>
+    <name>One Piece 8</name>
+    <name>One Piece VIII</name>
     <name>One Piece The Desert Princess And The Pirates</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-16;</mapping>
@@ -744,6 +760,8 @@
     <name>One Piece: Episode of Chopper Plus - Bloom in the Winter, Miracle Sakura</name>
     <name>One Piece 9 Bloom In The Winter Miracle Sakura</name>
     <name>One Piece 9 Bloom In The Winter Miracle Sakura 2</name>
+    <name>One Piece 9</name>
+    <name>One Piece IX</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-17;</mapping>
     </mapping-list>
@@ -758,6 +776,8 @@
   <anime anidbid="6537" tvdbid="81797" defaulttvdbseason="0">
     <name>One Piece: Strong World</name>
     <name>One Piece 10: Strong World</name>
+    <name>One Piece 10</name>
+    <name>One Piece X</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-19;</mapping>
     </mapping-list>
@@ -772,6 +792,8 @@
     <name>One Piece 3D: Mugiwara Chase</name>
     <name>One Piece 3D Mugiwara Chase</name>
     <name>One Piece 11 Mugiwara Chase</name>
+    <name>One Piece 11</name>
+    <name>One Piece XI</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-21;</mapping>
     </mapping-list>
@@ -781,6 +803,8 @@
     <name>One Piece 12</name>
     <name>One Piece Movie 12: Film Z</name>
     <name>One Piece Movie 12</name>
+    <name>One Piece 12</name>
+    <name>One Piece XII</name>
     <name>One Piece Film Z</name>
     <name>One Piece 12 Film Z (2013)</name>
     <name>One Piece 12 Film Z</name>
@@ -804,8 +828,8 @@
     <name>The Case Files of Young Kindaichi</name>
   </anime>
   <anime anidbid="7525" tvdbid="194961" defaulttvdbseason="1">
-    <name>Ore no Imouto ga Konna ni Kawaii Wake ga Nai</name>
     <name>Ore No Imouto Ga Konnani Kawaii Wake Ga Nai</name>
+    <name>Ore no Imouto ga Konna ni Kawaii Wake ga Nai</name>
     <name>My Little Sister Can`t Be This Cute</name>
     <name>Oreimo</name>
     <mapping-list>
@@ -816,6 +840,7 @@
     </supplemental-info>
   </anime>
   <anime anidbid="9134" tvdbid="194961" defaulttvdbseason="2">
+    <name>Ore No Imouto Ga Konnani Kawaii Wake Ga Nai 2</name>
     <name>Ore no Imouto ga Konna ni Kawaii Wake ga Nai 2</name>
     <name>Ore No Imouto Ga Konnani Kawaii Wake Ga Nai S2</name>
     <name>My Little Sister Can`t Be This Cute 2</name>
@@ -1790,6 +1815,9 @@
 	<name>Zone Of The Enders Idolo</name>  
 	<name>Zone Of The Enders I Dolo</name>  
   </anime>
+  <anime anidbid="9409" tvdbid="254653" defaulttvdbseason="2">
+    <name>High School DxD New</name>
+  </anime>
   <anime anidbid="5787" tvdbid="82788" defaulttvdbseason="1">     
 	<name>Natsume Yujincho</name>      
 	<name>Natsume Yujinchou</name>     
@@ -2249,6 +2277,7 @@
     <name>Hack // Roots</name>
     <name>.hack//Roots</name>
     <name>Dot Hack Roots</name>
+    <name>Hack Rots</name>
   </anime>
   <anime anidbid="24" tvdbid="79099" defaulttvdbseason="1">
     <name>Hack // Sign</name>
