@@ -497,12 +497,15 @@
   </anime>
   <anime anidbid="t74852" tvdbid="74852" defaulttvdbseason="1">
     <name>Avatar The Last Airbender Book 1</name> 
+    <name>Avatar Last Airbender S1</name> 
   </anime>
   <anime anidbid="t74852" tvdbid="74852" defaulttvdbseason="2">
     <name>Avatar The Last Airbender Book 2</name> 
+    <name>Avatar Last Airbender S2</name> 
   </anime>
   <anime anidbid="t74852" tvdbid="74852" defaulttvdbseason="3">
     <name>Avatar The Last Airbender Book 3</name> 
+    <name>Avatar Last Airbender S3</name> 
   </anime>
   <anime anidbid="t251085" tvdbid="251085" defaulttvdbseason="1">
     <name>Legend of Korra</name> 
