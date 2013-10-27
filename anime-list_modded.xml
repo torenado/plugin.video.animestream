@@ -232,6 +232,9 @@
     <name>Magi: The Labyrinth of Magic</name>
     <name>Magi The Labyrinth Of Magic</name>
   </anime>
+  <anime anidbid="9807" tvdbid="262094" defaulttvdbseason="2">
+    <name>Magi The Kingdom Of Magic</name>
+  </anime>
   <anime anidbid="9269" tvdbid="262113" defaulttvdbseason="1">
     <name>Ixion Saga DT</name>
   </anime>
@@ -464,6 +467,9 @@
     <mapping-list>
       <mapping anidbseason="0" tvdbseason="1">;1-76;</mapping>
     </mapping-list>
+  </anime>
+  <anime anidbid="9982" tvdbid="79685" defaulttvdbseason="3">
+    <name>Hajime No Ippo The Fighting Rising</name>
   </anime>
   <anime anidbid="17" tvdbid="78914" defaulttvdbseason="1">
     <name>Fullmetal Panic!</name>
@@ -1880,6 +1886,10 @@
 	<name>Kakumeiki Valvrave</name>  
 	<name>Valvrave the Liberator</name>  
   </anime>
+  <anime anidbid="9949" tvdbid="268289" defaulttvdbseason="2">     
+	<name>Kakumeiki Valvrave 2</name>  
+	<name>Valvrave the Liberator 2</name>  
+  </anime>
   <anime anidbid="8787" tvdbid="259675" defaulttvdbseason="1">     
 	<name>Uchuu Senkan Yamato</name>  
   </anime>
@@ -2008,6 +2018,12 @@
     <name>The World God Only Knows Tenri Arc</name>
     <name>The World God Only Knows Tenri Hen</name>
     <name>The World God Only Knows Tenri Hen 2</name>
+  </anime>
+  <anime anidbid="9553" tvdbid="195711" defaulttvdbseason="3">
+    <name>Kami nomi zo Shiru Sekai: Megami Hen</name>
+    <name>Kami Nomi Zo Shiru Sekai Megami Hen</name>
+    <name>The World God Only Knows: Goddesses</name>
+    <name>The World God Only Knows 3</name>
   </anime>
   <anime anidbid="8490" tvdbid="195711" defaulttvdbseason="0">
     <name>Kami nomi zo Shiru Sekai: 4-nin to Idol</name>
@@ -2364,10 +2380,18 @@
     <name>To Loveru: Darkness</name>  
     <name>To Love Ru Darkness</name>  
   </anime>
-  <anime anidbid="8889" tvdbid="264051" defaulttvdbseason="1">   
-    <name>Sasami-San Ganbaranai</name>   
-    <name>Sasami-san@Ganbaranai</name>   
-    <name>Sasami-san at Ganbaranai</name>  
+  <anime anidbid="9133" tvdbid="81831" defaulttvdbseason="3">   
+    <name>To Love-Ru: Trouble - Darkness</name>  
+    <name>To Loveru: Darkness</name>  
+    <name>To Love Ru Darkness</name>  
+  </anime>
+  <anime anidbid="9452" tvdbid="268284" defaulttvdbseason="1">   
+    <name>Ginga Kikoutai Majestic Prince</name>   
+    <name>Majestic Prince</name>  
+  </anime>
+  <anime anidbid="8184" tvdbid="251622" defaulttvdbseason="1">   
+    <name>Towa No Quon</name>   
+    <name>Towa No Quon Part 1</name>  
   </anime>
   <anime anidbid="6793" tvdbid="82807" defaulttvdbseason="2">
     <name>Sekirei: Pure Engagement</name>
@@ -2375,6 +2399,40 @@
     <mapping-list>
       <mapping anidbseason="0" tvdbseason="0">;1-2;</mapping>
     </mapping-list>
+  </anime>  
+  <anime anidbid="9314" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z Kami To Kami</name>
+    <name>Dragon Ball Z Battle of Gods</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-23;</mapping>
+  </mapping-list>
+  </anime>
+  <anime anidbid="9789" tvdbid="219701" defaulttvdbseason="2">
+    <name>Freezing Vibration</name>
+  </anime>
+  <anime anidbid="9820" tvdbid="269873" defaulttvdbseason="1">
+    <name>Gatchaman Crowds</name>
+  </anime>
+  <anime anidbid="9771" tvdbid="272138" defaulttvdbseason="1">
+    <name>Golden Time</name>
+  </anime>
+  <anime anidbid="9518" tvdbid="272697" defaulttvdbseason="1">
+    <name>Kyoukai No Kanata</name>
+    <name>Beyond the Boundary</name>
+  </anime>
+  <anime anidbid="9665" tvdbid="272072" defaulttvdbseason="1">
+    <name>Machine-Doll Wa Kizutsukanai</name>
+    <name>Unbreakable Machine-Doll</name>
+  </anime>
+  <anime anidbid="9794" tvdbid="272137" defaulttvdbseason="1">
+    <name>Sekai De Ichiban Tsuyoku Naritai</name>
+  </anime>
+  <anime anidbid="9772" tvdbid="272129" defaulttvdbseason="1">
+    <name>Strike The Blood</name>
+  </anime>
+  <anime anidbid="9659" tvdbid="273002" defaulttvdbseason="1">
+    <name>Yuusha Ni Narenakatta Ore Wa Shibushibu Shuushoku O Ketsui Shimashita</name>
+    <name>Yu-Shibu</name>
   </anime>
 <anime anidbid="1007" tvdbid="85199" defaulttvdbseason="1">       <name>Moomin (1990)</name>  </anime>
 <anime anidbid="101" tvdbid="74539" defaulttvdbseason="1">        <name>Nazca</name>  </anime>
