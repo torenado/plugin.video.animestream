@@ -929,6 +929,7 @@
     <name>Ben-10 / Generator Rex Crossover Heroes United</name>
     <name>Ben-10 Destroy All Aliens</name>
     <name>Ben10 Destroy All Aliens</name>
+    <name>Ben 10 Destroy All Aliens</name>
   </anime>
   <anime anidbid="t79567" tvdbid="79567" defaulttvdbseason="1">
     <name>Ben 10</name>
@@ -955,6 +956,12 @@
   </anime>
   <anime anidbid="t78682" tvdbid="78682" defaulttvdbseason="1">
     <name>Blackstar</name>
+  </anime>
+  <anime anidbid="t77118" tvdbid="77118" defaulttvdbseason="1">
+    <name>The Brak Show</name>
+  </anime>
+  <anime anidbid="t74743" tvdbid="74743" defaulttvdbseason="1">
+    <name>Captain America</name>
   </anime>
   <anime anidbid="t82824" tvdbid="82824" defaulttvdbseason="1">
     <name>Batman: The Brave and the Bold</name>
@@ -1036,8 +1043,11 @@
     <name>Green Lantern</name>
   </anime>
   <anime anidbid="t84391" tvdbid="84391" defaulttvdbseason="1">
+    <name>Huntik: Secrets Seekers</name>
     <name>Huntik: Secrets & Seekers</name>
     <name>Huntik: Secrets and Seekers</name>
+    <name>Huntik Secrets & Seekers</name>
+    <name>Huntik Secrets and Seekers</name>
   </anime>
   <anime anidbid="t83826" tvdbid="83826" defaulttvdbseason="1">
     <name>Iron Man: Armored Adventures</name>
@@ -1564,7 +1574,8 @@
 	<name>Thor and Loki: Blood Brothers</name>  
   </anime>
   <anime anidbid="t79498" tvdbid="79498" defaulttvdbseason="1">    
-	<name>Fantastic Four World'S Greatest Heroes</name>  
+	<name>Fantastic Four World'S Greatest Heroes</name>   
+	<name>Fantastic Four Worlds Greatest Heroes</name>  
 	<name>Fantastic Four (2006)</name>  
   </anime>
   <anime anidbid="809" tvdbid="79227" defaulttvdbseason="1">    
@@ -1859,6 +1870,7 @@
   </anime>
   <anime anidbid="9409" tvdbid="254653" defaulttvdbseason="2">
     <name>High School DxD New</name>
+    <name>High School DxD 2</name>
   </anime>
   <anime anidbid="5787" tvdbid="82788" defaulttvdbseason="1">     
 	<name>Natsume Yujincho</name>      
@@ -2005,27 +2017,28 @@
     <name>Ikki Tousen</name>
   </anime>
   <anime anidbid="4870" tvdbid="80158" defaulttvdbseason="2">
-    <name>Ikkitousen: Dragon Destiny</name>
     <name>Ikkitousen Dragon Destiny</name>
+    <name>Ikkitousen: Dragon Destiny</name>
   </anime>
   <anime anidbid="5749" tvdbid="80158" defaulttvdbseason="3">
-    <name>Ikkitousen: Great Guardians</name>
     <name>Ikkitousen Great Guardians</name>
+    <name>Ikkitousen: Great Guardians</name>
     <mapping-list>
       <mapping anidbseason="0" tvdbseason="0">;1-7;2-8;3-9;4-10;5-11;6-12;</mapping>
     </mapping-list>
   </anime>
   <anime anidbid="7219" tvdbid="80158" defaulttvdbseason="4">
+    <name>Ikkitousen Xtreme Xecutor</name>
+    <name>Ikki Tousen Xtreme Xecutor</name>
     <name>Ikkitousen: Xtreme Xecutor</name>
     <name>Ikki Tousen: Xtreme Xecutor</name>
-    <name>Ikkitousen Xtreme Xecutor</name>
     <mapping-list>
       <mapping anidbseason="0" tvdbseason="0">;1-13;2-14;3-15;4-16;5-17;6-18;</mapping>
     </mapping-list>
   </anime>
   <anime anidbid="8569" tvdbid="80158" defaulttvdbseason="0">
-    <name>Ikkitousen: Shuugaku Toushi Keppuu-roku</name>
     <name>Ikkitousen Shuugaku Toushi Keppuuroku</name>
+    <name>Ikkitousen: Shuugaku Toushi Keppuu-roku</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-19;</mapping>
     </mapping-list>
@@ -2265,6 +2278,10 @@
   <anime anidbid="9108" tvdbid="254662" defaulttvdbseason="0">   
 	<name>Rinne No Lagrange Specials</name>  
   </anime>
+  <anime anidbid="t80534" tvdbid="80534" defaulttvdbseason="1">   
+	<name>Happy Tree Friends</name>
+	<name>Happy Tree Friends Dvd</name>  
+  </anime>
   <anime anidbid="739" tvdbid="82595" defaulttvdbseason="1">   
 	<name>Future GPX Cyber Formula</name>  
 	<name>Shin Seiki GPX Cyber Formula</name> 
@@ -2491,6 +2508,35 @@
   <anime anidbid="8055" tvdbid="245451" defaulttvdbseason="1">
     <name>Appleseed XIII</name>
     <name>Appleseed Xiii 2011</name>
+  </anime>
+  <anime anidbid="7432" tvdbid="249827" defaulttvdbseason="1">
+    <name>Mirai Nikki</name>
+    <name>Miarai Nikki</name>
+    <name>The Future Diary</name>
+  </anime>
+  <anime anidbid="6026" tvdbid="84553" defaulttvdbseason="1">
+    <name>White Album</name>
+  </anime>
+  <anime anidbid="6970" tvdbid="84553" defaulttvdbseason="2">
+    <name>White Album Season 2</name>
+    <name>White Album 2nd Season</name>
+    <name>White Album Second Season</name>
+  </anime>
+  <anime anidbid="9823" tvdbid="272369" defaulttvdbseason="1">
+    <name>White Album 2</name>
+  </anime>
+  <anime anidbid="t267543" tvdbid="267543" defaulttvdbseason="1">
+    <name>Hulk And The Agents Of S M A S H</name>
+  </anime>
+  <anime anidbid="t70895" tvdbid="70895" defaulttvdbseason="1">
+    <name>Jackson 5Ive</name>
+  </anime>
+  <anime anidbid="t79154" tvdbid="79154" defaulttvdbseason="1">
+    <name>W I T C H</name>
+    <name>W.I.T.C.H.</name>
+  </anime>
+  <anime anidbid="t73750" tvdbid="73750" defaulttvdbseason="1">
+    <name>Spider Man The Animated Series</name>
   </anime>
 <anime anidbid="5909" tvdbid="83277" defaulttvdbseason="1">       <name>Toradora!</name>  </anime>
 <anime anidbid="5544" tvdbid="81490" defaulttvdbseason="1">       <name>Persona - Trinity Soul</name>  </anime>
@@ -2864,7 +2910,7 @@
 <anime anidbid="t71132" tvdbid="71132" defaulttvdbseason="1">     <name>Xcalibur</name>  </anime>
 <anime anidbid="t71148" tvdbid="71148" defaulttvdbseason="1">     <name>All Grown Up!</name>  </anime>
 <anime anidbid="t71162" tvdbid="71162" defaulttvdbseason="1">     <name>Donkey Kong Country</name>  </anime>
-<anime anidbid="t71168" tvdbid="71168" defaulttvdbseason="1">     <name>X-Men: Evolution</name>  </anime>
+<anime anidbid="t71168" tvdbid="71168" defaulttvdbseason="1">     <name>X-Men: Evolution</name><name>X Men Evolution</name>  </anime>
 <anime anidbid="t71191" tvdbid="71191" defaulttvdbseason="1">     <name>The Toxic Crusaders</name>  </anime>
 <anime anidbid="t71242" tvdbid="71242" defaulttvdbseason="1">     <name>G-Force: Gaurdians of Space</name>  </anime>
 <anime anidbid="t71261" tvdbid="71261" defaulttvdbseason="1">     <name>Davey and Goliath</name>  </anime>
@@ -2876,7 +2922,7 @@
 <anime anidbid="t71663" tvdbid="71663" defaulttvdbseason="1">     <name>Simpsons</name><name>The Simpsons</name>  </anime>
 <anime anidbid="t71665" tvdbid="71665" defaulttvdbseason="1">     <name>The Littles</name>  </anime>
 <anime anidbid="t71681" tvdbid="71681" defaulttvdbseason="1">     <name>James Bond, Jr.</name>  </anime>
-<anime anidbid="t71687" tvdbid="71687" defaulttvdbseason="1">     <name>Inhumanoids</name>  </anime>
+<anime anidbid="t71687" tvdbid="71687" defaulttvdbseason="1">     <name>Inhumanoids</name> <name>Inhumanoids The Evil That Lies Within</name>  </anime>
 <anime anidbid="t71745" tvdbid="71745" defaulttvdbseason="1">     <name>Clerks</name>  </anime>
 <anime anidbid="t71780" tvdbid="71780" defaulttvdbseason="1">     <name>Recess</name>  </anime>
 <anime anidbid="t71786" tvdbid="71786" defaulttvdbseason="1">     <name>The Real Adventures of Jonny Quest</name>  </anime>
@@ -3104,7 +3150,7 @@
 <anime anidbid="t78306" tvdbid="78306" defaulttvdbseason="1">     <name>Jem</name>  </anime>
 <anime anidbid="t78328" tvdbid="78328" defaulttvdbseason="1">     <name>Scooby's All Star Laff-A-Lympics</name>  </anime>
 <anime anidbid="t78375" tvdbid="78375" defaulttvdbseason="1">     <name>Cyberchase</name>  </anime>
-<anime anidbid="t78416" tvdbid="78416" defaulttvdbseason="1">     <name>Spider-Man: The New Animated Series</name><name>Spider Man The New Animated Adventures</name>  </anime>
+<anime anidbid="t78416" tvdbid="78416" defaulttvdbseason="1">     <name>Spider-Man: The New Animated Series</name><name>Spider Man The New Animated Series</name><name>Spider Man The New Animated Adventures</name>  </anime>
 <anime anidbid="t78419" tvdbid="78419" defaulttvdbseason="1">     <name>Sesame Street</name>  </anime>
 <anime anidbid="t78434" tvdbid="78434" defaulttvdbseason="1">     <name>Krazy Kat</name>  </anime>
 <anime anidbid="t78442" tvdbid="78442" defaulttvdbseason="1">     <name>The New Adventures of Winnie the Pooh</name>  </anime>
@@ -3224,7 +3270,10 @@
 <anime anidbid="t124031" tvdbid="124031" defaulttvdbseason="4">     <name>Marvel Knights Astonishing X-Men Unstoppable</name>  </anime>
 <anime anidbid="t187911" tvdbid="187911" defaulttvdbseason="1">     <name>Mad</name>  </anime>
 <anime anidbid="t73014" tvdbid="73014" defaulttvdbseason="1">     <name>He-Man and the Masters of the Universe</name>  </anime>
-<anime anidbid="t71179" tvdbid="71179" defaulttvdbseason="1">     <name>He-Man and the Masters of the Universe (2002)</name><name>He-Man And The Masters Of The Universe (2002 Tv Series)</name>  </anime>
+<anime anidbid="t71179" tvdbid="71179" defaulttvdbseason="1">     
+  <name>He-Man and the Masters of the Universe (2002)</name>
+  <name>He-Man And The Masters Of The Universe (2002 Tv Series)</name>  
+</anime>
 <anime anidbid="t103851" tvdbid="103851" defaulttvdbseason="1">     <name>Batman The Motion Comic Black And White</name><name>Batman The Motion Comic Black & White</name>  </anime>
 <anime anidbid="t71745" tvdbid="71745" defaulttvdbseason="1">     <name>Clerks The Animated Series</name><name>Clerks</name>  </anime>
 <anime anidbid="t76423" tvdbid="76423" defaulttvdbseason="1">     <name>Dennis The Menace</name>  </anime>
