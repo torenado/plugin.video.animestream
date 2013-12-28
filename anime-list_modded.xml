@@ -69,6 +69,10 @@
     <name>Aesthetica of a Rogue Hero</name>
     <name>Hagure Yuusha no Estetica</name>
   </anime>
+  <anime anidbid="7315" tvdbid="171741" defaulttvdbseason="1">
+    <name>The Legend of the Legendary Heroes</name>
+    <name>Densetsu no Yuusha no Densetsu</name>
+  </anime>
   <anime anidbid="9287" tvdbid="264056" defaulttvdbseason="1">
     <name>Maoyuu Maou Yuusha</name>
     <name>Maoyuu</name>
@@ -2686,7 +2690,9 @@
 <anime anidbid="550" tvdbid="72394" defaulttvdbseason="1">        <name>Project Arms</name>  </anime>
 <anime anidbid="5533" tvdbid="72592" defaulttvdbseason="1">       <name>The Hudson Brothers Razzle Dazzle Show</name>  </anime>
 <anime anidbid="5538" tvdbid="81907" defaulttvdbseason="1">       <name>Real Drive</name>  </anime>
-<anime anidbid="556" tvdbid="79241" defaulttvdbseason="1">     <name>El Hazard: The Wanderers</name>  </anime>
+<anime anidbid="556" tvdbid="79241" defaulttvdbseason="1">     
+  <name>El Hazard: The Wanderers</name>  
+</anime>
 <anime anidbid="5574" tvdbid="87991" defaulttvdbseason="1">       <name>Candy Boy</name>  </anime>
 <anime anidbid="5773" tvdbid="227751" defaulttvdbseason="1">   <name>Net Ghost Pipopa</name>  </anime>
 <anime anidbid="5815" tvdbid="91871" defaulttvdbseason="3">     <name>Kyou Kara Maou! (2008)</name>  </anime>
