@@ -22,17 +22,21 @@ sys.path = [dc.getAddonInfo('path') + "/lib"] + sys.path
 import utils
 import anidbQuick
 
-streamSiteList = ['anilinkz',
+streamSiteList_general = ['anilinkz',
 				'anime44',
 				'animecrazy',
 				'animeflavor',
 				'animefreak',
 				'animefushigi',
+				'animereboot',
+				'animesubbed',
 				'animetip',
+				'lovemyanime',
 				'myanimelinks',
-				'tubeplus',
-				'hentaiseries']
-# streamSiteList = ['hentaiseries']
+				'tubeplus']
+streamSiteList_adult = ['hentaiseries',
+				'hentaistream']
+streamSiteList = streamSiteList_general + streamSiteList_adult
 
 for module in streamSiteList:
 	vars()[module]=__import__(module)
@@ -61,7 +65,10 @@ base_txt = 'animestream: '
 
 plug_path = xbmc.translatePath(dc.getAddonInfo("profile")).decode("utf-8")
 user_path = os.path.join(plug_path, plugin_name+'.db')
-cache_path= os.path.join(plug_path, '../script.common.plugin.cache/commoncache.db')
+# cache_path= os.path.join(plug_path, '../script.common.plugin.cache/commoncache.db')
+cache_path= os.path.join(plug_path, '../../../temp/commoncache.db')
+con_us = sqlite.connect(user_path)
+con_cache = sqlite.connect(cache_path)
 
 # aniDB Login
 uname = dc.getSetting('username')
@@ -115,7 +122,8 @@ def ANIME():
 	addDir('aniDB: Hot Anime','',15,'')
 	addDir('Most Popular','',1,'')
 	addDir('Most Recent','',8,'')
-	addDir('A-Z List','',6,'')
+	# addDir('A-Z List','',6,'')
+	addDir('A-Z List','',25,'')
 	addDir('Search','',7,'')
 
 def CARTOON():
@@ -131,7 +139,7 @@ def STREAMING_SITE():
 	searchSiteList = []
 	
 	
-	dirLength = len(streamSiteList)	+1
+	dirLength = len(streamSiteList)	+2
 	print base_txt + '# of items: ' + str(dirLength)
 	pb = xbmcgui.DialogProgress()
 	pb.create('Generating List', 'Streaming Site')
@@ -147,11 +155,11 @@ def STREAMING_SITE():
 		if (dc.getSetting(siteOn) == 'true'):
 			siteBase = streamList + '.base_url_name'
 			searchText = eval(siteBase)
+			# mostPop2 = cache.cacheFunction(getStreamingSiteList,searchText)	
 			mostPop2 = getStreamingSiteList(searchText)	
 			name = searchText + ' [' + str(len(mostPop2)) + ']'
 			addDir(name,searchText,21,'')
-		if (pb.iscanceled()): return
-		
+		if (pb.iscanceled()): return	
 	
 	ii += 1
 	updateText = 'Streaming Site: ALL SITES'
@@ -160,8 +168,19 @@ def STREAMING_SITE():
 	mostPop2 = getStreamingSiteList('')	
 	name = 'ALL SITES [' + str(len(mostPop2)) + ']'
 	addDir(name,'',21,'')
+	if (pb.iscanceled()): return
+	
+	ii += 1
+	updateText = 'Streaming Site: UNKNOWNS (Missing Meta)'
+	print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
+	pb.update(int(ii/float(dirLength)*100), updateText)
+	mostPop2 = unknown_list()	
+	name = 'UNKNOWNS (Missing Meta) [' + str(len(mostPop2)) + ']'
+	addDir(name,'',24,'')	
+	if (pb.iscanceled()): return
 	pb.close()
 	
+	addDir('A-Z List','',25,'')
 	addDir('REFRESH -- UNKNOWN Series Data','',23,'',numItems=3)
 	addDir('REFRESH -- Streaming Sites Info','',22,'',numItems=3)
 
@@ -303,29 +322,80 @@ def CARTOON_LIST(url=''):
 	# mostPop = cache.cacheFunction(animeflavor.Video_List_And_Pagination, url)	
 	
 	
+	# name = ''
+	# nameTest = ''
+	# mostPop2 = []
+	# for iconimage, name, urls in mostPop:
+		# if name.startswith('The '):
+			# name = name[4:] + ', The'
+		# mostPop2.append([str(iconimage), name, urls])
+	
+	# mostPop2.sort(key=lambda name: name[1])
+	# returnMode = 1
+	
 	name = ''
 	nameTest = ''
 	mostPop2 = []
 	for iconimage, name, urls in mostPop:
 		if name.startswith('The '):
 			name = name[4:] + ', The'
-		mostPop2.append([str(iconimage), name, urls])
+		mostPop2.append([urls, name])
 	
 	mostPop2.sort(key=lambda name: name[1])
-	returnMode = 1
 	
-	getSeriesList(mostPop2,url,returnMode)
+	mostPop2 = combinedSearchCollect(mostPop2)
+	returnMode = 3
+	getSeriesList(mostPop2,'',returnMode)
 	
 def STREAMING_SITE_LIST(searchText,url=''):
 	# MODE 21 = STREAMING_SITE_LIST
 	
-	mostPop = []
-	
-	mostPop2 = getStreamingSiteList(searchText)
-	
-	returnMode = 1
+	mostPop = []	
+	# mostPop2 = getStreamingSiteList(searchText)	
+	# returnMode = 1
 	# print len(mostPop2)
-	getSeriesList(mostPop2,url,returnMode)
+	mostPop2 = getStreamingSiteList2(searchText)	
+	mostPop2 = combinedSearchCollect(mostPop2)
+	returnMode = 3
+	getSeriesList(mostPop2,'',returnMode)
+	
+	if not searchText==None:
+		if len(searchText)>0:
+			addDir('REFRESH -- This Site\'s Info',searchText,211,'')
+	
+def UNKNOWN_LIST():
+	# MODE 24 = UNKNOWN_LIST
+	
+	mostPop = []	
+	# mostPop2 = unknown_list()	
+	# returnMode = 1
+	# print len(mostPop2)
+	mostPop2 = unknown_list3()
+	mostPop2 = combinedSearchCollect(mostPop2)
+	returnMode = 3
+	getSeriesList(mostPop2,'',returnMode)	
+	
+def STREAMING_SITE_A_Z_LIST():
+	# MODE 25 = STREAMING_SITE_A_Z_LIST
+	
+	abc = [chr(i) for i in xrange(ord('A'), ord('Z')+1)]
+	
+	dirLength = len(abc)
+	print base_txt + '# of items: ' + str(dirLength)
+	for alphaB in abc:
+		addDir(alphaB,alphaB.lower(),251,'',numItems=dirLength)
+	
+def STREAMING_SITE_A_Z_LIST_SERIES(alpha='a'):
+	# MODE 251 = STREAMING_SITE_A_Z_LIST_SERIES
+	
+	mostPop = []	
+	# mostPop2 = alpha_list(alpha)	
+	# returnMode = 1
+	# print len(mostPop2)
+	mostPop2 = alpha_list2(alpha)
+	mostPop2 = combinedSearchCollect(mostPop2)
+	returnMode = 3
+	getSeriesList(mostPop2,'',returnMode)
 
 def MOST_RECENT(url=''):
 	# Hardcoded to use animecrazy.net
@@ -381,36 +451,35 @@ def SEARCH(searchText,aid='0'):
 
 	url = ''
 	mode = 3
-	searchRes = searchCollection(searchText,aid)	
+		
 	# print searchRes
+	print searchText + ' [' + str(aid) + ']'
+	if aid==None:
+		aid = '0'
+		
+	if ' <--> ' in searchText:
+		searchRes = []
+		try:
+			name_mult = searchText.split(' <--> ')
+		except:
+			name_mult = searchText
+			
+		for nameSearch in name_mult:
+			if nameSearch != '':
+				searchRes = searchRes + searchCollection(nameSearch,aid)
+		
+	else:
+		searchRes = searchCollection(searchText,aid)
 	
-	getSeriesList(searchRes,'',mode=mode)
 	
-	searchText = cleanSearchText(searchText)
-	searchText_org = cleanSearchText(searchText)
-	subLoc = searchText.rfind(':')
-	if subLoc == -1:
-		subLoc = searchText.rfind('-')
-		if (subLoc > 0 and subLoc < len(searchText)):
-			searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
-			addDir(searchText,'',2,'')
-		else:
-			subLoc = searchText.rfind(' ')
-			if (subLoc > 0 and subLoc < len(searchText)):
-				searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
-				addDir(searchText,'',2,'')
-			elif searchText.rfind('-') > 0:
-				searchText =  searchText.replace('-',' ').strip() + ' [SEARCH]'
-				addDir(searchText,'',2,'')	
-			elif searchText.rfind('!') > 0:
-				searchText =  searchText.split('!')[0].strip() + ' [SEARCH]'
-				addDir(searchText,'',2,'')	
-			elif searchText.rfind('?') > 0:
-				searchText =  searchText.split('?')[0].strip() + ' [SEARCH]'
-				addDir(searchText,'',2,'')	
-	elif (subLoc > 0 and subLoc < len(searchText)):
-		searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
-		addDir(searchText,'',2,'')
+	if len(searchRes)>0:
+		getSeriesList(searchRes,'',mode=mode)
+		searchText = auto_text_search(searchText)
+	else:
+		addDir('-- REFRESH (Re-Search w/ Name) --',searchText,212,'',aid=aid)	
+		while ' ' in searchText:
+			searchText = auto_text_search(searchText)
+	
 		
 	if (len(uname)>0 and len(passwd)>0) :
 		if not aid.isdigit():
@@ -418,12 +487,12 @@ def SEARCH(searchText,aid='0'):
 		if (int(aid)>0):
 			addDir('-- SIMILAR TITLES --','',121,'',aid=aid)
 	
-	groupAid = ''
-	for aid2, name2, url2 in searchRes:		
-		if aid2 != '0':
-			groupAid = groupAid + ' <--> ' + aid2
+	# groupAid = ''
+	# for aid2, name2, url2 in searchRes:		
+		# if aid2 != '0':
+			# groupAid = groupAid + ' <--> ' + aid2
 			
-	if (len(groupAid)>0):
+	# if (len(groupAid)>0):
 		# addDir(name,url,mode,iconimage,aid='0') <-- overloaded variables used in special as follows
 		# MAP: 
 		# name = "-- REFRESH --",
@@ -431,8 +500,8 @@ def SEARCH(searchText,aid='0'):
 		# mode = 121
 		# iconimage = aid
 		# aid=groupAid
-		addDir('-- REFRESH (All Items) --',searchText_org,211,aid,aid=groupAid)	
-		addDir('-- REFRESH (Re-Search w/ Name) --',searchText_org,211,'0',aid=groupAid)	
+		# addDir('-- REFRESH (All Items) --',searchText_org,211,aid,aid=groupAid)	
+		# addDir('-- REFRESH (Re-Search w/ Name) --',searchText_org,211,'0',aid=groupAid)	
 	
 	skin = xbmc.getSkinDir()
 	thumbnail_view = THUMBNAIL_VIEW_IDS.get(skin)
@@ -445,7 +514,9 @@ def SETTINGS():
 	# MODE 6 = SETTINGS
 	
 	print base_txt + 'Create Settings Screen'
+	addDir('REFRESH -- UNKNOWN Series Data','',163,'',numItems=3)
 	addDir('REFRESH -- Streaming Sites Info','',161,'',numItems=3)
+	addDir('REFRESH -- Print Unknown List to Command Line','',164,'',numItems=3)
 		
 def TOGGEL_CONTENT_VISIBILITY(content_type='general'):
 	# toggle the content visibility
@@ -465,9 +536,8 @@ def cleanSearchText(searchText,skipEnc=False):
 	searchText = utils.unescape(searchText)
 	searchText = utils.U2A(searchText)
 	if not skipEnc:
-		subLoc = searchText.find('[')
-		
-		searchText_year = searchText[subLoc+1:subLoc+4]
+		subLoc = searchText.find('[')		
+		searchText_year = searchText[subLoc+1:subLoc+5]
 		if searchText_year.isdigit():
 			searchText_year = int(searchText_year)
 		else:
@@ -478,20 +548,28 @@ def cleanSearchText(searchText,skipEnc=False):
 		elif subLoc > 0:
 			searchText = searchText[:subLoc]
 			
-		subLoc = searchText.find('(')
-		if subLoc > 0 and searchText[subLoc+1:subLoc+4]>1900:
+		subLoc = searchText.find('(')		
+		searchText_year = searchText[subLoc+1:subLoc+5]
+		if searchText_year.isdigit():
+			searchText_year = int(searchText_year)
+		else:
+			searchText_year = 0
+		if subLoc > 0 and searchText_year>1900:
 			searchText = searchText.replace('(',' ').replace(')',' ').replace('  ',' ').replace('  ',' ')
 		elif subLoc > 0:
 			searchText = searchText[:subLoc]
 		
 	searchText = searchText.replace('-- REFRESH -- ','')
 	searchText = searchText.replace('[I]','').replace('[/I]','')
-	searchText = searchText.replace('(Movie/OVA)','').title().strip()
-	searchText = searchText.replace('(Tv)','').title().strip()
-	searchText = searchText.replace(' &Amp; ',' and ').title().strip()
-	searchText = searchText.replace(' English Sub',' ').title().strip()
+	searchText = searchText.replace('(Movie/OVA)','').strip()
+	searchText = searchText.replace('(TV)','').replace('(OVA)','').replace('(Movie)','').replace('(Movie/OVA)','').strip()
+	searchText = searchText.replace('(Tv)','').strip()
+	searchText = searchText.replace('(Dubbed)','').strip()
+	searchText = searchText.replace('Dubbed','').strip()
+	searchText = searchText.replace(' &Amp; ',' and ').strip()
+	searchText = searchText.replace(' English Sub',' ').strip()
 	searchText = searchText.replace('((','(').replace('))',')')
-	searchText = searchText.replace('(TV)','').replace('(OVA)','').replace('(Movie)','').replace('(Movie/OVA)','').title().strip()
+	searchText = searchText.replace('()','')
 	searchText = searchText.replace(':',' ').replace(' - ',' ').replace('_',' ').replace(' & ',' and ').strip()
 	searchText = searchText.replace('~',' ').replace('?',' ').replace('!',' ').replace('.',' ').replace('  ',' ').replace('  ',' ').strip()
 	searchText = searchText.replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').title().strip()
@@ -530,46 +608,108 @@ def get_tvdb_detail(tvdbid):
 	return linkAID
 	
 def get_ani_aid(searchText):
-
-	groupUrl = []
-	groupUrl.append('https://sites.google.com/site/anidblist/anime-list.xml?attredirects=0')
-	groupUrl.append('https://raw.github.com/torenado/plugin.video.animestream/master/anime-list_modded.xml')
-	
-	linkAID = ''
-	for url in groupUrl:
-		linkAID = linkAID + str(grabUrlSource(url))
 	
 	aid = '0'
-	
-	# aidList = get_ani_aid_list(linkAID)
-	aidList = cache.cacheFunction(get_ani_aid_list,linkAID)
-
-	print base_txt + 'Searching for aid: ' + searchText
-	
-	for aidFound, name, tvdbid, season in  aidList:
-		name = cleanSearchText(name.replace(':',' ').replace('!',' ').replace('-',' ').replace('_',' ').replace('  ',' ').title().strip(),True)
-		# name = name.replace(':',' ').replace('!',' ').replace('-',' ').replace('_',' ').replace('  ',' ').title().strip()
-		if name == searchText:
-			return str(aidFound)
+	if not searchText=='':
+		searchText_org = searchText
+		con = sqlite.connect(user_path)
+		with con:
+			cur = con.cursor()
+			con.text_factory = str
+			searchAlts = []
 			
-	searchText = utils.U2A_over(searchText)
-	print base_txt + 'Searching for aid: ' + searchText + ' <-- converted'
-	
-	for aidFound, name, tvdbid, season in  aidList:
-		name = cleanSearchText(name.replace(':',' ').replace('!',' ').replace('-',' ').replace('_',' ').replace('  ',' ').title().strip(),True)
-		# name = name.replace(':',' ').replace('!',' ').replace('-',' ').replace('_',' ').replace('  ',' ').title().strip()
-		if name == searchText:
-			return str(aidFound)
-		if name == cleanSearchText(searchText.replace(':',' ').replace('!',' ').replace('-',' ').replace('_',' ').replace('  ',' ').title().strip(),True):
-			return str(aidFound)
+			searchAlts.append(searchText)
 			
-		name = cleanSearchText(name.replace(';',' ').title().strip(),True)
-		# name = name.replace(':',' ').replace('!',' ').replace('-',' ').replace('_',' ').replace('  ',' ').title().strip()
-		if name == searchText:
-			return str(aidFound)
-		if name == cleanSearchText(searchText.replace(':',' ').replace(';',' ').replace('!',' ').replace('-',' ').replace('_',' ').replace('  ',' ').title().strip(),True):
-			return str(aidFound)
+			subLoc = searchText.find('(')
+			if subLoc > 0:
+				searchText = searchText[:subLoc]
+			searchText = urllib.unquote(searchText).title()
+			searchAlts.append(searchText)
+			searchAlts.append(searchText)
+				
+			searchAlts = searchAlts + altName(searchText,' ')
+			
+			searchAlts = searchAlts + altName(searchText,']')
+			searchAlts = searchAlts + altName(searchText,'[')
+			searchAlts = searchAlts + altName(altName(searchText,'['),']')
+			
+			searchAlts = searchAlts + altName(searchText,')')
+			searchAlts = searchAlts + altName(searchText,'(')
+			searchAlts = searchAlts + altName(altName(searchText,'('),')')
+			
+			searchAlts = searchAlts + altName(searchText,':')
+			searchAlts = searchAlts + altName(searchText,'!')
+			ssearchAlts = searchAlts + altName(altName(searchText,':'),'!')
+			
+			searchAlts = searchAlts + altName(searchText,';')
+			searchAlts = searchAlts + altName(searchText,'\'')
+			searchAlts = searchAlts + altName(searchText,'`')
+			searchAlts = searchAlts + altName(searchText,'?')
+			searchAlts = searchAlts + altName(searchText,'-')
+			searchAlts = searchAlts + altName(searchText,'~')
+			searchAlts = searchAlts + altName(searchText,'.')
+			searchAlts = searchAlts + altName(searchText,',')
+			searchAlts = searchAlts + altName(searchText,'/')
+			searchAlts = searchAlts + altName(searchText,'\\')
+			
+			if searchText.startswith('The'):
+				searchAlts.append(searchText.replace('The ',''))
+			
+			searchAlts = searchAlts + altName(searchAlts,' ')
+			
+			# if searchText.find(' ') > 0:
+				# searchAlts.append(searchText.replace(' ',''))
+				
+			# if searchText.find('[') > 0:
+				# searchAlts.append(searchText.replace('[',' ').replace('  ',' '))
+				# searchAlts.append(searchText.replace(']',' ').replace('  ',' '))
+				# searchAlts.append(searchText.replace('[',' ').replace(']',' ').replace('  ',' '))
+				# searchAlts.append(searchText.replace('[','').replace(']','').replace('  ',' '))
+				
+			# if searchText.find(':') > 0:
+				# searchAlts.append(searchText.replace(':',' '))
+				# searchAlts.append(searchText.replace(':',' ').replace('  ',' '))
+				# searchAlts.append(searchText.replace(':',''))
+				# searchAlts.append(searchText.replace(':','').replace('!',''))
+				
+			# if searchText.find(';') > 0:
+				# searchAlts.append(searchText.replace(';',' '))
+				# searchAlts.append(searchText.replace(';',' ').replace('  ',' '))
+				
+			# if searchText.find('\'') > 0 or searchText.find('`') > 0:
+				# searchAlts.append(searchText.replace('\'','').replace('`','').replace(':',' ').title())
+				# searchAlts.append(searchText.replace('\'','').replace('`','').replace(':',' ').replace('  ',' ').title())
+				# searchAlts.append(searchText.replace('\'','').replace('`','').replace(':','').title())
+				
+			# if searchText.find('?') > 0 or searchText.find('!') > 0:
+				# searchAlts.append(searchText.replace('?','').replace('!',''))
+				
+			# if searchText.find('-') > 0:
+				# searchAlts.append(searchText.replace('-',' '))
+				# searchAlts.append(searchText.replace('-',' ').replace('  ',' '))
+				# searchAlts.append(searchText.replace('-',''))
+				
+			# if searchText.find('~') > 0:
+				# searchAlts.append(searchText.replace('~',''))
+				
+			# if searchText.startswith('The'):
+				# searchAlts.append(searchText.replace('The ',''))
+				
+			# if searchText.find('.') > 0 or searchText.find(',') > 0:
+				# searchAlts.append(searchText.replace('.','').replace(',',''))
+				# searchAlts.append(searchText.replace(',',''))
+				# searchAlts.append(searchText.replace('.',''))
 	
+			searchAlts = searchAlts + utils.U2A_List_over(searchAlts) 
+			searchAlts = f2(searchAlts) 
+			searchAlts.sort(key=lambda name: name[0]) 
+			print base_txt + 'Searching ' + str(len(searchAlts)) + ' alternate names + variations of:' + searchText_org	
+			for nameSearch in searchAlts:			
+				cur.execute('SELECT aid FROM SeriesNameAID WHERE name="%s"' % nameSearch)   
+				rows = cur.fetchall()
+				print rows
+				if len(rows)>0:
+					return str(rows[0][0])
 	return aid	
 	
 def get_ani_searchText(aid):
@@ -592,7 +732,7 @@ def get_ani_searchText(aid):
 	for aidFound, name, tvdbid, season in  aidList:
 		if aidFound == aid:
 			searchText.append(name)
-	
+			
 	return searchText
 	
 def search_aid_tvid(searchText, aidGet=False, tvdbGet=True):
@@ -600,7 +740,7 @@ def search_aid_tvid(searchText, aidGet=False, tvdbGet=True):
 	searchText = cleanSearchText(searchText)
 	
 	tvdbid = '0'
-	aid = '0'
+	aid = '0' 
 	
 	tvdb_detail_search=[]
 	if tvdbGet:	
@@ -621,10 +761,10 @@ def search_aid_tvid(searchText, aidGet=False, tvdbGet=True):
 		url = tvdbUrl + '%22' + seachTitle + '%22'
 		linkAID = grabUrlSource(url)
 		
-		# tvdb_detail_search = anidbQuick.TVDBID_Search(linkTVDB)
+		# anidb_detail_search = anidbQuick.AID_Search(linkAID)
 		anidb_detail_search = cache.cacheFunction(anidbQuick.AID_Search,linkAID)
-	
-		for aidFound, name in anidb_detail_search:
+			
+		for name, aidFound in anidb_detail_search:
 			if cleanSearchText(name) == searchText:
 				aid = aidFound
 				break
@@ -647,6 +787,36 @@ def search_aid_tvid(searchText, aidGet=False, tvdbGet=True):
 		print base_txt + 'Multiple matches found...Please choose one.'
 		
 	return aid,tvdbid
+
+def auto_text_search(searchText):
+	# auto generate text searches from input
+	searchText = cleanSearchText(searchText)
+	searchText_org = cleanSearchText(searchText)
+	subLoc = searchText.rfind(':')
+	if subLoc == -1:
+		subLoc = searchText.rfind('-')
+		if (subLoc > 0 and subLoc < len(searchText)):
+			searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
+			addDir(searchText,'',2,'')
+		else:
+			subLoc = searchText.rfind(' ')
+			if (subLoc > 0 and subLoc < len(searchText)):
+				searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
+				addDir(searchText,'',2,'')
+			elif searchText.rfind('-') > 0:
+				searchText =  searchText.replace('-',' ').strip() + ' [SEARCH]'
+				addDir(searchText,'',2,'')	
+			elif searchText.rfind('!') > 0:
+				searchText =  searchText.split('!')[0].strip() + ' [SEARCH]'
+				addDir(searchText,'',2,'')	
+			elif searchText.rfind('?') > 0:
+				searchText =  searchText.split('?')[0].strip() + ' [SEARCH]'
+				addDir(searchText,'',2,'')	
+	elif (subLoc > 0 and subLoc < len(searchText)):
+		searchText =  searchText[:subLoc].strip() + ' [SEARCH]'
+		addDir(searchText,'',2,'')
+		
+	return searchText
 	
 def get_tvdb_id(aid):
 
@@ -913,24 +1083,6 @@ def get_all_data(searchText='',aid='0',tvdbSer='0'):
 	if searchText=='':
 		searchText = utils.U2A(searchText1)
 	
-	if(aid==0 or aid =='0'):	
-		aidtemp = aid
-		con = sqlite.connect(user_path)
-		with con:
-			cur = con.cursor()
-			print base_txt + 'aid NOT found...making one up'
-			
-			sql = 'SELECT aid FROM Series WHERE aid LIKE "un%" ORDER BY aid DESC'
-			print base_txt + sql
-			cur.execute(sql)
-			rows = cur.fetchall() 
-			if len(rows)==0:
-				aid = 'un%07d' % (1,)
-			else:
-				# print str(rows[0][0]).split('un')
-				last_un = str(rows[0][0]).split('un')[1]
-				aid = 'un%07d' % (int(last_un)+1,)
-	
 	allData = [searchText, aid, tvdbSer, description, fanart, iconimage, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount]
 	
 	return allData
@@ -957,7 +1109,35 @@ def refresh_un_detail_db():
 		
 		sql = 'DELETE FROM EpisodeList WHERE aid LIKE "un%"'
 		print base_txt + sql
+		cur.execute(sql)
+		
+		sql = 'DELETE FROM SeriesNameAID WHERE aid LIKE "un%"'
+		print base_txt + sql
 		cur.execute(sql)	
+		
+	con = sqlite.connect(cache_path)
+	with con:
+		cur = con.cursor()
+		for streamList in streamSiteList:
+			siteOn = streamList + '_on'
+			searchText = ''
+			if (dc.getSetting(siteOn) == 'true'):
+				siteBase = streamList + '.base_url_name'
+				searchText = eval(siteBase)
+				cacheRemove = 'cache' + utils.commonCacheKey(getStreamingSiteList,searchText)		
+				sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
+				print base_txt + sql
+				cur.execute(sql)
+				
+		cacheRemove = 'cache' + utils.commonCacheKey(allAnimeList)		
+		sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
+		print base_txt + sql
+		cur.execute(sql)
+				
+		cacheRemove = 'cache' + utils.commonCacheKey(name2aid)		
+		sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
+		print base_txt + sql
+		cur.execute(sql)
 		
 def get_detail_db(searchText='',aid='0',tvdbSer='0'):
 	
@@ -978,7 +1158,8 @@ def get_detail_db(searchText='',aid='0',tvdbSer='0'):
 				searchText1 = searchText.replace('\'','')
 				searchText1 = cleanSearchText(searchText1)
 				print base_txt + 'NOT FOUND IN anime-list - Searching DB for ... ' + searchText1
-				sql = 'SELECT aid FROM Series WHERE searchText="%s"' % searchText1
+				# sql = 'SELECT aid FROM Series WHERE searchText="%s"' % searchText1
+				sql = 'SELECT aid FROM SeriesNameAID WHERE name="%s"' % searchText1
 				cur.execute(sql)
 				rows = cur.fetchall() 
 				if len(rows)==0: 
@@ -1011,8 +1192,8 @@ def get_detail_db(searchText='',aid='0',tvdbSer='0'):
 		set_detail_db(searchText,aid,tvdbSer)
 	
 	if aid != '0':
-		with con:
-			
+		with con:			
+			con.text_factory = str
 			sql = 'SELECT * FROM Series WHERE aid="%s"' % aid
 			cur.execute(sql)
 			rows = cur.fetchall()
@@ -1069,6 +1250,7 @@ def get_detail_db(searchText='',aid='0',tvdbSer='0'):
 	searchText = html_special(searchText)
 	allData = [searchText, aid, tvdbSer, description, fanart, iconimage, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount]
 	# print allData
+	
 	return allData
 
 def set_detail_db(searchText='',aid='0',tvdbSer='0'):
@@ -1085,13 +1267,30 @@ def set_detail_db(searchText='',aid='0',tvdbSer='0'):
 		sql = 'CREATE TABLE IF NOT EXISTS EpisodeList(id INTEGER PRIMARY KEY, aid TEXT, epNumAb INT, epName TEXT, epIconimage TEXT, description TEXT, seasonNum INT, epAirdate_year INT, epAirdate_month INT, epAirdate_day INT, epNum INT)'
 		cur.execute(sql)		
 		sql = 'CREATE TABLE IF NOT EXISTS ProfileWatch(aid TEXT PRIMARY KEY, epwatch INT, playcount INT)'
+		cur.execute(sql)	
+		sql = 'CREATE TABLE IF NOT EXISTS StreamMeadiaLink(url TEXT PRIMARY KEY,streamSource TEXT,aid TEXT,seasonNum INT, epNum INT)'
 		cur.execute(sql)
 		
 		[searchText, aid, tvdbSer, description, fanart, iconimage, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_all_data(searchText,aid,tvdbSer)
 	
 		if int(tvdbSer)!=0 and aid == '0':
+			print base_txt + 'aid NOT found...using tvdbID'
 			aid ='t' + str(tvdbSer)
 		
+		if(aid==0 or aid =='0'):	
+			print base_txt + 'aid NOT found...making one up'
+			
+			sql = 'SELECT aid FROM Series WHERE aid LIKE "un%" ORDER BY aid DESC'
+			print base_txt + sql
+			cur.execute(sql)
+			rows = cur.fetchall() 
+			if len(rows)==0:
+				aid = 'un%07d' % (1,)
+			else:
+				# print str(rows[0][0]).split('un')
+				last_un = str(rows[0][0]).split('un')[1]
+				aid = 'un%07d' % (int(last_un)+1,)
+				
 		# print aid
 		# print tvdbSer
 		
@@ -1108,7 +1307,7 @@ def set_detail_db(searchText='',aid='0',tvdbSer='0'):
 			if len(rows)==0: 
 				cur.execute(sql,sql_para)
 			else:
-				print base_txt + 'RECORD ALREADY EXISTS - INSERT INTO Series ... aid = ' + searchText
+				print base_txt + 'RECORD ALREADY EXISTS - INSERT INTO Series ... searchText = ' + searchText
 			# try:
 				# sql = 'INSERT INTO Series VALUES("%s", "%s", "%s", \'%s\', "%s", "%s", "%s", %s, %s, "%s", %s, %s, %s)' % (aid, tvdbSer, searchText, description, fanart, iconimage, genre, year, season, adult, epwatch, eptot, playcount)
 				# print base_txt + sql
@@ -1167,7 +1366,7 @@ def set_detail_db(searchText='',aid='0',tvdbSer='0'):
 					if run_sql:
 						# print base_txt + sql
 						cur.execute(sql)
-	
+				
 	allData = [searchText, aid, tvdbSer, description, fanart, iconimage, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount]
 	return allData
 	
@@ -1214,14 +1413,28 @@ def refresh_detail_db(groupAid,clearCache=True):
 				
 				sql = 'DELETE FROM EpisodeList WHERE aid="'+ str(aid) +'"'
 				print base_txt + sql
+				cur.execute(sql)
+				
+				sql = 'DELETE FROM SeriesNameAID WHERE aid="'+ str(aid) +'"'
+				print base_txt + sql
 				cur.execute(sql)	
 			
 			if clearCache:
 				con = sqlite.connect(cache_path)
 				with con:
 					cur = con.cursor()
-					cacheRemove = 'cache' + utils.commonCacheKey(get_detail_db,'',aid)
 					
+					cacheRemove = 'cache' + utils.commonCacheKey(get_detail_db,'',aid)
+					sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
+					print base_txt + sql
+					cur.execute(sql)
+					
+					cacheRemove = 'cache7' + utils.commonCacheKey(get_detail_db,'',aid)
+					sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
+					print base_txt + sql
+					cur.execute(sql)
+				
+					cacheRemove = 'cache' + utils.commonCacheKey(name2aid)		
 					sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
 					print base_txt + sql
 					cur.execute(sql)
@@ -1269,7 +1482,7 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 		if iconimage.isdigit():
 			aidDB = iconimage
 			
-		# print base_txt + iconimage + ' ' + searchText
+		# print base_txt + iconimage + '[' + aidDB +'] '+ searchText
 		if int(aidDB)>0:
 			# sql = select * from animestream where name like"%get_detail_db%"
 			# [searchText2, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_all_data('',aidDB)
@@ -1320,8 +1533,10 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 						epwatch = str(epsWish[0])
 						break
 			
+			# searchText = html_special(searchText)
 			if int(epwatch)>0:
 				print base_txt + str(searchText) + ' [' + str(epwatch) + ' of ' + str(eptot) + '] (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
+				print url
 				searchText = str(searchText) + ' [' + str(epwatch) + ' of ' + str(eptot) + ']'
 				
 				if str(aid)=='0' and int(tvdbSer)>0:
@@ -1348,7 +1563,24 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 				addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre=genre,fanart=fanart, mpaa=mpaa)
 		if (pb.iscanceled()): return
 	pb.close()	
-		
+	
+	groupAid = ''
+	groupName = ''
+	for aid2, name2, url2 in mostPop2:		
+		groupName = groupName + ' <--> ' + name2
+		if aid2 != '0':
+			groupAid = groupAid + ' <--> ' + aid2
+			
+	if (len(groupAid)>0):
+		# addDir(name,url,mode,iconimage,aid='0') <-- overloaded variables used in special as follows
+		# MAP: 
+		# name = "-- REFRESH --",
+		# url = searchText_org *for searching
+		# mode = 212
+		# iconimage = aid *for searching
+		# aid=groupAid
+		addDir('-- REFRESH (Re-Search w/ Name) --',groupName,212,'',aid=groupAid)	
+	
 	skin = xbmc.getSkinDir()
 	thumbnail_view = THUMBNAIL_VIEW_IDS.get(skin)
 	if thumbnail_view:
@@ -1418,6 +1650,7 @@ def getEpisode_Listing_Pages(groupUrls,aid='0'):
 	
 	ii=0	
 	updateText = ''
+	
 	for url in urls:
 		ii += 1
 		for streamList in streamSiteList:
@@ -1426,9 +1659,12 @@ def getEpisode_Listing_Pages(groupUrls,aid='0'):
 			if (site_base_url_name in url):
 				# siteBase = streamList + '.Episode_Listing_Pages(url)'
 				siteBase = 'cache.cacheFunction(' + streamList + '.Episode_Listing_Pages, url)'
-				epList = eval(siteBase)		
-				updateText = 'Grabbing Episodes from: ' + streamList
-				print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
+				try:
+					epList = eval(siteBase)		
+					updateText = 'Grabbing Episodes from: ' + streamList
+					print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
+				except:
+					print base_txt + 'FAILED - ' + siteBase					
 			pb.update(int(ii/float(dirLength)*100), updateText, url)		
 		epListAll = epListAll + epList
 	
@@ -1486,7 +1722,7 @@ def getEpisode_Listing_Pages(groupUrls,aid='0'):
 					nameTest = '[B]' + nameTest + '[/B]'
 				nameTest = html_special(nameTest)
 				description = html_special(description)
-				addDir(nameTest,groupUrl,mode,iconimageTest,numItems=dirLength,descr=description,yr=yr,mo=mo,day=day,epSeason=epSeasonTest,epNum=epNumTest,fanart=fanart,plycnt=playcount)
+				addDir(nameTest,groupUrl,mode,iconimageTest,aid=aid,numItems=dirLength,descr=description,yr=yr,mo=mo,day=day,epSeason=epSeasonTest,epNum=epNumTest,fanart=fanart,plycnt=playcount)
 			groupUrl = ''
 			iconimageTest = ''
 			description = ''
@@ -1601,7 +1837,6 @@ def get_epMediaAll_2(groupUrl):
 	epMediaAll = []
 	epMedia = []
 	
-	
 	dirLength = len(urls)	
 	print base_txt + '# of items: ' + str(dirLength)
 	
@@ -1623,13 +1858,16 @@ def get_epMediaAll_2(groupUrl):
 			if (site_base_url_name in url):
 				# siteBase = streamList + '.Episode_Page(url)'
 				siteBase = 'cache.cacheFunction(' + streamList + '.Episode_Page, url)'
-				epMedia = eval(siteBase)
-				if 'dubbed' in url:
-					for epMedia_subdub in epMedia:
-						epMedia_subdub.append(' - DUB')
-				else:
-					for epMedia_subdub in epMedia:
-						epMedia_subdub.append('')
+				try:
+					epMedia = eval(siteBase)
+					if 'dubbed' in url:
+						for epMedia_subdub in epMedia:
+							epMedia_subdub.append(' - DUB')
+					else:
+						for epMedia_subdub in epMedia:
+							epMedia_subdub.append('')
+				except:
+					print base_txt + 'FAILED - ' + siteBase
 		epMediaAll = epMediaAll + epMedia
 	
 	print epMediaAll
@@ -1650,20 +1888,19 @@ def get_epMediaAll_2(groupUrl):
 	epMediaAll_2.sort(key=lambda a:(a[0],a[2],a[3]))
 	return epMediaAll_2
 		
-def getEpisode_PageMerged(groupUrl):
+def getEpisode_PageMerged(groupUrl,iconimage='', aid='0',episodeName=''):
 	# Extracts the URL for the content media file
 	# MODE 4 = getEpisode_Page
 	
-	
+	iconimage = str(iconimage)
 	# epMediaAll_2 = get_epMediaAll_2(groupUrl)
 	epMediaAll_2 = cache.cacheFunction(get_epMediaAll_2,groupUrl)
+	[searchText1, aidSer, tvdbSer, description, fanart, iconimage1, genre, year, simAniList, synAniList, epList1, season, adult, epwatch, eptot, playcount] = get_detail_db('',aid)
 	
 	url = ''
 	mode = 5
-	iconimage = ''
 	mediaValid = []
 	mediaInValid = []
-	
 	for siteNname, url, mirror, part, totParts, subdub in epMediaAll_2:
 		name = ''
 		# media_url = urlresolver.HostedMediaFile(url).resolve()
@@ -1672,6 +1909,8 @@ def getEpisode_PageMerged(groupUrl):
 			url = 'http://www.vidxden.com/CAPTCHA/nuisance'
 		if 'vidbux' in url:
 			url = 'http://www.vidbux.com/CAPTCHA/nuisance'
+		if '0067DB' in url and '9e2c88bbcf8d3e9c' in url:
+			url = 'http://wpc.67db.edgecastcdn.net/0067DB/nuisance'
 			
 		try:
 			media_url = urlresolver.HostedMediaFile(url).resolve()
@@ -1716,7 +1955,7 @@ def getEpisode_PageMerged(groupUrl):
 		mirrorTest = mediaValid[0][4]
 		epPlaylist = '' 
 		addPlaylistInfo = []
-		for name, media_url, iconimage, siteNname, mirror in mediaValid:
+		for name, media_url, iconimage1, siteNname, mirror in mediaValid:
 			if siteNnameTest==siteNname and mirrorTest==mirror:
 				if not epPlaylist=='':
 					epPlaylist = epPlaylist + ' <--> ' + media_url
@@ -1737,11 +1976,13 @@ def getEpisode_PageMerged(groupUrl):
 					mediaOrder = 10
 				elif 'mp4upload' in nameTest:
 					mediaOrder = 20
-				elif 'videoweed' in nameTest:
+				elif 'video44' in nameTest:
 					mediaOrder = 30
+				elif 'videoweed' in nameTest:
+					mediaOrder = 40
 				else:
 					mediaOrder = 100
-				addPlaylistInfo.append([nameTest,epPlaylist,42,'',mediaOrder])
+				addPlaylistInfo.append([nameTest,epPlaylist,42,iconimage,mediaOrder])
 				nameTest = name
 				siteNnameTest = siteNname 
 				mirrorTest = mirror
@@ -1751,22 +1992,27 @@ def getEpisode_PageMerged(groupUrl):
 		addPlaylistInfo.sort(key=lambda name: name[4]) 
 		# print addPlaylistInfo
 		
-		for name, url, mode, iconimage ,mediaOrder in addPlaylistInfo:
-			addPlaylist(name,url,mode,iconimage)
+		for name, url, mode, iconimage1 ,mediaOrder in addPlaylistInfo:
+			addPlaylist(name,url,mode,iconimage,fanart=fanart)
+			# if aid != '0':
+				# streamSource = name.split(' -- ')[0]
+				# epNameSplit = episodeName.replace('[B]','').replace('[/B]','').split()
+				# seasonEpisode = epNameSplit.split('x')
+				# setStreamMeadiaLink(url,streamSource,aid,seasonEpisode[0],seasonEpisode[1])
 	
 	if(len(mediaValid) > 0):
 		name = 'View List of -- INDIVIDUAL VIDEOS'
 		url = ''
 		mode = 43
 		iconimage = ''
-		addDir(name,groupUrl,mode,iconimage)
+		addDir(name,groupUrl,mode,iconimage,fanart=fanart)
 		
 	if(len(mediaInValid) > 0):
 		name = 'View List of -- POSSIBLY BROKEN VIDEOS'
 		url = ''
 		mode = 41
 		iconimage = ''
-		addDir(name,groupUrl,mode,iconimage)
+		addDir(name,groupUrl,mode,iconimage,fanart=fanart)
 		
 	if(len(mediaInValid) > 0):
 		name = '-- REFRESH --'
@@ -1908,6 +2154,7 @@ def getStreamingSiteList(searchText='',url=''):
 	
 	mostPop = []	
 	searchRes = cache.cacheFunction(allAnimeList)
+	# searchRes = allAnimeList()
 	# print searchRes
 	for possLink in searchRes:
 		
@@ -1932,82 +2179,198 @@ def getStreamingSiteList(searchText='',url=''):
 		pass
 		
 	return mostPop2
+	
+def getStreamingSiteList2(searchText='',url=''):
+	# formats the list of of steaming content by streaming site
+	
+	mostPop = []	
+	searchRes = cache.cacheFunction(allAnimeList)
+	# print searchRes
+	for possLink in searchRes:
+		
+		if not possLink[1]==None and not possLink[1].startswith('<') and possLink[0].startswith('http'):
+			if not searchText == '' and not searchText == None:
+				if searchText in possLink[0]:
+					mostPop.append([0,possLink[1],possLink[0]])	
+			else:					
+				mostPop.append([0,possLink[1],possLink[0]])	
+	
+	name = ''
+	nameTest = ''
+	mostPop2 = []
+	for iconimage, name, urls in mostPop:
+		if name.startswith('The '):
+			name = name[4:] + ', The'
+		mostPop2.append([urls, name])
+		
+	try:
+		mostPop2.sort(key=lambda name: name[1])
+	except:
+		pass
+		
+	return mostPop2
 		
 def allAnimeList(url=''):
 	# Searches the various websites for the searched content
 	
 	searchSiteList = []
 	
-	for streamList in streamSiteList:
-		siteOn = streamList + '_on'
-		if (dc.getSetting(siteOn) == 'true'):
+	con = sqlite.connect(user_path)
+	with con:
+		cur = con.cursor()
+		sql = 'CREATE TABLE IF NOT EXISTS SeriesContentLinks(link TEXT PRIMARY KEY, name TEXT, status TEXT)'
+		cur.execute(sql)
+	
+		sql = 'INSERT INTO SeriesContentLinks VALUES(?,?,?)' 
+		# print base_txt + sql
+		con.text_factory = str
+	
+		for streamList in streamSiteList:
+			siteOn = streamList + '_on'
+			if (dc.getSetting(siteOn) == 'true'):
+				siteBase = streamList + '.base_url_name'
+				site_base_url = eval(siteBase)
+				searchSiteList.append([streamList, site_base_url])
+		
+		if(len(searchSiteList) < 1):
+			searchSiteList = [animecrazy.base_url_name]
+			print base_txt +  'No sites choosen in the settings.  Using animecrazy.net'
+		
+		searchRes = []
+		aniUrl_list = []
+		for streamList, url in searchSiteList:
 			siteBase = streamList + '.base_url_name'
 			site_base_url = eval(siteBase)
-			searchSiteList.append([streamList, site_base_url])
-	
-	
-	if(len(searchSiteList) < 1):
-		searchSiteList = [animecrazy.base_url_name]
-		print base_txt +  'No sites choosen in the settings.  Using animecrazy.net'
-		
-	
-	searchRes = []
-	dirLength = len(searchSiteList)
-	print base_txt + '# of items: ' + str(dirLength)
-	pb = xbmcgui.DialogProgress()
-	pb.create('Generating List', '# of items: ' + str(dirLength))
-	ii=0
-	for streamList, url in searchSiteList:
-		ii+=1
-		updateText = str(ii) + ' of ' + str(dirLength) + ': ' + url
-		print base_txt + updateText
-		pb.update(int(ii/float(dirLength)*100), updateText)	
-		# xbmc.executebuiltin('XBMC.Notification(Retrieving Info!,'+ url +',5000)')
-		link = ''
-		siteBase = streamList + '.base_url_name'
-		site_base_url = eval(siteBase)
-		if (site_base_url in url):
+			if (site_base_url in url):
 				siteBase = streamList + '.aniUrls'
 				site_aniUrls = eval(siteBase)
 				for aniUrl in site_aniUrls:
-					print base_txt + aniUrl
-					pb.update(int(ii/float(dirLength)*100), updateText,aniUrl)	
-					link = grabUrlSource(aniUrl)	
-					# try:					
-					siteBase = streamList + '.Total_Video_List(link)'
-					searchRes = searchRes + eval(siteBase)
-					# except:
-						# print base_txt + 'FAILED - ' + aniUrl + ' failed to load allAnimeList()'
-					searchRes = utils.U2A_List(searchRes)	
-	pb.close()
-	try:
-		searchRes.sort(key=lambda name: name[1]) 
-	except:
-		print base_txt + 'FAILED - Sorting in allAnimeList()'
+					aniUrl_list.append([streamList,aniUrl])
+					
+		dirLength = len(aniUrl_list)
+		print base_txt + '# of items: ' + str(dirLength)
+		pb = xbmcgui.DialogProgress()
+		pb.create('Gathering Anime/Cartoon List', '# of items: ' + str(dirLength))
+		ii=0
+		for streamList,aniUrl in aniUrl_list:
+			ii+=1
+			updateText = str(ii) + ' of ' + str(dirLength) + ': ' + streamList + ': '
+			pb.update(int(ii/float(dirLength)*100), updateText,aniUrl)	
+			print base_txt + updateText + aniUrl
+			link = ''
+			link = grabUrlSource(aniUrl)	
+			# try:					
+			siteBase = streamList + '.Total_Video_List(link)'
+			searchRes = searchRes + eval(siteBase)
+			# except:
+				# print base_txt + 'FAILED - ' + aniUrl + ' failed to load allAnimeList()'
+			searchRes = utils.U2A_List(searchRes)
+			row=[]
+			for row in searchRes:
+				name = convertName(row[1])
+				link = row[0]
+				if '"' in name:
+					name = name.replace('"',"''")
+					
+				sql_para = (link, name, '')		
+				cur.execute('SELECT * FROM SeriesContentLinks WHERE link="%s"' % sql_para[0])   
+				rows = cur.fetchall()   
+				if len(rows)==0 and not row[1]=='' and not 'Http:' in row[1] and not '<Span' in row[1] and not '<Imgsrc' in row[1]: 
+					cur.execute(sql,sql_para)
+				# else:
+					# print base_txt + 'RECORD ALREADY EXISTS - INSERT INTO SeriesContentLinks ... link = ' + sql_para[0]
+				if (pb.iscanceled()): return
+		pb.close()
 		
+		
+		
+		sql = 'SELECT link, name FROM SeriesContentLinks ORDER BY name'
+		print base_txt + sql
+		cur.execute(sql)
+		searchRes = cur.fetchall()
+		# try:			
+			# searchRes.sort(key=lambda name: name[1]) 
+		# except:
+			# print base_txt + 'FAILED - Sorting in allAnimeList()'
+			
+	# print searchRes	
 	searchRes = f2(searchRes)
-	
 	return searchRes
 		
-def refresh_allAnimeList():
+def refresh_allAnimeList(streamList=''):
 	# remove entries related to allAnimeList	
 
 	con = sqlite.connect(cache_path)
 	with con:
 		cur = con.cursor()
-		cacheRemove = 'cache' + utils.commonCacheKey(allAnimeList)
 		
+		cacheRemove = 'cache' + utils.commonCacheKey(allAnimeList)		
 		sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
 		print base_txt + sql
 		cur.execute(sql)
+		
+		if (len(streamList) > 0):
+			streamSiteListTemp = [streamList]
+		else:
+			streamSiteListTemp = streamSiteList
+		
+		for streamList in streamSiteListTemp:
+			siteOn = streamList + '_on'
+			searchText = ''
+			if (dc.getSetting(siteOn) == 'true'):
+				siteBase = streamList + '.base_url_name'
+				searchText = eval(siteBase)
+				cacheRemove = 'cache' + utils.commonCacheKey(getStreamingSiteList,searchText)		
+				sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
+				print base_txt + sql
+				cur.execute(sql)
+		
+		cacheRemove = 'cache' + utils.commonCacheKey(name2aid)		
+		sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
+		print base_txt + sql
+		cur.execute(sql)
+		
 	
-def allSearchList(searchText):
+	con = sqlite.connect(user_path)
+	with con:
+		cur = con.cursor()		
+		sql = 'DELETE FROM SeriesContentLinks;'
+		print base_txt + sql
+		cur.execute(sql)
+		
+def refresh_aniURL(searchText):
+	# remove entries related to a single streaming site list	
+	
+	for streamList in streamSiteList:
+		if streamList in searchText:
+			break
+	
+	con = sqlite.connect(cache_path)
+	with con:
+		cur = con.cursor()
+		
+		siteBase = streamList + '.aniUrls'
+		aniUrl_list = eval(siteBase)
+		for aniUrl in aniUrl_list:
+			cacheRemove = 'cache' + utils.commonCacheKey(grabUrlSource,aniUrl)		
+			sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
+			print base_txt + sql
+			cur.execute(sql)
+			cacheRemove = 'cache' + utils.commonCacheKey(utils.grabUrlSource,aniUrl)		
+			sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
+			print base_txt + sql
+			cur.execute(sql)
+	
+	refresh_allAnimeList(streamList)
+	
+def allSearchList2(searchText):
 	
 	searchText_mod1 = searchText + ' '
 	searchText_mod2 = ' ' + searchText
 	url = ''
 	# searchRes = allAnimeList()
 	searchRes = cache.cacheFunction(allAnimeList)
+	cache.cacheFunction(name2aid)
 	# print searchRes
 	searchResults = []
 	for possLink in searchRes:
@@ -2031,20 +2394,225 @@ def allSearchList(searchText):
 				except:
 					pass
 	
+	return searchResults	
+	
+def allSearchList(searchText):
+	
+	# searchRes = allAnimeList()
+	cache.cacheFunction(allAnimeList)
+	cache.cacheFunction(name2aid)
+	# print searchRes
+	searchResults = []
+	if not searchText == '':
+		con = sqlite.connect(user_path)
+		with con:
+			cur = con.cursor()
+			con.text_factory = str
+			txt1 = searchText
+			txt2 = cleanSearchText(searchText)
+			if len(txt1)<3:
+				sql = 'SELECT link, name FROM SeriesContentLinks WHERE name LIKE "'+txt1+'%" or name LIKE "'+txt2+'%" ORDER BY name'
+			else:
+				sql = 'SELECT link, name FROM SeriesContentLinks WHERE name LIKE "%'+txt1+'%" or name LIKE "%'+txt2+'%" ORDER BY name'
+			print base_txt + sql
+			cur.execute(sql)
+			searchResults = cur.fetchall()
+			
+			# sql = 'SELECT link, name FROM SeriesContentLinks WHERE name LIKE "%'+cleanSearchText(searchText)+'%" ORDER BY name'
+			# print base_txt + sql
+			# cur.execute(sql)
+			# searchResults = searchResults + cur.fetchall()
+			
+			print searchResults
 	return searchResults
+
+def name2aid():
+	# create/update content name to aid map
 	
-def searchCollection_2(searchText,aid='0',outSearchName=False):
+	con = sqlite.connect(user_path)
+	with con:
+		cur = con.cursor()
+		sql = 'CREATE TABLE IF NOT EXISTS SeriesNameAID(name TEXT PRIMARY KEY, aid TEXT)'
+		cur.execute(sql)
+		sql = 'CREATE VIEW IF NOT EXISTS linkAID AS SELECT SeriesContentLinks.link,SeriesContentLinks.name,SeriesNameAID.aid FROM SeriesContentLinks '
+		sql = sql + 'LEFT JOIN SeriesNameAID ON SeriesContentLinks.name = SeriesNameAID.name ORDER BY SeriesContentLinks.name'
+		cur.execute(sql)
+		sql = 'CREATE VIEW IF NOT EXISTS AIDSeries AS SELECT linkAID.*, '
+		sql = sql + 't1.tvdbSer, t1.description, t1.fanart, t1.iconimage, t1.genre, t1.year, t1.season, t1.adult, t1.epwatch, t1.eptot, t1.playcount '
+		sql = sql + 'FROM linkAID '
+		sql = sql + 'LEFT JOIN Series AS t1 ON linkAID.aid = t1.aid ORDER BY name'
+		cur.execute(sql)
+		
+	
+	
+	# from anime-list.xml
+	groupUrl = []
+	groupUrl.append('https://raw.github.com/torenado/plugin.video.animestream/master/anime-list_modded.xml')
+	groupUrl.append('https://sites.google.com/site/anidblist/anime-list.xml?attredirects=0')
+	
+	linkAID = ''
+	for url in groupUrl:
+		linkAID = linkAID + str(grabUrlSource(url))
+	aidList = cache.cacheFunction(get_ani_aid_list,linkAID)
+	aidList.sort(key=lambda name: name[1]) 
+	dirLength = len(aidList)
+	print base_txt + '# of items: ' + str(dirLength)
+	pb = xbmcgui.DialogProgress()
+	pb.create('Updating SeriesNameAID DB: anime-list', '# of items: ' + str(dirLength))
+	ii=0
+	name2=''
+	sql = 'INSERT INTO SeriesNameAID VALUES(?,?)' 
+	for aidFound, name, tvdbid, season in  aidList:
+		ii+=1				
+		with con:
+			cur = con.cursor()
+			con.text_factory = str
+			cur.execute('SELECT * FROM SeriesNameAID WHERE name="%s"' % name)   
+			rows = cur.fetchall() 
+			
+		if len(rows)==0: 
+			name2 = name
+			updateText = str(ii) + ' of ' + str(dirLength) + ': ' + name2
+			print base_txt + updateText
+			sql_para = (name, aidFound)
+			print sql_para		
+			with con:
+				cur = con.cursor()
+				con.text_factory = str
+				cur.execute(sql,sql_para)		
+		pb.update(int(ii/float(dirLength)*100),name2,str(ii) + ' of ' + str(dirLength))
+		if (pb.iscanceled()): return
+	pb.close()
+	
+	# from get_data_db sites
+	with con:
+		cur = con.cursor()
+		con.text_factory = str
+		sql = 'SELECT searchText,aid FROM Series ORDER BY searchText'
+		cur.execute(sql)
+		searchRes = cur.fetchall() 
+	
+	dirLength = len(searchRes)
+	print base_txt + '# of items: ' + str(dirLength)
+	pb = xbmcgui.DialogProgress()
+	pb.create('Updating SeriesNameAID DB: Series', '# of items: ' + str(dirLength))
+	ii=0
+	name2=''
+	sql = 'INSERT INTO SeriesNameAID VALUES(?,?)' 
+	for searchText in searchRes:
+		ii+=1			
+		with con:
+			cur = con.cursor()
+			con.text_factory = str
+			cur.execute('SELECT * FROM SeriesNameAID WHERE name="%s"' % searchText[0])   
+			rows = cur.fetchall() 
+			
+		if len(rows)==0:
+			name2 = searchText[0] 
+			updateText = str(ii) + ' of ' + str(dirLength) + ': ' + name2
+			print base_txt + updateText
+			sql_para = (searchText[0], searchText[1])
+			print sql_para		
+			with con:
+				cur = con.cursor()
+				con.text_factory = str
+				cur.execute(sql,sql_para)
+		pb.update(int(ii/float(dirLength)*100),name2,str(ii) + ' of ' + str(dirLength))	
+		if (pb.iscanceled()): return
+	pb.close()
+	
+	# from aniDBFullList
+	groupUrl = []
+	groupUrl.append('http://anidb.net/api/animetitles.xml.gz')
+	
+	linkAID = ''
+	for url in groupUrl:
+		linkAID = linkAID + str(grabUrlSource(url))
+	aidList = anidbQuick.aniDBFullList(linkAID)
+	# aidList = cache.cacheFunction(anidbQuick.aniDBFullList,linkAID)
+	aidList.sort(key=lambda name: name[1]) 
+	dirLength = len(aidList)
+	print base_txt + '# of items: ' + str(dirLength)
+	pb = xbmcgui.DialogProgress()
+	pb.create('Updating SeriesNameAID DB: aniDBFullList', '# of items: ' + str(dirLength))
+	ii=0
+	name2=''
+	sql = 'INSERT INTO SeriesNameAID VALUES(?,?)' 
+	for aidFound, name, eps in  aidList:
+		ii+=1	
+		with con:
+			cur = con.cursor()
+			con.text_factory = str
+			cur.execute('SELECT * FROM SeriesNameAID WHERE name="%s"' % name)   
+			rows = cur.fetchall() 
+			
+		if len(rows)==0: 
+			name2 = name
+			updateText = str(ii) + ' of ' + str(dirLength) + ': ' + name2
+			print base_txt + updateText
+			sql_para = (name, aidFound)
+			print sql_para		
+			with con:
+				cur = con.cursor()
+				con.text_factory = str
+				cur.execute(sql,sql_para)
+		pb.update(int(ii/float(dirLength)*100),name2,str(ii) + ' of ' + str(dirLength))	
+		if (pb.iscanceled()): return
+	pb.close()
+	
+	# from streaming sites
+	with con:
+		cur = con.cursor()
+		con.text_factory = str
+		sql = 'SELECT DISTINCT name FROM SeriesContentLinks ORDER BY name'
+		print base_txt + sql
+		cur.execute(sql)
+		searchRes = cur.fetchall()
+	dirLength = len(searchRes)
+	print base_txt + '# of items: ' + str(dirLength)
+	pb = xbmcgui.DialogProgress()
+	pb.create('Updating SeriesNameAID DB: SeriesContentLinks', '# of items: ' + str(dirLength))
+	ii=0
+	name2=''
+	sql = 'INSERT INTO SeriesNameAID VALUES(?,?)' 
+	for searchText in searchRes:
+		ii+=1				
+		with con:
+			cur = con.cursor()
+			con.text_factory = str
+			cur.execute('SELECT * FROM SeriesNameAID WHERE name="%s"' % searchText[0])   
+			rows = cur.fetchall() 
+			
+		if len(rows)==0: 
+			name2 = searchText[0] 
+			updateText = str(ii) + ' of ' + str(dirLength) + ': ' + name2
+			print base_txt + updateText
+			sql_para = (searchText[0], get_detail_db(searchText[0])[1])
+			print sql_para		
+			with con:
+				cur = con.cursor()
+				con.text_factory = str
+				cur.execute(sql,sql_para)
+		pb.update(int(ii/float(dirLength)*100),name2,str(ii) + ' of ' + str(dirLength))	
+		if (pb.iscanceled()): return
+	pb.close()
+		
+	with con:
+		cur = con.cursor()
+		con.text_factory = str
+		sql = 'SELECT * FROM SeriesNameAID ORDER BY name'
+		print base_txt + sql
+		cur.execute(sql)
+		return cur.fetchall()
+		
+def searchCollection_2(searchText='',aid='0',outSearchName=False):
 	# Searches the various websites for the searched content
-	searchText = cleanSearchText(searchText)
-	print base_txt + 'Searching for ... ' + searchText
-	
-	# searchRes = allSearchList(searchText)
 	searchRes = []
 	searchAlts = []
-	searchAlts.append(searchText)
-	# searchRes = cache.cacheFunction(allSearchList,searchText)
-	
-	searchTextOrg = searchText
+	searchText = cleanSearchText(searchText)
+	if len(searchText)>0:
+		print base_txt + 'Searching for ... ' + searchText
+		searchAlts.append(searchText)
 	
 	for name1 in get_ani_searchText(aid):
 		print base_txt + 'Searching for ... ' + name1
@@ -2086,42 +2654,41 @@ def searchCollection_2(searchText,aid='0',outSearchName=False):
 				print base_txt + 'Searching for ... ' + name
 				# searchRes = searchRes + cache.cacheFunction(allSearchList,name)
 				searchAlts.append(name)
-				if name.find(' ') > 0:
-					searchAlts.append(name.replace(' ',''))
-				if name.find('[') > 0:
-					searchAlts.append(name.replace('[',' ').replace('  ',' '))
-					searchAlts.append(name.replace(']',' ').replace('  ',' '))
-					searchAlts.append(name.replace('[',' ').replace(']',' ').replace('  ',' '))
-					searchAlts.append(name.replace('[','').replace(']','').replace('  ',' '))
-				if name.find(':') > 0:
-					searchAlts.append(name.replace(':',' '))
-					searchAlts.append(name.replace(':',' ').replace('  ',' '))
-					searchAlts.append(name.replace(':',''))
-					searchAlts.append(name.replace(':','').replace('!',''))
-				if name.find(';') > 0:
-					searchAlts.append(name.replace(';',' '))
-					searchAlts.append(name.replace(';',' ').replace('  ',' '))
-					# searchAlts.append(name.replace(';',''))
-				if name.find('\'') > 0 or name.find('`') > 0:
-					searchAlts.append(name.replace('\'','').replace('`','').replace(':',' ').title())
-					searchAlts.append(name.replace('\'','').replace('`','').replace(':',' ').replace('  ',' ').title())
-					searchAlts.append(name.replace('\'','').replace('`','').replace(':','').title())
-				if name.find('?') > 0 or name.find('!') > 0:
-					searchAlts.append(name.replace('?','').replace('!',''))
-				if name.find('-') > 0:
-					searchAlts.append(name.replace('-',' '))
-					searchAlts.append(name.replace('-',' ').replace('  ',' '))
-					searchAlts.append(name.replace('-',''))
-				if name.find('~') > 0:
-					searchAlts.append(name.replace('~',''))
+				
+				searchAlts = searchAlts + altName(name,' ')
+				
+				searchAlts = searchAlts + altName(name,']')
+				searchAlts = searchAlts + altName(name,'[')
+				searchAlts = searchAlts + altName(altName(name,'['),']')
+				
+				searchAlts = searchAlts + altName(name,')')
+				searchAlts = searchAlts + altName(name,'(')
+				searchAlts = searchAlts + altName(altName(name,'('),')')
+				
+				searchAlts = searchAlts + altName(name,':')
+				searchAlts = searchAlts + altName(name,'\:')
+				searchAlts = searchAlts + altName(name,'!')
+				ssearchAlts = searchAlts + altName(altName(name,':'),'!')
+				ssearchAlts = searchAlts + altName(altName(name,'\:'),'!')
+				
+				searchAlts = searchAlts + altName(name,';')
+				searchAlts = searchAlts + altName(name,'\'')
+				searchAlts = searchAlts + altName(name,'`')
+				searchAlts = searchAlts + altName(name,'?')
+				searchAlts = searchAlts + altName(name,'-')
+				searchAlts = searchAlts + altName(name,'~')
+				searchAlts = searchAlts + altName(name,'.')
+				searchAlts = searchAlts + altName(name,',')
+				searchAlts = searchAlts + altName(name,'/')
+				searchAlts = searchAlts + altName(name,'\\')
+				
 				if name.startswith('The'):
 					searchAlts.append(name.replace('The ',''))
-				if name.find('.') > 0 or name.find(',') > 0:
-					searchAlts.append(name.replace('.','').replace(',',''))
-					searchAlts.append(name.replace(',',''))
-					searchAlts.append(name.replace('.',''))
-		
+				
+				searchAlts = searchAlts + altName(searchAlts,' ')
+	
 	searchAlts = f2(searchAlts)
+	print searchAlts
 	print base_txt + 'Searching ' + str(len(searchAlts)) + ' alternate names + variations'		
 	for nameSearch in searchAlts:
 		print base_txt + 'Searching for ... ' + nameSearch
@@ -2135,82 +2702,12 @@ def searchCollection_2(searchText,aid='0',outSearchName=False):
 
 def searchCollection(searchText,aid='0'):
 	
-	searchRes = searchCollection_2(searchText,aid='0')
+	searchRes = searchCollection_2(searchText,aid)
 	print searchRes
 	tempsearchRes = searchRes
 	searchRes = []
 	for url, name in tempsearchRes:
-		name = name.title().replace(' - ',' ').replace(':',' ').replace('2Nd','2').strip()
-		if 'Movies' in name:
-			name = name.replace(' Movies',' ').strip() + ' (Movie/OVA)'
-		elif 'The Movie' in name:
-			name = name.replace(' The Movie',' ').replace(' Movie',' ').strip() + ' (Movie/OVA)'
-		elif 'Movie' in name:
-			name = name.replace(' Movie',' ').replace(' Movie',' ').strip() + ' (Movie/OVA)'
-		
-		if 'movie' in url:
-			name = name.strip() + ' (Movie/OVA)'
-			
-		if 'Ova' in name:
-			name = name.replace(' Ova',' ').strip() + ' (Movie/OVA)'
-		if 'Oav' in name:
-			name = name.replace(' Oav',' ').strip() + ' (Movie/OVA)'
-		if 'Featurettes' in name:
-			name = name.replace(' Featurettes',' ').strip() + ' (Movie/OVA)'
-		if 'ova' in url:
-			name = name.strip() + ' (Movie/OVA)'
-			
-		if 'Tv Special' in name:
-			name = name.replace(' Tv Special',' ').strip() + ' (Movie/OVA)'
-			
-		if ' Special ' in name:
-			name = name.replace(' Special ',' ').strip() + ' (Movie/OVA)'
-		
-		name = name.replace('(Movie) (Movie)','(Movie/OVA)')
-		name = name.replace('(Movies) (Movie)','(Movie/OVA)')
-		name = name.replace('2 (Movie)','(Movie/OVA)')
-		name = name.replace('(Oav)','(Movie/OVA)')
-		name = name.replace('(Ova)','(Movie/OVA)')
-		name = name.replace('(Movie) (OVA)','(Movie/OVA)')
-		name = name.replace('(OVA) (Movie)','(Movie/OVA)')
-		name = name.replace('(Ova) (Ova)','(Movie/OVA)')
-		name = name.replace('(OVA) (OVA)','(OVA)').replace('(OVA) (OVA)','(Movie/OVA)')
-		name = name.replace('(Movie/OVA) (Movie/OVA)','(Movie/OVA)').replace('(Movie/OVA) (Movie/OVA)','(Movie/OVA)')
-		name = name.replace('2Nd Season','2')
-		name = name.replace('Second Season','2')
-		name = name.replace('2Season','2')
-		name = name.replace('2season','2')
-		name = name.replace('Iii','3')
-		name = name.replace('Ii','2')
-		name = name.replace(' Season',' ')
-		name = name.replace(' Vs.',' Vs')
-		name = name.replace('English Dubbed Online Free','(Dubbed)')
-		name = name.replace('Dubbed','(Dubbed)')
-		# name = name.replace('Shippuden','Shippuuden')
-		# name = name.replace('Shipuden','Shippuuden')
-		# name = name.replace('Shipuuden','Shippuuden')
-		name = name.replace('Dragonball','Dragon Ball')
-		name = name.replace('Diamonddust','Diamond Dust')
-		name = name.replace('Highschool','High School')
-		name = name.replace('Fatestaynightunlimitedbladeworks','Fate Stay Night Unlimited Blade Works')
-		# name = name.replace('Piecedefeat','Piece Defeat')
-		# name = name.replace('Pieceadventure','Piece Adventure')
-		# name = name.replace('Pieceopen','Piece Open')
-		# name = name.replace('Pieceproect','Piece Protect')
-		# name = name.replace('Pieceromance','Piece Romance')
-		# name = name.replace('Piecethe','Piece The')
-		name = name.replace('&#039;',"'")
-		name = name.replace('&#8217;',"'")
-		name = name.replace('&#8211;',' ')
-		name = name.replace("'",'')
-		name = name.replace('`','')
-		name = name.replace('~',' ')
-		name = name.replace('^',' ')
-		name = name.replace('!',' ')
-		name = name.replace(',',' ')
-		name = name.replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ')
-		name = name.replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ')
-		name = name.replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ')
+		name = convertName(name, url)
 		searchRes.append([url,name])
 	
 	
@@ -2222,15 +2719,143 @@ def searchCollection(searchText,aid='0'):
 	
 	searchRes = f2(searchRes)
 	
+	# print searchRes
+	# searchRes = filter(None, searchRes)
+	# print searchRes
+
+	return combinedSearchCollect(searchRes)
+
+def altName(name,removeText):
+	
+	searchAlts = []
+	name1 = name
+	if isinstance(name,list):
+		for name in name1:
+			name = name.replace(removeText,' ')
+			name = name.replace('  ',' ')
+			name = name.replace('  ',' ')
+			name = name.replace('  ',' ')
+			name = name.replace('  ',' ')
+			name = name.replace('  ',' ')
+			searchAlts.append(name)
+			searchAlts.append(convertName(name))
+			name = name.replace(removeText,'')
+			name = name.replace('  ',' ')
+			name = name.replace('  ',' ')
+			name = name.replace('  ',' ')
+			name = name.replace('  ',' ')
+			name = name.replace('  ',' ')
+			searchAlts.append(name)
+			searchAlts.append(convertName(name))
+	elif isinstance(name,str):
+		name = name.replace(removeText,' ')
+		name = name.replace('  ',' ')
+		name = name.replace('  ',' ')
+		name = name.replace('  ',' ')
+		name = name.replace('  ',' ')
+		name = name.replace('  ',' ')
+		searchAlts.append(name)
+		searchAlts.append(convertName(name))
+		name = name.replace(removeText,'')
+		name = name.replace('  ',' ')
+		name = name.replace('  ',' ')
+		name = name.replace('  ',' ')
+		name = name.replace('  ',' ')
+		name = name.replace('  ',' ')
+		searchAlts.append(name)
+		searchAlts.append(convertName(name))
+	
+	return 	searchAlts
+	
+def convertName(name, url=''):
+	name = name.title().replace(' - ',' ').replace(':',' ').replace('2Nd','2').strip()
+	if 'Movies' in name:
+		name = name.replace(' Movies',' ').strip() + ' (Movie/OVA)'
+	elif 'The Movie' in name:
+		name = name.replace(' The Movie',' ').replace(' Movie',' ').strip() + ' (Movie/OVA)'
+	elif 'Movie' in name:
+		name = name.replace(' Movie',' ').replace(' Movie',' ').strip() + ' (Movie/OVA)'	
+	if 'movie' in url:
+		name = name.strip() + ' (Movie/OVA)'
+		
+	if 'Ova' in name:
+		name = name.replace(' Ova',' ').strip() + ' (Movie/OVA)'
+	if 'Oav' in name:
+		name = name.replace(' Oav',' ').strip() + ' (Movie/OVA)'
+	if 'Oad' in name:
+		name = name.replace(' Oad',' ').strip() + ' (Movie/OVA)'
+	if 'Featurettes' in name:
+		name = name.replace(' Featurettes',' ').strip() + ' (Movie/OVA)'
+	if 'ova' in url:
+		name = name.strip() + ' (Movie/OVA)'
+		
+	if 'Tv Special' in name:
+		name = name.replace(' Tv Special',' ').strip() + ' (Movie/OVA)'		
+	if ' Specials' in name:
+		name = name.replace(' Specials',' ').strip() + ' (Movie/OVA)'		
+	if ' Special' in name:
+		name = name.replace(' Special',' ').strip() + ' (Movie/OVA)'
+	if 'special' in url:
+		name = name.strip() + ' (Movie/OVA)'
+	
+	name = name.replace('(Movie) (Movie/Ova)','(Movie/OVA)')
+	name = name.replace('(Movie) (Movie)','(Movie/OVA)')
+	name = name.replace('(Movies) (Movie)','(Movie/OVA)')
+	name = name.replace('2 (Movie)','(Movie/OVA)')
+	name = name.replace('(Oav)','(Movie/OVA)')
+	name = name.replace('(Ova)','(Movie/OVA)')
+	name = name.replace('(Movie) (OVA)','(Movie/OVA)')
+	name = name.replace('(OVA) (Movie)','(Movie/OVA)')
+	name = name.replace('(Ova) (Ova)','(Movie/OVA)')
+	name = name.replace('(OVA) (OVA)','(OVA)').replace('(OVA) (OVA)','(Movie/OVA)')
+	name = name.replace('(Movie/OVA) (Movie/OVA)','(Movie/OVA)').replace('(Movie/OVA) (Movie/OVA)','(Movie/OVA)')
+	name = name.replace('(Movie/Ova) (Movie/Ova)','(Movie/OVA)').replace('(Movie/Ova) (Movie/OVA)','(Movie/OVA)')
+	name = name.replace('(Movie/OVA) (Movie/OVA)','(Movie/OVA)')
+	name = name.replace('2Nd Season','2')
+	name = name.replace('Second Season','2')
+	name = name.replace('2Season','2')
+	name = name.replace('2season','2')
+	name = name.replace('Iii','3')
+	name = name.replace('Ii','2')
+	name = name.replace(' Season',' ')
+	name = name.replace(' Vs.',' Vs')
+	name = name.replace('English Dubbed Online Free','(Dubbed)')
+	name = name.replace('Dubbed','(Dubbed)')
+	# name = name.replace('Shippuden','Shippuuden')
+	# name = name.replace('Shipuden','Shippuuden')
+	# name = name.replace('Shipuuden','Shippuuden')
+	name = name.replace('Dragonball','Dragon Ball')
+	name = name.replace('Diamonddust','Diamond Dust')
+	name = name.replace('Highschool','High School')
+	name = name.replace('Fatestaynightunlimitedbladeworks','Fate Stay Night Unlimited Blade Works')
+	# name = name.replace('Piecedefeat','Piece Defeat')
+	# name = name.replace('Pieceadventure','Piece Adventure')
+	# name = name.replace('Pieceopen','Piece Open')
+	# name = name.replace('Pieceproect','Piece Protect')
+	# name = name.replace('Pieceromance','Piece Romance')
+	# name = name.replace('Piecethe','Piece The')
+	name = name.replace('&#039;',"'")
+	name = name.replace('&#8217;',"'")
+	name = name.replace('&#8211;',' ')
+	name = name.replace("'",'')
+	name = name.replace('`','')
+	name = name.replace('~',' ')
+	name = name.replace('^',' ')
+	name = name.replace('!',' ')
+	name = name.replace(',',' ')
+	name = name.replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ')
+	name = name.replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ')
+	name = name.replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ')
+	name = name.replace('((','(').replace('))',')')
+	name = html_special(name)
+	return name
+	
+def combinedSearchCollect(searchRes):
+	
 	nameTest = ''
 	url = ''
 	mode = 3
 	iconimage = ''
-	
-	# print searchRes
-	# searchRes = filter(None, searchRes)
-	# print searchRes
-		
 	searchCollect = []
 	dirLength = len(searchRes)
 	print base_txt + '# of items: ' + str(dirLength)
@@ -2238,16 +2863,17 @@ def searchCollection(searchText,aid='0'):
 	pb.create('Searching for Series', '# of items: ' + str(dirLength))
 	ii=0
 	for url, name in searchRes:
+		name = convertName(name, url)
 		ii+=1
 		name = name.title().strip()
 		if not nameTest.replace(' ','').title() == name.replace(' ','').title():
 			if not nameTest == '':
-				nameTest2 = cleanSearchText(nameTest)
+				# nameTest2 = cleanSearchText(nameTest)
 				# [searchText2, aidSer, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_all_data(nameTest2)
 				# [searchText2, aidSer, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache.cacheFunction(get_all_data,nameTest2)
-				# [searchText2, aidSer, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,nameTest2)
-				[searchText2, aidSer, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_detail_db(nameTest2)
-					
+				[searchText2, aidSer, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_detail_db,nameTest)
+				# [searchText2, aidSer, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_detail_db(nameTest)
+				cache7.cacheFunction(get_detail_db,'',str(aidSer))
 				# if int(epwatch)>0:
 					# print base_txt + nameTest + ' [' + epwatch + ' of ' + eptot + '] (aid=' + aidSer + ', tvdbid='+ str(tvdbSer) +') <--> ' + groupUrl
 					# nameTest = nameTest + ' [' + epwatch + ' of ' + eptot + ']'
@@ -2286,6 +2912,7 @@ def searchCollection(searchText,aid='0'):
 	searchCollect_2.append(['', 'Zzzzzzend', '','',''])
 	
 	combinedSearchCollect=[]
+	combinedSearchCollect2=[]
 	aidSerTest=''
 	nameTest=''
 	groupUrls=''
@@ -2305,30 +2932,51 @@ def searchCollection(searchText,aid='0'):
 	
 	
 	combinedSearchCollect.sort(key=lambda name: name[1]) 
-	print combinedSearchCollect
+	for aidSerTest, nameTest, groupUrl in combinedSearchCollect:
+		if nameTest.endswith('The') or nameTest.endswith('The '):
+			nameTest = nameTest[:-3] + ', The'
+		combinedSearchCollect2.append([str(aidSerTest), nameTest, groupUrl])
+	
+	print combinedSearchCollect2
 	# return searchCollect
-	return combinedSearchCollect
+	return combinedSearchCollect2
 		
-def refresh_searchCollection(groupAid):
-	# remove entries related to searchCollection	
+def refresh_searchCollection(groupAid,groupName=''):
+	print base_txt + 'Remove entries related to searchCollection'
 
 	try:
 		aid_mult = groupAid.split(' <--> ')
 	except:
 		aid_mult = groupAid
+
+	try:
+		name_mult = groupName.split(' <--> ')
+	except:
+		name_mult = groupName
 	
 	for aid in aid_mult:
 		if aid != '' and aid != '0':
+			print base_txt + 'Removing cache related to aid: ' + str(aid)
 			searchAlts = searchCollection_2('',aid,outSearchName=True)			
 			con = sqlite.connect(cache_path)
 			with con:
 				cur = con.cursor()
 				for nameSearch in searchAlts:
-					cacheRemove = 'cache' + utils.commonCacheKey(allSearchList,nameSearch)
-					
+					cacheRemove = 'cache' + utils.commonCacheKey(allSearchList,nameSearch)					
 					sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
 					print base_txt + sql
 					cur.execute(sql)
+					
+	for nameSearch in name_mult:
+		print base_txt + 'Removing cache related to name: ' + nameSearch
+		cacheRemove = 'cache' + utils.commonCacheKey(get_detail_db,nameSearch)
+		sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
+		print base_txt + sql
+		cur.execute(sql)
+		cacheRemove = 'cache7' + utils.commonCacheKey(get_detail_db,nameSearch)
+		sql = 'DELETE FROM '+plugin_name+' WHERE name = "'+cacheRemove+'"'
+		print base_txt + sql
+		cur.execute(sql)
 	
 def PLAYLIST_VIDEOLINKS(url,name):
 	ok=True
@@ -2374,6 +3022,7 @@ def PLAYLIST_VIDEOLINKS(url,name):
 def addDir(name,url,mode,iconimage,numItems=1,aid='0',descr='',yr='1900',genre='',totep='0',watchep='0',epSeason=1, epNum=0, mo='01', day='01', fanart='', plycnt=0, mpaa='PG-13'):
 	# XBMC: create directory
 	
+	aid = str(aid)	
 	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&aid="+urllib.quote_plus(aid)+"&iconimage="+urllib.quote_plus(iconimage)
 	ok=True
 	unwatchep = '0'
@@ -2389,6 +3038,7 @@ def addDir(name,url,mode,iconimage,numItems=1,aid='0',descr='',yr='1900',genre='
 		watched = False
 		
 	name = urllib.unquote(name)
+	name = html_special(name)
 	
 	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
 	liz.setInfo( type="Video", infoLabels={ "Title":name, "Plot":descr, "Year":yr, "Genre":genre,"Season":epSeason,"Episode":epNum,"Aired":airdate,"PlayCount":plycnt,"Watched":watched,"Mpaa":mpaa} )
@@ -2419,7 +3069,7 @@ def addLink(name,url,iconimage):
 	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
 	return ok
 
-def addPlaylist(name,url,mode,iconimage,descr=''):
+def addPlaylist(name,url,mode,iconimage,descr='',fanart=''):
 	# XBMC: create playlist link
 	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&aid="+str(aid)
 	ok=True
@@ -2428,7 +3078,7 @@ def addPlaylist(name,url,mode,iconimage,descr=''):
 	
 	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
 	liz.setInfo( type="Video", infoLabels={ "Title":name, "Plot":descr} )
-	liz.setProperty('Fanart_Image',iconimage)
+	liz.setProperty('Fanart_Image',fanart)
 	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
 	return ok
 		
@@ -2447,6 +3097,7 @@ def grabUrlSource(url):
 	except:		
 		print base_txt + 'grabUrlSource FAILED'
 		link = 'No Dice'
+		print base_txt + link + ' - ' + url
 		
 	return link
    
@@ -2472,9 +3123,82 @@ def grabUrlSource_Src(url):
 def html_special(text):
 
 	text = text.replace('&lsquo;',"'")
+	text = text.replace('&Lsquo;',"'")
+	text = text.replace('&rsquo;',"'")
+	text = text.replace('&Rsquo;',"'")
 	text = text.replace('&quot;','"')
+	text = text.replace('&Quot;','"')
+	text = text.replace('&8217;',"'")
 	
 	return text
+
+def unknown_list():
+	# create/update content name to aid map
+	
+	con = sqlite.connect(user_path)
+	with con:
+		cur = con.cursor()
+		con.text_factory = str
+		sql = 'SELECT status,name,link FROM SeriesContentLinks WHERE name IN (SELECT name FROM SeriesNameAID WHERE aid LIKE "un%") ORDER BY name'
+		print base_txt + sql
+		cur.execute(sql)
+		return cur.fetchall()
+
+def unknown_list2():
+	# create/update content name to aid map
+	
+	con = sqlite.connect(user_path)
+	with con:
+		cur = con.cursor()
+		con.text_factory = str
+		sql = 'SELECT status,name,link FROM SeriesContentLinks WHERE name IN (SELECT name FROM SeriesNameAID WHERE aid LIKE "un%") ORDER BY name'
+		sql = 'SELECT substr(name,1,5),aid FROM SeriesNameAID WHERE aid LIKE "un%" ORDER BY name'
+		sql = 'SELECT SUBSTR(searchText,1,5)||"%" FROM Series WHERE searchText LIKE "z%" ORDER BY searchText'
+		sql = 'SELECT searchText,aid FROM Series WHERE searchText LIKE "z%" ORDER BY searchText'
+		print base_txt + sql
+		cur.execute(sql)
+		rows = cur.fetchall()
+		
+	for row in rows:
+		print row
+		
+def unknown_list3():
+	# create/update content name to aid map
+	
+	con = sqlite.connect(user_path)
+	with con:
+		cur = con.cursor()
+		con.text_factory = str
+		sql = 'SELECT link,name FROM SeriesContentLinks WHERE name IN (SELECT name FROM SeriesNameAID WHERE aid LIKE "un%") ORDER BY name'
+		print base_txt + sql
+		cur.execute(sql)
+		return cur.fetchall()
+		
+def alpha_list(alpha):
+	# create/update content name to aid map
+	
+	con = sqlite.connect(user_path)
+	with con:
+		cur = con.cursor()
+		con.text_factory = str
+		# sql = 'SELECT status,name,link FROM SeriesContentLinks WHERE name LIKE "'+alpha+'%" ORDER BY name'
+		sql = 'SELECT aid,searchText,adult FROM Series WHERE searchText LIKE "'+alpha+'%" ORDER BY searchText'
+		print base_txt + sql
+		cur.execute(sql)
+		return cur.fetchall()
+		
+def alpha_list2(alpha):
+	# create/update content name to aid map
+	
+	con = sqlite.connect(user_path)
+	with con:
+		cur = con.cursor()
+		con.text_factory = str
+		sql = 'SELECT link,name FROM SeriesContentLinks WHERE name LIKE "'+alpha+'%" ORDER BY name'
+		# sql = 'SELECT aid,searchText,adult FROM Series WHERE searchText LIKE "'+alpha+'%" ORDER BY searchText'
+		print base_txt + sql
+		cur.execute(sql)
+		return cur.fetchall()
 	
 def get_params():
 	param=[]
@@ -2519,53 +3243,53 @@ if (datetime.today().hour > 2 and datetime.today().hour < 6):
 	print base_txt + 'pre-cache all activated streaming website series lists'
 	cache.cacheFunction(allAnimeList)
 	
-	print base_txt + 'pre-cache all the aniDB MyWishlist and MyList series data'
-	dirLength = len(watchListTotal)	
-	print base_txt + '# of items: ' + str(dirLength)
-	pb = xbmcgui.DialogProgress()
-	pb.create('Generating List', 'Total aniDB List')
-	ii=0
-	for aidDB, name1, ep1 in watchListTotal:
-		ii+=1
+	# print base_txt + 'pre-cache all the aniDB MyWishlist and MyList series data'
+	# dirLength = len(watchListTotal)	
+	# print base_txt + '# of items: ' + str(dirLength)
+	# pb = xbmcgui.DialogProgress()
+	# pb.create('Generating List', 'Total aniDB List')
+	# ii=0
+	# for aidDB, name1, ep1 in watchListTotal:
+		# ii+=1
 		# [searchText, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = cache7.cacheFunction(get_all_data,'',str(aidDB))
-		[searchText, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_detail_db('',str(aidDB))
+		# [searchText, aid, tvdbSer, description, fanart, iconimage2, genre, year, simAniList, synAniList, epList, season, adult, epwatch, eptot, playcount] = get_detail_db('',str(aidDB))
 		
-		updateText = searchText
-		print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
-		pb.update(int(ii/float(dirLength)*100), updateText)	
-	pb.close()
+		# updateText = searchText
+		# print base_txt + str(ii) + ' of ' + str(dirLength) +' - '+ updateText
+		# pb.update(int(ii/float(dirLength)*100), updateText)	
+	# pb.close()
 	
-	mostPop = []
-	print base_txt + 'pre-cache cartoon list'
-	for url in cartoonUrls:
-		for streamList in streamSiteList:
-			if streamList in url:
-				siteBase = 'cache7.cacheFunction(' + streamList + '.Video_List_And_Pagination, url)'
-				mostPop = mostPop + eval(siteBase)
+	# mostPop = []
+	# print base_txt + 'pre-cache cartoon list'
+	# for url in cartoonUrls:
+		# for streamList in streamSiteList:
+			# if streamList in url:
+				# siteBase = 'cache7.cacheFunction(' + streamList + '.Video_List_And_Pagination, url)'
+				# mostPop = mostPop + eval(siteBase)
 		
 				
-	print base_txt + 'pre-cache most popular & most recent lists'
-	for url in mostUrls:
-		mostPop = mostPop + cache7.cacheFunction(animecrazy.Video_List_And_Pagination, url)
+	# print base_txt + 'pre-cache most popular & most recent lists'
+	# for url in mostUrls:
+		# mostPop = mostPop + cache7.cacheFunction(animecrazy.Video_List_And_Pagination, url)
 	
 	
-	print base_txt + 'pre-cache allData based on series title'
-	mostPop2 = []
-	for iconimage, name, urls in mostPop:
-		if name.startswith('The '):
-			name = name[4:] + ', The'
-		mostPop2.append([str(iconimage), name, urls])
+	# print base_txt + 'pre-cache allData based on series title'
+	# mostPop2 = []
+	# for iconimage, name, urls in mostPop:
+		# if name.startswith('The '):
+			# name = name[4:] + ', The'
+		# mostPop2.append([str(iconimage), name, urls])
 	
-	mostPop2.sort(key=lambda name: name[1])
-	mostPop2 = f2(mostPop2)
-	for iconimage, name, url in mostPop2:
-		searchText = cleanSearchText(name,True)
-		cache7.cacheFunction(get_all_data,searchText)
+	# mostPop2.sort(key=lambda name: name[1])
+	# mostPop2 = f2(mostPop2)
+	# for iconimage, name, url in mostPop2:
+		# searchText = cleanSearchText(name,True)
+		# cache7.cacheFunction(get_all_data,searchText)
 		
-	searchText = None
-	mostPop = None
-	mostPop2 = None
-	url = None
+	# searchText = None
+	# mostPop = None
+	# mostPop2 = None
+	# url = None
 
 try:
 	url=urllib.unquote_plus(params["url"])
@@ -2606,6 +3330,10 @@ elif mode==20:
 elif mode==21:
 	STREAMING_SITE_LIST(url) 
 	
+elif mode==211:
+	refresh_aniURL(url)
+	STREAMING_SITE_LIST(url) 
+	
 elif mode==22:
 	refresh_allAnimeList()
 	STREAMING_SITE() 
@@ -2614,6 +3342,15 @@ elif mode==23:
 	refresh_un_detail_db()
 	STREAMING_SITE() 
 
+elif mode==24:
+	UNKNOWN_LIST() 
+
+elif mode==25:
+	STREAMING_SITE_A_Z_LIST() 
+
+elif mode==251:
+	STREAMING_SITE_A_Z_LIST_SERIES(url) 
+
 elif mode==1:
 	MOST_POPULAR(url) 
 		
@@ -2621,10 +3358,20 @@ elif mode==2:
 	SEARCH(name,aid) 
 		
 elif mode==211:
-	refresh_detail_db(aid) # <-- overloaded variables used: see SEARCH function
 	refresh_searchCollection(aid) # <-- overloaded variables used: see SEARCH function
+	refresh_detail_db(aid) # <-- overloaded variables used: see SEARCH function
+	cache.cacheFunction(name2aid)
 	SEARCH(url,iconimage) # <-- overloaded variables used: see SEARCH function
 		
+elif mode==212:
+	refresh_searchCollection(aid,url) # <-- overloaded variables used: see SEARCH function
+	refresh_detail_db(aid) # <-- overloaded variables used: see SEARCH function
+	cache.cacheFunction(name2aid)
+	if (url != None and len(url)>1) or (iconimage != None and len(iconimage)>1):
+		SEARCH(url,iconimage) # <-- overloaded variables used: see SEARCH function
+	else:
+		addDir('-- REFRESH Complete --','',0,'')
+	
 elif mode==3:
 	getEpisode_Listing_Pages(url,aid)
 		
@@ -2642,7 +3389,7 @@ elif mode==33:
 	getEpisode_Listing_Pages(url,aid)
 		
 elif mode==4:
-	getEpisode_PageMerged(url)
+	getEpisode_PageMerged(url,iconimage,aid,name)
 
 elif mode==41:
 	getEpisode_Page_Fail(url)
@@ -2655,7 +3402,7 @@ elif mode==43:
 
 elif mode==44:
 	refresh_getEpisode_PageMerged(url)
-	getEpisode_PageMerged(url)
+	# getEpisode_PageMerged(url)
 		
 elif mode==5:
 	LOAD_AND_PLAY_VIDEO(url,name)
@@ -2699,9 +3446,14 @@ elif mode==16:
 
 elif mode==161:
 	refresh_allAnimeList()
-	SETTINGS()
+
+elif mode==163:
+	refresh_un_detail_db()
 
 elif mode==162:
 	TOGGEL_CONTENT_VISIBILITY(name)
+
+elif mode==164:
+	print unknown_list()
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

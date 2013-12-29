@@ -190,8 +190,9 @@ def Video_List_And_Pagination(url):
 
 	mostPop = []
 	videoImg = ''
-	if (not link == 'No Dice'):
-		seriesBlock = re.compile('<div id="ddmcc_container">(.+?)<div style="clear:both;"><!-- --></div>').findall(link)[0]
+	if (not link == 'No Dice' and len(link) > 100 ):
+		print link
+		seriesBlock = re.compile('<div id="ddmcc_container">(.+?)<div style="clear:both;">').findall(link)[0]
 		
 		match=re.compile('<a href="(.+?)">(.+?)<').findall(seriesBlock)
 		for videoLink, videoName in match:

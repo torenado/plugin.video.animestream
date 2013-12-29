@@ -86,7 +86,7 @@ def Episode_Listing(url):
 				season = 1
 				
 			episodePageName = episodePageName.title().replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
-			episodePageName = episodePageName.title().replace('Season',' ').replace(' ','').replace(' ','').strip()
+			episodePageName = episodePageName.title().replace('Season',' ').replace('  ',' ').replace('  ',' ').strip()
 			epList.append([episodePageLink, episodePageName, episodeMediaThumb.replace("'",""), epNum, season])
 	else:
 		print base_txt +  'Nothing was parsed from Episode_Listing: ' + url
@@ -102,14 +102,15 @@ def Episode_Page(url):
 	altBlock=re.compile('<div class="relativity_child">(.+?)</div>').findall(link)
 	if(len(altBlock) >= 1):
 		altBlock = altBlock[0]
+		mirror = 1
 	else:
 		altBlock = ' '
 		print base_txt +  'No Alternate videos found Episode_Page: ' + url
+		mirror = 0
 		
 	epMedia = []
 	episodeMediaMirrors = url
 	# first video
-	mirror = 1
 	epMedia = epMedia + Episode_Media_Link(episodeMediaMirrors,mirror)
 	
 	#alternate video(s)
@@ -123,12 +124,12 @@ def Episode_Page(url):
 	return epMedia
 	
 	
-def Episode_Media_Link(url, mirror=1,part=1):
+def Episode_Media_Link(url, AltMirror=1,part=1):
 	# Extracts the URL for the content media file
 	link = grabUrlSource(url).lower().replace(' ','')
 	
 	epMedia = []
-	
+	mirror = 0
 
 	match=re.compile('<(iframe|embed)(.+?)src="(.+?)"').findall(link)
 	if(len(match) >= 1):
@@ -137,6 +138,10 @@ def Episode_Media_Link(url, mirror=1,part=1):
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
 					
+				if AltMirror==0:
+					mirror = mirror + 1
+				else:
+					mirror = AltMirror
 				epMedia.append([base_url_name,episodeMediaLink, mirror, part])
 
 	match=re.compile('<(iframe|embed)src="(.+?)"').findall(link)
@@ -146,6 +151,10 @@ def Episode_Media_Link(url, mirror=1,part=1):
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
 					
+				if AltMirror==0:
+					mirror = mirror + 1
+				else:
+					mirror = AltMirror
 				epMedia.append([base_url_name,episodeMediaLink, mirror, part])
 
 	match=re.compile('<(iframe|embed)src=\'(.+?)\'').findall(link)
@@ -155,6 +164,10 @@ def Episode_Media_Link(url, mirror=1,part=1):
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
 					
+				if AltMirror==0:
+					mirror = mirror + 1
+				else:
+					mirror = AltMirror
 				epMedia.append([base_url_name,episodeMediaLink, mirror, part])
 				
 	match=re.compile('config=flavor1\|file=(.+?)\|image').findall(link)
@@ -164,6 +177,10 @@ def Episode_Media_Link(url, mirror=1,part=1):
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
 					
+				if AltMirror==0:
+					mirror = mirror + 1
+				else:
+					mirror = AltMirror
 				epMedia.append([base_url_name,episodeMediaLink, mirror, part])
 	
 	if(len(epMedia) < 1):
