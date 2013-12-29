@@ -2472,9 +2472,143 @@
   <anime anidbid="9314" tvdbid="81472" defaulttvdbseason="0">
     <name>Dragon Ball Z Kami To Kami</name>
     <name>Dragon Ball Z Battle of Gods</name>
+    <name>Dragon Ball Z 14 Kami To Kami</name>
+    <name>Dragon Ball Z 14 Kami Kami</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-23;</mapping>
   </mapping-list>
+  </anime>
+  <anime anidbid="2643" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z Gaiden: Saiya-jin Zetsumetsu Keikaku</name>
+    <name>Dragon Ball Z Plan To Destroy The Saiyans</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-17;2-18;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="2336" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z Special: Tatta Hitori no Saishuu Kessen - Freezer ni Idonda Z Senshi Son Gokuu no Chichi</name>
+    <name>Dragon Ball Episode Of Bardock</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-14;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="6540" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z: Atsumare! Gokuu's World</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-20;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="762" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z: Chikyuu Marugoto Chou-Kessen</name>
+    <name>Dragon Ball Z: The Tree of Might</name>
+    <name>Dragon Ball Z 03 The Tree Of Might</name>
+    <name>Dragon Ball Z 3 The Tree Of Might</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-3;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="1071" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z: Fukkatsu no Fusion!! Gokuu to Vegeta</name>
+    <name>Dragon Ball 12 Fusion Reborn</name>
+    <name>Dragon Ball Z 12 Fusion Reborn</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-12;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="1046" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z: Gekitotsu!! 100-oku Power no Senshi-tachi</name>
+    <name>Dragon Ball Z 06 Return Of Cooler</name>
+    <name>Dragon Ball Z 6 Return Of Cooler</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-6;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="1069" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z: Ginga Girigiri!! Bucchigiri no Sugoi Yatsu</name>
+    <name>Dragon Ball Z 9 Bojack Unbound</name>
+    <name>Dragon Ball Z 09 Bojack Unbound</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-9;2-9;3-9;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="1070" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z: Kiken na Futari! Super Senshi wa Nemurenai</name>
+    <name>Dragon Ball Z 10 Broly Second Coming</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-10;2-10;3-10;</mapping>
+  </mapping-list>
+  </anime>
+  <anime anidbid="1044" tvdbid="81472" defaulttvdbseason="0"><!--Correction-->
+    <name>Dragon Ball Z: Kono Yo de Ichiban Tsuyoi Yatsu</name>
+    <name>Dragon Ball Z 02 The Worlds Strongest</name>
+    <name>Dragon Ball Z 2 The Worlds Strongest</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-2;2-2;3-2;</mapping>
+    </mapping-list>
+    <supplemental-info>
+      <studio>Toei Animation</studio>
+    </supplemental-info>
+  </anime>
+  <anime anidbid="548" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z: Kyokugen Battle!! Sandai Super Saiyajin</name>
+    <name>Dragon Ball Z 07 Super Android 13</name>
+    <name>Dragon Ball Z 7 Super Android 13</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-7;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="905" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z: Moetsukiro!! Nessen - Ressen - Chou Gekisen</name>
+    <name>Dragon Ball Z 08 Broly The Legendary Super Saiyan</name>
+    <name>Dragon Ball Z 8 The Legendary Super Saiyan</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-8;2-8;3-8;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="1043" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z: Ora no Gohan o Kaese!!</name>
+    <name>Dragon Ball Z: The Dead Zone</name>
+    <name>Dragon Ball Z 01 The Deadzone</name>
+    <name>Dragon Ball Z 1 The Deadzone</name>
+    <supplemental-info>
+      <studio>Toei Animation</studio>
+    </supplemental-info>
+  </anime>
+  <anime anidbid="397" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z: Ryuuken Bakuhatsu!! Gokuu ga Yaraneba Dare ga Yaru</name>
+    <name>Dragon Ball Z 13 Wrath Of The Dragon</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-13;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="763" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z: Super Saiyajin da Songokuu</name>
+    <name>Dragon Ball Z 04 Lord Slug</name>
+    <name>Dragon Ball Z 4 Lord Slug</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-4;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="906" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z: Super Senshi Gekiha!! Katsu no wa Ore da</name>
+    <name>Dragon Ball Z 11 Bio Broly</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-11;2-11;3-11;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="1045" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z: Tobikkiri no Saikyou Tai Saikyou</name>
+    <name>Dragon Ball Z 05 Coolers Revenge</name>
+    <name>Dragon Ball Z 5 Coolers Revenge</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-5;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="1474" tvdbid="81472" defaulttvdbseason="0">
+    <name>Dragon Ball Z: Zetsubou e no Hankou!! Nokosareta Chousenshi - Gohan to Trunks</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-15;</mapping>
+    </mapping-list>
   </anime>
   <anime anidbid="9789" tvdbid="219701" defaulttvdbseason="2">
     <name>Freezing Vibration</name>
