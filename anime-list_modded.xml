@@ -281,11 +281,18 @@
     <name>Toriko 3D: Kaimaku! Gourmet Adventure!!</name>
     <name>Toriko 3D Kaimaku Gourmet Adventure</name>
     <name>Toriko 3D Kaimaku Gourmet Adventure</name>
+    <name>Toriko 3D</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-3;</mapping>
     </mapping-list>
   </anime>
-  <anime anidbid="8142" tvdbid="247231" defaulttvdbseason="0">
+  <anime anidbid="9671" tvdbid="247231" defaulttvdbseason="0">
+    <name>Toriko Bishokushin No Menu</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-4;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="t247231" tvdbid="247231" defaulttvdbseason="0">
     <name>One Piece X Toriko X Dragon Ball Z Crossover</name>
     <name>Toriko And One Piece And Dragon Ball Z Super Collaboration</name>
     <mapping-list>
@@ -377,6 +384,7 @@
     <name>Super Robot Taisen: Original Generation - Divine Wars</name>
     <name>Super Robot Wars: Original Generation - Divine Wars</name>
     <name>Super Robot Wars: OG Divine Wars</name>
+    <name>Super Robot Wars Og Divine Wars</name>
   </anime>
   <anime anidbid="3394" tvdbid="85415" defaulttvdbseason="1">
     <name>Super Robot Taisen: Original Generation - The Animation</name>
@@ -2123,6 +2131,12 @@
     <name>Letter Bee 2</name>
     <name>Tegami Bachi Reverse (Letter Bee Reverse)</name>
     <name>Tegami Bachi Letter Bee Reverse</name>
+    <name>Letter Bee Reverse</name>
+    <name>Tegami Bachi â Letter Bee Reverse</name>
+  </anime>
+  <anime anidbid="9574" tvdbid="273982" defaulttvdbseason="1">
+    <name>Higurashi No Naku Koro Ni Kaku Outbreak</name>
+    <name>Higurashi No Naku Koro Ni Kaku Outbreak (2013)</name>
   </anime>
   <anime anidbid="217" tvdbid="80784" defaulttvdbseason="1">
     <name>Mobile Suit Gundam 08Th Ms Team</name>
@@ -2702,6 +2716,32 @@
     <name>Yuusha Ni Narenakatta</name>
     <name>Yuusha ni Narenakatta Ore wa Shibushibu Shuushoku o Ketsui Shimashita</name>
     <name>Yu-Shibu</name>
+  </anime>
+  <anime anidbid="8929" tvdbid="269875" defaulttvdbseason="1">
+    <name>Blood Lad</name>
+  </anime>
+  <anime anidbid="7933" tvdbid="272132" defaulttvdbseason="1">
+    <name>Coppelion</name>
+    <name>Coppelion (2013)</name>
+  </anime>
+  <anime anidbid="9677" tvdbid="272128" defaulttvdbseason="1">
+    <name>Log Horizon</name>
+  </anime>
+  <anime anidbid="9931" tvdbid="272045" defaulttvdbseason="1">
+    <name>Walkure Romanze</name>
+  </anime>
+  <anime anidbid="9453" tvdbid="102261" defaulttvdbseason="0">
+    <name>Nekomonogatari Kuro</name>
+    <name>Nekomonogatari Black</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-3;1-4;1-5;1-6;</mapping>
+    </mapping-list>
+  </anime>
+  <anime anidbid="9453" tvdbid="102261" defaulttvdbseason="0">
+    <name>Kizumonogatari</name>
+    <mapping-list>
+      <mapping anidbseason="1" tvdbseason="0">;1-2;</mapping>
+    </mapping-list>
   </anime>
 <anime anidbid="5909" tvdbid="83277" defaulttvdbseason="1">       <name>Toradora!</name>  </anime>
 <anime anidbid="5544" tvdbid="81490" defaulttvdbseason="1">       <name>Persona - Trinity Soul</name>  </anime>
