@@ -154,11 +154,15 @@
       <mapping anidbseason="1" tvdbseason="12">;243-1;244-2;245-3;246-4;247-5;248-6;249-7;250-8;251-9;252-10;253-11;254-12;255-13;256-14;257-15;258-16;259-17;260-18;</mapping>
     </mapping-list>
   </anime>
+  <anime anidbid="8384" tvdbid="79824" defaulttvdbseason="0">
+    <name>Naruto Shippuuden A Chunin Exam Of Flames</name>
+  </anime>
   <anime anidbid="5178" tvdbid="79824" defaulttvdbseason="0">
     <name>Naruto Shippuden The Movie</name>
     <name>Naruto Shippuuden Movie 1</name>
     <name>Naruto Shippuuden Movie 1 - Clash of Ninja Revolution</name>
     <name>Naruto Shippuden 1 (Naruto 4)</name>
+    <name>Naruto Shippuden 1 Naruto 4</name>
     <name>Naruto Shippuden Naruto Hurricane Chronicles</name>
     <name>Naruto Shippuuden 1</name>
     <name>Naruto Shippuuden 1 Naruto Hurricane Chronicles</name>
@@ -227,6 +231,7 @@
     <name>Naruto Shippuuden 6 Road To Ninja</name>
     <name>Naruto the Movie Road to Ninja</name>
     <name>Naruto the Movie: Road to Ninja</name>
+    <name>'Naruto Shippuden 6 Road To Ninja 2012 2</name>
   </anime>
   <anime anidbid="4421" tvdbid="78857" defaulttvdbseason="0">
     <name>Gekijouban Naruto: Dai Koufun! Mikazuki-jima no Animal Panic Datte ba yo!</name>
@@ -271,6 +276,16 @@
   <anime anidbid="8791" tvdbid="259635" defaulttvdbseason="1">
     <name>Kingdom</name>
     <name>Kingdom (2012)</name>
+  </anime>
+  <anime anidbid="9672" tvdbid="259635" defaulttvdbseason="2">
+    <name>Kingdom 2</name>
+    <name>Kingdom (2013)</name>
+  </anime>
+  <anime anidbid="7434" tvdbid="256452" defaulttvdbseason="1">
+    <name>Romance Of The Three Kingdoms</name>
+    <name>Romance Of Three Kingdoms</name>
+    <name>Romance Of The Three Kingdoms Sangokushi</name>
+    <name>Romance Three Kingdoms</name>
   </anime>
   <anime anidbid="8142" tvdbid="247231" defaulttvdbseason="1">
     <name>Toriko</name>
@@ -494,8 +509,15 @@
       <mapping anidbseason="0" tvdbseason="1">;1-76;</mapping>
     </mapping-list>
   </anime>
+  <anime anidbid="6153" tvdbid="79685" defaulttvdbseason="2">
+    <name>Hajime No Ippo New Challenger</name>
+  </anime>
   <anime anidbid="9982" tvdbid="79685" defaulttvdbseason="3">
     <name>Hajime No Ippo The Fighting Rising</name>
+    <name>Hajime No Ippo Rising</name>
+  </anime>
+  <anime anidbid="1086" tvdbid="79685" defaulttvdbseason="0">
+    <name>Hajime No Ippo Kimura Vs Mashiba</name>
   </anime>
   <anime anidbid="17" tvdbid="78914" defaulttvdbseason="1">
     <name>Fullmetal Panic!</name>
@@ -509,6 +531,25 @@
   <anime anidbid="4909" tvdbid="80278" defaulttvdbseason="1">
     <name>Kishin Taisen Gigantic Formula</name>
     <name>Gigantic Formula</name>
+  </anime>
+  <anime anidbid="8265" tvdbid="252474" defaulttvdbseason="1">
+    <name>Maken-ki!</name>
+    <name>Maken-ki! Battling Venus</name>
+    <name>Maken-ki</name>
+    <name>Maken-ki Battling Venus</name>
+  </anime>
+  <anime anidbid="9406" tvdbid="252474" defaulttvdbseason="2">
+    <name>Maken-ki! 2</name>
+    <name>Maken-ki! Two</name>
+    <name>Maken-Ki! 2nd Season</name>
+    <name>Maken-Ki! Second Season</name>
+  </anime>
+  <anime anidbid="8566" tvdbid="252474" defaulttvdbseason="0">
+    <name>Maken-ki!: Natsu Da! Mizugi Da! Gasshuku Da! </name>
+    <name>Maken-ki! It`s Summer! It`s Swimsuits! It`s Training Camp!</name>
+  </anime>
+  <anime anidbid="10191" tvdbid="252474" defaulttvdbseason="0">
+    <name>Maken-ki! Two: Takeru Nyotaika!? Minami no Shima de Supoon</name>
   </anime>
   <anime anidbid="4931" tvdbid="80232" defaulttvdbseason="1">
     <name>Kiss Dum Engage Planet</name>
@@ -569,10 +610,17 @@
     <name>Inazuma Eleven</name>
   </anime>
   <anime anidbid="8381" tvdbid="146401" defaulttvdbseason="2">
-    <name>Inazuma Eleven GO: Chrono Stone</name>
+    <name>Inazuma Eleven GO</name>
   </anime>
   <anime anidbid="9045" tvdbid="146401" defaulttvdbseason="3">
     <name>Inazuma Eleven GO: Chrono Stone</name>
+    <name>Inazuma Eleven Go 2 Chrono Stone</name>
+  </anime>
+  <anime anidbid="9867" tvdbid="146401" defaulttvdbseason="4">
+    <name>Inazuma Eleven Go Galaxy</name>
+  </anime>
+  <anime anidbid="8512" tvdbid="146401" defaulttvdbseason="0">
+    <name>Inazuma Eleven Go Kyuukyoku No Kizuna Gryphon</name>
   </anime>
   <anime anidbid="8226" tvdbid="260946" defaulttvdbseason="1">
     <name>Danball Senki</name>
@@ -1395,6 +1443,10 @@
       <mapping anidbseason="1" tvdbseason="3">;97-1;98-2;99-3;100-4;101-5;102-6;103-7;104-8;105-9;106-10;107-11;108-12;109-13;110-14;111-15;112-16;113-17;114-18;115-19;116-20;117-21;118-22;119-23;120-24;121-25;122-26;123-27;124-28;125-29;126-30;</mapping>
     </mapping-list>
   </anime>
+  <anime anidbid="9980" tvdbid="114801" defaulttvdbseason="5">
+    <name>Fairy Tail (2014)</name>
+    <name>Fairy Tail 2</name>
+  </anime>
   <anime anidbid="8132" tvdbid="114801" defaulttvdbseason="0">
     <name>Fairy Tail (2011)</name>
     <name>Fairy Tail Youkoso Fairy Hills</name>
@@ -1461,6 +1513,9 @@
   <anime anidbid="229" tvdbid="79327" defaulttvdbseason="1">    
     <name>Mobile Suit Gundam Wing</name>    
     <name>Gundam Wing</name>  
+  </anime>
+  <anime anidbid="9960" tvdbid="273004" defaulttvdbseason="1">    
+    <name>Gundam Build Fighters</name>  
   </anime>
   <anime anidbid="234" tvdbid="72241" defaulttvdbseason="1">    
     <name>Digimon: Digital Monsters</name>  
@@ -2141,6 +2196,7 @@
   <anime anidbid="217" tvdbid="80784" defaulttvdbseason="1">
     <name>Mobile Suit Gundam 08Th Ms Team</name>
 	<name>Mobile Suit Gundam: The 08th MS Team</name>
+	<name>Mobile Suit Gundam The 08Th Ms Team</name>
   </anime>
   <anime anidbid="4222" tvdbid="79194" defaulttvdbseason="2">
     <name>School Rumble Ni Gakki</name>
@@ -2460,26 +2516,27 @@
     <name>Over Drive</name>  
   </anime>
   <anime anidbid="5625" tvdbid="81831" defaulttvdbseason="1">   
-    <name>To Love-Ru Trouble</name>  
     <name>To Love-Ru</name>
     <name>To Love Ru</name>  
   </anime>
   <anime anidbid="6463" tvdbid="81831" defaulttvdbseason="0">   
     <name>To Love-Ru: Trouble 2009</name>  
+    <name>To Love-Ru Trouble</name>  
+    <name>To Love-Ru OVA</name>  
   </anime>
   <anime anidbid="7680" tvdbid="81831" defaulttvdbseason="2">   
     <name>Motto To Love-Ru: Trouble</name>  
     <name>Motto To Loveru</name>  
+    <name>Motto To Love ru</name>  
   </anime>
   <anime anidbid="9133" tvdbid="81831" defaulttvdbseason="3">   
     <name>To Love-Ru: Trouble - Darkness</name>  
     <name>To Loveru: Darkness</name>  
     <name>To Love Ru Darkness</name>  
+    <name>To Loveru Darkness 1</name>  
   </anime>
-  <anime anidbid="9133" tvdbid="81831" defaulttvdbseason="3">   
-    <name>To Love-Ru: Trouble - Darkness</name>  
-    <name>To Loveru: Darkness</name>  
-    <name>To Love Ru Darkness</name>  
+  <anime anidbid="9162" tvdbid="81831" defaulttvdbseason="3">   
+    <name>To Love Ru Darkness 2</name>  
   </anime>
   <anime anidbid="9452" tvdbid="268284" defaulttvdbseason="1">   
     <name>Ginga Kikoutai Majestic Prince</name>   
@@ -2638,6 +2695,10 @@
       <mapping anidbseason="1" tvdbseason="0">;1-15;</mapping>
     </mapping-list>
   </anime>
+  <anime anidbid="10452" tvdbid="88031" defaulttvdbseason="2">
+    <name>Dragon Ball Kai (2014)</name>
+    <name>Dragon Ball Kai: Majin Buu Saga</name>
+  </anime>
   <anime anidbid="9789" tvdbid="219701" defaulttvdbseason="2">
     <name>Freezing Vibration</name>
   </anime>
@@ -2733,6 +2794,7 @@
   <anime anidbid="9453" tvdbid="102261" defaulttvdbseason="0">
     <name>Nekomonogatari Kuro</name>
     <name>Nekomonogatari Black</name>
+    <name>Nekomonogatari</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-3;1-4;1-5;1-6;</mapping>
     </mapping-list>
@@ -2742,6 +2804,10 @@
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-2;</mapping>
     </mapping-list>
+  </anime>
+  <anime anidbid="9816" tvdbid="273009" defaulttvdbseason="1">
+    <name>Yozakura Quartet Hana No Uta</name>
+    <name>Yozakura Quartet (2013)</name>
   </anime>
 <anime anidbid="5909" tvdbid="83277" defaulttvdbseason="1">       <name>Toradora!</name>  </anime>
 <anime anidbid="5544" tvdbid="81490" defaulttvdbseason="1">       <name>Persona - Trinity Soul</name>  </anime>
@@ -2788,7 +2854,7 @@
 <anime anidbid="2166" tvdbid="80242" defaulttvdbseason="1">       <name>Desert Punk</name>  </anime>
 <anime anidbid="2169" tvdbid="83395" defaulttvdbseason="1">     <name>Iriya no Sora, UFO no Natsu</name>  </anime>
 <anime anidbid="2183" tvdbid="95911" defaulttvdbseason="1">       <name>Elemental Gelade</name>  </anime>
-<anime anidbid="2186" tvdbid="74890" defaulttvdbseason="1">       <name>Mobile Suit Gundam SEED Destiny</name>  </anime>
+<anime anidbid="2186" tvdbid="74890" defaulttvdbseason="1">       <name>Mobile Suit Gundam SEED Destiny</name><name>Gundam Seed Destiny Remaster</name>  </anime>
 <anime anidbid="22" tvdbid="70350" defaulttvdbseason="1"> <name>Neon Genesis Evangelion</name>  </anime>
 <anime anidbid="2209" tvdbid="84198" defaulttvdbseason="1">     <name>Horus Prince of the sun</name>  </anime>
 <anime anidbid="224" tvdbid="89771" defaulttvdbseason="1">     <name>Neo Ranga</name>  </anime>
@@ -2903,7 +2969,7 @@
 <anime anidbid="6771" tvdbid="263330" defaulttvdbseason="1">      <name>Uchurei</name>  </anime>
 <anime anidbid="6794" tvdbid="128541" defaulttvdbseason="1">      <name>Miracle Train ~Oedo-sen e Youkoso~</name>  </anime>
 <anime anidbid="70" tvdbid="73616" defaulttvdbseason="1"> <name>Magical Shopping Arcade Abenobashi</name>  </anime>
-<anime anidbid="719" tvdbid="72352" defaulttvdbseason="1">     <name>Mobile Suit Gundam ZZ</name>  </anime>
+<anime anidbid="719" tvdbid="72352" defaulttvdbseason="1">     <name>Mobile Suit Gundam ZZ</name><name>Gundam Zz</name>  </anime>
 <anime anidbid="737" tvdbid="82070" defaulttvdbseason="1">        <name>Nightwalker: Midnight Detective</name>  </anime>
 <anime anidbid="7405" tvdbid="151281" defaulttvdbseason="1">   <name>Hakuouki</name>  </anime>
 <anime anidbid="7434" tvdbid="0" defaulttvdbseason="1">       <name>Romance Of The Three Kingdoms</name>  </anime>
@@ -2949,7 +3015,7 @@
 <anime anidbid="9127" tvdbid="262090" defaulttvdbseason="1">      <name>Psycho-Pass</name>  </anime>
 <anime anidbid="9128" tvdbid="259849" defaulttvdbseason="1">      <name>Robotics;Notes</name><name>Roboticsnotes</name>  </anime>
 <anime anidbid="9132" tvdbid="259638" defaulttvdbseason="1">      <name>Little Busters!</name>  </anime>
-<anime anidbid="915" tvdbid="80398" defaulttvdbseason="1">        <name>Mobile Fighter G Gundam</name>  </anime>
+<anime anidbid="915" tvdbid="80398" defaulttvdbseason="1">        <name>Mobile Fighter G Gundam</name><name>Gundam G</name>  </anime>
 <anime anidbid="9207" tvdbid="264054" defaulttvdbseason="1">   <name>Mangirl!</name>  </anime>
 <anime anidbid="9227" tvdbid="262098" defaulttvdbseason="1">   <name>Girls und Panzer</name><name>Girls and Panzer</name>  </anime>
 <anime anidbid="9230" tvdbid="262092" defaulttvdbseason="1">   <name>OniAi</name><name>Onii Chan Dakedo Ai Sae Areba Kankeinai Yo Ne! (Oniai)</name> <name>Oniichan dakedo Ai sae Areba Kankeinai yo ne!</name>  <name>Onii-chan Dakedo Ai Sae Areba Kankeinai yo ne!</name><name>Onii Chan Dakedo Ai Sae Areba Kankeinai Yo Ne Oniai</name>  </anime>
