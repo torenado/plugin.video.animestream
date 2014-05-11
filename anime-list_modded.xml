@@ -1445,6 +1445,7 @@
   </anime>
   <anime anidbid="9980" tvdbid="114801" defaulttvdbseason="5">
     <name>Fairy Tail (2014)</name>
+    <name>Fairy Tail 2014</name>
     <name>Fairy Tail 2</name>
   </anime>
   <anime anidbid="8132" tvdbid="114801" defaulttvdbseason="0">
@@ -1454,6 +1455,11 @@
   <anime anidbid="8788" tvdbid="114801" defaulttvdbseason="0">
     <name>Fairy Tail Houou No Miko</name>
     <name>Fairy Tail The Phoenix Priestess</name>
+    <name>Fairy Tail Houou No Miko 2</name>
+    <name>Fairy Tail Houou No Miko 2012</name>
+  </anime>
+  <anime anidbid="1942" tvdbid="248918" defaulttvdbseason="1">
+    <name>Trava First Planet</name>
   </anime>
   <anime anidbid="735" tvdbid="0" defaulttvdbseason="0">
     <name>Night Shift Nurses</name>
