@@ -2805,6 +2805,11 @@
   <anime anidbid="9677" tvdbid="272128" defaulttvdbseason="1">
     <name>Log Horizon</name>
   </anime>
+  <anime anidbid="10551" tvdbid="272128" defaulttvdbseason="2">
+    <name>Log Horizon II</name>
+    <name>Log Horizon 2015</name>
+    <name>Log Horizon (2015)</name>
+  </anime>
   <anime anidbid="9931" tvdbid="272045" defaulttvdbseason="1">
     <name>Walkure Romanze</name>
   </anime>
@@ -3030,6 +3035,7 @@
 <anime anidbid="9121" tvdbid="266404" defaulttvdbseason="1">   <name>PES: Peace Eco Smile</name>  </anime>
 <anime anidbid="9126" tvdbid="260361" defaulttvdbseason="1">      <name>Natsuyuki Rendezvous</name>  </anime>
 <anime anidbid="9127" tvdbid="262090" defaulttvdbseason="1">      <name>Psycho-Pass</name>  </anime>
+<anime anidbid="10065" tvdbid="262090" defaulttvdbseason="2">      <name>Psycho-Pass II</name>  </anime>
 <anime anidbid="9128" tvdbid="259849" defaulttvdbseason="1">      <name>Robotics;Notes</name><name>Roboticsnotes</name>  </anime>
 <anime anidbid="9132" tvdbid="259638" defaulttvdbseason="1">      <name>Little Busters!</name>  </anime>
 <anime anidbid="915" tvdbid="80398" defaulttvdbseason="1">        <name>Mobile Fighter G Gundam</name><name>Gundam G</name>  </anime>
