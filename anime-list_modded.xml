@@ -1058,8 +1058,8 @@
   </anime>
   <anime anidbid="t73642" tvdbid="73642" defaulttvdbseason="1">
     <name>Big Guy and Rusty the Boy Robot</name>
-    <name>Big Guy & Rusty the Boy Robot</name>
     <name>Big Guy and Rusty</name>
+    <name>Big Guy & Rusty the Boy Robot</name>
     <name>Big Guy & Rusty</name>
   </anime>
   <anime anidbid="t77816" tvdbid="77816" defaulttvdbseason="1">
@@ -3600,7 +3600,6 @@
 <anime anidbid="10631" tvdbid="284404" defaulttvdbseason="1">   <name>Medamayaki no Kimi Itsu Tsubusu?</name>  </anime>
 <anime anidbid="10596" tvdbid="284131" defaulttvdbseason="1">   <name>The Seven Deadly Sins</name>  </anime>
 <anime anidbid="10831" tvdbid="286245" defaulttvdbseason="1">   <name>Nari Hero www</name>  </anime>
-<anime anidbid="10589" tvdbid="284563" defaulttvdbseason="1">   <name>Wolf Girl & Black Prince</name>  </anime>
 <anime anidbid="10635" tvdbid="283926" defaulttvdbseason="1">   <name>Orenchi no Furo Jijou</name>  </anime>
 <anime anidbid="5388" tvdbid="263484" defaulttvdbseason="1">   <name>Osu!! Karate Bu</name>  </anime>
 <anime anidbid="9445" tvdbid="265386" defaulttvdbseason="1">   <name>PUCHIM@S</name>  </anime>
@@ -3616,5 +3615,45 @@
 <anime anidbid="10681" tvdbid="286787" defaulttvdbseason="1">   <name>Gundam Build Fighters Try</name>  </anime>
 <anime anidbid="10366" tvdbid="278262" defaulttvdbseason="1">   <name>Daimidaler</name>  </anime>
 <anime anidbid="9481" tvdbid="272043" defaulttvdbseason="1">   <name>Tokyo Ravens</name>  </anime>
+<anime anidbid="10589" tvdbid="284563" defaulttvdbseason="1">   <name>Wolf Girl & Black Prince</name>  </anime>
+<anime anidbid="10407" tvdbid="280329" defaulttvdbseason="1">   
+	<name>Akame ga Kill!</name>  
+</anime>
+<anime anidbid="10531" tvdbid="283929" defaulttvdbseason="1">   
+	<name>Gundam Reconguista in G</name>  
+	<name>Gundam G No Reconguista</name>  
+</anime>
+<anime anidbid="10401" tvdbid="281249" defaulttvdbseason="1">   
+	<name>Tokyo Ghoul</name>  
+</anime>
+<anime anidbid="10875" tvdbid="281249" defaulttvdbseason="2">   
+	<name>Tokyo Ghoul A</name>  
+</anime>
+<anime anidbid="10041" tvdbid="281251" defaulttvdbseason="1">   
+	<name>Sabagebu</name>  
+</anime>
+<anime anidbid="10439" tvdbid="279828" defaulttvdbseason="1">   
+	<name>Terra Formars</name>  
+</anime>
+<anime anidbid="9235" tvdbid="262107" defaulttvdbseason="1">   
+	<name>Tonari No Kaibutsu-Kun</name>  
+	<name>My Little Monster</name>  
+</anime>
+<anime anidbid="10024" tvdbid="275629" defaulttvdbseason="1">   
+	<name>Wizard Barristers Benmashi Cecil</name>  
+</anime>
+<anime anidbid="10550" tvdbid="279826" defaulttvdbseason="1">   
+	<name>Shirogane No Ishi Argevollen</name>  
+</anime>
+<anime anidbid="10243" tvdbid="275631" defaulttvdbseason="1">   
+	<name>Nobunaga the Fool</name>  
+</anime>
+<anime anidbid="10241" tvdbid="278151" defaulttvdbseason="1">   
+	<name>Escha And Logy No Atelier Tasogare No Sora No Renkinjutsushi</name>  
+	<name>Atelier Escha & Logy</name>  
+</anime>
+<anime anidbid="9893" tvdbid="272071" defaulttvdbseason="1">   
+	<name>Blazblue Alter Memory</name>  
+</anime>
 
 </anime-list>
