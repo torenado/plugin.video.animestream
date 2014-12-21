@@ -600,6 +600,23 @@
     <name>Avatar Legend Of Korra 2</name> 
     <name>Avatar Legend Of Korra Book 2 Spirit</name> 
   </anime>
+  <anime anidbid="t251085" tvdbid="251085" defaulttvdbseason="3">
+    <name>Legend of Korra 3</name> 
+    <name>The Legend of Korra 3</name> 
+    <name>Avatar The Legend Of Korra 3</name>
+    <name>Avatar The Legend Of Korra Season 3</name>
+    <name>Avatar Legend Of Korra 3</name> 
+    <name>Avatar The Legend Of Korra Book 3 Change</name> 
+    <name>Avatar The Legend Of Korra Book 3 (2014)</name> 
+  </anime>
+  <anime anidbid="t251085" tvdbid="251085" defaulttvdbseason="4">
+    <name>Legend of Korra 4</name> 
+    <name>The Legend of Korra 4</name> 
+    <name>Avatar The Legend Of Korra 4</name>
+    <name>Avatar The Legend Of Korra Season 4</name>
+    <name>Avatar Legend Of Korra 4</name> 
+    <name>Avatar The Legend Of Korra Book 4 Balance</name> 
+  </anime>
   <anime anidbid="t78660" tvdbid="78660" defaulttvdbseason="1">
     <name>Aeon Flux</name> 
   </anime>
