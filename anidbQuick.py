@@ -28,7 +28,7 @@ def Wishlist(link):
 	# Grabs and parses the wishlist from anidb.  User must set username and password in settings
 	# ***WARNING: both this addon and anidb sends this password in the clear (plain text)
 	base_txt = 'anidb.net: '
-	print base_txt +  'Parsing anidb wishlist info'
+	print base_txt +  'Parsing anidb wishlist (link) info'
 	anidbWishlist = []
 	link = link.replace('http://static.anidb.net/pics/anidb_pri_low.gif','')
 	match=re.compile('<tr (.+?)</tr>').findall(link)
@@ -39,12 +39,13 @@ def Wishlist(link):
 				aid=re.compile('id="a(.+?)"').findall(aniLine)[0]
 				name=re.compile('<label><a href=(.+?)>(.+?)</a></label>').findall(aniLine)[0][1]
 				eps=re.compile('<td class="stats eps">(.+?)/(.+?)</td>').findall(aniLine)[0]
-				
+				print eps
 				if 'TBC' in eps[1]:
 					gg = eps[0]
 					eps=[]
 					eps=(gg,'TBC')
 				anidbWishlist.append([int(aid),name,eps])
+				print base_txt + str(name) + ' [' + str(eps[0]) + ' of ' + str(eps[1]) + '] (aid=' + str(aid) + ')'
 	
 	if(len(anidbWishlist) < 1):
 		print base_txt +  'Nothing was parsed from Wishlist: '

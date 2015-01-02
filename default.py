@@ -613,10 +613,11 @@ def list_watchlisttotal():
 
 	if (len(uname)>0 and len(passwd)>0) :
 		watchMylistSummary = cache.cacheFunction(get_aniDB_mysummarylist_OLD)
-		watchListTotal = f2(watchListTotal + watchMylistSummary)
+		watchListTotal = watchListTotal + watchMylistSummary
+		watchListTotal.sort(key=lambda name: name[2][1], reverse=True) 
+		watchListTotal = f2(watchListTotal)
 	
 	return watchListTotal
-
 	
 def get_ani_detail(aid):
 	
@@ -1562,8 +1563,9 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 						break
 			
 			# searchText = html_special(searchText)
+			print base_txt + str(searchText) + ' [' + str(epwatch) + ' of ' + str(eptot) + '] (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
 			if int(epwatch)>0:
-				print base_txt + str(searchText) + ' [' + str(epwatch) + ' of ' + str(eptot) + '] (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
+				# print base_txt + str(searchText) + ' [' + str(epwatch) + ' of ' + str(eptot) + '] (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
 				print url
 				searchText = str(searchText) + ' [' + str(epwatch) + ' of ' + str(eptot) + ']'
 				
@@ -1576,10 +1578,10 @@ def getSeriesList(mostPop,url='',returnMode='1',mode=2):
 					
 				addDir(searchText,url,mode,iconimage,numItems=dirLength,aid=aid,descr=description,yr=year,genre=genre,totep=eptot, watchep=epwatch, fanart=fanart, plycnt=playcount, mpaa=mpaa)
 			else:
-				if str(aid)=='0' and tvdbSer==0:
-					print base_txt + '---- ' + str(searchText) + ' (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
-				else:
-					print base_txt + str(searchText) + ' (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
+				# if str(aid)=='0' and tvdbSer==0:
+					# print base_txt + '---- ' + str(searchText) + ' (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
+				# else:
+					# print base_txt + str(searchText) + ' (aid=' + str(aid) + ', tvdbid='+ str(tvdbSer) +')'
 					
 				if str(aid)=='0' and int(tvdbSer)>0:
 					aid = 't' + str(tvdbSer)
@@ -1937,8 +1939,6 @@ def getEpisode_PageMerged(groupUrl,iconimage='', aid='0',episodeName=''):
 			url = 'http://www.vidxden.com/CAPTCHA/nuisance'
 		if 'vidbux' in url:
 			url = 'http://www.vidbux.com/CAPTCHA/nuisance'
-		if '0067DB' in url and '9e2c88bbcf8d3e9c' in url:
-			url = 'http://wpc.67db.edgecastcdn.net/0067DB/nuisance'
 			
 		try:
 			media_url = urlresolver.HostedMediaFile(url).resolve()
@@ -1947,7 +1947,11 @@ def getEpisode_PageMerged(groupUrl,iconimage='', aid='0',episodeName=''):
 				media_url = False
 		except:
 			media_url = False
-			
+		
+		if media_url != False:
+			if '0067DB' in media_url and '9e2c88bbcf8d3e9c' in media_url:
+				media_url = False
+		
 		if (media_url == False and url.endswith('.flv')):
 			media_url = url
 			
@@ -1996,6 +2000,9 @@ def getEpisode_PageMerged(groupUrl,iconimage='', aid='0',episodeName=''):
 				if subLoc > 0:
 					nameTest1 = nameTest[:subLoc1]
 					nameTest = nameTest[subLoc:]
+					
+				epSplit = f2(epPlaylist.split(' <--> '))
+				print epSplit
 				nameTest = nameTest1 + ' -- Mirror ' + str(mirrorTest) + ' ' + nameTest + ' [' + str(len(epPlaylist.split(' <--> '))) +']'
 				print base_txt + nameTest
 				print base_txt + epPlaylist
@@ -2299,8 +2306,10 @@ def allAnimeList(url=''):
 				link = row[0]
 				if '"' in name:
 					name = name.replace('"',"''")
+				if '"' in link:
+					link = link.replace('"',"%22")
 					
-				sql_para = (link, name, '')		
+				sql_para = (link, name, '')	
 				cur.execute('SELECT * FROM SeriesContentLinks WHERE link="%s"' % sql_para[0])   
 				rows = cur.fetchall()   
 				if len(rows)==0 and not row[1]=='' and not 'Http:' in row[1] and not '<Span' in row[1] and not '<Imgsrc' in row[1]: 

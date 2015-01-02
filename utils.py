@@ -266,3 +266,10 @@ def commonCacheKey(funct, *args):
 				keyhash.update(str(params))
 	name += "|" + keyhash.hexdigest() + "|"
 	return name
+	
+remove_ads = ['http://ads.',
+	'adconscious.com',
+	'animeflavor-gao-gamebox.swf',
+	'facebook.com/plugins/',
+	'http://www3.game',
+	'INSERT_RANDOM_NUMBER_HERE']
