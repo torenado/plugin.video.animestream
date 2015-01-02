@@ -18,6 +18,7 @@ plugin_name = "animestream"
 dc=xbmcaddon.Addon(id='plugin.video.animestream')
 addonPath=os.getcwd()
 sys.path = [dc.getAddonInfo('path') + "/lib"] + sys.path
+sys.path = [dc.getAddonInfo('path') + "/lib/streamSites"] + sys.path
 
 import utils
 import anidbQuick
