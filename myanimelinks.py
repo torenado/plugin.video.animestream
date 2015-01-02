@@ -109,7 +109,7 @@ def Episode_Media_Link(url, mirror=1, part=1):
 
 	if(len(match) >= 1):
 		for garbage1, garbage2, episodeMediaLink in match:
-			if (not 'http://ads.' in episodeMediaLink):
+			if (not any(skip_ads in episodeMediaLink for skip_ads in remove_ads)):
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
 				mirror = mirror + 1
@@ -156,7 +156,7 @@ def Video_List_Searched(searchText, link):
 			videoLink = videoInfo[-1]
 			videoNameSplit = videoLink.split('/')
 			videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
-			if (not 'http://ads.' in videoLink and not 'episode' in videoLink):
+			if (not (any(skip_ads in videoLink for skip_ads in remove_ads) and 'episode' in videoLink)):
 				searchRes.append([videoLink, videoName])
 	# else:
 		# print base_txt +  'Nothing was parsed from Video_List_Searched' 
@@ -176,7 +176,7 @@ def Total_Video_List(link):
 				videoLink = videoInfo[-1]
 				videoNameSplit = videoLink.split('/')
 				videoName = videoName.replace('-',' ').replace('_',' ').title().strip()
-				if (not 'http://ads.' in videoLink and not 'episode' in videoLink and len(videoNameSplit) >= 2):
+				if (not (any(skip_ads in videoLink for skip_ads in remove_ads) and 'episode' in videoLink) and len(videoNameSplit) >= 2):
 					# searchRes.append([videoLink, videoName])
 					videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
 					searchRes.append([videoLink, videoName])

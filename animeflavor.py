@@ -134,7 +134,7 @@ def Episode_Media_Link(url, AltMirror=1,part=1):
 	match=re.compile('<(iframe|embed)(.+?)src="(.+?)"').findall(link)
 	if(len(match) >= 1):
 		for garbage1, garbage2, episodeMediaLink in match:
-			if ((not 'http://ad' in episodeMediaLink) and not 'animeflavor-gao-gamebox.swf' in episodeMediaLink and not 'http://www3.game' in episodeMediaLink):
+			if (not any(skip_ads in episodeMediaLink for skip_ads in remove_ads)):
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
 					
@@ -147,7 +147,7 @@ def Episode_Media_Link(url, AltMirror=1,part=1):
 	match=re.compile('<(iframe|embed)src="(.+?)"').findall(link)
 	if(len(match) >= 1):
 		for garbage, episodeMediaLink in match:
-			if ((not 'http://ads.' in episodeMediaLink) and (not 'animeflavor-gao-gamebox.swf' in episodeMediaLink)):
+			if (not any(skip_ads in episodeMediaLink for skip_ads in remove_ads)):
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
 					
@@ -160,7 +160,7 @@ def Episode_Media_Link(url, AltMirror=1,part=1):
 	match=re.compile('<(iframe|embed)src=\'(.+?)\'').findall(link)
 	if(len(match) >= 1):
 		for garbage, episodeMediaLink in match:
-			if ((not 'http://ads.' in episodeMediaLink) and (not 'animeflavor-gao-gamebox.swf' in episodeMediaLink)):
+			if (not any(skip_ads in episodeMediaLink for skip_ads in remove_ads)):
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
 					
@@ -173,7 +173,7 @@ def Episode_Media_Link(url, AltMirror=1,part=1):
 	match=re.compile('config=flavor1\|file=(.+?)\|image').findall(link)
 	if(len(match) >= 1):
 		for episodeMediaLink in match:
-			if (not 'http://ads.' in episodeMediaLink):
+			if (not any(skip_ads in episodeMediaLink for skip_ads in remove_ads)):
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
 					
@@ -238,7 +238,7 @@ def Video_List_Searched(searchText,link):
 				videoLink = videoInfo[-1]
 				videoNameSplit = videoLink.split('/')
 				videoName = searchText + videoName.replace('</a>','').strip()
-				if (not 'http://ads.' in videoLink):
+				if (not any(skip_ads in videoLink for skip_ads in remove_ads)):
 					searchRes.append([BASE_URL+videoLink, videoName])
 	# else:
 		# print base_txt +  'Nothing was parsed from Video_List_Searched' 
@@ -259,7 +259,7 @@ def Total_Video_List(link):
 				if(len(videoInfo) >= 1):
 					videoLink = videoInfo[-1]
 					videoName = urllib.unquote(videoName)
-					if (not 'http://ads.' in videoLink):
+					if (not any(skip_ads in videoLink for skip_ads in remove_ads)):
 						searchRes.append([BASE_URL+videoLink, videoName.title()])
 	else:
 		print base_txt +  'Nothing was parsed from Total_Video_List' 

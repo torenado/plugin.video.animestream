@@ -167,7 +167,7 @@ def Episode_Media_Link(url, mirror=1, part=1):
 	if(len(match) >= 1):
 		part = 0
 		for garbage, episodeMediaLink in match:
-			if (not('http://ads.' in episodeMediaLink or episodeMediaLink.endswith(('.gif','.jpg'))  or 'facebook.com/plugins/' in episodeMediaLink or 'INSERT_RANDOM_NUMBER_HERE' in episodeMediaLink)):
+			if (not(any(skip_ads in episodeMediaLink for skip_ads in remove_ads) or episodeMediaLink.endswith(('.gif','.jpg')))):
 				part = part + 1
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
@@ -176,8 +176,10 @@ def Episode_Media_Link(url, mirror=1, part=1):
 	
 	if(len(match1) >= 1):
 		part = 0
+		mirror = mirror + 1
 		for episodeMediaLink in match1:
-			if (not('http://ads.' in episodeMediaLink or episodeMediaLink.endswith(('.gif','.jpg'))  or 'facebook.com/plugins/' in episodeMediaLink or 'INSERT_RANDOM_NUMBER_HERE' in episodeMediaLink)):
+			# if (not('http://ads.' in episodeMediaLink or episodeMediaLink.endswith(('.gif','.jpg'))  or 'facebook.com/plugins/' in episodeMediaLink or 'INSERT_RANDOM_NUMBER_HERE' in episodeMediaLink)):
+			if (not(any(skip_ads in episodeMediaLink for skip_ads in remove_ads) or episodeMediaLink.endswith(('.gif','.jpg')))):
 				part = part + 1
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
@@ -224,7 +226,8 @@ def Video_List_Searched(searchText,link):
 			videoLink = videoInfo[-1]
 			videoNameSplit = videoLink.split('/')
 			videoName = videoNameSplit[-1].replace('-',' ').replace('_',' ').title().strip()
-			if (not 'http://ads.' in videoLink):
+			# if (not 'http://ads.' in videoLink):
+			if (not any(skip_ads in videoLink for skip_ads in remove_ads)):
 				searchRes.append([videoLink, videoName])
 	# else:
 		# print base_txt +  'Nothing was parsed from Video_List_Searched' 

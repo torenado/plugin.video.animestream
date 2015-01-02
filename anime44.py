@@ -23,7 +23,7 @@ BASE_URL = 'http://anime44.com'
 base_url_name = BASE_URL.split('//')[1]
 base_txt = base_url_name + ': '
 
-aniUrls = ['http://www.anime44.com/anime-list','http://www.anime44.com/category/anime-movies']
+aniUrls = ['http://www.anime44.com/anime-list','http://www.anime44.com/category/anime-movies','http://www.animetoon.tv/cartoon']
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page
@@ -186,11 +186,14 @@ def Total_Video_List(link):
 	# Generate list of shows/movies
 	
 	searchRes = []
+	match = []
 	match1=re.compile('<table id="series_grid">(.+?)</table>').findall(link)
 	if(len(match1) == 0):
 		match1=re.compile('<form action=(.+?)<div id="user_status">').findall(link)
-
-	match=re.compile('<a(.+?)>(.+?)</a>').findall(match1[0])
+		
+	if(len(match1) != 0):
+		match=re.compile('<a(.+?)>(.+?)</a>').findall(match1[0])
+		
 	if(len(match) >= 1):
 		for linkFound, videoName in match:
 			videoInfo = re.compile('href="(.+?)"').findall(linkFound)
