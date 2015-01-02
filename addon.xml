@@ -6,7 +6,7 @@
 	<requires>
 	<import addon="xbmc.python" version="2.0"/>
 	<import addon="script.common.plugin.cache" version="0.9.1"/>
-	<import addon="script.module.urlresolver.modded" version="1.0.7"/>
+	<import addon="script.module.urlresolver" version="2.6.0"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
