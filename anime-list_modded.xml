@@ -311,6 +311,8 @@
   <anime anidbid="t247231" tvdbid="247231" defaulttvdbseason="0">
     <name>One Piece X Toriko X Dragon Ball Z Crossover</name>
     <name>Toriko And One Piece And Dragon Ball Z Super Collaboration</name>
+    <name>Toriko X One Piece X Dragon Ball Z Crossover 1</name>
+    <name>Toriko X One Piece X Dragon Ball Z Crossover 2</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;99-4;</mapping>
     </mapping-list>
@@ -549,6 +551,7 @@
     <name>Maken-Ki Two</name>
     <name>Maken-Ki! 2nd Season</name>
     <name>Maken-Ki! Second Season</name>
+    <name>Maken-Ki Two</name>
   </anime>
   <anime anidbid="8566" tvdbid="252474" defaulttvdbseason="0">
     <name>Maken-ki!: Natsu Da! Mizugi Da! Gasshuku Da! </name>
@@ -683,6 +686,9 @@
     <name>Queen’S Blade: Gyokuza o Tsugu Mono</name>
     <name>Queens Blade Gyokuza No Tsugumono</name>
     <name>Queens Blade Gyokuza O Tsugu Mono</name>
+    <name>Queens Blade Gyokuza O Tsugumono</name>
+    <name>Queens Blade Gyokuza Wo Tsugu Mono</name>
+    <name>Queens Blade Gyokuza Wo Tsugumono</name>
   </anime>
   <anime anidbid="8737" tvdbid="87491" defaulttvdbseason="3">
     <name>Queen's Blade: Rebellion</name>
@@ -692,6 +698,7 @@
     <name>Queen’S Blade Rebellion</name>
     <name>Queens Blade: Rebellion</name>
     <name>Queens Blade: Rebellion</name>
+    <name>Queen S Blade Rebellion</name>
     <name>Queen’S Blade Rebellion – A Saint’S Agony</name>
     <name>Queens Blade Rebellion A Saints Agony</name>
     <name>Queen’S Blade Rebellion – Siggy’S Passionate Sacred Pose Lessons</name>
@@ -709,6 +716,7 @@
     <name>Queen`s Blade: Wandering Warrior</name>
     <name>Queen`s Blade: The Exiled Virgin</name>
     <name>Queens Blade Rurou No Senshi</name>
+    <name>Queens Blade Ruro No Senshi</name>
   </anime>
   <anime anidbid="7442" tvdbid="87491" defaulttvdbseason="0">
     <name>Queen's Blade: Utsukushiki Toushi-tachi</name>
@@ -800,6 +808,7 @@
     <name>One Piece: Chinjuujima no Chopper Oukoku</name>
     <name>One Piece 3 Choppers Kingdom On The Island Of Strange Animals</name>
     <name>One Piece 3 Chopper Kingdom On The Island Of Strange Animals</name>
+    <name>One Piece 3 Chopper Kingdom Of Strange Animal Island</name>
     <name>One Piece 3</name>
     <name>One Piece III</name>
     <name>One Piece 3 Chopper’S Kingdom On The Island Of Strange Animals</name>
@@ -893,6 +902,7 @@
     <name>One Piece: Romance Dawn Story</name>
     <name>One Piece: Romance Dawn</name>
     <name>One Piece Romance Dawn</name>
+    <name>One Piece Romance Dawn Story</name>
     <mapping-list>
       <mapping anidbseason="1" tvdbseason="0">;1-18;</mapping>
     </mapping-list>
@@ -932,6 +942,7 @@
     <name>One Piece 12</name>
     <name>One Piece XII</name>
     <name>One Piece Film Z</name>
+    <name>One Piece 12 Film Z (2013)</name>
     <name>One Piece 12 Film Z (2013)</name>
     <name>One Piece 12 Film Z</name>
     <name>One Piece 12 Film Z 2013</name>
@@ -1798,6 +1809,7 @@
     <name>Phi Brain: Kami no Puzzle S3</name>
     <name>Phi Brain Kami No Puzzle 3Rd</name>
     <name>Phi Brain Kami No Puzzle 3</name>
+    <name>Phi Brain Kami No Puzzle S3</name>
   </anime>
   <anime anidbid="8853" tvdbid="257571" defaulttvdbseason="1">
     <name>Nazo no Kanojo X</name>
@@ -2818,6 +2830,7 @@
   <anime anidbid="7933" tvdbid="272132" defaulttvdbseason="1">
     <name>Coppelion</name>
     <name>Coppelion (2013)</name>
+    <name>Coppelion 2013</name>
   </anime>
   <anime anidbid="9677" tvdbid="272128" defaulttvdbseason="1">
     <name>Log Horizon</name>
@@ -3620,7 +3633,6 @@
 <anime anidbid="10635" tvdbid="283926" defaulttvdbseason="1">   <name>Orenchi no Furo Jijou</name>  </anime>
 <anime anidbid="5388" tvdbid="263484" defaulttvdbseason="1">   <name>Osu!! Karate Bu</name>  </anime>
 <anime anidbid="9445" tvdbid="265386" defaulttvdbseason="1">   <name>PUCHIM@S</name>  </anime>
-<anime anidbid="826" tvdbid="72775" defaulttvdbseason="1">     <name>Saint Seiya</name>  </anime>
 <anime anidbid="10421" tvdbid="279527" defaulttvdbseason="1">   <name>Ronia the Robber's Daughter</name>  </anime>
 <anime anidbid="10539" tvdbid="279830" defaulttvdbseason="1">   <name>Your Lie in April</name>  </anime>
 <anime anidbid="10373" tvdbid="284133" defaulttvdbseason="1">   <name>Rage of Bahamut: Genesis</name>  </anime>
@@ -3671,6 +3683,11 @@
 </anime>
 <anime anidbid="9893" tvdbid="272071" defaulttvdbseason="1">   
 	<name>Blazblue Alter Memory</name>  
+</anime>
+<anime anidbid="10373" tvdbid="284133" defaulttvdbseason="1">   
+	<name>Shingeki No Bahamut Genesis</name>  
+	<name>Rage of Bahamut: Genesis</name>  
+	<name>Shingeki no Bahamut: Genesis</name>  
 </anime>
 
 </anime-list>
