@@ -663,6 +663,7 @@
     <name>Girls Bravo - First Season</name>
     <name>Girls Bravo First Season</name>
     <name>Girls Bravo: First Season</name>
+    <name>Girls Bravo First Anime</name>
   </anime>
   <anime anidbid="2679" tvdbid="78856" defaulttvdbseason="2">
     <name>Girls Bravo 2</name>
@@ -3688,6 +3689,26 @@
 	<name>Shingeki No Bahamut Genesis</name>  
 	<name>Rage of Bahamut: Genesis</name>  
 	<name>Shingeki no Bahamut: Genesis</name>  
+</anime>
+<anime anidbid="10523" tvdbid="133341" defaulttvdbseason="2">   
+	<name>Durarara X2 Shou</name>  
+	<name>Durararax2 Shou</name>  
+</anime>
+<anime anidbid="10529" tvdbid="284719" defaulttvdbseason="1">   
+	<name>Shinmai Maou No Testament</name>  
+	<name>The Testament of Sister New Devil</name>  
+</anime>
+<anime anidbid="10538" tvdbid="281275" defaulttvdbseason="1">   
+	<name>Saenai Heroine No Sodatekata</name>  
+</anime>
+<anime anidbid="10323" tvdbid="283924" defaulttvdbseason="1">   
+	<name>Ore, Twintail Ni Narimasu</name>  
+</anime>
+<anime anidbid="10530" tvdbid="283933" defaulttvdbseason="1">   
+	<name>Gugure Kokkuri-San</name>  
+</anime>
+<anime anidbid="10710" tvdbid="288103" defaulttvdbseason="1">   
+	<name>Juuou Mujin No Fafnir</name>  
 </anime>
 
 </anime-list>
