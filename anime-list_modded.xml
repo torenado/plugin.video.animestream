@@ -547,11 +547,11 @@
   <anime anidbid="9406" tvdbid="252474" defaulttvdbseason="2">
     <name>Maken-ki! 2</name>
     <name>Maken Ki Two</name>
+    <name>Maken-Ki Two</name>
     <name>Maken-ki! Two</name>
     <name>Maken-Ki Two</name>
     <name>Maken-Ki! 2nd Season</name>
     <name>Maken-Ki! Second Season</name>
-    <name>Maken-Ki Two</name>
   </anime>
   <anime anidbid="8566" tvdbid="252474" defaulttvdbseason="0">
     <name>Maken-ki!: Natsu Da! Mizugi Da! Gasshuku Da! </name>
@@ -3071,9 +3071,7 @@
 <anime anidbid="9132" tvdbid="259638" defaulttvdbseason="1">      <name>Little Busters!</name>  </anime>
 <anime anidbid="915" tvdbid="80398" defaulttvdbseason="1">        <name>Mobile Fighter G Gundam</name><name>Gundam G</name>  </anime>
 <anime anidbid="9207" tvdbid="264054" defaulttvdbseason="1">   <name>Mangirl!</name>  </anime>
-<anime anidbid="9227" tvdbid="262098" defaulttvdbseason="1">   <name>Girls und Panzer</name><name>Girls and Panzer</name>  </anime>
-<anime anidbid="9230" tvdbid="262092" defaulttvdbseason="1">   <name>OniAi</name><name>Onii Chan Dakedo Ai Sae Areba Kankeinai Yo Ne! (Oniai)</name> <name>Oniichan dakedo Ai sae Areba Kankeinai yo ne!</name>  <name>Onii-chan Dakedo Ai Sae Areba Kankeinai yo ne!</name><name>Onii Chan Dakedo Ai Sae Areba Kankeinai Yo Ne Oniai</name>  </anime>
-<anime anidbid="9271" tvdbid="264533" defaulttvdbseason="1">   <name>Love Live!</name>  </anime>
+<anime anidbid="9227" tvdbid="262098" defaulttvdbseason="1">   <name>Girls und Panzer</name><name>Girls and Panzer</name>  </anime><anime anidbid="9271" tvdbid="264533" defaulttvdbseason="1">   <name>Love Live!</name>  </anime>
 <anime anidbid="93" tvdbid="72792" defaulttvdbseason="1">     <name>I My Me! Strawberry Eggs</name>  </anime>
 <anime anidbid="9311" tvdbid="264055" defaulttvdbseason="1">   <name>GJ-bu</name>  </anime>
 <anime anidbid="9321" tvdbid="262093" defaulttvdbseason="0">   <name>Code:Breaker OVA</name>  </anime>
@@ -3703,6 +3701,7 @@
 </anime>
 <anime anidbid="10323" tvdbid="283924" defaulttvdbseason="1">   
 	<name>Ore, Twintail Ni Narimasu</name>  
+	<name>Ore Twintails Ni Narimasu</name>  
 </anime>
 <anime anidbid="10530" tvdbid="283933" defaulttvdbseason="1">   
 	<name>Gugure Kokkuri-San</name>  
@@ -3710,5 +3709,12 @@
 <anime anidbid="10710" tvdbid="288103" defaulttvdbseason="1">   
 	<name>Juuou Mujin No Fafnir</name>  
 </anime>
-
+<anime anidbid="9230" tvdbid="262092" defaulttvdbseason="1">   
+	<name>OniAi</name>
+	<name>Onii Chan Dakedo Ai Sae Areba Kankeinai Yo Ne! (Oniai)</name> 
+	<name>Oniichan dakedo Ai sae Areba Kankeinai yo ne!</name>  
+	<name>Onii-chan Dakedo Ai Sae Areba Kankeinai yo ne!</name>
+	<name>Onii Chan Dakedo Ai Sae Areba Kankeinai Yo Ne Oniai</name>  
+	<name>Onii Chan Dakedo Ai Sae Areba Kankeinai Yo Ne</name>  
+</anime>
 </anime-list>
