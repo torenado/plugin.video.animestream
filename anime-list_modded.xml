@@ -4815,6 +4815,18 @@
 		<name>Ben-10: Alien Force</name>
 		<name>Ben10 Alien Force</name>
 	</anime>
+	<anime anidbid="t81841" defaulttvdbseason="2" tvdbid="81841">
+		<name>Ben 10: Alien Force 2</name>
+		<name>Ben-10 Alien Force 2</name>
+		<name>Ben-10: Alien Force 2</name>
+		<name>Ben10 Alien Force 2</name>
+	</anime>
+	<anime anidbid="t81841" defaulttvdbseason="3" tvdbid="81841">
+		<name>Ben 10: Alien Force 3</name>
+		<name>Ben-10 Alien Force 3</name>
+		<name>Ben-10: Alien Force 3</name>
+		<name>Ben10 Alien Force 3</name>
+	</anime>
 	<anime anidbid="t81848" defaulttvdbseason="1" tvdbid="81848">
 		<name>Phineas and Ferb</name>
 	</anime>
@@ -4971,6 +4983,9 @@
 	</anime>
 	<anime anidbid="t83268" defaulttvdbseason="1" tvdbid="83268">
 		<name>Star Wars: The Clone Wars</name>
+	</anime>
+	<anime anidbid="t283468" defaulttvdbseason="1" tvdbid="283468">
+		<name>Star War Rebels</name>
 	</anime>
 	<anime anidbid="5909" defaulttvdbseason="1" tvdbid="83277">
 		<name>Toradora!</name>
@@ -5845,6 +5860,7 @@
 	</anime>
 	<anime anidbid="t269276" defaulttvdbseason="1" tvdbid="269276">
 		<name>Street Fighter</name>
+		<name>Street Fighter The Animated Tv Series</name>
 	</anime>
 	<anime anidbid="t113901" defaulttvdbseason="1" tvdbid="113901">
 		<name>The Super Hero Squad Show</name>
@@ -5970,6 +5986,14 @@
 	</anime>
 	<anime anidbid="t79669" defaulttvdbseason="1" tvdbid="79669">
 		<name>The Weekenders</name>
+	</anime>
+	<anime anidbid="t268855" defaulttvdbseason="1" tvdbid="268855">
+		<name>Turbo</name>
+		<name>Turbo FAST</name>
+	</anime>
+	<anime anidbid="t70518" defaulttvdbseason="1" tvdbid="70518">
+		<name>Ultraforce</name>
+		<name>Ultraforce The Animated Series</name>
 	</anime>
 	<anime anidbid="t266434" defaulttvdbseason="1" tvdbid="266434">
 		<name>Walter Melon Tas</name>
@@ -6108,5 +6132,77 @@
 	</anime>
 	<anime anidbid="t71663" defaulttvdbseason="26" tvdbid="71663">
 		<name>The Simpsons 26</name>
+	</anime>
+	<anime anidbid="t73871" defaulttvdbseason="1" tvdbid="73871">
+		<name>Futurama</name>
+		<name>Futurama 1</name>
+	</anime>
+	<anime anidbid="t73871" defaulttvdbseason="2" tvdbid="73871">
+		<name>Futurama 2</name>
+	</anime>
+	<anime anidbid="t73871" defaulttvdbseason="3" tvdbid="73871">
+		<name>Futurama 3</name>
+	</anime>
+	<anime anidbid="t73871" defaulttvdbseason="4" tvdbid="73871">
+		<name>Futurama 4</name>
+	</anime>
+	<anime anidbid="t73871" defaulttvdbseason="5" tvdbid="73871">
+		<name>Futurama 5</name>
+	</anime>
+	<anime anidbid="t73871" defaulttvdbseason="6" tvdbid="73871">
+		<name>Futurama 6</name>
+	</anime>
+	<anime anidbid="t73871" defaulttvdbseason="7" tvdbid="73871">
+		<name>Futurama 7</name>
+	</anime>
+	<anime anidbid="t73141" defaulttvdbseason="1" tvdbid="73141">
+		<name>American Dad</name>
+		<name>American Dad 1</name>
+	</anime>
+	<anime anidbid="t73141" defaulttvdbseason="2" tvdbid="73141">
+		<name>American Dad 2</name>
+	</anime>
+	<anime anidbid="t73141" defaulttvdbseason="3" tvdbid="73141">
+		<name>American Dad 3</name>
+	</anime>
+	<anime anidbid="t73141" defaulttvdbseason="4" tvdbid="73141">
+		<name>American Dad 4</name>
+	</anime>
+	<anime anidbid="t73141" defaulttvdbseason="5" tvdbid="73141">
+		<name>American Dad 5</name>
+	</anime>
+	<anime anidbid="t73141" defaulttvdbseason="6" tvdbid="73141">
+		<name>American Dad 6</name>
+	</anime>
+	<anime anidbid="t73141" defaulttvdbseason="7" tvdbid="73141">
+		<name>American Dad 7</name>
+	</anime>
+	<anime anidbid="t73141" defaulttvdbseason="8" tvdbid="73141">
+		<name>American Dad 8</name>
+	</anime>
+	<anime anidbid="t73141" defaulttvdbseason="9" tvdbid="73141">
+		<name>American Dad 9</name>
+	</anime>
+	<anime anidbid="t73141" defaulttvdbseason="10" tvdbid="73141">
+		<name>American Dad 10</name>
+	</anime>
+	<anime anidbid="t73141" defaulttvdbseason="11" tvdbid="73141">
+		<name>American Dad 11</name>
+	</anime>
+	<anime anidbid="t73141" defaulttvdbseason="12" tvdbid="73141">
+		<name>American Dad 12</name>
+	</anime>
+	<anime anidbid="t78740" defaulttvdbseason="1" tvdbid="78740">
+		<name>Scooby Doo And Scrappy Doo</name>
+		<name>Scooby Doo And Scrappy Doo 1</name>
+	</anime>
+	<anime anidbid="t78740" defaulttvdbseason="2" tvdbid="78740">
+		<name>Scooby Doo And Scrappy Doo 2</name>
+	</anime>
+	<anime anidbid="t78740" defaulttvdbseason="3" tvdbid="78740">
+		<name>Scooby Doo And Scrappy Doo 3</name>
+	</anime>
+	<anime anidbid="t78740" defaulttvdbseason="4" tvdbid="78740">
+		<name>Scooby Doo And Scrappy Doo 4</name>
 	</anime>
 </anime-list>
