@@ -730,6 +730,7 @@
 		<name>X-Men</name>
 		<name>X-Men (2011)</name>
 		<name>X-Men 2011 Anime</name>
+		<name>X-Men Anime 2011</name>
 	</anime>
 	<anime anidbid="8149" defaulttvdbseason="1" tvdbid="239951">
 		<name>C</name>
@@ -2108,6 +2109,7 @@
 	<anime anidbid="t72163" defaulttvdbseason="1" tvdbid="72163">
 		<name>Disney's Hercules</name>
 		<name>Hercules</name>
+		<name>Disney\xe2\x80\x99S Hercules</name>
 	</anime>
 	<anime anidbid="146" defaulttvdbseason="1" tvdbid="72172">
 		<name>MegaMan: NT Warrior</name>
@@ -2997,9 +2999,7 @@
 	<anime anidbid="t76788" defaulttvdbseason="1" tvdbid="76788">
 		<name>Bucky O'Hare</name>
 		<name>Bucky O'Hare and the Toad Wars</name>
-	</anime>
-	<anime anidbid="t76788" defaulttvdbseason="1" tvdbid="76788">
-		<name>Bucky O'Hare and the Toad Wars</name>
+		<name>Bucky O Hare And The Toad Wars</name>
 	</anime>
 	<anime anidbid="t76790" defaulttvdbseason="1" tvdbid="76790">
 		<name>My Little Pony Tales</name>
@@ -3723,6 +3723,7 @@
 	</anime>
 	<anime anidbid="t79300" defaulttvdbseason="1" tvdbid="79300">
 		<name>Ctrl+Alt+Del</name>
+		<name>Ctrl Alt Del</name>
 	</anime>
 	<anime anidbid="t79302" defaulttvdbseason="1" tvdbid="79302">
 		<name>Moral Orel</name>
@@ -4321,9 +4322,6 @@
 	<anime anidbid="t80832" defaulttvdbseason="1" tvdbid="80832">
 		<name>Aaagh! It's the Mr. Hell Show!</name>
 	</anime>
-	<anime anidbid="t80832" defaulttvdbseason="1" tvdbid="80832">
-		<name>Aaagh! It's the Mr. Hell Show!</name>
-	</anime>
 	<anime anidbid="t80845" defaulttvdbseason="1" tvdbid="80845">
 		<name>Storm Hawks</name>
 	</anime>
@@ -4482,6 +4480,7 @@
 		<name>Dragon Ball Z 02 The Worlds Strongest</name>
 		<name>Dragon Ball Z 2 The Worlds Strongest</name>
 		<name>Dragon Ball Z: Kono Yo de Ichiban Tsuyoi Yatsu</name>
+		<name>Dragon Ball Z 02 Konoyo De Ichiban Tsuyoi Yatsu 1990</name>
 	</anime>
 	<anime anidbid="548" defaulttvdbseason="0" tvdbid="81472">
 		<mapping-list>
@@ -4814,6 +4813,7 @@
 		<name>Ben-10 Alien Force</name>
 		<name>Ben-10: Alien Force</name>
 		<name>Ben10 Alien Force</name>
+		<name>Ben 10 Alien Force 1</name>
 	</anime>
 	<anime anidbid="t81841" defaulttvdbseason="2" tvdbid="81841">
 		<name>Ben 10: Alien Force 2</name>
@@ -5344,9 +5344,6 @@
 	</anime>
 	<anime anidbid="t264587" defaulttvdbseason="1" tvdbid="264587">
 		<name>A Clone Apart</name>
-	</anime>
-	<anime anidbid="t80832" defaulttvdbseason="1" tvdbid="80832">
-		<name>Aaagh! It's the Mr. Hell Show!</name>
 	</anime>
 	<anime anidbid="t77612" defaulttvdbseason="1" tvdbid="77612">
 		<name>The Adventures of Jimmy Neutron: Boy Genius</name>
@@ -5983,6 +5980,7 @@
 	<anime anidbid="t78732" defaulttvdbseason="1" tvdbid="78732">
 		<name>WildC.A.T.S.</name>
 		<name>Wild C.A.T.S Covert Action Teams</name>
+		<name>Wild C A T S Covert Action Teams</name>
 	</anime>
 	<anime anidbid="t79669" defaulttvdbseason="1" tvdbid="79669">
 		<name>The Weekenders</name>
@@ -6204,5 +6202,28 @@
 	</anime>
 	<anime anidbid="t78740" defaulttvdbseason="4" tvdbid="78740">
 		<name>Scooby Doo And Scrappy Doo 4</name>
+	</anime>
+	<anime anidbid="t74946" defaulttvdbseason="1" tvdbid="74946">
+		<name>C.O.P.S.</name>
+	</anime>
+	<anime anidbid="t85791" defaulttvdbseason="1" tvdbid="85791">
+		<name>A T O M Alpha Teens On Machines</name>
+		<name>A.T.O.M.</name>
+	</anime>
+	<anime anidbid="t73723" defaulttvdbseason="1" tvdbid="73723">
+		<name>Pinky, Elmyra &amp; the Brain</name>
+		<name>Pinky Elmyra And The Brain</name>
+	</anime>
+	<anime anidbid="t72822" defaulttvdbseason="1" tvdbid="72822">
+		<name>Pixie &amp; Dixie</name>
+		<name>Pixie And Dixie And Mr Jinks</name>
+	</anime>
+	<anime anidbid="t73960" defaulttvdbseason="1" tvdbid="73960">
+		<name>Captain Simian &amp; The Space Monkeys</name>
+		<name>Captain Simian And The Space Monkeys</name>
+	</anime>
+	<anime anidbid="t78701" defaulttvdbseason="1" tvdbid="78701">
+		<name>Captain Caveman &amp; the Teen Angels</name>
+		<name>Captain Caveman And The Teen Angels</name>
 	</anime>
 </anime-list>
