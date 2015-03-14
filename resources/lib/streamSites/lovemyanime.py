@@ -70,7 +70,9 @@ def Episode_Listing(url):
 			elif 'season' in episodePageLink:
 				season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
 			
-			
+			if 'Special' in episodePageName.title():
+				season = '0'
+				
 			season = int(season)
 			episodePageName = episodePageName.title().replace(' Episode','').replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
 			epList.append([episodePageLink, episodePageName, '', epNum, season])
@@ -143,14 +145,13 @@ def Media_Link_Finder(url):
 	link = grabUrlSource(url)
 	link = link.replace(' ','')
 
-	match = re.compile('(iframe|embed)src="(.+?)"').findall(link)
-	match1 = re.compile('(iframe|embed)src=\'(.+?)\'').findall(link)
+	match = re.compile('(iframe|embed|source)src="(.+?)"').findall(link)
+	match1 = re.compile('(iframe|embed|source)src=\'(.+?)\'').findall(link)
 	epMediaFound = []
 	
 	if(len(match) >= 1):
 		epMediaFound = match[0][1]
-		
-	if(len(match1) >= 1):
+	elif(len(match1) >= 1):
 		epMediaFound = match1[0][1]
 		
 	if (len(epMediaFound) < 1):
@@ -208,9 +209,9 @@ def Total_Video_List(link):
 	match1=re.compile('<a name="#number">#</a>(.+?)<!-- /left -->').findall(link)	
 	if(len(match1) > 0):
 		# match=re.compile('<a href="(.+?)">(.+?)</a>').findall(match1[0])
-		match=re.compile('<a href="(.+?)" title="(.+?)"').findall(match1[0])
+		match=re.compile('<a(.+?)href="(.+?)" title="(.+?)"').findall(match1[0])
 		if(len(match) >= 1):
-			for videoLink, videoName in match:
+			for garbage, videoLink, videoName in match:
 				videoNameSplit = videoLink.split('/')
 				# videoName = videoName.replace('-',' ').replace('_',' ').title().strip()
 				videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
@@ -219,11 +220,11 @@ def Total_Video_List(link):
 				if (not 'http://ads.' in videoLink and not 'episode' in videoLink):
 					searchRes.append([videoLink, videoName])
 		else:
-			print base_txt +  'Nothing was parsed from Total_Video_List' 
+			print base_txt +  'Nothing was parsed from Total_Video_List (1)' 
 	else:
-		print base_txt +  'Nothing was parsed from Total_Video_List' 
+		print base_txt +  'Nothing was parsed from Total_Video_List (2)' 
 	
 	# searchRes.sort(key=lambda name: name[1]) 
-	searchRes = U2A_List(searchRes)
-	searchRes = f2(searchRes)
+	# searchRes = U2A_List(searchRes)
+	# searchRes = f2(searchRes)
 	return searchRes

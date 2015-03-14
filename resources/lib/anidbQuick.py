@@ -481,3 +481,11 @@ def aid2Name(link,anidbWishlist):
 		print base_txt +  'Nothing was parsed from aid2Name: '
 	
 	return watchWishlist
+	
+def f2(seq): 
+	# order preserving uniqify --> http://www.peterbe.com/plog/uniqifiers-benchmark
+	checked = []
+	for e in seq:
+		if e not in checked:
+			checked.append(e)
+	return checked	

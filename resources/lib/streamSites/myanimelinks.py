@@ -37,6 +37,7 @@ def Episode_Listing_Pages(url):
 	if(len(match) >= 1):
 		for ii in range(1,int(match[0])+1):
 			episodeListPage = url + '/page/' + str(ii)
+			episodeListPage.replace('//page','/page').replace('//page','/page')
 			Episode_Listing(episodeListPage)
 			epList = epList + Episode_Listing(episodeListPage)
 	else:
@@ -78,6 +79,9 @@ def Episode_Listing(url):
 			elif 'Season' in episodePageName.title():
 				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
 			
+			if 'Special' in episodePageName.title():
+				season = '0'
+				
 			season = int(season)			
 			episodePageName = episodePageName.title().replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
 			epList.append([episodePageLink, episodePageName, episodeMediaThumb.replace("'",""), epNum, season])
@@ -184,6 +188,6 @@ def Total_Video_List(link):
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
 	
 	# searchRes.sort(key=lambda name: name[1]) 
-	searchRes = U2A_List(searchRes)
-	searchRes = f2(searchRes)
+	# searchRes = U2A_List(searchRes)
+	# searchRes = f2(searchRes)
 	return searchRes

@@ -53,14 +53,13 @@ def Episode_Listing_Pages(url):
 	
 def Episode_Listing(url):
 	# Extracts the URL and Page name of the various content pages
-	
 	link = grabUrlSource(url)
 	link = link.replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('> <','><')
 
-	match1=re.compile('<div id="eplist">(.+?)</div><!-- end of main -->').findall(link)	
+	match1=re.compile('<div id="eplist">(.+?)<aside id="rightside">').findall(link)	
 	match=[]
 	if(len(match1) >= 1):
-		match=re.compile('<a class="title" style="" title="(.+?)" href="(.+?)">').findall(match1[0])
+		match=re.compile('<a title="(.+?)" href="(.+?)">').findall(match1[0])
 	epList = []
 
 	if(len(match) >= 1):
@@ -90,6 +89,8 @@ def Episode_Listing(url):
 			elif 'season' in episodePageLink:
 				season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
 			
+			if 'Special' in episodePageName.title():
+				season = '0'
 			
 			season = int(season)
 			episodePageName = episodePageName.title().replace(' Episode','').replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
@@ -192,7 +193,7 @@ def Video_List_And_Pagination(url):
 	videoImg = ''
 	if (not link == 'No Dice' and len(link) > 100 ):
 		print link
-		seriesBlock = re.compile('<div id="ddmcc_container">(.+?)<div style="clear:both;">').findall(link)[0]
+		seriesBlock = re.compile('<div id="multicolumn">(.+?)<aside id="rightside">').findall(link)[0]
 		
 		match=re.compile('<a href="(.+?)">(.+?)<').findall(seriesBlock)
 		for videoLink, videoName in match:
@@ -229,9 +230,8 @@ def Video_List_Searched(searchText, link):
 	
 def Total_Video_List(link):
 	# Generate list of shows/movies
-	
 	searchRes = []
-	match1=re.compile('<div id="ddmcc_container">(.+?)<div id="sidebar">').findall(link)	
+	match1=re.compile('<div id="multicolumn">(.+?)<aside id="rightside">').findall(link)	
 	if(len(match1) > 0):
 		match=re.compile('<a href="(.+?)">(.+?)</a>').findall(match1[0])
 		if(len(match) >= 1):
@@ -246,6 +246,6 @@ def Total_Video_List(link):
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
 	
 	# searchRes.sort(key=lambda name: name[1]) 
-	searchRes = U2A_List(searchRes)
-	searchRes = f2(searchRes)
+	# searchRes = U2A_List(searchRes)
+	# searchRes = f2(searchRes)
 	return searchRes

@@ -80,6 +80,10 @@ def Episode_Listing(url):
 					season = '2'
 				else:
 					season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
+			
+			if 'Special' in episodePageName.title():
+				season = '0'
+				
 			season = int(season)	
 			epList.append([episodePageLink, episodePageName.title(),'', epNum, season])
 	elif(len(match1) >= 1):
@@ -104,6 +108,9 @@ def Episode_Listing(url):
 			elif 'Season' in episodePageName.title():
 				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
 			
+			if 'Special' in episodePageName.title():
+				season = '0'
+				
 			season = int(season)	
 			epList.append([episodePageLink, episodePageName.title(),'', epNum, season])
 	elif pageTitle:
@@ -125,7 +132,10 @@ def Episode_Listing(url):
 			season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
 		elif 'Season' in episodePageName.title():
 			season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
-		
+			
+		if 'Special' in episodePageName.title():
+			season = '0'
+			
 		season = int(season)		
 		epList.append([episodePageLink, episodePageName,'', epNum, season])
 	
@@ -143,7 +153,6 @@ def Episode_Page(url):
 	match=re.compile('"sources">MIRROR (.+?)</span>').findall(link)
 	epMedia = []
 	episodeMediaMirrors = url
-	
 	if(len(match) >= 1):
 		mirror = 0
 		for ii in range(1,int(match[-1])+1):
@@ -190,7 +199,8 @@ def Episode_Media_Link(url, mirror=1, part=1):
 		print base_txt +  'Nothing was parsed from Episode_Media_Link: ' + url
 	
 	
-	epMedia = f2(epMedia)
+	# print epMedia
+	# epMedia = f2(epMedia)
 	return epMedia
 	
 def Media_Link_Finder(url):
@@ -255,7 +265,7 @@ def Total_Video_List(link):
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
 	
 	# searchRes.sort(key=lambda name: name[1]) 
-	searchRes = U2A_List(searchRes)
-	searchRes = f2(searchRes)
-	print searchRes
+	# searchRes = U2A_List(searchRes)
+	# searchRes = f2(searchRes)
+	# print searchRes
 	return searchRes

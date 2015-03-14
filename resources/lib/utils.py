@@ -1,21 +1,30 @@
 import urllib,urllib2,re,sys,httplib, chardet
-import cookielib,os,string,cookielib,StringIO
-import os,time,base64,logging
-import gzip, io
-import htmlentitydefs
-import unicodedata
-import hashlib
-from datetime import datetime
+import gzip, io, htmlentitydefs, unicodedata, hashlib
+
+base_txt = 'animestream: '
+plugin_name = "animestream"
+
+remove_ads = ['http://ads.',
+	'adconscious.com',
+	'animeflavor-gao-gamebox.swf',
+	'facebook.com/plugins/',
+	'http://www3.game',
+	'INSERT_RANDOM_NUMBER_HERE',
+	'twitter.com']
+
 try:
-	import json
-except ImportError:
-	import simplejson as json
+	import StorageServer
+except:
+	import storageserverdummy as StorageServer
+	
+cache = StorageServer.StorageServer(plugin_name, 24) # (Your plugin name, Cache time in hours)
+cache7 = StorageServer.StorageServer(plugin_name, 24*7) # (Your plugin name, Cache time in hours)
 
-
-def grabUrlSource(url):
+def grabUrlSource_Src(url):
 	# grab url source data
 	# mozilla_user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
-	mozilla_user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Chrome/0.2.153.1 Safari/525.19 '
+	mozilla_user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Chrome/0.2.153.1 Safari/525.19'
+	mozilla_user_agent = 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.99 Safari/537.36'
 	base_txt = 'grabUrlSource: '
 	try:
 		print base_txt + url
@@ -58,14 +67,17 @@ def grabUrlSource(url):
 			print 'grabUrlSource: FAILED - got UNKNOWN http error'
 			
 		return 'No Dice'
+
+def grabUrlSource(url):
+	try:
+		link = cache.cacheFunction(grabUrlSource_Src,url)
+		# link = cache.cacheFunction(grabUrlSource_Src,url)
+	except:		
+		print base_txt + 'grabUrlSource FAILED'
+		link = 'No Dice'
+		print base_txt + link + ' - ' + url
 		
-def f2(seq): 
-	# order preserving uniqify --> http://www.peterbe.com/plog/uniqifiers-benchmark
-	checked = []
-	for e in seq:
-		if e not in checked:
-			checked.append(e)
-	return checked	
+	return link
 	
 def unescape(text):
 	## http://effbot.org/zone/re-sub.htm#unescape-html
@@ -115,8 +127,9 @@ def unescape(text):
 		return url
 	try:
 		return re.sub("&#?\w+;", fixup, text)
+		print 'unescape(text): succeeded'
 	except:
-		print 'unescape(text): FAILED - Element failed to reconcile in function'
+		pass
 		return text
 
 def escapeall(str):
@@ -177,99 +190,11 @@ def list_decode(txt):
 		except:
 			print 'FAILED: ' + str(alias)
 			
-def list_ord(txt):
-	gg = []
-	for v in txt:
-		if ord(v)>128:
-			gg.append([ord(v),v])
-	gg.sort(key=lambda name: name[0])
-	
-	return f2(gg)
-
-def list_ord_replace(txt):
-	gg = []
-	for v in txt:
-		if ord(v)>128:
-			gg.append(odd_decode(ord(v),v))
-		else:
-			gg.append(v)
-	# print gg
-	return ''.join(gg)	
-
-def odd_decode(num,txt=''):
-
-	htmlCodes = []
-	for n in xrange(0,10):
-		for i in xrange(128+n, 255, 16):
-			htmlCodes.append([i,chr(i),'%'+str(0+n)])
-			
-	for code in htmlCodes:
-		if int(code[0])==int(num):
-			txt = code[2]
-			return txt
-	
-	print 'odd_decode: NUM - ' + str(num) + ' not found'
-	
-chars = {
-    '\xc2\x82' : ',',        # High code comma
-    '\xc2\x84' : ',,',       # High code double comma
-    '\xc2\x85' : '...',      # Tripple dot
-    '\xc2\x88' : '^',        # High carat
-    '\xc2\x91' : '\x27',     # Forward single quote
-    '\xc2\x92' : '\x27',     # Reverse single quote
-    '\xc2\x93' : '\x22',     # Forward double quote
-    '\xc2\x94' : '\x22',     # Reverse double quote
-    '\xc2\x95' : ' ',
-    '\xc2\x96' : '-',        # High hyphen
-    '\xc2\x97' : '--',       # Double hyphen
-    '\xc2\x99' : ' ',
-    '\xc2\xa0' : ' ',
-    '\xc2\xa6' : '|',        # Split vertical bar
-    '\xc2\xab' : '<<',       # Double less than
-    '\xc2\xbb' : '>>',       # Double greater than
-    '\xc2\xbc' : '1/4',      # one quarter
-    '\xc2\xbd' : '1/2',      # one half
-    '\xc2\xbe' : '3/4',      # three quarters
-    '\xca\xbf' : '\x27',     # c-single quote
-    '\xcc\xa8' : '',         # modifier - under curve
-    '\xe2\x80\x93' : '-',    # long hyphen
-    '\xc2\xb3' : '^3',       # superscript 3
-    '\x92' : "'",       	 # right single quotation mark
-	'\xe2\x80\x99' : "'",    # right single quotation mark
-	'\xe2\x80\x93' : "-",    # en dash
-    '\xfb' : 'u',    	 	 # latin small letter u with circumflex
-    '\xcc\xb1' : ''          # modifier - under line
-}
-def replace_chars(match):
-	char = match.group(0)
-	return chars[char]
-
-def commonCacheKey(funct, *args):
-	# hashkey created for use with the Common plugin cache
-	name = repr(funct)
-	if name.find(" of ") > -1:
-		name = name[name.find("method") + 7:name.find(" of ")]
-	elif name.find(" at ") > -1:
-		name = name[name.find("function") + 9:name.find(" at ")]
-	keyhash = hashlib.md5()
-	for params in args:
-		if isinstance(params, dict):
-			for key in sorted(params.iterkeys()):
-				if key not in ["new_results_function"]:
-					keyhash.update("'%s'='%s'" % (key, params[key]))
-		elif isinstance(params, list):
-			keyhash.update(",".join(["%s" % el for el in params]))
-		else:
-			try:
-				keyhash.update(params)
-			except:
-				keyhash.update(str(params))
-	name += "|" + keyhash.hexdigest() + "|"
-	return name
-	
-remove_ads = ['http://ads.',
-	'adconscious.com',
-	'animeflavor-gao-gamebox.swf',
-	'facebook.com/plugins/',
-	'http://www3.game',
-	'INSERT_RANDOM_NUMBER_HERE']
+def extract_column(whatList,whichCol):
+	# Extract specific columns from list - http://stackoverflow.com/questions/12609714/python-extract-specific-columns-from-list
+	list1 = whichCol
+	list2 = whatList
+	newList = [[each_list[ii] for ii in list1] for each_list in list2]
+	if len(whichCol)==1:
+		newList = [newList[ii][0] for ii in range(0, len(newList))]
+	return newList

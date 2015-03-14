@@ -91,7 +91,7 @@ def Episode_Media_Link(url, mirror=1):
 	epMedia = []
 	if len(mirrorTotal)>0:
 		for streamingPlayer in mirrorTotal:
-			frame = urllib.unquote_plus(streamingPlayer).replace('\'','"').replace(' =','=').replace('= ','=')
+			frame = urllib.unquote_plus(streamingPlayer.lower()).replace('\'','"').replace(' =','=').replace('= ','=')
 			match=re.compile('<(iframe|embed)(.+?)src="(.+?)"').findall(frame)
 			part = 1
 
@@ -174,11 +174,11 @@ def Total_Video_List(link):
 					if (not 'http://ads.' in videoLink and not 'episode' in videoLink and not videoName.startswith('<')):
 						searchRes.append([videoLink, videoName])
 		else:
-			print base_txt +  'Nothing was parsed from Total_Video_List' 
+			print base_txt +  'Nothing was parsed from Total_Video_List 1' 
 	else:
-		print base_txt +  'Nothing was parsed from Total_Video_List' 
+		print base_txt +  'Nothing was parsed from Total_Video_List 2' 
 	
 	# searchRes.sort(key=lambda name: name[1]) 
-	searchRes = U2A_List(searchRes)
-	searchRes = f2(searchRes)
+	# searchRes = U2A_List(searchRes)
+	# searchRes = f2(searchRes)
 	return searchRes

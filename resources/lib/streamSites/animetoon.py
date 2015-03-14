@@ -11,29 +11,47 @@ except ImportError:
     
 #testing in shell
 #TEST 1
-# python -c "execfile('lovemyanime.py'); Episode_Listing_Pages('http://www.animereboot.com/anime/fairy-tail/')"
+# python -c "execfile('animetoon.py'); Episode_Listing_Pages('http://www.anime44.com/category/fairy-tail')"
 #TEST2
-# python -c "execfile('lovemyanime.py'); Episode_Page('http://www.animereboot.com/anime/fairy-tail/90/')"
+# python -c "execfile('animetoon.py'); Episode_Media_Link('http://www.anime44.com/fairy-tail-90-fairy-tail-90')"
 	
 #animestream
 # modded from --> <addon id="plugin.video.animecrazy" name="Anime Crazy" version="1.0.9" provider-name="AJ">
 
-BASE_URL = 'http://www.animereboot.com' # retired
+BASE_URL = 'http://www.animetoon.tv' 
 
 base_url_name = BASE_URL.split('www.')[1]
 base_txt = base_url_name + ': '
 
-aniUrls = ['http://www.animereboot.com/anime-list/','http://www.animereboot.com/anime-movies/']
+aniUrls = ['http://www.animetoon.tv/cartoon']
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page
 	print base_txt + url
-	link = grabUrlSource(url)	
 	
+	link = grabUrlSource(url)
+	
+	match=re.compile('/page/(.+?)"').findall(link)
+	intNumPage = [0]
+	if(len(match) >= 1):
+		for numPage in match:
+			if numPage.isdigit():
+				intNumPage.append(int(numPage))
+	
+	numPage = max(intNumPage) + 1
+	
+	epList = []
 	episodeListPage = url
-	epList = Episode_Listing(episodeListPage)
+	if(len(match) >= 1):
+		for ii in range(1,numPage):
+			episodeListPage = url + '/page/' + str(ii)
+			Episode_Listing(episodeListPage)
+			epList = epList + Episode_Listing(episodeListPage)
+	else:
+		epList = epList + Episode_Listing(episodeListPage)
 	
 	return epList
+	
 	
 def Episode_Listing(url):
 	# Extracts the URL and Page name of the various content pages
@@ -41,35 +59,43 @@ def Episode_Listing(url):
 	link = grabUrlSource(url)
 	link = link.replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('> <','><')
 
-	match=re.compile('a class="lst" href="(.+?)" title="(.+?)"').findall(link)
+	match1=re.compile('<div id="videos">(.+?)<ul class="pagination">').findall(link)	
+	match=[]
+	if(len(match1) >= 1):
+		match=re.compile('<li><a href="(.+?)">(.+?)<').findall(match1[0])
 	epList = []
 
 	if(len(match) >= 1):
-		for episodePageLink, episodePageName  in match:
+		for episodePageLink, episodePageName in match:
 			season = '1'
-			episodePageName = episodePageName.strip().replace(')',' ').replace('(',' ')
-			epNum = 0									
+			episodePageName.replace('# ','#')
+			epNum = 0					
+			if epNum == 0:					
+				epNumPart = episodePageName.strip().split('#')
+				for  epNumTest in reversed(epNumPart):
+					if epNumTest.isdigit():
+						epNum = int(epNumTest)
+						break	
+						
 			if epNum == 0:
 				epNumPart = episodePageName.strip().split()
 				for  epNumTest in reversed(epNumPart):
 					if epNumTest.isdigit():
 						epNum = int(epNumTest)
-						break						
+						break		
+						
 			if epNum == 0:
-				epNumPart = episodePageLink.strip().split('/')
+				epNumPart = episodePageLink.strip().split('-')
 				for  epNumTest in reversed(epNumPart):
 					if epNumTest.isdigit():
 						epNum = int(epNumTest)
 						break
-					
 			
-			if 'Season' in episodePageName.title():
-				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
-			if '(S-' in episodePageName:
-				season=re.compile('\(S-(.+?)\)').findall(episodePageName)[0]
-			elif 'season' in episodePageLink:
+			if 'season' in episodePageLink:
 				season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
-			
+			elif 'Season' in episodePageName.title():
+				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
+				
 			
 			season = int(season)
 			episodePageName = episodePageName.title().replace(' Episode','').replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
@@ -79,57 +105,31 @@ def Episode_Listing(url):
 		
 	return epList
 	
+	
 def Episode_Page(url):
 	# Identifies the number of mirrors for the content
 	print base_txt +  url
 	
 	link = grabUrlSource(url)
-
-	match1=re.compile('<b>Version</b>(.+?)<div class="prw"><center>').findall(link)	
-	match=re.compile('<a href="(.+?)"').findall(match1[0])	
-	numPage = max(len(match))
 	
-	episodeMediaMirrors = url	
-	epMedia = []
-	ii=0
-	if(len(match) >= 1):
-		for episodeMediaMirrors  in match:
-			ii = ii + 1
-			epMedia = epMedia + Episode_Media_Link(episodeMediaMirrors,ii)
-	else:
-		epMedia = epMedia + Episode_Media_Link(episodeMediaMirrors)
-	
-	return epMedia
+	episodeMediaMirrors = url
+	epMedia = Episode_Media_Link(episodeMediaMirrors)
 		
+	return epMedia
+	
+	
 def Episode_Media_Link(url, mirror=1):
 	# Extracts the URL for the content media file
 	
 	link = grabUrlSource(url)
-	streamingPlayer = re.compile('document.write\(unescape\(escapeall\(\'(.+?)\'\)\)\)').findall(link)
-	streamingPlayer = U2A_List(streamingPlayer)
-	if len(streamingPlayer)>0:
-		streamingPlayer1 = escapeall(streamingPlayer[0])
-		try:
-			streamingPlayer1.decode()
-		except:
-			# print streamingPlayer
-			streamingPlayer1 = list_ord_replace(streamingPlayer1)
-			print base_txt +  'Not UNICODE...attempting to rectify in kludgy fashion'
-			# print streamingPlayer1
-			
-		frame = urllib.unquote_plus(streamingPlayer1).replace('\'','"').replace(' =','=').replace('= ','=')
-	else:
-		frame = link
 	
-	
-	match1=re.compile('<b>Version</b>(.+?)Something wrong with this episode').findall(frame)
-	match=re.compile('<(iframe|embed)(.+?)src="(.+?)"').findall(match1[0])
+	match=re.compile('<(iframe|embed)(.+?)src="(.+?)"').findall(link)
 	epMedia = []
 	part = 1
 
 	if(len(match) >= 1):
 		for garbage, garbage1, episodeMediaLink in match:
-			if (not ('http://ads.' in episodeMediaLink or 'http://ad.' in episodeMediaLink or 'advertising' in episodeMediaLink or 'adserving' in episodeMediaLink or 'src="http://www.facebook.com/plugins/' in episodeMediaLink) ):
+			if (not 'http://ads.' in episodeMediaLink):
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
 					
@@ -137,8 +137,22 @@ def Episode_Media_Link(url, mirror=1):
 	
 	if(len(epMedia) < 1):
 		print base_txt +  'Nothing was parsed from Episode_Media_Link: ' + url
-	
+		
 	return epMedia
+	
+def Video_List_And_Pagination(url):
+	link = grabUrlSource(url)	
+
+	mostPop = []
+	videoImg = ''
+	seriesBlock = re.compile('</div><hr class="separator" />(.+?)<div class="s_right_col">').findall(link)[0]
+	
+	match=re.compile('<a href="(.+?)">(.+?)<').findall(seriesBlock)
+	for videoImg, videoName in match:
+		videoName = urllib.unquote(videoName)
+		mostPop.append([BASE_URL + videoImg, videoName, ''])
+	
+	return mostPop
 	
 def Media_Link_Finder(url):
 	# Extracts the URL for the content media file
@@ -162,24 +176,7 @@ def Media_Link_Finder(url):
 		
 	return epMediaFound
 	
-def Video_List_And_Pagination(url):
-	link = grabUrlSource(url)	
-
-	mostPop = []
-	videoImg = ''
-	if (not link == 'No Dice'):
-		seriesBlock = re.compile('<div id="ddmcc_container">(.+?)<div style="clear:both;"><!-- --></div>').findall(link)[0]
 		
-		match=re.compile('<a href="(.+?)">(.+?)<').findall(seriesBlock)
-		for videoLink, videoName in match:
-			videoLink = BASE_URL + videoLink
-			# videoName = urllib.unquote(videoName)
-			videoNameSplit = videoLink.split('/')
-			videoName = videoNameSplit[-1].replace('-',' ').replace('_',' ').title().strip()
-			mostPop.append(['', videoName, videoLink])
-	
-	return mostPop
-			
 def Video_List_Searched(searchText, link):
 	# Generate list of shows/movies based on the provide keyword(s)
 	# url = 'http://www.myanimelinks.com/full-anime-list/'
@@ -195,31 +192,36 @@ def Video_List_Searched(searchText, link):
 			videoName = videoNameSplit[-2].replace('-',' ').replace('_',' ').title().strip()
 			videoName = urllib.unquote(videoName)
 			if (not 'http://ads.' in videoLink and not 'episode' in videoLink):
-				searchRes.append([BASE_URL + videoLink, videoName])
+				searchRes.append([videoLink, videoName])
 	# else:
 		# print base_txt +  'Nothing was parsed from Video_List_Searched' 
 				
 	return searchRes
-	
+
+		
 def Total_Video_List(link):
-	# Generate list of shows/movies
-	
+	# Generate list of shows/movies	
 	searchRes = []
-	match1=re.compile('<h1 class="ttl">(.+?)<div id="comments">').findall(link)	
-	if(len(match1) > 0):
-		# match=re.compile('<a href="(.+?)">(.+?)</a>').findall(match1[0])
-		match=re.compile('<a class="lst anm_det_pop"(.+?)href="(.+?)" title="(.+?)"').findall(match1[0])
-		if(len(match) >= 1):
-			for garbage1, videoLink, videoName in match:
+	match = []
+	match1=re.compile('<hr class="separator" />(.+?)<hr class="separator" />').findall(link)
+	if(len(match1) == 0):
+		match1=re.compile('<form action=(.+?)<div id="user_status">').findall(link)
+		
+	if(len(match1) != 0):
+		match=re.compile('<a(.+?)>(.+?)</a>').findall(match1[0])
+		
+	if(len(match) > 0):
+		for linkFound, videoName in match:
+			videoInfo = re.compile('href="(.+?)"').findall(linkFound)
+			if(len(videoInfo) >= 1):
+				videoLink = videoInfo[-1]
 				videoNameSplit = videoLink.split('/')
-				# videoName = videoName.replace('-',' ').replace('_',' ').title().strip()
-				videoName = videoNameSplit[-2].replace('-',' ').replace('+',' ').replace('_',' ').title().strip()
-				if 'dubbed' in videoLink:
-					videoName = videoName.replace('dubbed',' ').replace('Dubbed',' ').replace('  ',' ').strip() + ' (Dubbed)'
+				videoName = videoName.replace('-',' ').replace('_',' ').title().strip()
 				if (not 'http://ads.' in videoLink and not 'episode' in videoLink):
 					searchRes.append([videoLink, videoName])
-		else:
-			print base_txt +  'Nothing was parsed from Total_Video_List' 
+					
+					videoName = videoNameSplit[-1].replace('-',' ').replace('_',' ').title().strip()
+					searchRes.append([videoLink, videoName])
 	else:
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
 	

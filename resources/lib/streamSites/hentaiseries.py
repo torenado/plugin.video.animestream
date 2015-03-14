@@ -85,7 +85,7 @@ def Episode_Media_Link(url, mirror=1, part=1):
 		print base_txt +  'Nothing was parsed from Episode_Media_Link: ' + url
 	
 	
-	epMedia = f2(epMedia)
+	# epMedia = f2(epMedia)
 	return epMedia
 	
 def Media_Link_Finder(url):
@@ -137,6 +137,6 @@ def Total_Video_List(link):
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
 	
 	# searchRes.sort(key=lambda name: name[1]) 
-	searchRes = U2A_List(searchRes)
-	searchRes = f2(searchRes)
+	# searchRes = U2A_List(searchRes)
+	# searchRes = f2(searchRes)
 	return searchRes

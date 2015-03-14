@@ -18,12 +18,12 @@ except ImportError:
 #animestream
 # modded from --> <addon id="plugin.video.animecrazy" name="Anime Crazy" version="1.0.9" provider-name="AJ">
 
-BASE_URL = 'http://anime44.com'
+BASE_URL = 'http://www.animenova.tv' # formerly http://anime44.com 
 
-base_url_name = BASE_URL.split('//')[1]
+base_url_name = BASE_URL.split('www.')[1]
 base_txt = base_url_name + ': '
 
-aniUrls = ['http://www.anime44.com/anime-list','http://www.anime44.com/category/anime-movies','http://www.animetoon.tv/cartoon']
+aniUrls = ['http://www.animenova.tv/anime-list','http://www.animenova.tv/category/anime-movies']
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page
@@ -59,11 +59,14 @@ def Episode_Listing(url):
 	link = grabUrlSource(url)
 	link = link.replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('> <','><')
 
-	match=re.compile('<div class="postlist"><a href="(.+?)"(.+?)title="(.+?)">').findall(link)
+	match1=re.compile('<div id="videos">(.+?)<ul class="pagination">').findall(link)	
+	match=[]
+	if(len(match1) >= 1):
+		match=re.compile('<li><a href="(.+?)">(.+?)<').findall(match1[0])
 	epList = []
 
 	if(len(match) >= 1):
-		for episodePageLink, garbage, episodePageName in match:
+		for episodePageLink, episodePageName in match:
 			season = '1'
 			episodePageName.replace('# ','#')
 			epNum = 0					
@@ -94,6 +97,9 @@ def Episode_Listing(url):
 				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
 				
 			
+			if 'Special' in episodePageName.title():
+				season = '0'
+				
 			season = int(season)
 			episodePageName = episodePageName.title().replace(' Episode','').replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
 			epList.append([episodePageLink, episodePageName, '', epNum, season])
@@ -183,18 +189,17 @@ def Video_List_Searched(searchText, link):
 
 		
 def Total_Video_List(link):
-	# Generate list of shows/movies
-	
+	# Generate list of shows/movies	
 	searchRes = []
 	match = []
 	match1=re.compile('<table id="series_grid">(.+?)</table>').findall(link)
 	if(len(match1) == 0):
-		match1=re.compile('<form action=(.+?)<div id="user_status">').findall(link)
+		match1=re.compile('<form action=(.+?)<div id="footer">').findall(link)
 		
 	if(len(match1) != 0):
 		match=re.compile('<a(.+?)>(.+?)</a>').findall(match1[0])
 		
-	if(len(match) >= 1):
+	if(len(match) > 0):
 		for linkFound, videoName in match:
 			videoInfo = re.compile('href="(.+?)"').findall(linkFound)
 			if(len(videoInfo) >= 1):
@@ -210,6 +215,6 @@ def Total_Video_List(link):
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
 	
 	# searchRes.sort(key=lambda name: name[1]) 
-	searchRes = U2A_List(searchRes)
-	searchRes = f2(searchRes)
+	# searchRes = U2A_List(searchRes)
+	# searchRes = f2(searchRes)
 	return searchRes

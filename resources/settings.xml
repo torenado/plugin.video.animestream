@@ -3,17 +3,18 @@
 	<category label="Streaming Sites">
 		<setting label="Anime/Cartoons:" type="lsep" />
 		<setting id="anilinkz_on" type="bool" label="anilinkz.com" default="true"/>
-		<setting id="anime44_on" type="bool" label="anime44.com" default="true"/>
-		<setting id="animecrazy_on" type="bool" label="animecrazy.net (retired)" default="false"/>
+		<setting id="anime44_on" type="bool" label="anime44.com (now animenova.tv)" default="true"/>
 		<setting id="animeflavor_on" type="bool" label="animeflavor.com" default="false"/>
 		<setting id="animefreak_on" type="bool" label="animefreak.tv" default="false"/>
 		<setting id="animefushigi_on" type="bool" label="animefushigi.com" default="true"/>
-		<setting id="animereboot_on" type="bool" label="animereboot.com" default="false"/>
-		<setting id="animesubbed_on" type="bool" label="animesubbed.com" default="false"/>
 		<setting id="animetip_on" type="bool" label="animetip.com" default="true"/>
 		<setting id="lovemyanime_on" type="bool" label="lovemyanime.net" default="false"/>
 		<setting id="myanimelinks_on" type="bool" label="myanimelinks.com" default="false"/>
-		<setting id="tubeplus_on" type="bool" label="tubeplus.me" default="false"/>
+		<setting id="animecrazy_on" type="bool" label="animecrazy.net (retired)" default="false"/>
+		<setting id="animereboot_on" type="bool" label="animereboot.com (gone)" default="false"/>
+		<setting id="animesubbed_on" type="bool" label="animesubbed.com (gone)" default="false"/>
+		<setting label="Cartoons:" type="lsep" />
+		<setting id="animetoon_on" type="bool" label="animetoon.tv" default="false"/>
 		<setting label="Hentai:" type="lsep" />
 		<setting id="hentaiseries_on" type="bool" label="hentaiseries.net" default="false"/>
 		<setting id="hentaistream_on" type="bool" label="hentaistream.com" default="false"/>
@@ -34,5 +35,11 @@
 	<category label="Content View">
 		<setting id="general_show" type="bool" label="Show General Content" default="true"/>
 		<setting id="adult_show" type="bool" label="Show Adult Content" default="false"/>
+	</category>
+	<category label="Library Locations">
+		<setting id="path_anime" type="folder" label="Anime" source="auto" option="writeable"/>
+		<setting id="path_cartoon" type="folder" label="Cartoon" source="auto" option="writeable"/>
+		<setting label="Refresh Streaming Info:" type="lsep" />
+			<setting id="updateStreams" type="bool" label="Update/Refresh Streams" default="false"/>
 	</category>
 </settings>

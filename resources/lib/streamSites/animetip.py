@@ -84,7 +84,9 @@ def Episode_Media_Link(url, mirror=1, part=1):
 	# Extracts the URL for the content media file
 	link = grabUrlSource(url).replace('<strong>','').replace('</strong>','').replace('</span>','').replace('\'','"')
 	
-	match=re.compile('<span class="postTabs_titles"><b>(.+?)</b><center><(.+?)src="(.+?)"').findall(link)
+	match1=re.compile('<iframe src="(.+?)"').findall(link)
+	match2=re.compile('<embed src="(.+?)"').findall(link)
+	match = math1 + match2
 	epMedia = []
 	
 	if(len(match) >= 1):
@@ -93,27 +95,9 @@ def Episode_Media_Link(url, mirror=1, part=1):
 				if (base_url_name in episodeMediaLink):
 					episodeMediaLink = Media_Link_Finder(episodeMediaLink)
 				
-				
-				mP_split = mirrorPart.split()
-				if len(mP_split)>1:
-					mirrorTxt = mP_split[0]
-					partTxt = mP_split[1]
-					
-					if partTxt[0]=='p' and part > partTxt[1:]:
-						mirror = mirror + 1
-						
-					if partTxt[0]=='p' and partTxt[1:].isdigit():
-						part = int(partTxt[1:])
-								
-					
-				else:				
-					mirror = mirror + 1
-					part = 1
-						
-				mirrorTxt = ''
-				partTxt = ''
-					
+				part = 1					
 				epMedia.append([base_url_name,episodeMediaLink, mirror, part])
+				mirror = mirror + 1
 	
 	if(len(epMedia) < 1):
 		print base_txt +  'Nothing was parsed from Episode_Media_Link: ' + url
@@ -204,10 +188,10 @@ def Total_Video_List(link):
 						videoName = videoNameSplit[-1].replace('-',' ').replace('_',' ').replace('.html','').title().strip()
 						searchRes.append([videoLink, videoName])
 						
-	if(len(searchRes) >= 1):
+	if(len(searchRes) < 1):
 		print base_txt +  'Nothing was parsed from Total_Video_List' 
 	
 	# searchRes.sort(key=lambda name: name[1]) 
-	searchRes = U2A_List(searchRes)
-	searchRes = f2(searchRes)
+	# searchRes = U2A_List(searchRes)
+	# searchRes = f2(searchRes)
 	return searchRes
