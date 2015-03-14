@@ -750,6 +750,7 @@
 	<anime anidbid="t245931" defaulttvdbseason="1" tvdbid="245931">
 		<name>Thor &amp; Loki: Blood Brothers</name>
 		<name>Thor and Loki: Blood Brothers</name>
+		<name>Thor Loki Blood Brothers</name>
 	</anime>
 	<anime anidbid="t246161" defaulttvdbseason="1" tvdbid="246161">
 		<name>The Problem Solverz</name>
@@ -2587,14 +2588,14 @@
 	<anime anidbid="t74743" defaulttvdbseason="1" tvdbid="74743">
 		<name>Captain America</name>
 	</anime>
-	<anime anidbid="4515" defaulttvdbseason="0" tvdbid="74796">
+	<anime anidbid="4515" defaulttvdbseason="0" tvdbid="74796" moviedbid="15575">
 		<name>Bleach 1: Memories of Nobody</name>
 		<name>Bleach Memories</name>
 		<name>Bleach the Movie: Memories of Nobody</name>
 		<name>Bleach: Memories of Nobody</name>
 		<name>Gekijouban Bleach: Memories of Nobody</name>
 	</anime>
-	<anime anidbid="5352" defaulttvdbseason="0" tvdbid="74796">
+	<anime anidbid="5352" defaulttvdbseason="0" tvdbid="74796" moviedbid="17101">
 		<name>BLEACH 2 Diamond Dust Rebellion</name>
 		<name>BLEACH 2 The Diamond Dust Rebellion</name>
 		<name>BLEACH 2 The Diamond Dust Rebellion 2</name>
@@ -2603,13 +2604,13 @@
 		<name>Bleach The Movie 2: The Diamond Dust Rebellion</name>
 		<name>Gekijouban Bleach: The Diamond Dust Rebellion Mou Hitotsu no Hyourinmaru</name>
 	</anime>
-	<anime anidbid="6041" defaulttvdbseason="0" tvdbid="74796">
+	<anime anidbid="6041" defaulttvdbseason="0" tvdbid="74796" moviedbid="17165">
 		<name>BLEACH Fade to Black</name>
 		<name>Bleach 3 Fade To Black</name>
 		<name>Bleach the Movie 3: Fade to Black</name>
 		<name>Gekijouban Bleach: Fade to Black Kimi no Na o Yobu</name>
 	</anime>
-	<anime anidbid="7666" defaulttvdbseason="0" tvdbid="74796">
+	<anime anidbid="7666" defaulttvdbseason="0" tvdbid="74796" moviedbid="73245">
 		<name>Bleach 4 Hell Chapter</name>
 		<name>Bleach 4 Jigoku Hen</name>
 		<name>Bleach 4 The Hell Verse</name>
@@ -4995,6 +4996,7 @@
 	</anime>
 	<anime anidbid="t83294" defaulttvdbseason="1" tvdbid="83294">
 		<name>Total Drama Island</name>
+		<name>Total Drama</name>
 	</anime>
 	<anime anidbid="t83297" defaulttvdbseason="1" tvdbid="83297">
 		<name>Jane and the Dragon</name>
@@ -5981,6 +5983,7 @@
 		<name>WildC.A.T.S.</name>
 		<name>Wild C.A.T.S Covert Action Teams</name>
 		<name>Wild C A T S Covert Action Teams</name>
+		<name>Wildc A T S</name>
 	</anime>
 	<anime anidbid="t79669" defaulttvdbseason="1" tvdbid="79669">
 		<name>The Weekenders</name>
@@ -6225,5 +6228,63 @@
 	<anime anidbid="t78701" defaulttvdbseason="1" tvdbid="78701">
 		<name>Captain Caveman &amp; the Teen Angels</name>
 		<name>Captain Caveman And The Teen Angels</name>
+	</anime>
+	<anime anidbid="t196351" defaulttvdbseason="1" tvdbid="196351">
+		<name>T.U.F.F. Puppy</name>
+	</anime>
+	<anime anidbid="m14609" defaulttvdbseason="1" tvdbid="0" moviedbid="14609">
+		<name>Ultimate Avengers</name>
+	</anime>
+	<anime anidbid="m14611" defaulttvdbseason="1" tvdbid="0" moviedbid="14611">
+		<name>Ultimate Avengers 2</name>
+	</anime>
+	<anime anidbid="m7092" defaulttvdbseason="1" tvdbid="0" moviedbid="7092">
+		<name>Van Helsing: The London Assignment</name>
+	</anime>
+	<anime anidbid="m63686" defaulttvdbseason="1" tvdbid="0" moviedbid="63686">
+		<name>Thor Tales Of Asgard</name>
+	</anime>
+	<anime anidbid="m299677" defaulttvdbseason="1" tvdbid="0" moviedbid="299677">
+		<name>Tomb Raider 2013</name>
+	</anime>
+	<anime anidbid="t75978" defaulttvdbseason="1" tvdbid="75978">
+		<name>Family Guy</name>
+		<name>Family Guy 1</name>
+	</anime>
+	<anime anidbid="t75978" defaulttvdbseason="2" tvdbid="75978">
+		<name>Family Guy 2</name>
+	</anime>
+	<anime anidbid="t75978" defaulttvdbseason="3" tvdbid="75978">
+		<name>Family Guy 3</name>
+	</anime>
+	<anime anidbid="t75978" defaulttvdbseason="4" tvdbid="75978">
+		<name>Family Guy 4</name>
+	</anime>
+	<anime anidbid="t75978" defaulttvdbseason="5" tvdbid="75978">
+		<name>Family Guy 5</name>
+	</anime>
+	<anime anidbid="t75978" defaulttvdbseason="6" tvdbid="75978">
+		<name>Family Guy 6</name>
+	</anime>
+	<anime anidbid="t75978" defaulttvdbseason="7" tvdbid="75978">
+		<name>Family Guy 7</name>
+	</anime>
+	<anime anidbid="t75978" defaulttvdbseason="8" tvdbid="75978">
+		<name>Family Guy 8</name>
+	</anime>
+	<anime anidbid="t75978" defaulttvdbseason="9" tvdbid="75978">
+		<name>Family Guy 9</name>
+	</anime>
+	<anime anidbid="t75978" defaulttvdbseason="10" tvdbid="75978">
+		<name>Family Guy 10</name>
+	</anime>
+	<anime anidbid="t75978" defaulttvdbseason="11" tvdbid="75978">
+		<name>Family Guy 1</name>
+	</anime>
+	<anime anidbid="t75978" defaulttvdbseason="12" tvdbid="75978">
+		<name>Family Guy 12</name>
+	</anime>
+	<anime anidbid="t75978" defaulttvdbseason="13" tvdbid="75978">
+		<name>Family Guy 13</name>
 	</anime>
 </anime-list>
