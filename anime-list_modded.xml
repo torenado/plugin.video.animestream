@@ -2137,6 +2137,12 @@
 	<anime anidbid="t72244" defaulttvdbseason="1" tvdbid="72244">
 		<name>Star Wars Clone Wars</name>
 	</anime>
+	<anime anidbid="t72244" defaulttvdbseason="2" tvdbid="72244">
+		<name>Star Wars Clone Wars 2</name>
+	</anime>
+	<anime anidbid="t72244" defaulttvdbseason="3" tvdbid="72244">
+		<name>Star Wars Clone Wars 3</name>
+	</anime>
 	<anime anidbid="t72245" defaulttvdbseason="1" tvdbid="72245">
 		<name>Xiaolin Showdown</name>
 	</anime>
@@ -5142,6 +5148,7 @@
 		<name>Super Robot Taisen: Original Generation - The Animation</name>
 		<name>Super Robot Wars OG</name>
 		<name>Super Robot Wars: Original Generation - The Animation</name>
+		<name>Super Robot Wars Original Generation The Animation</name>
 	</anime>
 	<anime anidbid="1644" defaulttvdbseason="1" tvdbid="85428">
 		<name>Steam Detectives</name>
