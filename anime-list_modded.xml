@@ -6309,4 +6309,25 @@
 		<name>Aldnoah.Zero</name>
 		<name>Aldnoah Zero (2015)</name>
 	</anime>
+	<anime anidbid="10725" defaulttvdbseason="1" tvdbid="283942">
+		<name>Akatsuki No Yona</name>
+		<name>Akatsuki No Yona The Girl Standing In The Blush Of Dawn</name>
+	</anime>
+	<anime anidbid="9580" defaulttvdbseason="1" tvdbid="275578">
+		<name>Zillions of Enemy X Ignition</name>
+		<name>Zx Ignition</name>
+	</anime>
+	<anime anidbid="10537" defaulttvdbseason="1" tvdbid="279986">
+		<name>Zankyou No Terror</name>
+		<name>Terror in Resonance</name>
+	</anime>
+	<anime anidbid="7655" defaulttvdbseason="1" tvdbid="195861">
+		<name>You Are Umasou</name>
+	</anime>
+	<anime anidbid="10897" defaulttvdbseason="1" tvdbid="289174">
+		<name>Yoru No Yatterman</name>
+	</anime>
+	<anime anidbid="4531" defaulttvdbseason="1" tvdbid="110071">
+		<name>Yoake Mae Yori Ruriiro Na Crescent Love</name>
+	</anime>
 </anime-list>
