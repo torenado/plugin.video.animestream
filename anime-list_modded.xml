@@ -1727,6 +1727,7 @@
 	</anime>
 	<anime anidbid="10875" defaulttvdbseason="2" tvdbid="281249">
 		<name>Tokyo Ghoul A</name>
+		<name>Tokyo Ghoul Root A</name>
 	</anime>
 	<anime anidbid="10041" defaulttvdbseason="1" tvdbid="281251">
 		<name>Sabagebu</name>
@@ -6331,5 +6332,22 @@
 	</anime>
 	<anime anidbid="4531" defaulttvdbseason="1" tvdbid="110071">
 		<name>Yoake Mae Yori Ruriiro Na Crescent Love</name>
+	</anime>
+	<anime anidbid="7093" defaulttvdbseason="1" tvdbid="0">
+		<name>Loups Garous</name>
+		<name>Loups=Garous</name>
+		<name>Loupous Garous</name>
+		<name>Loupsgarous</name>
+	</anime>
+	<anime anidbid="6236" defaulttvdbseason="1" tvdbid="84571">
+		<name>Viper`s Creed</name>
+		<name>Vipers Creed</name>
+	</anime>
+	<anime anidbid="6729" defaulttvdbseason="1" tvdbid="0">
+		<name>Kangaroo No Tanjoubi</name>
+		<name>Baby Kangaroo`s Birthday Surprise</name>
+	</anime>
+	<anime anidbid="8650" defaulttvdbseason="1" tvdbid="0">
+		<name>Un Go Inga Ron</name>
 	</anime>
 </anime-list>
