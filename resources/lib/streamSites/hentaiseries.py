@@ -23,7 +23,9 @@ BASE_URL = 'http://www.hentaiseries.net'
 base_url_name = BASE_URL.split('www.')[1]
 base_txt = base_url_name + ': '
 
-aniUrls = ['http://www.hentaiseries.net/?genre=Uncensored']
+# aniUrls = ['http://www.hentaiseries.net/?genre=Uncensored']
+aniUrls = []
+aniUrls.append(['http://www.hentaiseries.net/?genre=Uncensored','hentai'])
 
 	
 def Episode_Listing_Pages(url):

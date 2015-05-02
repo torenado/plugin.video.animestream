@@ -23,7 +23,10 @@ BASE_URL = 'http://www.lovemyanime.net'
 base_url_name = BASE_URL.split('www.')[1]
 base_txt = base_url_name + ': '
 
-aniUrls = ['http://www.lovemyanime.net/anime-series-list/','http://www.lovemyanime.net/watch-anime-movies/']
+# aniUrls = ['http://www.lovemyanime.net/anime-series-list/','http://www.lovemyanime.net/watch-anime-movies/']
+aniUrls = []
+aniUrls.append(['http://www.lovemyanime.net/anime-series-list/','anime'])
+aniUrls.append(['http://www.lovemyanime.net/watch-anime-movies/','anime movie'])
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page
@@ -41,7 +44,8 @@ def Episode_Listing(url):
 	link = grabUrlSource(url)
 	link = link.replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('  ',' ').replace('> <','><')
 
-	match=re.compile('<a href="(.+?)" rel="bookmark" title="Watch (.+?)" class').findall(link)
+	match=re.compile('<div class="episode_list">(.+?)<div id="right-sidebar">').findall(link)[0]
+	match=re.compile('<a href="(.+?)" rel="bookmark" title="Watch (.+?)" class').findall(match)
 	epList = []
 
 	if(len(match) >= 1):
@@ -63,12 +67,18 @@ def Episode_Listing(url):
 						break
 					
 			
-			if 'Season' in episodePageName.title():
+			
+			if '2Nd Season' in episodePageName.title():
+				season='2'
+			elif 'Season' in episodePageName.title():
 				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
 			if '(S-' in episodePageName:
 				season=re.compile('\(S-(.+?)\)').findall(episodePageName)[0]
 			elif 'season' in episodePageLink:
-				season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
+				if '2nd-season' in episodePageLink:
+					season = '2'
+				else:
+					season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
 			
 			if 'Special' in episodePageName.title():
 				season = '0'

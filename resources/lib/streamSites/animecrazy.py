@@ -23,7 +23,9 @@ BASE_URL = 'http://www.animecrazy.net'
 base_url_name = BASE_URL.split('www.')[1]
 base_txt = base_url_name + ': '
 	
-aniUrls = ['http://www.animecrazy.net/anime-index/']
+# aniUrls = ['http://www.animecrazy.net/anime-index/']
+aniUrls = []
+aniUrls.append(['http://www.animecrazy.net/anime-index/','anime'])
 	
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page

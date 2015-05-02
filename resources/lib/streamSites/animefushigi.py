@@ -23,7 +23,10 @@ BASE_URL = 'http://www.animefushigi.com'
 base_url_name = BASE_URL.split('www.')[1]
 base_txt = base_url_name + ': '
 
-aniUrls = ['http://www.animefushigi.com/full-anime-list/','http://www.animefushigi.com/anime/movies/']
+# aniUrls = ['http://www.animefushigi.com/full-anime-list/','http://www.animefushigi.com/anime/movies/']
+aniUrls = []
+aniUrls.append(['http://www.animefushigi.com/full-anime-list/','anime'])
+aniUrls.append(['http://www.animefushigi.com/anime/movies/','anime'])
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page
@@ -104,7 +107,12 @@ def Episode_Listing(url):
 						break
 			
 			if 'season' in episodePageLink:
-				season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
+				if '2nd-season' in episodePageLink:
+					season = '2'
+				else:
+					season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
+			elif '2Nd Season' in episodePageName.title():
+				season='2'
 			elif 'Season' in episodePageName.title():
 				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
 			
@@ -268,4 +276,15 @@ def Total_Video_List(link):
 	# searchRes = U2A_List(searchRes)
 	# searchRes = f2(searchRes)
 	# print searchRes
+	return searchRes
+	
+def Total_Video_List_new(aniUrls):
+	# Generate list of shows/movies
+	# http://stackoverflow.com/questions/2002415/how-can-i-add-an-additional-row-and-column-to-an-array
+	
+	searchRes = []
+	for url, type in aniUrls:
+		link = grabUrlSource(url)
+		searchRes = searchRes + [x + [type] for x in Total_Video_List(link)]
+		
 	return searchRes

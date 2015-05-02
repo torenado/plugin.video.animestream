@@ -23,7 +23,11 @@ BASE_URL = 'http://anilinkz.com'
 base_url_name = BASE_URL.split('//')[1]
 base_txt = base_url_name + ': '
 
-aniUrls = ['http://anilinkz.com/anime-list','http://anilinkz.com/movie-ova-list','http://anilinkz.com/cartoons-list']
+# aniUrls = ['http://anilinkz.com/anime-list','http://anilinkz.com/movie-ova-list','http://anilinkz.com/cartoons-list']
+aniUrls = []
+aniUrls.append(['http://anilinkz.com/anime-list','anime'])
+aniUrls.append(['http://anilinkz.com/movie-ova-list','anime movie'])
+aniUrls.append(['http://anilinkz.com/cartoons-list','cartoon'])
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page

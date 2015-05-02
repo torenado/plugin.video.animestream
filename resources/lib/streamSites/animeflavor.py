@@ -23,7 +23,11 @@ BASE_URL = 'http://www.animeflavor.com'
 base_url_name = BASE_URL.split('www.')[1]
 base_txt = base_url_name + ': '
 
-aniUrls = ['http://www.animeflavor.com/node/anime_list','http://www.animeflavor.com/anime_movies','http://www.animeflavor.com/cartoons']
+# aniUrls = ['http://www.animeflavor.com/node/anime_list','http://www.animeflavor.com/anime_movies','http://www.animeflavor.com/cartoons']
+aniUrls = []
+aniUrls.append(['http://www.animeflavor.com/node/anime_list','anime'])
+aniUrls.append(['http://www.animeflavor.com/anime_movies','anime movie'])
+aniUrls.append(['http://www.animeflavor.com/cartoons','cartoon'])
 
 
 def Episode_Listing_Pages(url):

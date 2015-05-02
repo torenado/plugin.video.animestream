@@ -23,7 +23,10 @@ BASE_URL = 'http://www.animereboot.com' # retired
 base_url_name = BASE_URL.split('www.')[1]
 base_txt = base_url_name + ': '
 
-aniUrls = ['http://www.animereboot.com/anime-list/','http://www.animereboot.com/anime-movies/']
+# aniUrls = ['http://www.animereboot.com/anime-list/','http://www.animereboot.com/anime-movies/']
+aniUrls = []
+aniUrls.append(['http://www.animereboot.com/anime-list/','anime'])
+aniUrls.append(['http://www.animereboot.com/anime-movies/','anime movie'])
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page

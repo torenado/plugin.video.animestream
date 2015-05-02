@@ -198,3 +198,9 @@ def extract_column(whatList,whichCol):
 	if len(whichCol)==1:
 		newList = [newList[ii][0] for ii in range(0, len(newList))]
 	return newList
+	
+def remove_like_elements(sourceList,removeList,sourceCol=0,removeCol=0):
+	# Extract specific elements from list - http://stackoverflow.com/questions/4211209/remove-all-the-elements-that-occur-in-1-list-from-another
+	print base_txt + 'removing elements that are the same from list'
+	newList = [x for x in sourceList if x[sourceCol] not in [y[removeCol] for y in removeList]]
+	return newList

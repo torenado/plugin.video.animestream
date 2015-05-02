@@ -25,6 +25,8 @@ cache_path= os.path.join(plug_path, '../../../temp/commoncache.db')
 con_us = sqlite.connect(user_path)
 con_cache = sqlite.connect(cache_path)
 
+icon_sat_dish = 'f_001_53.png'
+
 def remove_bad_substrings(s_list,badSubstrings):
 	s_new = []
 	try:
@@ -271,16 +273,22 @@ def cleanSearchText(searchText,skipEnc=False):
 
 def get_aniDB_list(url=''):	
 	
-	xbmc.executebuiltin('XBMC.Notification(Retrieving Info!,aniDB Wishlist,5000)')
+	# xbmc.executebuiltin('XBMC.Notification(Retrieving Info!,aniDB Wishlist,5000,'+icon_sat_dish+')')
 	
 	if url == '':
 		url = 'http://anidb.net/perl-bin/animedb.pl?show=mywishlist&uid=%(un)s&pass=%(pass)s' % {"un": unid, "pass": pubpass}
 	
+	# pb = xbmcgui.DialogProgressBG()
+	# pb.create(base_txt + 'Grabbing aniDB Wishlist', '')
 	multiPg = []	
-	for pg in xrange(0,30):
+	ii=0
+	dirLength = 20
+	for pg in xrange(0,dirLength):
 		time.sleep(2.5)
+		ii+=1
 		urlPg = url + '&page=' + str(pg)
-		print base_txt + urlPg
+		updateText = 'Page ' + str(pg) + ': ' + urlPg
+		print base_txt + updateText
 		linkPg = grabUrlSource(urlPg)
 		if 'No results.' in linkPg:
 			print base_txt + 'No more pages to parse'
@@ -289,6 +297,11 @@ def get_aniDB_list(url=''):
 			multiPg.append(linkPg)
 		
 		link = ''.join(multiPg)
+		# pb.update(int(ii/float(dirLength)*100), message=updateText)
+		if monitor.abortRequested():
+			# Abort was requested while waiting. We should exit
+			raise IOError('exit Kodi')
+	# pb.close()
 		
 	# print link	
 	watchWishlist = anidbQuick.Wishlist(link)	
@@ -313,16 +326,22 @@ def list_mylist():
 	
 def get_aniDB_mysummarylist(url=''):		
 	
-	xbmc.executebuiltin('XBMC.Notification(Retrieving Info!,aniDB MyList,5000)')
+	# xbmc.executebuiltin('XBMC.Notification(Retrieving Info!,aniDB MyList,5000,'+icon_sat_dish+')')
 	
 	if url == '':
 		url = 'http://anidb.net/perl-bin/animedb.pl?show=mylist&uid=%(un)s&pass=%(pass)s' % {"un": unid, "pass": pubpass}
 	
+	# pb = xbmcgui.DialogProgressBG()
+	# pb.create(base_txt + 'Grabbing aniDB MyList', '')
 	multiPg = []	
-	for pg in xrange(0,30):
+	ii=0
+	dirLength = 40
+	for pg in xrange(0,dirLength):
 		time.sleep(3)
+		ii+=1
 		urlPg = url + '&page=' + str(pg)
-		# print base_txt + urlPg
+		updateText = 'Page ' + str(pg) + ': ' + urlPg
+		print base_txt + updateText
 		linkPg = grabUrlSource(urlPg)
 		if 'No results.' in linkPg:
 			print base_txt + 'No more pages to parse'
@@ -331,6 +350,11 @@ def get_aniDB_mysummarylist(url=''):
 			multiPg.append(linkPg)
 		
 		link = ''.join(multiPg)
+		# pb.update(int(ii/float(dirLength)*100), message=updateText)
+		if monitor.abortRequested():
+			# Abort was requested while waiting. We should exit
+			raise IOError('exit Kodi')
+	# pb.close()
 		
 	watchMylistSummary = anidbQuick.MyListSummary(link)	
 	watchMylistSummary.sort(key=lambda name: name[0], reverse=True) 
@@ -457,7 +481,7 @@ def get_ani_aid_list():
 	print base_txt + '# of Series Nodes: ' + str(dirLength) 
 	return aniInfo
 	
-def streamSiteSeriesList_aniUrl():
+def streamSiteSeriesList_aniUrl_old():
 	# Searches the various websites for the searched content
 	
 	searchSiteList = []
@@ -481,8 +505,8 @@ def streamSiteSeriesList_aniUrl():
 		if (site_base_url in url):
 			siteBase = streamList + '.aniUrls'
 			site_aniUrls = eval(siteBase)
-			for aniUrl in site_aniUrls:
-				aniUrl_list.append([streamList,aniUrl])
+			for aniUrl, type in site_aniUrls:
+				aniUrl_list.append([streamList,aniUrl, type])
 				if monitor.abortRequested():
 					# Abort was requested while waiting. We should exit
 					raise IOError('exit Kodi')
@@ -493,7 +517,7 @@ def streamSiteSeriesList_aniUrl():
 	ii=0
 	pb = xbmcgui.DialogProgressBG()
 	pb.create(base_txt + 'Grabbing Series URLs', '')
-	for streamList,aniUrl in aniUrl_list:
+	for streamList,aniUrl,type in aniUrl_list:
 		ii+=1
 		updateText = str(ii) + ' of ' + str(dirLength) + ': ' + streamList + ': '
 		print base_txt + updateText + aniUrl
@@ -513,13 +537,70 @@ def streamSiteSeriesList_aniUrl():
 	
 	return searchRes
 	
+def streamSiteSeriesList_aniUrl():
+	# Searches the various websites for the searched content
+	
+	searchSiteList = []
+	
+	
+	for streamList in streamSiteList:
+		siteBase = streamList + '.base_url_name'
+		site_base_url = eval(siteBase)
+		searchSiteList.append([streamList, site_base_url])
+	
+	if(len(searchSiteList) < 1):
+		searchSiteList = [animefushigi.base_url_name]
+		print base_txt +  'No sites choosen in the settings.  Using animefushigi.com'
+	
+	searchRes = []
+	aniUrl_list = []
+	
+	
+	dirLength = len(searchSiteList)
+	print base_txt + '# of items: ' + str(dirLength)
+	
+	ii=0
+	pb = xbmcgui.DialogProgressBG()
+	pb.create(base_txt + 'Grabbing Series URLs', '')
+	for streamList, url in searchSiteList:
+		ii+=1
+		siteBase = streamList + '.base_url_name'
+		site_base_url = eval(siteBase)
+		if (site_base_url in url):
+			siteBase = streamList + '.aniUrls'
+			site_aniUrls = eval(siteBase)
+			# for aniUrl, type in site_aniUrls:
+				# aniUrl_list.append([streamList,aniUrl, type])
+				# searchRes = []
+			for url, type in site_aniUrls:
+				updateText = str(ii) + ' of ' + str(dirLength) + ': ' + streamList + ': '
+				print base_txt + updateText + url
+				pb.update(int(ii/float(dirLength)*100), message=updateText)
+				link = grabUrlSource(url)
+				siteBase = streamList + '.Total_Video_List(link)'
+				searchRes = searchRes + [x + [type] for x in eval(siteBase)]
+				if monitor.abortRequested():
+					# Abort was requested while waiting. We should exit
+					raise IOError('exit Kodi')
+	pb.close()
+		
+	searchRes = U2A_List(searchRes)
+	searchRes = f2(searchRes)
+	searchRes.sort(key=lambda name: name[1], reverse=True) 
+	
+	return searchRes
+	
 garbage_links = ['Http:',
+	'Http',
 	'<Span',
 	'<Imgsrc',
 	'**',
 	'</Div>',
 	'<Span>',
-	'--//<']
+	'--//<',
+	'Document.Write',
+	'Genres No Genres Yet',
+	'<Img']
 	
 def streamSiteSeriesList():
 	# Searches the various websites for the searched content
@@ -537,12 +618,13 @@ def streamSiteSeriesList():
 		ii+=1
 		name = convertName(row[1])
 		link = row[0]
+		type = row[2]
 		updateText = str(ii) + ' of ' + str(dirLength) + ': ' + name
 		pb.update(int(ii/float(dirLength)*100), message=updateText)
 		# print base_txt + updateText
 		if (not(any(skip_ads in row for skip_ads in garbage_links) or name.startswith('*'))):
 			# if not (row[1]=='' and 'Http:' in row[1] and '<Span' in row[1] and '<Imgsrc' in row[1]): 
-			searchRes2.append([link,name])
+			searchRes2.append([link,name,type])
 		if monitor.abortRequested():
 			# Abort was requested while waiting. We should exit
 			raise IOError('exit Kodi')
@@ -683,7 +765,19 @@ def altName(name,removeText):
 	return 	searchAlts
 
 def getAltNames(name):
-	searchAlts = []
+	
+	searchAlts = []	
+	if isinstance(name,list):
+		for nameTxt in name:
+			searchAlts = searchAlts + getAltNames2(nameTxt)
+	else:
+		searchAlts = searchAlts + getAltNames2(name)
+		
+	searchAlts = f2(searchAlts)	
+	return searchAlts
+
+def getAltNames2(name):
+	searchAlts = []		
 	searchAlts.append(name)
 	searchAlts = searchAlts + altName(name,' ')
 	searchAlts = searchAlts + altName(name,']')
@@ -895,13 +989,47 @@ def addHours(tm, hrs):
 	
 def search_aid_tvid(searchText, aidGet=False, tvdbGet=True):
 	
-	searchText = cleanSearchText(searchText)
-	
+	con = sqlite.connect(user_path)
+	aid = '0'
 	tvdbid = '0'
-	aid = '0' 
+	
+	if searchText=='' or any(skip_ads in searchText for skip_ads in garbage_links):
+		print base_txt + ' SKIPPED ===> ' + searchText
+		return aid,tvdbid
+	
+	aid = get_ani_aid_v2(searchText)	
+	tvdbid = get_tvdb_id(aid)[0]
+	
+	if aid=='0':
+		searchText = cleanSearchText(searchText)
+		aid = get_ani_aid_v2(searchText)	
+		tvdbid = get_tvdb_id(aid)[0]
+		serDBaid= 'aid='+aid
+	
+	if not aid=='0':
+		return aid,tvdbid
+	
+	search2 = 'name LIKE "%'+cleanSearchText(searchText)+'%" or altName LIKE "%'+cleanSearchText(searchText)+'%"'
+	with con:
+		cur = con.cursor()
+		con.text_factory = str
+		sql = 'SELECT aid,tvdbSer FROM AIDSeries WHERE '+search2+' GROUP BY aid'
+		print base_txt + sql
+		cur.execute(sql)
+		getTvdbSer = cur.fetchall()
+		
+	if len(getTvdbSer)==1:
+		aid = getTvdbSer[0][0]
+		tvdbid = getTvdbSer[0][1]
+	elif len(getTvdbSer)>1:
+		aid = getTvdbSer[0][0]
+		tvdbid = getTvdbSer[0][1]
+	
+	if aid is not None and tvdbid is not None and not aid=='0':
+		return aid,tvdbid
 	
 	tvdb_detail_search=[]
-	if tvdbGet:	
+	if tvdbGet and tvdbid=='0':	
 		time.sleep(2.5)		
 		tvdbUrl = 'http://www.thetvdb.com/api/GetSeries.php?seriesname='
 		seachTitle = '+'.join(searchText.replace('.','').split())
@@ -912,7 +1040,7 @@ def search_aid_tvid(searchText, aidGet=False, tvdbGet=True):
 		# tvdb_detail_search = anidbQuick.TVDBID_Search(linkTVDB)
 		tvdb_detail_search = cache.cacheFunction(anidbQuick.TVDBID_Search,linkTVDB)
 	
-	if aidGet:
+	if aidGet and aid=='0':
 		tvdbUrl = 'http://anisearch.outrance.pl/?task=search&query='
 		seachTitle = '+'.join(searchText.split())
 		
@@ -934,16 +1062,43 @@ def search_aid_tvid(searchText, aidGet=False, tvdbGet=True):
 		print ' ---- '
 		print '  <anime anidbid="' + aid + '" tvdbid="' + tvdbid + '" defaulttvdbseason="1">	<name>' + name + '</name>  </anime>'
 		print ' ---- '
+		aidFound = aid
 	elif len(tvdb_detail_search)==1:
 		tvdbid = str(tvdb_detail_search[0][1])
 		name = str(tvdb_detail_search[0][0])
 		print ' ---- '
 		print '  <anime anidbid="t' + tvdbid + '" tvdbid="' + tvdbid + '" defaulttvdbseason="1">	<name>' + name + '</name>  </anime>'
-		print ' ---- '
-		
+		print ' ---- '	
+		aidFound = 't' + tvdbid
 	elif len(tvdb_detail_search)>1:
 		print base_txt + 'Multiple matches found...Please choose one.'
-		
+	
+	if len(tvdb_detail_search)==1:
+		with con:
+			cur = con.cursor()
+			con.text_factory = str
+			synAniList = []
+			if not aid == '0':
+				sql = 'SELECT name FROM SynonymSeries WHERE aid="%s"' % aid
+				cur.execute(sql)
+				synAniList = cur.fetchall()
+				synAniList = [x[0] for x in synAniList]
+				
+			searchAlts = []
+			searchAlts.append(cleanSearchText(name))
+			searchAlts = searchAlts + getAltNames(name)
+			searchAlts = searchAlts + getAltNames(name) + getAltNames(synAniList)
+			searchAlts = f2(searchAlts)
+			
+			sql_para = (name, aidFound, ' <--> '.join(searchAlts))
+			try:
+				print base_txt + sql
+				cur.execute('INSERT OR REPLACE INTO SeriesNameAID (name,aid,altName) VALUES ("%s","%s","%s")'% sql_para)
+			except:
+				err_txt = 'database insertion failed: %s, %s, %s'% sql_para
+				print base_txt + err_txt
+	
+	
 	return aid,tvdbid
 
 def allAnimeList(url=''):
@@ -954,12 +1109,9 @@ def allAnimeList(url=''):
 	con = sqlite.connect(user_path)
 	with con:
 		cur = con.cursor()
-		sql = 'CREATE TABLE IF NOT EXISTS SeriesContentLinks(link TEXT PRIMARY KEY, name TEXT, status TEXT)'
-		cur.execute(sql)
-	
-		sql = 'INSERT INTO SeriesContentLinks VALUES(?,?,?)' 
-		# print base_txt + sql
 		con.text_factory = str
+	
+		# print base_txt + sql
 		
 		searchRes = []
 		searchRes = streamSiteSeriesList()
@@ -971,26 +1123,47 @@ def allAnimeList(url=''):
 		print base_txt + updateText
 		pb.create(base_txt + updateText, '# of items: ' + str(dirLength))
 		ii=0
+		name2=''
 		for row in searchRes:
 			ii+=1
 			name = convertName(row[1])
 			link = row[0]
-			if '"' in name:
-				name = name.replace('"',"&Quot;")
-			if '"' in link:
-				link = link.replace('"',"%22")
+			type = row[2]
+			if not(any(skip_ads in link for skip_ads in garbage_links)):
+				if '"' in link:
+					link = link.replace('"',"%22")	
+				# sql_para = (link, name, type)	
+				cur.execute('SELECT * FROM SeriesContentLinks WHERE link="%s"' % link)   
+				rows = cur.fetchall()
+				if len(rows)==0: 
+					(aid,tvdbid) = search_aid_tvid(name, aidGet=True, tvdbGet=True)
+					if '"' in name:
+						name = name.replace('"',"&Quot;")
+					
+					if aid=='0':
+						sql = 'SELECT aid FROM SeriesContentLinks WHERE aid LIKE "un%" ORDER BY aid DESC'
+						print base_txt + sql
+						cur.execute(sql)
+						rows = cur.fetchall() 
+						if len(rows)==0:
+							aid = 'un%07d' % (1,)
+						else:
+							# print str(rows[0][0]).split('un')
+							last_un = str(rows[0][0]).split('un')[1]
+							aid = 'un%07d' % (int(last_un)+1,)
+						
+					season = int(get_tvdb_id(aid)[1])
+					sql_para = (link, name, aid, season, type)
+					name2 = name
+					updateText = str(ii) + ' of ' + str(dirLength) + ': ' + name + ': '
+					print base_txt + updateText
+					sql = 'INSERT INTO SeriesContentLinks VALUES(?,?,?,?,?)' 
+					# sql = 'INSERT INTO SeriesContentLinks VALUES(?,?,?)' 	
+					cur.execute(sql,sql_para)
+				# else:
+					# print base_txt + 'RECORD ALREADY EXISTS - INSERT INTO SeriesContentLinks ... link = ' + sql_para[0]
 				
-			sql_para = (link, name, '')	
-			cur.execute('SELECT * FROM SeriesContentLinks WHERE link="%s"' % sql_para[0])   
-			rows = cur.fetchall()
-			if len(rows)==0: 
-				updateText = str(ii) + ' of ' + str(dirLength) + ': ' + name + ': '
-				print base_txt + updateText
-				pb.update(int(ii/float(dirLength)*100), updateText,name)	
-				cur.execute(sql,sql_para)
-			# else:
-				# print base_txt + 'RECORD ALREADY EXISTS - INSERT INTO SeriesContentLinks ... link = ' + sql_para[0]
-			
+			pb.update(int(ii/float(dirLength)*100), updateText,name2)
 			if monitor.abortRequested():
 				# Abort was requested while waiting. We should exit
 				raise IOError('exit Kodi')
@@ -1024,7 +1197,7 @@ def get_ani_searchText(aid):
 			
 	return searchText
 	
-def name2aid(replace_all=0):
+def name2aid2(replace_all=0):
 	# create/update content name to aid map
 	
 	con = sqlite.connect(user_path)
@@ -1058,8 +1231,19 @@ def name2aid(replace_all=0):
 	ii=0
 	name2=''
 	sql = 'INSERT INTO SeriesNameAID VALUES(?,?,?)' 
+	with con:
+		cur = con.cursor()
+		con.text_factory = str
+		# nameList = '"' + '","'.join(extract_column(aidList,[1])) + '"'		
+		cur.execute('SELECT name FROM SeriesNameAID')   
+		SeriesNameAID_rows = cur.fetchall() 
+	aidList = remove_like_elements(aidList,SeriesNameAID_rows,1)
+	dirLength = len(aidList)
+	print base_txt + str(dirLength) + ' rows being added to ' + str(len(SeriesNameAID_rows)) + ' rows in SeriesNameAID table'
 	for aidFound, name, tvdbid, season in  aidList:
-		ii+=1				
+		ii+=1		
+		# if name not in  extract_column(SeriesNameAID_rows,[0]):	
+		name2 = name	
 		with con:
 			cur = con.cursor()
 			con.text_factory = str
@@ -1069,17 +1253,16 @@ def name2aid(replace_all=0):
 			searchAlts = f2(searchAlts)
 			
 			sql_para = (name, aidFound, ' <--> '.join(searchAlts))
-			if (not(any(skip_ads in sql_para for skip_ads in garbage_links) or name.startswith('*'))):
-				try:
-					if replace_all:
-						cur.execute('INSERT OR REPLACE INTO SeriesNameAID (name,aid,altName) VALUES ("%s","%s","%s")'% sql_para)
-					else:
-						cur.execute('INSERT INTO SeriesNameAID (name,aid,altName) VALUES ("%s","%s","%s")'% sql_para)
-						
-				except:
-					if replace_all:
-						err_txt = 'database insertion failed: %s, %s, %s'% sql_para
-						print base_txt + err_txt	
+			try:
+				if replace_all:
+					cur.execute('INSERT OR REPLACE INTO SeriesNameAID (name,aid,altName) VALUES ("%s","%s","%s")'% sql_para)
+				else:
+					cur.execute('INSERT INTO SeriesNameAID (name,aid,altName) VALUES ("%s","%s","%s")'% sql_para)
+					
+			except:
+				if replace_all:
+					err_txt = 'database insertion failed: %s, %s, %s'% sql_para
+					print base_txt + err_txt	
 		pb.update(int(ii/float(dirLength)*100),name2,str(ii) + ' of ' + str(dirLength))
 		if (pb.iscanceled()): return
 	pb.close()
@@ -1104,13 +1287,16 @@ def name2aid(replace_all=0):
 	name2=''
 	sql = 'INSERT INTO SeriesNameAID VALUES(?,?,?)' 
 	
-	with con:
-		cur = con.cursor()
-		con.text_factory = str
+	# with con:
+		# cur = con.cursor()
+		# con.text_factory = str
 		# nameList = '"' + '","'.join(extract_column(aidList,[1])) + '"'		
-		cur.execute('SELECT name FROM SeriesNameAID')   
-		rows = cur.fetchall() 
-		
+		# cur.execute('SELECT name FROM SeriesNameAID')   
+		# rows = cur.fetchall() 
+	
+	aidList = remove_like_elements(aidList,SeriesNameAID_rows,1)
+	dirLength = len(aidList)
+	print base_txt + str(dirLength) + ' rows being added to ' + str(len(SeriesNameAID_rows)) + ' rows in SeriesNameAID table'
 	for aidFound, name, eps in  aidList:
 		ii+=1	
 		# with con:
@@ -1119,51 +1305,23 @@ def name2aid(replace_all=0):
 			# cur.execute('SELECT * FROM SeriesNameAID WHERE name="%s"' % name)   
 			# rows = cur.fetchall() 
 			
-		if name not in rows: 
-			name2 = name
-			updateText = str(ii) + ' of ' + str(dirLength) + ': ' + name2
-			print base_txt + updateText
-			searchAlts = []
-			searchAlts.append(cleanSearchText(name))
-			searchAlts = searchAlts + getAltNames(name)
-			searchAlts = f2(searchAlts)
-			
-			sql_para = (name, aidFound, ' <--> '.join(searchAlts))
-			print sql_para		
-			with con:
-				cur = con.cursor()
-				con.text_factory = str
-				cur.execute(sql,sql_para)
+		name2 = name
+		updateText = str(ii) + ' of ' + str(dirLength) + ': ' + name2
+		print base_txt + updateText
+		searchAlts = []
+		searchAlts.append(cleanSearchText(name))
+		searchAlts = searchAlts + getAltNames(name)
+		searchAlts = f2(searchAlts)
+		
+		sql_para = (name, aidFound, ' <--> '.join(searchAlts))
+		print sql_para		
+		with con:
+			cur = con.cursor()
+			con.text_factory = str
+			cur.execute(sql,sql_para)
 		pb.update(int(ii/float(dirLength)*100),name2,str(ii) + ' of ' + str(dirLength))	
 		if (pb.iscanceled()): return
 	pb.close()
-		
-	# for aidFound, name, eps in  aidList:
-		# ii+=1	
-		# with con:
-			# cur = con.cursor()
-			# con.text_factory = str
-			# cur.execute('SELECT * FROM SeriesNameAID WHERE name="%s"' % name)   
-			# rows = cur.fetchall() 
-			
-		# if len(rows)==0: 
-			# name2 = name
-			# updateText = str(ii) + ' of ' + str(dirLength) + ': ' + name2
-			# print base_txt + updateText
-			# searchAlts = []
-			# searchAlts.append(cleanSearchText(name))
-			# searchAlts = searchAlts + getAltNames(name)
-			# searchAlts = f2(searchAlts)
-			
-			# sql_para = (name, aidFound, ' <--> '.join(searchAlts))
-			# print sql_para		
-			# with con:
-				# cur = con.cursor()
-				# con.text_factory = str
-				# cur.execute(sql,sql_para)
-		# pb.update(int(ii/float(dirLength)*100),name2,str(ii) + ' of ' + str(dirLength))	
-		# if (pb.iscanceled()): return
-	# pb.close()
 	
 	# from get_data_db sites
 	with con:
@@ -1182,31 +1340,41 @@ def name2aid(replace_all=0):
 	ii=0
 	name2=''
 	sql = 'INSERT INTO SeriesNameAID VALUES(?,?,?)' 
+	with con:
+		cur = con.cursor()
+		con.text_factory = str
+		# nameList = '"' + '","'.join(extract_column(aidList,[1])) + '"'		
+		cur.execute('SELECT name FROM SeriesNameAID')   
+		# rows = cur.fetchall() 
+		
+	searchRes = remove_like_elements(searchRes,SeriesNameAID_rows)
+	dirLength = len(searchRes)
+	print base_txt + str(dirLength) + ' rows being added to ' + str(len(SeriesNameAID_rows)) + ' rows in SeriesNameAID table'
+	# print searchRes
 	for searchText in searchRes:
 		ii+=1			
+		name = searchText[0]
+		# with con:
+			# cur = con.cursor()
+			# con.text_factory = str
+			# cur.execute('SELECT * FROM SeriesNameAID WHERE name="%s"' % searchText[0])   
+			# rows = cur.fetchall() 
+			
+		name2 = name 
+		aidFound = searchText[1]
+		updateText = str(ii) + ' of ' + str(dirLength) + ': ' + name2
+		print base_txt + updateText
+		searchAlts = []
+		searchAlts.append(cleanSearchText(name))
+		searchAlts = searchAlts + getAltNames(name)
+		searchAlts = f2(searchAlts)
+		
+		sql_para = (name, aidFound, ' <--> '.join(searchAlts))
+		print sql_para		
 		with con:
 			cur = con.cursor()
 			con.text_factory = str
-			cur.execute('SELECT * FROM SeriesNameAID WHERE name="%s"' % searchText[0])   
-			rows = cur.fetchall() 
-			
-		if len(rows)==0:
-			name2 = searchText[0] 
-			name = searchText[0]
-			aidFound = searchText[1]
-			updateText = str(ii) + ' of ' + str(dirLength) + ': ' + name2
-			print base_txt + updateText
-			searchAlts = []
-			searchAlts.append(cleanSearchText(name))
-			searchAlts = searchAlts + getAltNames(name)
-			searchAlts = f2(searchAlts)
-			
-			sql_para = (name, aidFound, ' <--> '.join(searchAlts))
-			print sql_para		
-			with con:
-				cur = con.cursor()
-				con.text_factory = str
-				cur.execute(sql,sql_para)
+			cur.execute(sql,sql_para)
 		pb.update(int(ii/float(dirLength)*100),name2,str(ii) + ' of ' + str(dirLength))	
 		if (pb.iscanceled()): return
 	pb.close()
@@ -1220,6 +1388,110 @@ def name2aid(replace_all=0):
 			print base_txt + sql
 			cur.execute(sql)
 			
+		sql = 'SELECT * FROM SeriesNameAID ORDER BY name'
+		print base_txt + sql
+		cur.execute(sql)
+		return cur.fetchall()
+	
+def name2aid(replace_all=0):
+	# create/update content name to aid map
+	
+	con = sqlite.connect(user_path)
+	with con:
+		cur = con.cursor()
+		sql = 'CREATE TABLE IF NOT EXISTS SeriesNameAID(name TEXT PRIMARY KEY, aid TEXT, altName TEXT)'
+		cur.execute(sql)
+		sql = 'CREATE VIEW IF NOT EXISTS linkAID AS SELECT SeriesContentLinks.link,SeriesContentLinks.name,SeriesNameAID.aid,SeriesNameAID.altName FROM SeriesContentLinks '
+		sql = sql + 'LEFT JOIN SeriesNameAID ON SeriesContentLinks.name = SeriesNameAID.name ORDER BY SeriesContentLinks.name'
+		cur.execute(sql)
+		sql = 'CREATE VIEW IF NOT EXISTS AIDSeries AS SELECT linkAID.*, '
+		sql = sql + 't1.tvdbSer, t1.description, t1.fanart, t1.iconimage, t1.genre, t1.year, t1.season, t1.adult, t1.epwatch, t1.eptot, t1.playcount '
+		sql = sql + 'FROM linkAID '
+		sql = sql + 'LEFT JOIN Series AS t1 ON linkAID.aid = t1.aid ORDER BY name'
+		cur.execute(sql)
+		
+	# from anime-list.xml
+	aidList = cache.cacheFunction(get_ani_aid_list)
+	
+	# from aniDBFullList
+	groupUrl = []
+	groupUrl.append('http://anidb.net/api/animetitles.xml.gz')
+	
+	# linkAID = ''
+	# for url in groupUrl:
+		# linkAID = linkAID + str(grabUrlSource(url))
+		
+	# aidList = aidList + anidbQuick.aniDBFullList(linkAID)
+	
+	aidList.sort(key=lambda name: name[1]) 
+	aidList = f2(aidList)
+	dirLength = len(aidList)
+	print base_txt + '# of items: ' + str(dirLength)
+	pb = xbmcgui.DialogProgress()
+	if replace_all:
+		updateText = 'Refreshing SeriesNameAID DB'
+		print base_txt + updateText
+		pb.create(updateText, '# of items: ' + str(dirLength))
+	else:
+		updateText = 'Updating SeriesNameAID DB'
+		print base_txt + updateText
+		pb.create(updateText, '# of items: ' + str(dirLength))
+	ii=0
+	name2=''
+	sql = 'INSERT INTO SeriesNameAID VALUES(?,?,?)' 
+	dirLength = len(aidList)
+	# print base_txt + str(dirLength) + ' rows being added to ' + str(len(SeriesNameAID_rows)) + ' rows in SeriesNameAID table'
+	for aidFound, name, tvdbid, season in  aidList:
+		ii+=1		
+		# if name not in  extract_column(SeriesNameAID_rows,[0]):		
+		with con:
+			cur = con.cursor()
+			con.text_factory = str
+			cur.execute('SELECT * FROM SeriesNameAID WHERE name="%s"' % name)   
+			rows = cur.fetchall() 
+			
+			if len(rows)==0:
+				synAniList = []
+				if not aidFound == '0':
+					sql = 'SELECT name FROM SynonymSeries WHERE aid="%s"' % aidFound
+					cur.execute(sql)
+					synAniList = cur.fetchall()
+					synAniList = [x[0] for x in synAniList]
+				
+				name2 = name	
+				searchAlts = []
+				searchAlts.append(cleanSearchText(name))
+				searchAlts = searchAlts + getAltNames(name) + getAltNames(synAniList)
+				searchAlts = f2(searchAlts)
+				
+				sql_para = (name, aidFound, ' <--> '.join(searchAlts))
+				try:
+					if replace_all:
+						cur.execute('INSERT OR REPLACE INTO SeriesNameAID (name,aid,altName) VALUES ("%s","%s","%s")'% sql_para)
+					else:
+						cur.execute('INSERT INTO SeriesNameAID (name,aid,altName) VALUES ("%s","%s","%s")'% sql_para)
+					print base_txt + name + ' aid=' + aidFound + ' being added to SeriesNameAID table'
+				except:
+					if replace_all:
+						err_txt = 'database insertion failed: %s, %s, %s'% sql_para
+						print base_txt + err_txt	
+		pb.update(int(ii/float(dirLength)*100),name2,str(ii) + ' of ' + str(dirLength))
+		if (pb.iscanceled()): return
+	pb.close()
+	
+	# remove garbage links
+	with con:
+		cur = con.cursor()
+		con.text_factory = str		
+		for rm_record in garbage_links:
+			sql = 'DELETE FROM SeriesContentLinks WHERE name LIKE "%'+ rm_record +'%"'
+			print base_txt + sql
+			cur.execute(sql)
+			
+		sql = 'DELETE FROM SeriesContentLinks WHERE aid IS NULL OR trim(aid) = ""'
+		print base_txt + sql
+		cur.execute(sql)
+		
 		sql = 'SELECT * FROM SeriesNameAID ORDER BY name'
 		print base_txt + sql
 		cur.execute(sql)
@@ -1250,18 +1522,122 @@ def initializeTables():
 		sql = 'CREATE TABLE IF NOT EXISTS StreamMeadiaLink(url TEXT PRIMARY KEY,streamSource TEXT,aid TEXT,seasonNum INT, epNum INT)'
 		cur.execute(sql)
 		
-		sql = 'CREATE TABLE IF NOT EXISTS SeriesContentLinks(link TEXT PRIMARY KEY, name TEXT, status TEXT)'
+		sql = 'CREATE TABLE IF NOT EXISTS SeriesContentLinks(link TEXT PRIMARY KEY, name TEXT, aid TEXT, season INT, type TEXT)'
+		cur.execute(sql)
+		
+		sql = 'CREATE TABLE IF NOT EXISTS SeriesEpisodeLinks(link TEXT PRIMARY KEY, seriesName TEXT, epName TEXT, aid TEXT, season INT, epNum INT, type TEXT)'
 		cur.execute(sql)
 		
 		sql = 'CREATE TABLE IF NOT EXISTS SeriesNameAID(name TEXT PRIMARY KEY, aid TEXT, altName TEXT)'
 		cur.execute(sql)
 		
+		sql = 'DROP VIEW IF EXISTS linkAID'
+		cur.execute(sql)		
+		
 		sql = 'CREATE VIEW IF NOT EXISTS linkAID AS SELECT SeriesContentLinks.link,SeriesContentLinks.name,SeriesNameAID.aid,SeriesNameAID.altName FROM SeriesContentLinks '
 		sql = sql + 'LEFT JOIN SeriesNameAID ON SeriesContentLinks.name = SeriesNameAID.name ORDER BY SeriesContentLinks.name'
 		cur.execute(sql)
+		
+		sql = 'DROP VIEW IF EXISTS AIDSeries'
+		cur.execute(sql)	
 		
 		sql = 'CREATE VIEW IF NOT EXISTS AIDSeries AS SELECT linkAID.*, '
 		sql = sql + 't1.tvdbSer, t1.description, t1.fanart, t1.iconimage, t1.genre, t1.year, t1.season, t1.adult, t1.epwatch, t1.eptot, t1.playcount '
 		sql = sql + 'FROM linkAID '
 		sql = sql + 'LEFT JOIN Series AS t1 ON linkAID.aid = t1.aid ORDER BY name'
 		cur.execute(sql)
+		
+		for rm_record in garbage_links:
+			sql = 'DELETE FROM SeriesContentLinks WHERE name LIKE "%'+ rm_record +'%"'
+			cur.execute(sql)
+		
+		sql = 'DELETE FROM SeriesContentLinks WHERE aid IS NULL OR trim(aid) = ""'
+		cur.execute(sql)
+		
+		sql = 'DELETE FROM SeriesNameAID WHERE aid IS NULL OR trim(aid) = ""'
+		cur.execute(sql)
+		
+		sql = 'DELETE FROM Series WHERE aid IS NULL OR trim(aid) = ""'
+		cur.execute(sql)
+		
+def searchCollection(searchText='',aid='0'):
+	
+	# searchRes = searchCollection_2(searchText,aid)
+	
+	searchRes = []
+	con = sqlite.connect(user_path)
+	with con:
+		cur = con.cursor()
+		con.text_factory = str
+		search1 = ''
+		search2 = ''
+		if not(aid == '0' or aid == 0):
+			search1 = 'aid = "' + aid + '"'
+			# sql = 'SELECT aid,name, Group_Concat(link," <--> ") as links FROM linkAID WHERE aid = "'+aid+'" ORDER BY name'
+			# print base_txt + sql
+			# cur.execute(sql)
+			# print base_txt + '# of items found: ' + str(cur.fetchall())
+			# searchRes = searchRes + cur.fetchall()
+		if not searchText == '':
+			txt1 = searchText
+			txt2 = cleanSearchText(searchText.split(' [')[0])
+			if len(txt1)<3:
+				search2 = 'name LIKE "'+txt2+'%" or name LIKE "'+txt2+'%"'
+			else:
+				search2 = 'name LIKE "%'+txt2+'%" or altName LIKE "%'+txt2+'%"'
+		
+		if search1=='' and search2=='':
+			print base_txt + 'no text or aid to search'
+			return searchRes
+		elif not search1=='' and not search2=='':
+			searchAll = search1 + ' or ' + search2
+		elif search2=='' and not search1=='':
+			searchAll = search1
+		elif search1=='' and not search2=='':
+			searchAll = search2
+		
+		sql = 'SELECT aid,name, Group_Concat(link," <--> ") as links FROM linkAID WHERE '+searchAll+' GROUP BY aid'
+		print base_txt + sql
+		cur.execute(sql)
+		searchRes = searchRes + cur.fetchall()		
+		print searchRes
+		
+		sql = 'SELECT tvdbSer FROM AIDSeries WHERE '+searchAll+' GROUP BY tvdbSer'
+		print base_txt + sql
+		cur.execute(sql)
+		getTvdbSer = cur.fetchall()
+		print getTvdbSer
+		for tvdbSer in getTvdbSer:
+			if not tvdbSer[0]==None and not tvdbSer[0]=='0' and not tvdbSer[0]==0:
+				sql = 'SELECT aid,name, Group_Concat(link," <--> ") as links FROM AIDSeries WHERE tvdbSer = "'+tvdbSer[0]+'" GROUP BY aid'
+				print base_txt + sql
+				cur.execute(sql)
+				searchRes = searchRes + cur.fetchall()
+	
+				
+	print base_txt + '# of items found: ' + str(len(searchRes))
+	searchRes = f2(searchRes)
+	# print searchRes
+	tempsearchRes = searchRes
+	searchRes = []
+	for aid, name, url in tempsearchRes:
+		if aid is not None:
+			name = convertName(name, url)
+			if name.endswith('The') or name.endswith('The '):
+				name = name[:-3] + ', The'
+			searchRes.append([aid,name,url])
+	
+	searchRes = U2A_List(searchRes)
+	try:
+		searchRes.sort(key=lambda name: name[1]) 
+	except:
+		print base_txt + 'Sorting failed in SEARCH()'
+	
+	searchRes = f2(searchRes)
+	print searchRes 
+	# print searchRes
+	# searchRes = filter(None, searchRes)
+	# print searchRes
+	
+	# return combinedSearchCollect(searchRes)
+	return searchRes

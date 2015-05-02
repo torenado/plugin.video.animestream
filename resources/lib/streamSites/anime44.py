@@ -23,7 +23,10 @@ BASE_URL = 'http://www.animenova.tv' # formerly http://anime44.com
 base_url_name = BASE_URL.split('www.')[1]
 base_txt = base_url_name + ': '
 
-aniUrls = ['http://www.animenova.tv/anime-list','http://www.animenova.tv/category/anime-movies']
+# aniUrls = ['http://www.animenova.tv/anime-list','http://www.animenova.tv/category/anime-movies']
+aniUrls = []
+aniUrls.append(['http://www.animenova.tv/anime-list','anime'])
+aniUrls.append(['http://www.animenova.tv/category/anime-movies','anime movie'])
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page

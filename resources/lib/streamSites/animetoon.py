@@ -23,7 +23,9 @@ BASE_URL = 'http://www.animetoon.tv'
 base_url_name = BASE_URL.split('www.')[1]
 base_txt = base_url_name + ': '
 
-aniUrls = ['http://www.animetoon.tv/cartoon']
+# aniUrls = ['http://www.animetoon.tv/cartoon']
+aniUrls = []
+aniUrls.append(['http://www.animetoon.tv/cartoon','cartoon'])
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page

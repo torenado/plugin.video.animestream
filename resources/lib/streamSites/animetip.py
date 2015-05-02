@@ -23,7 +23,10 @@ BASE_URL = 'http://www.animetip.com'
 base_url_name = BASE_URL.split('www.')[1]
 base_txt = base_url_name + ': '
 
-aniUrls = ['http://www.animetip.com/watch-anime','http://www.animetip.com/anime-movies']
+# aniUrls = ['http://www.animetip.com/watch-anime','http://www.animetip.com/anime-movies']
+aniUrls = []
+aniUrls.append(['http://www.animetip.com/watch-anime','anime'])
+aniUrls.append(['http://www.animetip.com/anime-movies','anime movie'])
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page
@@ -56,11 +59,17 @@ def Episode_Listing(url):
 				epNum = 0
 			
 			if 'season' in episodePageLink:
-				season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
+				if '2nd-season' in episodePageLink:
+					season = '2'
+				else:
+					season=re.compile('season-(.+?)-').findall(episodePageLink)[0]
+			elif '2Nd Season' in episodePageName.title():
+				season='2'
 			elif 'Season' in episodePageName.title():
 				season=re.compile('Season (.+?) ').findall(episodePageName.title())[0]
 			
 			season = int(season)	
+				
 			episodePageName = episodePageName.title().replace(' - ',' ').replace(':',' ').replace('-',' ').strip()
 			epList.append([episodePageLink , episodePageName, '', epNum, season])
 	else:

@@ -18,12 +18,14 @@ except ImportError:
 #animestream
 # modded from --> <addon id="plugin.video.animecrazy" name="Anime Crazy" version="1.0.9" provider-name="AJ">
 
-BASE_URL = 'http://animesubbed.com'
+BASE_URL = 'http://animesubbed.com' # retired
 
 base_url_name = BASE_URL.split('//')[1]
 base_txt = base_url_name + ': '
 
-aniUrls = ['http://animesubbed.com/watch/animelist']
+# aniUrls = ['http://animesubbed.com/watch/animelist']
+aniUrls = []
+aniUrls.append(['http://animesubbed.com/watch/animelist','anime'])
 
 def Episode_Listing_Pages(url):
 	# Identifies the number of pages attached to the original content page
