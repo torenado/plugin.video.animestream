@@ -1095,6 +1095,10 @@
 		<name>High School DxD 2</name>
 		<name>High School DxD New</name>
 	</anime>
+	<anime anidbid="10691" defaulttvdbseason="3" tvdbid="254653">
+		<name>High School DxD 3</name>
+		<name>High School DxD Born</name>
+	</anime>
 	<anime anidbid="8686" defaulttvdbseason="1" tvdbid="254654">
 		<name>Listen To Me Girls I'm Your Father</name>
 		<name>Listen to Me, Girls. I Am Your Father!</name>
@@ -6354,5 +6358,35 @@
 	</anime>
 	<anime anidbid="10438" defaulttvdbseason="1" tvdbid="286855">
 		<name>Seiken Tsukai No World Break</name>
+	</anime>
+	<anime anidbid="10813" defaulttvdbseason="1" tvdbid="289906">
+		<name>Owari No Seraph</name>
+	</anime>
+	<anime anidbid="10854" defaulttvdbseason="1" tvdbid="291627">
+		<name>Plastic Memories</name>
+	</anime>
+	<anime anidbid="10910" defaulttvdbseason="1" tvdbid="291630">
+		<name>Arslan Senki (2015)</name>
+	</anime>
+	<anime anidbid="10894" defaulttvdbseason="1" tvdbid="289882">
+		<name>Dungeon Ni Deai O Motomeru No Wa Machigatte Iru Darouka Familia Myth</name>
+	</anime>
+	<anime anidbid="10663" defaulttvdbseason="1" tvdbid="289886">
+		<name>Kekkai Sensen</name>
+	</anime>
+	<anime anidbid="10365" defaulttvdbseason="1" tvdbid="278197">
+		<name>Fuuun Ishin Dai Shougun</name>
+	</anime>
+	<anime anidbid="9973" defaulttvdbseason="1" tvdbid="278127">
+		<name>Hitsugi no Chaika</name>
+	</anime>
+	<anime anidbid="10639" defaulttvdbseason="2" tvdbid="278127">
+		<name>Hitsugi No Chaika Avenging Battle</name>
+	</anime>
+	<anime anidbid="9892" defaulttvdbseason="1" tvdbid="278154">
+		<name>Sidonia No Kishi</name>
+	</anime>
+	<anime anidbid="10713" defaulttvdbseason="2" tvdbid="278154">
+		<name>Sidonia No Kishi Daikyuu Wakusei Seneki</name>
 	</anime>
 </anime-list>
