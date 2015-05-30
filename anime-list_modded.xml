@@ -6390,4 +6390,24 @@
 	<anime anidbid="10713" defaulttvdbseason="2" tvdbid="278154">
 		<name>Sidonia No Kishi Daikyuu Wakusei Seneki</name>
 	</anime>
+	<anime anidbid="11008" defaulttvdbseason="0" tvdbid="281949">
+		<mapping-list>
+			<mapping anidbseason="0" tvdbseason="0">;1-7;</mapping>
+		</mapping-list>
+		<name>The Labyrinth of Grisaia</name>
+		<name>The Labyrinth of Grisaia: The Cocoon of Caprice 0</name>
+		<name>Grisaia no Meikyuu: Caprice no Mayu 0</name>
+	</anime>
+	<anime anidbid="9749" defaulttvdbseason="1" tvdbid="281949">
+		<name>The Fruit of Grisaia</name>
+		<name>Grisaia no Kajitsu</name>
+	</anime>
+	<anime anidbid="11009" defaulttvdbseason="2" tvdbid="281949">
+		<name>The Eden of Grisaia</name>
+		<name>Grisaia no Rakuen</name>
+	</anime>
+	<anime anidbid="9999" defaulttvdbseason="1" tvdbid="279984">
+		<name>Blade Dance of Elementalers</name>
+		<name>Seirei Tsukai no Blade Dance</name>
+	</anime>
 </anime-list>
